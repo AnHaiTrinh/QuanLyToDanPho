@@ -1,6 +1,6 @@
 package com.se07.model.models;
 
-public class DipDacBiet {
+public class DipDacBietModel {
     private String maDipDacBiet;
     private String maNhanKhau;
     private String maPhanThuong;
@@ -8,7 +8,7 @@ public class DipDacBiet {
     private int nam;
     private String xacNhan;
 
-    public DipDacBiet(String maDipDacBiet, String maNhanKhau, String maPhanThuong, String dipDacBiet, int nam, String xacNhan) {
+    public DipDacBietModel(String maDipDacBiet, String maNhanKhau, String maPhanThuong, String dipDacBiet, int nam, String xacNhan) {
         this.maDipDacBiet = maDipDacBiet;
         this.maNhanKhau = maNhanKhau;
         this.maPhanThuong = maPhanThuong;

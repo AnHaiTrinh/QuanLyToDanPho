@@ -11,10 +11,10 @@ public class NhanKhauModel {
     private String gioiTinh;
     private String thuongTru;
     private String tonGiao;
-    private double xacNhan;
+    private String xacNhan;
 
     public NhanKhauModel(String maNhanKhau, String maHoKhau, String hoTen, String bietDanh, Date ngaySinh,
-                         String gioiTinh, String thuongTru, String tonGiao, double xacNhan) {
+                         String gioiTinh, String thuongTru, String tonGiao, String xacNhan) {
         this.maNhanKhau = maNhanKhau;
         this.maHoKhau = maHoKhau;
         this.hoTen = hoTen;
@@ -90,11 +90,11 @@ public class NhanKhauModel {
         this.tonGiao = tonGiao;
     }
 
-    public double isXacNhan() {
+    public String getXacNhan() {
         return xacNhan;
     }
 
-    public void setXacNhan(double xacNhan) {
+    public void setXacNhan(String xacNhan) {
         this.xacNhan = xacNhan;
     }
 }

@@ -9,10 +9,10 @@ public class ThanhTichModel {
     private String kieuThanhTich;
     private String namHoc;
     private String maPhanThuong;
-    private double xacNhan;
+    private String xacNhan;
 
     public ThanhTichModel(String maThanhTich, String maNhanKhau, int lop, String truong, String capThanhTich,
-                          String kieuThanhTich, String namHoc, String maPhanThuong, double xacNhan) {
+                          String kieuThanhTich, String namHoc, String maPhanThuong, String xacNhan) {
         this.maThanhTich = maThanhTich;
         this.maNhanKhau = maNhanKhau;
         this.lop = lop;
@@ -88,11 +88,11 @@ public class ThanhTichModel {
         this.maPhanThuong = maPhanThuong;
     }
 
-    public double isXacNhan() {
+    public String getXacNhan() {
         return xacNhan;
     }
 
-    public void setXacNhan(double xacNhan) {
+    public void setXacNhan(String xacNhan) {
         this.xacNhan = xacNhan;
     }
 }
