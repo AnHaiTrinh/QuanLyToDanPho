@@ -10,7 +10,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        1
+        System.out.println(1);
     }
 
     public static void main(String[] args) {
