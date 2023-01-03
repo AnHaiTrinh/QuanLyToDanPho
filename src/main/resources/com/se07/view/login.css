@@ -1,0 +1,16 @@
+#buttonLogin{
+    -fx-background-color:  #0f46a6;
+    -fx-background-radius: 15;
+}
+#buttonLogin:hover{
+    -fx-background-color:  rgba(4, 57, 244, 0.95);
+    -fx-background-radius: 15;
+}
+#buttonCancelLogin{
+    -fx-background-color:  #0f46a6;
+    -fx-background-radius: 15;
+}
+#buttonCancelLogin:hover{
+    -fx-background-color:  rgba(4, 57, 244, 0.95);
+    -fx-background-radius: 15;
+}
