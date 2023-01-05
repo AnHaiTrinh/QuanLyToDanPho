@@ -6,8 +6,13 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.*;
 
 public class ConnectionDatabase {
-    public static Connection getConnection(String user, String password, String serverName, String databaseName,
-                                           int portNumber, boolean encrypt) {
+    static final String user = System.getenv("USER");
+    static final String password = System.getenv("MSSQL_PWD");
+    static final String serverName = System.getenv("SERVER_NAME");
+    static final String databaseName = System.getenv("DATABASE_NAME");
+    static final int portNumber = Integer.parseInt(System.getenv("PORT_NUMBER"));
+    static final boolean encrypt = Boolean.parseBoolean(System.getenv("ENCRYPT"));
+    public static Connection getConnection() {
         Connection databaseLink = null;
         SQLServerDataSource sqlServerDataSource = new SQLServerDataSource();
         sqlServerDataSource.setUser(user);
@@ -24,4 +29,3 @@ public class ConnectionDatabase {
         return  databaseLink;
     }
 }
-
