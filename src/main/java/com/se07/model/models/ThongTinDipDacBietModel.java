@@ -6,16 +6,16 @@ public class ThongTinDipDacBietModel {
     private String dipdacBiet;
     private int nam;
     private String tinhTrang;
-    private int idNguoiNhap;
+    private int idNguoiThucHien;
 
     public ThongTinDipDacBietModel(int idNhap, String maNhanKhau, String dipdacBiet, int nam, String tinhTrang,
-                              int idNguoiNhap) {
+                              int idNguoiThucHien) {
         this.idNhap = idNhap;
         this.maNhanKhau = maNhanKhau;
         this.dipdacBiet = dipdacBiet;
         this.nam = nam;
         this.tinhTrang = tinhTrang;
-        this.idNguoiNhap = idNguoiNhap;
+        this.idNguoiThucHien = idNguoiThucHien;
     }
 
     public int getIdNhap() {
@@ -58,11 +58,11 @@ public class ThongTinDipDacBietModel {
         this.tinhTrang = tinhTrang;
     }
 
-    public int getIdNguoiNhap() {
-        return idNguoiNhap;
+    public int getIdNguoiThucHien() {
+        return idNguoiThucHien;
     }
 
-    public void setIdNguoiNhap(int idNguoiNhap) {
-        this.idNguoiNhap = idNguoiNhap;
+    public void setIdNguoiThucHien(int idNguoiThucHien) {
+        this.idNguoiThucHien = idNguoiThucHien;
     }
 }
