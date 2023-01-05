@@ -20,6 +20,7 @@ module com.se07.main {
     exports com.se07.view;
     opens com.se07.controller.controllers to javafx.fxml;
     exports com.se07.controller.controllers;
+    opens com.se07.model.models to javafx.base;
 
 
 }

@@ -176,3 +176,9 @@
     -fx-background-color: #177306;
 }
 
+#buttonLocThongTinHoKhauCanBo{
+    -fx-background-color: black;
+}
+#buttonLocThongTinHoKhauCanBo:hover{
+    -fx-background-color: #177306;
+}

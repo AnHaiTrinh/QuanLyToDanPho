@@ -4,17 +4,17 @@ import java.util.Date;
 
 public class HoKhauModel {
     private String maHoKhau;
-    private String maChuHo;
+    private String chuHo;
     private String diaChi;
     private Date ngayLap;
-    private int nguoiThucHien;
+    private int idNguoiThucHien;
 
-    public HoKhauModel(String maHoKhau, String maChuHo, String diaChi, Date ngayLap, int nguoiThucHien) {
+    public HoKhauModel(String maHoKhau, String chuHo, String diaChi, Date ngayLap, int idNguoiThucHien) {
         this.maHoKhau = maHoKhau;
-        this.maChuHo = maChuHo;
+        this.chuHo = chuHo;
         this.diaChi = diaChi;
         this.ngayLap = ngayLap;
-        this.nguoiThucHien = nguoiThucHien;
+        this.idNguoiThucHien = idNguoiThucHien;
     }
 
     public String getMaHoKhau() {
@@ -25,12 +25,12 @@ public class HoKhauModel {
         this.maHoKhau = maHoKhau;
     }
 
-    public String getMaChuHo() {
-        return maChuHo;
+    public String getChuHo() {
+        return chuHo;
     }
 
-    public void setMaChuHo(String maChuHo) {
-        this.maChuHo = maChuHo;
+    public void setChuHo(String chuHo) {
+        this.chuHo = chuHo;
     }
 
     public String getDiaChi() {
@@ -49,11 +49,11 @@ public class HoKhauModel {
         this.ngayLap = ngayLap;
     }
 
-    public int getNguoiThucHien() {
-        return nguoiThucHien;
+    public int getIdNguoiThucHien() {
+        return idNguoiThucHien;
     }
 
-    public void setNguoiThucHien(int nguoiThucHien) {
-        this.nguoiThucHien = nguoiThucHien;
+    public void setIdNguoiThucHien(int idNguoiThucHien) {
+        this.idNguoiThucHien = idNguoiThucHien;
     }
 }

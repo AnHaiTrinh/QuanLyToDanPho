@@ -1,5 +1,6 @@
 package com.se07.controller.controllers;
 
+import com.se07.model.models.UserModel;
 import com.se07.util.ConnectionDatabase;
 import com.se07.view.AdminView;
 import com.se07.view.LoginView;
@@ -11,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -93,8 +95,8 @@ public class ControllerLoginView {
     }
     public void validateLogin(){
         Connection connection = ConnectionDatabase.getConnection();
-        String veritylogin = "select * from dangnhap where passwordd='" + PasswordFieldPassword.getText() +
-                "'and userd='"+ TextFieldUserName.getText() + "'";
+        String veritylogin = "select * from users where password='" + PasswordFieldPassword.getText() +
+                "'and username='"+ TextFieldUserName.getText() + "'";
        System.out.println(veritylogin);
         if(veritylogin.indexOf(';')>0){
             Alert alert =  new Alert(Alert.AlertType.WARNING);
@@ -111,30 +113,43 @@ public class ControllerLoginView {
         }else {
             try{
                 Statement statement  = connection.createStatement();
-                ResultSet queryResult = statement.executeQuery(veritylogin);
-                if(queryResult.getRow()==0){
+                ResultSet rs = statement.executeQuery(veritylogin);
+                if(rs.getRow()==0){
                     System.out.println("F");
                     LabelAlertLogin.setText("Vui lòng nhập lại tên hoặc mật khẩu");
                 }
-                while (queryResult.next()){
-               System.out.println(-1);
-                System.out.println(queryResult.getString(2));
+                while (rs.next()){
+                    System.out.println(-1);
+                    System.out.println(rs.getString("username"));
+                    Integer role = rs.getInt("role");
 
-                    if(queryResult.getRow()==1){
-                        if(TextFieldUserName.getText().equals("admin") && checkBoxAdmin.isSelected()==true && checkBoxUser.isSelected()==false && checkBoxTreasurer.isSelected()==false){
+                    if(rs.getRow()==1){
+                        if( role==1 && checkBoxAdmin.isSelected()==true && checkBoxUser.isSelected()==false && checkBoxTreasurer.isSelected()==false){
                             LabelAlertLogin.setText("");
+                            FileWriter fileWriter = new FileWriter("src/main/resources/UserData.txt");
+                            fileWriter.write(rs.getInt("ID") + "\n"+rs.getString("username")+"\n"
+                            +rs.getString("password"));
+                            fileWriter.close();
                             AdminView adminView = new AdminView();
                             adminView.openWindow();
                             stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
                             stage.close();
-                        } else if (TextFieldUserName.getText().equals("user")&&checkBoxAdmin.isSelected()==false && checkBoxUser.isSelected()==true && checkBoxTreasurer.isSelected()==false) {
+                        } else if (role==2 &&checkBoxAdmin.isSelected()==false && checkBoxUser.isSelected()==true && checkBoxTreasurer.isSelected()==false) {
                             LabelAlertLogin.setText("");
+                            FileWriter fileWriter = new FileWriter("src/main/resources/UserData.txt");
+                            fileWriter.write(rs.getInt("ID") + "\n"+rs.getString("username")+"\n"
+                                    +rs.getString("password"));
+                            fileWriter.close();
                             UserView userView = new UserView();
                             userView.openWindow();
                             stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
                             stage.close();
-                        }else if(TextFieldUserName.getText().equals("treasurer") && checkBoxAdmin.isSelected()==false && checkBoxUser.isSelected()==false && checkBoxTreasurer.isSelected()==true){
+                        }else if(role==0 && checkBoxAdmin.isSelected()==false && checkBoxUser.isSelected()==false && checkBoxTreasurer.isSelected()==true){
                             LabelAlertLogin.setText("");
+                            FileWriter fileWriter = new FileWriter("src/main/resources/UserData.txt");
+                            fileWriter.write(rs.getInt("ID") + "\n"+rs.getString("username")+"\n"
+                                    +rs.getString("password"));
+                            fileWriter.close();
                             TreasurerView treasurerView = new TreasurerView();
                             treasurerView.openWindow();
                             stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
