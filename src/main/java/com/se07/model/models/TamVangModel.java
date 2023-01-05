@@ -5,21 +5,23 @@ import java.util.Date;
 public class TamVangModel {
     private String maTamVang;
     private String maNhanKhau;
-    private String noiThuongTru;
+    private String noiTamVang;
     private Date tuNgay;
     private Date denNgay;
     private String lyDo;
-    private int idNguoiNhap;
+    private String tinhTrang;
+    private int idNguoiThucHien;
 
-    public TamVangModel(String maTamVang, String maNhanKhau, String noiThuongTru, Date tuNgay, Date denNgay, String lyDo,
-                       int idNguoiNhap) {
+    public TamVangModel(String maTamVang, String maNhanKhau, String noiTamVang, Date tuNgay, Date denNgay, String lyDo,
+                        String tinhTrang, int idNguoiThucHien) {
         this.maTamVang = maTamVang;
         this.maNhanKhau = maNhanKhau;
-        this.noiThuongTru = noiThuongTru;
+        this.noiTamVang = noiTamVang;
         this.tuNgay = tuNgay;
         this.denNgay = denNgay;
         this.lyDo = lyDo;
-        this.idNguoiNhap = idNguoiNhap;
+        this.tinhTrang = tinhTrang;
+        this.idNguoiThucHien = idNguoiThucHien;
     }
 
     public String getMaTamVang() {
@@ -38,12 +40,12 @@ public class TamVangModel {
         this.maNhanKhau = maNhanKhau;
     }
 
-    public String getNoiThuongTru() {
-        return noiThuongTru;
+    public String getNoiTamVang() {
+        return noiTamVang;
     }
 
-    public void setNoiThuongTru(String noiThuongTru) {
-        this.noiThuongTru = noiThuongTru;
+    public void setNoiTamVang(String noiTamVang) {
+        this.noiTamVang = noiTamVang;
     }
 
     public Date getTuNgay() {
@@ -70,11 +72,19 @@ public class TamVangModel {
         this.lyDo = lyDo;
     }
 
-    public int getIdNguoiNhap() {
-        return idNguoiNhap;
+    public String getTinhTrang() {
+        return tinhTrang;
     }
 
-    public void setIdNguoiNhap(int idNguoiNhap) {
-        this.idNguoiNhap = idNguoiNhap;
+    public void setTinhTrang(String tinhTrang) {
+        this.tinhTrang = tinhTrang;
+    }
+
+    public int getIdNguoiThucHien() {
+        return idNguoiThucHien;
+    }
+
+    public void setIdNguoiThucHien(int idNguoiThucHien) {
+        this.idNguoiThucHien = idNguoiThucHien;
     }
 }

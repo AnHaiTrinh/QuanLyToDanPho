@@ -1,7 +1,7 @@
 package com.se07.model.models;
 
-public class ThanhTichModel {
-    private String maThanhTich;
+public class ThongTinThanhTichModel {
+    private int idNhap;
     private String maNhanKhau;
     private int lop;
     private String truong;
@@ -9,11 +9,14 @@ public class ThanhTichModel {
     private String kieuThanhTich;
     private String namHoc;
     private String maPhanThuong;
-    private String xacNhan;
+    private byte[] minhChung;
+    private String tinhTrang;
+    private int idNguoiThucHien;
 
-    public ThanhTichModel(String maThanhTich, String maNhanKhau, int lop, String truong, String capThanhTich,
-                          String kieuThanhTich, String namHoc, String maPhanThuong, String xacNhan) {
-        this.maThanhTich = maThanhTich;
+    public ThongTinThanhTichModel(int idNhap, String maNhanKhau, int lop, String truong, String capThanhTich,
+                                  String kieuThanhTich, String namHoc, String maPhanThuong, byte[] minhChung,
+                                  String tinhTrang, int idNguoiThucHien) {
+        this.idNhap = idNhap;
         this.maNhanKhau = maNhanKhau;
         this.lop = lop;
         this.truong = truong;
@@ -21,15 +24,17 @@ public class ThanhTichModel {
         this.kieuThanhTich = kieuThanhTich;
         this.namHoc = namHoc;
         this.maPhanThuong = maPhanThuong;
-        this.xacNhan = xacNhan;
+        this.minhChung = minhChung;
+        this.tinhTrang = tinhTrang;
+        this.idNguoiThucHien = idNguoiThucHien;
     }
 
-    public String getMaThanhTich() {
-        return maThanhTich;
+    public int getIdNhap() {
+        return idNhap;
     }
 
-    public void setMaThanhTich(String maThanhTich) {
-        this.maThanhTich = maThanhTich;
+    public void setIdNhap(int idNhap) {
+        this.idNhap = idNhap;
     }
 
     public String getMaNhanKhau() {
@@ -88,11 +93,27 @@ public class ThanhTichModel {
         this.maPhanThuong = maPhanThuong;
     }
 
-    public String getXacNhan() {
-        return xacNhan;
+    public byte[] getMinhChung() {
+        return minhChung;
     }
 
-    public void setXacNhan(String xacNhan) {
-        this.xacNhan = xacNhan;
+    public void setMinhChung(byte[] minhChung) {
+        this.minhChung = minhChung;
+    }
+
+    public String getTinhTrang() {
+        return tinhTrang;
+    }
+
+    public void setTinhTrang(String tinhTrang) {
+        this.tinhTrang = tinhTrang;
+    }
+
+    public int getIdNguoiThucHien() {
+        return idNguoiThucHien;
+    }
+
+    public void setIdNguoiThucHien(int idNguoiThucHien) {
+        this.idNguoiThucHien = idNguoiThucHien;
     }
 }
