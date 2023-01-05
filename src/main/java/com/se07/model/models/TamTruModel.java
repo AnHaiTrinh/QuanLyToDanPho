@@ -4,22 +4,26 @@ import java.util.Date;
 
 public class TamTruModel {
     private String maTamTru;
-    private String maNhanKhau;
-    private String noiThuongTru;
+    private String CCCD;
+    private String hoTen;
+    private String noiTamTru;
     private Date tuNgay;
     private Date denNgay;
     private String lyDo;
-    private int idNguoiNhap;
+    private String tinhTrang;
+    private int idNguoiThucHien;
 
-    public TamTruModel(String maTamTru, String maNhanKhau, String noiThuongTru, Date tuNgay, Date denNgay, String lyDo,
-                       int idNguoiNhap) {
+    public TamTruModel(String maTamTru, String CCCD, String hoTen, String noiTamTru, Date tuNgay, Date denNgay,
+                       String lyDo, String tinhTrang, int idNguoiThucHien) {
         this.maTamTru = maTamTru;
-        this.maNhanKhau = maNhanKhau;
-        this.noiThuongTru = noiThuongTru;
+        this.CCCD = CCCD;
+        this.hoTen = hoTen;
+        this.noiTamTru = noiTamTru;
         this.tuNgay = tuNgay;
         this.denNgay = denNgay;
         this.lyDo = lyDo;
-        this.idNguoiNhap = idNguoiNhap;
+        this.tinhTrang = tinhTrang;
+        this.idNguoiThucHien = idNguoiThucHien;
     }
 
     public String getMaTamTru() {
@@ -30,20 +34,28 @@ public class TamTruModel {
         this.maTamTru = maTamTru;
     }
 
-    public String getMaNhanKhau() {
-        return maNhanKhau;
+    public String getCCCD() {
+        return CCCD;
     }
 
-    public void setMaNhanKhau(String maNhanKhau) {
-        this.maNhanKhau = maNhanKhau;
+    public void setCCCD(String CCCD) {
+        this.CCCD = CCCD;
     }
 
-    public String getNoiThuongTru() {
-        return noiThuongTru;
+    public String getHoTen() {
+        return hoTen;
     }
 
-    public void setNoiThuongTru(String noiThuongTru) {
-        this.noiThuongTru = noiThuongTru;
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public String getNoiTamTru() {
+        return noiTamTru;
+    }
+
+    public void setNoiTamTru(String noiTamTru) {
+        this.noiTamTru = noiTamTru;
     }
 
     public Date getTuNgay() {
@@ -70,11 +82,19 @@ public class TamTruModel {
         this.lyDo = lyDo;
     }
 
-    public int getIdNguoiNhap() {
-        return idNguoiNhap;
+    public String getTinhTrang() {
+        return tinhTrang;
     }
 
-    public void setIdNguoiNhap(int idNguoiNhap) {
-        this.idNguoiNhap = idNguoiNhap;
+    public void setTinhTrang(String tinhTrang) {
+        this.tinhTrang = tinhTrang;
+    }
+
+    public int getIdNguoiThucHien() {
+        return idNguoiThucHien;
+    }
+
+    public void setIdNguoiThucHien(int idNguoiThucHien) {
+        this.idNguoiThucHien = idNguoiThucHien;
     }
 }
