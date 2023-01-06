@@ -9,21 +9,21 @@ public class NhanKhauModel {
     private String bietDanh;
     private Date ngaySinh;
     private String gioiTinh;
-    private String thuongTru;
     private String tonGiao;
-    private String xacNhan;
+    private String tinhTrang;
+    private int idNguoiThucHien;
 
     public NhanKhauModel(String maNhanKhau, String maHoKhau, String hoTen, String bietDanh, Date ngaySinh,
-                         String gioiTinh, String thuongTru, String tonGiao, String xacNhan) {
+                         String gioiTinh, String tonGiao, String tinhTrang, int idNguoiThucHien) {
         this.maNhanKhau = maNhanKhau;
         this.maHoKhau = maHoKhau;
         this.hoTen = hoTen;
         this.bietDanh = bietDanh;
         this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
-        this.thuongTru = thuongTru;
         this.tonGiao = tonGiao;
-        this.xacNhan = xacNhan;
+        this.tinhTrang = tinhTrang;
+        this.idNguoiThucHien = idNguoiThucHien;
     }
 
     public String getMaNhanKhau() {
@@ -74,14 +74,6 @@ public class NhanKhauModel {
         this.gioiTinh = gioiTinh;
     }
 
-    public String getThuongTru() {
-        return thuongTru;
-    }
-
-    public void setThuongTru(String thuongTru) {
-        this.thuongTru = thuongTru;
-    }
-
     public String getTonGiao() {
         return tonGiao;
     }
@@ -90,11 +82,19 @@ public class NhanKhauModel {
         this.tonGiao = tonGiao;
     }
 
-    public String getXacNhan() {
-        return xacNhan;
+    public String getTinhTrang() {
+        return tinhTrang;
     }
 
-    public void setXacNhan(String xacNhan) {
-        this.xacNhan = xacNhan;
+    public void setTinhTrang(String tinhTrang) {
+        this.tinhTrang = tinhTrang;
+    }
+
+    public int getIdNguoiThucHien() {
+        return idNguoiThucHien;
+    }
+
+    public void setIdNguoiThucHien(int idNguoiThucHien) {
+        this.idNguoiThucHien = idNguoiThucHien;
     }
 }
