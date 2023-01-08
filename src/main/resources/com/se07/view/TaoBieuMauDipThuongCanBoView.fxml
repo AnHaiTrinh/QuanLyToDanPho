@@ -59,7 +59,7 @@
             </Button>
             <AnchorPane fx:id="anchorPaneTinhNangNhanKhauCanBo" layoutX="758.0" layoutY="5.0" prefHeight="603.0" prefWidth="157.0">
                <children>
-                  <Button fx:id="buttonLogoutAdmin" layoutX="23.0" layoutY="7.0" mnemonicParsing="false" onAction="#setButtonLogoutAdmin" prefHeight="38.0" prefWidth="126.0" stylesheets="@Admin.css" text="Đăng xuất" textFill="WHITE">
+                  <Button fx:id="buttonLogoutAdmin" layoutX="23.0" layoutY="7.0" mnemonicParsing="false" onAction="#setButtonLogoutAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@Admin.css" text="Đăng xuất" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

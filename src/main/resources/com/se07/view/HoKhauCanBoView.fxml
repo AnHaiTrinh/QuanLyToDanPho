@@ -56,20 +56,20 @@
             </Button>
             <AnchorPane fx:id="anchorPaneTinhNangNhanKhauCanBo" layoutX="758.0" layoutY="5.0" prefHeight="603.0" prefWidth="157.0">
                <children>
-                  <Button fx:id="buttonLogoutAdmin" layoutX="23.0" layoutY="7.0" mnemonicParsing="false" onAction="#setButtonLogoutAdmin" prefHeight="38.0" prefWidth="126.0" stylesheets="@Admin.css" text="Đăng xuất" textFill="WHITE">
+                  <Button fx:id="buttonLogoutAdmin" layoutX="20.0" layoutY="7.0" mnemonicParsing="false" onAction="#setButtonLogoutAdmin" prefHeight="38.0" prefWidth="130.0" text="Đăng xuất" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonThemHoKhauCanBo" layoutX="23.0" layoutY="195.0" mnemonicParsing="false" onAction="#setButtonThemHoKhauCanBo" prefHeight="38.0" prefWidth="126.0" text="Thêm" textFill="WHITE">
+                  <Button fx:id="buttonThemHoKhauCanBo" layoutX="20.0" layoutY="195.0" mnemonicParsing="false" onAction="#setButtonThemHoKhauCanBo" prefHeight="38.0" prefWidth="130.0" text="Thêm" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Button>
-                  <Button fx:id="buttonTachHoKhauCanBo" layoutX="23.0" layoutY="265.0" mnemonicParsing="false" onAction="#setButtonTachHoKhauCanBo" prefHeight="38.0" prefWidth="126.0" text="Tách Hộ Khẩu" textFill="WHITE">
+                  <Button fx:id="buttonTachHoKhauCanBo" layoutX="20.0" layoutY="265.0" mnemonicParsing="false" onAction="#setButtonTachHoKhauCanBo" prefHeight="38.0" prefWidth="130.0" text="Tách Hộ Khẩu" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Button>
-                  <Button fx:id="buttonXoaHoKhauCanBo" layoutX="23.0" layoutY="335.0" mnemonicParsing="false" onAction="#setButtonXoaHoKhauCanBo" prefHeight="38.0" prefWidth="126.0" text="Xóa" textFill="WHITE">
+                  <Button fx:id="buttonXoaHoKhauCanBo" layoutX="20.0" layoutY="335.0" mnemonicParsing="false" onAction="#setButtonXoaHoKhauCanBo" prefHeight="38.0" prefWidth="130.0" text="Xóa" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Button>
@@ -79,15 +79,18 @@
       </AnchorPane>
       <AnchorPane fx:id="paneThongTinHoKhauCanBo" layoutX="220.0" prefHeight="603.0" prefWidth="540.0" stylesheets="@Css/HoKhauCanBoView.css">
          <children>
-            <TableView fx:id="tableViewTatCaHoKhauCanBo" layoutX="1.0" layoutY="62.0" onKeyPressed="#setNhanNutDeleteTrongBangHoKhauCanBo" prefHeight="541.0" prefWidth="544.0">
+            <TableView fx:id="tableViewTatCaHoKhauCanBo" layoutY="73.0" onKeyPressed="#setNhanNutDeleteTrongBangHoKhauCanBo" prefHeight="528.0" prefWidth="552.0">
                <columns>
                   <TableColumn fx:id="tableColumnMaHoHoKhauCanBo" prefWidth="134.0" text="Mã hộ" />
                   <TableColumn fx:id="tableColumnHotenHoKhauCanBo" prefWidth="202.0" text="Họ tên" />
                   <TableColumn fx:id="tableColumnDiaChiHoKhauCanBo" prefWidth="207.0" text="Địa chỉ" />
                </columns>
             </TableView>
-            <TextField fx:id="textFieldLocThongTinHoKhauCanBo" layoutX="4.0" layoutY="14.0" prefHeight="31.0" prefWidth="240.0" />
-            <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="273.0" layoutY="14.0" mnemonicParsing="false" onAction="#setButtonLocThongTinHoKhauCanBo" prefHeight="31.0" prefWidth="93.0" text="Tìm kiếm" textFill="WHITE">
+            <TextField fx:id="textFieldLocThongTinHoKhauCanBo" layoutY="18.0" prefHeight="31.0" prefWidth="300.0" promptText="Tìm kiếm theo tên">
+               <font>
+                  <Font name="System Italic" size="15.0" />
+               </font></TextField>
+            <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="335.0" layoutY="17.0" mnemonicParsing="false" onAction="#setButtonLocThongTinHoKhauCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
