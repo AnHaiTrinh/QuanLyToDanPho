@@ -1,5 +1,4 @@
 package com.se07.controller.services;
-import com.se07.model.models.NhanKhauModel;
 import com.se07.model.models.TamTruModel;
 import com.se07.util.ConnectionDatabase;
 import javafx.collections.FXCollections;
@@ -310,7 +309,7 @@ public class TamTruService {
     }
     public boolean addTamTru(TamTruModel tamTruModel) {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "insert into nhan_khau(maTamTru, CCCD, hoTen, noiTamTru, tuNgay, denNgay, lydo, " +
+        String query = "insert into tam_tru(maTamTru, CCCD, hoTen, noiTamTru, tuNgay, denNgay, lydo, " +
                 "tinhTrang, idNguoiThucHien) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -332,6 +331,55 @@ public class TamTruService {
             return false;
         }
     }
+
+    public boolean updateTamTru(TamTruModel tamTruModel) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "update tam_tru set maTamTru = ?, " +
+                "CCCD = ?, " +
+                "hoTen = ?, " +
+                "noiTamTru = ?," +
+                " tuNgay = ?, " +
+                "denNgay = ?, " +
+                "tinhTrang = ?, " +
+                "idNguoiThucHien = ? where maTamTru = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, tamTruModel.getMaTamTru());
+            statement.setString(2, tamTruModel.getCCCD());
+            statement.setNString(3, tamTruModel.getHoTen());
+            statement.setNString(4, tamTruModel.getNoiTamTru());
+            statement.setDate(5, new java.sql.Date(tamTruModel.getTuNgay().getTime()));
+            statement.setDate(6, new java.sql.Date(tamTruModel.getDenNgay().getTime()));
+            statement.setNString(7, tamTruModel.getLyDo());
+            statement.setNString(8, tamTruModel.getTinhTrang());
+            statement.setInt(9, tamTruModel.getIdNguoiThucHien());
+            statement.executeUpdate();
+            statement.close();
+            connection.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deleteTamTru(TamTruModel tamTruModel) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "delete from tam_tru where maTamTru = '" + tamTruModel.getMaTamTru() + "'";
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+            statement.close();
+            connection.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
 
 
 
