@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorMain" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerMain">
+    <fx:include fx:id="paneNewPeopleAdmin" layoutX="220" source="ThemMoiNhanKhauCanBoView.fxml" />
+    <fx:include fx:id="paneRightAdmin" layoutX="220" source="NhanKhauCanBoView.fxml" />
+    <fx:include fx:id="paneUserAdmin" layoutX="220" source="HoKhauCanBoView.fxml" />
+    <fx:include fx:id="anchorPaneCheckAwardAdmin" layoutX="220" source="GiaiThuongCanBoView.fxml" />
+    <fx:include fx:id="anchorPaneCreateFormAwardAdmin" layoutX="220" source="TaoBieuMauDipDacBietCanBoView.fxml" />
+    <fx:include fx:id="anchorPaneCreateFormAwardDipThuongAdmin" layoutX="220" source="TaoBieuMauDipThuongCanBoView.fxml" />
+    <fx:include fx:id="anchorPaneChinhCanBo" source="TrangChuCanBoView.fxml" />
+</AnchorPane>

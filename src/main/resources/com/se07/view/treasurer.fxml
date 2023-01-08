@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneTreasurerMax" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedEscTreasurer" prefHeight="603.0" prefWidth="915.0" stylesheets="@treasurer.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerTreasurerView">
+<AnchorPane fx:id="anchorPaneTreasurerMax" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedEscTreasurer" prefHeight="603.0" prefWidth="915.0" stylesheets="@Treasurer.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerTreasurerView">
    <children>
       <AnchorPane prefHeight="603.0" prefWidth="220.0">
          <children>
@@ -18,7 +18,7 @@
                   <Image url="@imageAdmin.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="buttonHomeTreasurer" mnemonicParsing="false" prefHeight="66.0" prefWidth="220.0" stylesheets="@treasurer.css" text="Trang chủ" textFill="WHITE">
+            <Button fx:id="buttonHomeTreasurer" mnemonicParsing="false" prefHeight="66.0" prefWidth="220.0" stylesheets="@Treasurer.css" text="Trang chủ" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -32,7 +32,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneRightTreasurer" layoutX="220.0" prefHeight="603.0" prefWidth="695.0" stylesheets="@treasurer.css">
+      <AnchorPane fx:id="paneRightTreasurer" layoutX="220.0" prefHeight="603.0" prefWidth="695.0" stylesheets="@Treasurer.css">
          <children>
             <AnchorPane layoutX="541.0" prefHeight="603.0" prefWidth="143.0">
                <children>
@@ -48,7 +48,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonAwardTreasurer" layoutX="-14.0" layoutY="565.0" mnemonicParsing="false" onAction="#setButtonAwardTreasurer" prefHeight="31.0" prefWidth="153.0" stylesheets="@treasurer.css" text="Tính phần thưởng" textFill="WHITE">
+                  <Button fx:id="buttonAwardTreasurer" layoutX="-14.0" layoutY="565.0" mnemonicParsing="false" onAction="#setButtonAwardTreasurer" prefHeight="31.0" prefWidth="153.0" stylesheets="@Treasurer.css" text="Tính phần thưởng" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Button>

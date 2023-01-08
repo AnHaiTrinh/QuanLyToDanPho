@@ -1,0 +1,15 @@
+#paneNewPeopleAdmin{
+    -fx-background-color: linear-gradient(#7758D1 2%,  #F7CBFD 40%);
+}
+#buttonAcceptNewPeopleAdmin{
+    -fx-background-color: black;
+}
+#buttonAcceptNewPeopleAdmin:hover{
+    -fx-background-color: #177306;
+}
+#buttonCancelNewPeopleAdmin{
+    -fx-background-color: #000000;
+}
+#buttonCancelNewPeopleAdmin:hover{
+    -fx-background-color: #910c0c;
+}

@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPaneMainAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedEscLogin" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerLoginView">
+<BorderPane fx:id="borderPaneMainAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedEscLogin" prefHeight="400.0" prefWidth="600.0" stylesheets="@Css/Login.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerLoginView">
    <left>
       <AnchorPane prefHeight="366.0" prefWidth="278.0" style="-fx-background-color: #FAFAFA;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="365.0" fitWidth="432.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@LogoLogin.jpg" />
+                  <Image url="@Icon/LogoLogin.jpg" />
                </image>
             </ImageView>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutY="365.0" prefHeight="36.0" prefWidth="277.0" style="-fx-background-color: #396DD4;" text="Quản lý nhân khẩu SE07" textFill="#f5f5f5" />
@@ -31,7 +31,7 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Label>
-            <Button fx:id="buttonCancelLogin" layoutX="29.0" layoutY="309.0" mnemonicParsing="false" onAction="#onButtonCancelLogin" prefHeight="31.0" prefWidth="270.0" stylesheets="@login.css" text="Cancel" textFill="#eeecec">
+            <Button fx:id="buttonCancelLogin" layoutX="29.0" layoutY="309.0" mnemonicParsing="false" onAction="#onButtonCancelLogin" prefHeight="31.0" prefWidth="270.0" text="Cancel" textFill="#eeecec">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -39,7 +39,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="buttonLogin" layoutX="29.0" layoutY="257.0" mnemonicParsing="false" onAction="#onButtonLogin" prefHeight="31.0" prefWidth="270.0" stylesheets="@login.css" text="Login" textFill="#ebe1e1">
+            <Button fx:id="buttonLogin" layoutX="29.0" layoutY="257.0" mnemonicParsing="false" onAction="#onButtonLogin" prefHeight="31.0" prefWidth="270.0" text="Login" textFill="#ebe1e1">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -58,12 +58,12 @@
                </font></PasswordField>
             <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="46.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@IconLoginUser.png" />
+                  <Image url="@Icon/IconLoginUser.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="46.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@IconLoginPassword.png" />
+                  <Image url="@Icon/IconLoginPassword.png" />
                </image>
             </ImageView>
             <CheckBox fx:id="checkBoxAdmin" layoutX="11.0" layoutY="185.0" mnemonicParsing="false" onKeyPressed="#keyPressedEnter" text="Tổ trưởng" />

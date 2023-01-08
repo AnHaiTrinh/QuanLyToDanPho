@@ -1,0 +1,15 @@
+#anchorPaneCreateFormAwardAdmin{
+    -fx-background-color: linear-gradient(#7758D1 2%,  #F7CBFD 40%);
+}
+#buttonCancelFormAwardDacBietAdmin{
+    -fx-background-color: black;
+}
+#buttonCancelFormAwardDacBietAdmin:hover{
+    -fx-background-color: #177306;
+}
+#buttonCreateFormAwardDacBietAdmin{
+    -fx-background-color:black;
+}
+#buttonCreateFormAwardDacBietAdmin:hover{
+    -fx-background-color: #910c0c;
+}

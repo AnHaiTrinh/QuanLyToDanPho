@@ -1,0 +1,15 @@
+#anchorPaneCreateFormAwardDipThuongAdmin{
+    -fx-background-color: linear-gradient(#7758D1 2%,  #F7CBFD 40%);
+}
+#buttonCreateFormAwardDipThuongAdmin{
+    -fx-background-color: black;
+}
+#buttonCancelFormAwardDipThuongAdmin{
+    -fx-background-color: black;
+}
+#buttonCreateFormAwardDipThuongAdmin:hover{
+    -fx-background-color: #177306;
+}
+#buttonCancelFormAwardDipThuongAdmin:hover{
+    -fx-background-color: #910c0c;
+}

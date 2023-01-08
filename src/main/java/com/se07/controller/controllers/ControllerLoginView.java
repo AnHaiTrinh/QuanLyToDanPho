@@ -2,10 +2,7 @@ package com.se07.controller.controllers;
 
 import com.se07.model.models.UserModel;
 import com.se07.util.ConnectionDatabase;
-import com.se07.view.AdminView;
-import com.se07.view.LoginView;
-import com.se07.view.TreasurerView;
-import com.se07.view.UserView;
+import com.se07.view.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -130,8 +127,8 @@ public class ControllerLoginView {
                             fileWriter.write(rs.getInt("ID") + "\n"+rs.getString("username")+"\n"
                             +rs.getString("password"));
                             fileWriter.close();
-                            AdminView adminView = new AdminView();
-                            adminView.openWindow();
+                            Main main = new Main();
+                            main.openWindow();
                             stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
                             stage.close();
                         } else if (role==2 &&checkBoxAdmin.isSelected()==false && checkBoxUser.isSelected()==true && checkBoxTreasurer.isSelected()==false) {

@@ -17,196 +17,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneAdminMax" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedEscAdmin" prefHeight="603.0" prefWidth="915.0" stylesheets="@admin.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerAdminView">
+<AnchorPane fx:id="anchorPaneAdminMax" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressedEscAdmin" prefHeight="603.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerAdminView">
    <children>
-      <AnchorPane fx:id="anchorPaneConfirmAwardAdmin" layoutX="220.0" prefHeight="603.0" prefWidth="695.0">
-         <children>
-            <TableView layoutY="75.0" prefHeight="528.0" prefWidth="696.0">
-               <columns>
-                  <TableColumn prefWidth="222.0" text="Họ tên" />
-                  <TableColumn prefWidth="267.0" text="Giải thưởng" />
-                  <TableColumn prefWidth="205.0" text="Tình trạng" />
-               </columns>
-            </TableView>
-            <TextField layoutX="14.0" layoutY="18.0" prefHeight="31.0" prefWidth="531.0" />
-            <Button fx:id="buttonSeachAwardAdmin" layoutX="558.0" layoutY="16.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" style="-fx-background-radius: 15;">
-               <graphic>
-                  <ImageView fitHeight="31.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@IconSeachUser.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="paneRightAdmin" layoutX="220.0" prefHeight="603.0" prefWidth="695.0" stylesheets="@admin.css">
-         <children>
-            <AnchorPane layoutX="538.0" prefHeight="603.0" prefWidth="157.0">
-               <children>
-                  <Button fx:id="buttonLogoutAdmin" layoutX="23.0" layoutY="7.0" mnemonicParsing="false" onAction="#setButtonLogoutAdmin" prefHeight="38.0" prefWidth="126.0" stylesheets="@admin.css" text="Đăng xuất" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <AnchorPane fx:id="panePeopleAdmin" layoutY="51.0" prefHeight="553.0" prefWidth="154.0">
-                     <children>
-                        <Button fx:id="buttonNewPeopleAdmin" layoutX="21.0" layoutY="97.0" mnemonicParsing="false" onAction="#setButtonNewPeopleAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@admin.css" text="Thêm mới" textFill="#fcfcfc">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="buttonTemporaryRegistrationPeoppleAdmin" layoutX="21.0" layoutY="155.0" mnemonicParsing="false" onAction="#setButtonTemporaryRegistrationPeopleAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@admin.css" text="ĐK tạm vắng" textFill="#fcfcfc">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="buttonAbsentRegistrationAdmin" layoutX="20.0" layoutY="216.0" mnemonicParsing="false" onAction="#setButtonAbsentRegistrationAdmin" prefHeight="38.0" prefWidth="130.0" text="ĐK Tạm trú" textFill="#fcfcfc">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="buttonRemovePeopleAdmin" layoutX="21.0" layoutY="277.0" mnemonicParsing="false" onAction="#setButtonRemovePeopleAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@admin.css" text="Khai tử" textFill="#fcfcfc">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="603.0" prefWidth="538.0">
-               <children>
-                  <AnchorPane fx:id="paneMidPeopleAdmin" prefHeight="604.0" prefWidth="554.0">
-                     <children>
-                        <TableView layoutX="1.0" layoutY="63.0" prefHeight="541.0" prefWidth="552.0">
-                           <columns>
-                              <TableColumn prefWidth="89.0" text="ID" />
-                              <TableColumn prefWidth="73.0" text="Họ tên" />
-                              <TableColumn prefWidth="107.0" text="Ngày sinh" />
-                              <TableColumn prefWidth="109.0" text="Giới tính" />
-                              <TableColumn prefWidth="175.0" text="Địa chỉ hiện tại" />
-                           </columns>
-                        </TableView>
-                        <TextField layoutX="1.0" layoutY="14.0" prefHeight="31.0" prefWidth="407.0" />
-                     </children>
-                  </AnchorPane>
-                  <Label fx:id="lableHelloAdmin" layoutX="200.0" layoutY="250.0" text="Xin chào !">
-                     <font>
-                        <Font name="System Bold" size="30.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="paneNewPeopleAdmin" layoutX="220.0" prefHeight="603.0" prefWidth="695.0" stylesheets="@admin.css">
-         <children>
-            <Button fx:id="buttonCancelNewPeopleAdmin" layoutX="591.0" layoutY="558.0" mnemonicParsing="false" onAction="#setButtonCancelNewPeopleAdmin" prefHeight="31.0" prefWidth="91.0" text="Hủy">
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#fcfcfc" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-            <GridPane layoutY="159.0" prefHeight="386.0" prefWidth="696.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="35.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.0" minWidth="10.0" prefWidth="113.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="0.0" prefWidth="196.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.0" minWidth="10.0" prefWidth="28.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.0" minWidth="10.0" prefWidth="99.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.0" minWidth="10.0" prefWidth="204.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="24.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label text="Mã hộ khẩu" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Họ tên" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Biệt danh" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Thường trú" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Tôn giáo" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Ngày sinh" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Label text="Mã nhân khẩu" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Giới tính" GridPane.columnIndex="4">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <ComboBox prefHeight="31.0" prefWidth="209.0" GridPane.columnIndex="5" />
-                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <ComboBox prefHeight="31.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <DatePicker GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="2" />
-               </children>
-            </GridPane>
-            <Label layoutX="281.0" layoutY="63.0" text="Thêm nhân khẩu mới">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
-            <Button fx:id="buttonAcceptNewPeopleAdmin" layoutX="455.0" layoutY="558.0" mnemonicParsing="false" onAction="#setButtonAcceptNewPeopleAdmin" prefHeight="31.0" prefWidth="91.0" text="Xác nhận ">
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#fcfcfc" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
+      <fx:include fx:id="paneNewPeopleAdmin" layoutX="220.0" prefHeight="603.0" prefWidth="695.0" source="Test.fxml" />
       <AnchorPane fx:id="paneSplitUserAdmin" prefHeight="603.0" prefWidth="915.0" stylesheets="@admin.css">
          <children>
             <GridPane layoutX="14.0" layoutY="-1.0" prefHeight="604.0" prefWidth="900.0">
@@ -394,89 +209,6 @@
             </GridPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorPaneCreateFormAwardAdmin" layoutX="220.0" prefHeight="603.0" prefWidth="695.0">
-         <children>
-            <GridPane layoutY="94.0" prefHeight="437.0" prefWidth="695.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="9.0" prefWidth="44.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="269.0" minWidth="10.0" prefWidth="124.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="338.0" minWidth="10.0" prefWidth="110.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="0.0" prefWidth="77.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="117.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="196.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="28.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label text="Năm học" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Lớp" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Trường" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Cấp thành tích" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Kiểu thành tích" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Mã phần thưởng" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Mã nhân khẩu" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="2022-2023" GridPane.columnIndex="2">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="3" />
-               </children>
-            </GridPane>
-            <Label layoutX="302.0" layoutY="25.0" text="Tạo biểu mẫu" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Button fx:id="buttonCancelFormAwardAdmin" layoutX="591.0" layoutY="558.0" mnemonicParsing="false" onAction="#setButtonCancelImportFormAwardAdmin" prefHeight="31.0" prefWidth="90.0" text="Hủy" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="buttonCreateFormAwardAdmin" layoutX="458.0" layoutY="558.0" mnemonicParsing="false" onAction="#setButtonCreateFormAwardAdmin" prefHeight="31.0" prefWidth="90.0" text="Xác nhận" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-         </children></AnchorPane>
       <AnchorPane fx:id="anchorPaneCheckAwardAdmin" layoutX="220.0" prefHeight="603.0" prefWidth="695.0">
          <children>
             <TableView layoutY="75.0" prefHeight="528.0" prefWidth="696.0">
@@ -510,7 +242,7 @@
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@IconAadminHome.png" />
+                        <Image url="@Icon/IconAadminHome.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -522,7 +254,7 @@
                <graphic>
                   <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@IconAdminUser.png" />
+                        <Image url="@Icon/IconAdminPeople.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -534,7 +266,7 @@
                <graphic>
                   <ImageView fitHeight="46.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@IconAdminPeople.png" />
+                        <Image url="@Icon/IconAdminUser.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -551,7 +283,7 @@
                <graphic>
                   <ImageView fitHeight="46.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@IconAdminAward.png" />
+                        <Image url="@Icon/IconAdminAward.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -721,43 +453,6 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneUserAdmin" layoutX="220.0" onKeyPressed="#setNhanNutHoKhauCanBo" prefHeight="603.0" prefWidth="695.0" stylesheets="@admin.css">
-         <children>
-            <AnchorPane fx:id="paneThongTinHoKhauCanBo" prefHeight="603.0" prefWidth="550.0">
-               <children>
-                  <TableView fx:id="tableViewTatCaHoKhauCanBo" layoutX="1.0" layoutY="62.0" onKeyPressed="#setNhanNutDeleteTrongBangHoKhauCanBo" prefHeight="541.0" prefWidth="544.0">
-                     <columns>
-                        <TableColumn fx:id="tableColumnMaHoHoKhauCanBo" prefWidth="134.0" text="Mã hộ" />
-                        <TableColumn fx:id="tableColumnHotenHoKhauCanBo" prefWidth="202.0" text="Họ tên" />
-                        <TableColumn fx:id="tableColumnDiaChiHoKhauCanBo" prefWidth="207.0" text="Địa chỉ" />
-                     </columns>
-                  </TableView>
-                  <TextField fx:id="textFieldLocThongTinHoKhauCanBo" layoutX="4.0" layoutY="14.0" prefHeight="31.0" prefWidth="240.0" />
-                  <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="273.0" layoutY="14.0" mnemonicParsing="false" onAction="#setButtonLocThongTinHoKhauCanBo" prefHeight="31.0" prefWidth="93.0" text="Tìm kiếm" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="550.0" layoutY="62.0" prefHeight="541.0" prefWidth="148.0">
-               <children>
-                  <Button fx:id="buttonNewUserAdmin" layoutX="33.0" layoutY="103.0" mnemonicParsing="false" onAction="#setButtonNewUserAdmin" prefHeight="32.0" prefWidth="95.0" text="Thêm mới" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font></Button>
-                  <Button fx:id="buttonSplitUserAdmin" layoutX="33.0" layoutY="163.0" mnemonicParsing="false" onAction="#setButtonSplitUserAdmin" prefHeight="32.0" prefWidth="95.0" text="Tách HK" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font></Button>
-                  <Button fx:id="buttonRemoveUserAdmin" layoutX="33.0" layoutY="222.0" mnemonicParsing="false" onAction="#setButtonRemoveUserAdmin" prefHeight="32.0" prefWidth="95.0" text="Chuyển đi" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font></Button>
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="paneNewUserAdmin" layoutX="220.0" prefHeight="603.0" prefWidth="695.0">
          <children>
             <Button fx:id="buttonCancelNewUserAdmin" layoutX="587.0" layoutY="558.0" mnemonicParsing="false" onAction="#setButtonCancelNewUserAdmin" prefHeight="31.0" prefWidth="90.0" text="Hủy" textFill="#f8f8f8">
@@ -817,6 +512,124 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneUserAdmin" layoutX="220.0" onKeyPressed="#setNhanNutHoKhauCanBo" prefHeight="603.0" prefWidth="695.0" stylesheets="@admin.css">
+         <children>
+            <AnchorPane fx:id="paneThongTinHoKhauCanBo" prefHeight="603.0" prefWidth="550.0">
+               <children>
+                  <TableView fx:id="tableViewTatCaHoKhauCanBo" layoutX="1.0" layoutY="62.0" onKeyPressed="#setNhanNutDeleteTrongBangHoKhauCanBo" prefHeight="541.0" prefWidth="544.0">
+                     <columns>
+                        <TableColumn fx:id="tableColumnMaHoHoKhauCanBo" prefWidth="134.0" text="Mã hộ" />
+                        <TableColumn fx:id="tableColumnHotenHoKhauCanBo" prefWidth="202.0" text="Họ tên" />
+                        <TableColumn fx:id="tableColumnDiaChiHoKhauCanBo" prefWidth="207.0" text="Địa chỉ" />
+                     </columns>
+                  </TableView>
+                  <TextField fx:id="textFieldLocThongTinHoKhauCanBo" layoutX="4.0" layoutY="14.0" prefHeight="31.0" prefWidth="240.0" />
+                  <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="273.0" layoutY="14.0" mnemonicParsing="false" onAction="#setButtonLocThongTinHoKhauCanBo" prefHeight="31.0" prefWidth="93.0" text="Tìm kiếm" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="550.0" layoutY="62.0" prefHeight="541.0" prefWidth="148.0">
+               <children>
+                  <Button fx:id="buttonNewUserAdmin" layoutX="33.0" layoutY="103.0" mnemonicParsing="false" onAction="#setButtonNewUserAdmin" prefHeight="32.0" prefWidth="95.0" text="Thêm mới" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
+                  <Button fx:id="buttonSplitUserAdmin" layoutX="33.0" layoutY="163.0" mnemonicParsing="false" onAction="#setButtonSplitUserAdmin" prefHeight="32.0" prefWidth="95.0" text="Tách HK" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
+                  <Button fx:id="buttonRemoveUserAdmin" layoutX="33.0" layoutY="222.0" mnemonicParsing="false" onAction="#setButtonRemoveUserAdmin" prefHeight="32.0" prefWidth="95.0" text="Chuyển đi" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneRightAdmin" layoutX="220.0" prefHeight="603.0" prefWidth="695.0" stylesheets="@admin.css">
+         <children>
+            <AnchorPane layoutX="538.0" prefHeight="603.0" prefWidth="157.0">
+               <children>
+                  <Button fx:id="buttonLogoutAdmin" layoutX="23.0" layoutY="7.0" mnemonicParsing="false" onAction="#setButtonLogoutAdmin" prefHeight="38.0" prefWidth="126.0" stylesheets="@admin.css" text="Đăng xuất" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <AnchorPane fx:id="panePeopleAdmin" layoutY="51.0" prefHeight="553.0" prefWidth="154.0">
+                     <children>
+                        <Button fx:id="buttonNewPeopleAdmin" layoutX="21.0" layoutY="97.0" mnemonicParsing="false" onAction="#setButtonNewPeopleAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@admin.css" text="Thêm mới" textFill="#fcfcfc">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonTemporaryRegistrationPeoppleAdmin" layoutX="21.0" layoutY="155.0" mnemonicParsing="false" onAction="#setButtonTemporaryRegistrationPeopleAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@admin.css" text="ĐK tạm vắng" textFill="#fcfcfc">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonAbsentRegistrationAdmin" layoutX="20.0" layoutY="216.0" mnemonicParsing="false" onAction="#setButtonAbsentRegistrationAdmin" prefHeight="38.0" prefWidth="130.0" text="ĐK Tạm trú" textFill="#fcfcfc">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonRemovePeopleAdmin" layoutX="21.0" layoutY="277.0" mnemonicParsing="false" onAction="#setButtonRemovePeopleAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@admin.css" text="Khai tử" textFill="#fcfcfc">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="603.0" prefWidth="538.0">
+               <children>
+                  <AnchorPane fx:id="paneMidPeopleAdmin" prefHeight="604.0" prefWidth="554.0">
+                     <children>
+                        <TableView layoutX="1.0" layoutY="63.0" prefHeight="541.0" prefWidth="552.0">
+                           <columns>
+                              <TableColumn prefWidth="89.0" text="ID" />
+                              <TableColumn prefWidth="73.0" text="Họ tên" />
+                              <TableColumn prefWidth="107.0" text="Ngày sinh" />
+                              <TableColumn prefWidth="109.0" text="Giới tính" />
+                              <TableColumn prefWidth="175.0" text="Địa chỉ hiện tại" />
+                           </columns>
+                        </TableView>
+                        <TextField layoutX="1.0" layoutY="14.0" prefHeight="31.0" prefWidth="407.0" />
+                     </children>
+                  </AnchorPane>
+                  <Label fx:id="lableHelloAdmin" layoutX="200.0" layoutY="250.0" text="Xin chào !">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorPaneConfirmAwardAdmin" layoutX="220.0" prefHeight="603.0" prefWidth="695.0">
+         <children>
+            <TableView layoutY="75.0" prefHeight="528.0" prefWidth="696.0">
+               <columns>
+                  <TableColumn prefWidth="222.0" text="Họ tên" />
+                  <TableColumn prefWidth="267.0" text="Giải thưởng" />
+                  <TableColumn prefWidth="205.0" text="Tình trạng" />
+               </columns>
+            </TableView>
+            <TextField layoutX="14.0" layoutY="18.0" prefHeight="31.0" prefWidth="531.0" />
+            <Button fx:id="buttonSeachAwardAdmin" layoutX="558.0" layoutY="16.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" style="-fx-background-radius: 15;">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@IconSeachUser.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </children>

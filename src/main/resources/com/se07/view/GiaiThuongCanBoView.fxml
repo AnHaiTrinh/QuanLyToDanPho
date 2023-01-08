@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPaneCheckAwardAdmin" prefHeight="603.0" prefWidth="695.0" stylesheets="@Css/GiaiThuongCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerGiaiThuongCanBoView">
+   <children>
+      <TextField layoutX="14.0" layoutY="18.0" prefHeight="31.0" prefWidth="531.0" />
+      <Button fx:id="buttonSeachAwardAdmin1" layoutX="558.0" layoutY="16.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" style="-fx-background-radius: 15;">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Icon/IconSeachUser.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/TrangChuCanBoView.css">
+         <children>
+            <ImageView fx:id="imageLeftAdmin" fitHeight="603.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Icon/imageAdmin.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="buttonHomeAdmin" mnemonicParsing="false" onAction="#setButtonHomeAdmin" prefHeight="66.0" prefWidth="220.0" stylesheets="@Admin.css" text="Trang chủ" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icon/IconAadminHome.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonPeopleAdmin" layoutY="121.0" mnemonicParsing="false" onAction="#setButtonPeopleAdmin" prefHeight="54.0" prefWidth="220.0" stylesheets="@Admin.css" text="Nhân khẩu" textFill="#f2f2f2">
+               <graphic>
+                  <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icon/IconAdminPeople.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonUserAdmin" layoutY="211.0" mnemonicParsing="false" onAction="#setButtonUserAdmin" prefHeight="54.0" prefWidth="220.0" stylesheets="@Admin.css" text="Hộ khẩu" textFill="#f2f2f2">
+               <graphic>
+                  <ImageView fitHeight="46.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icon/IconAdminUser.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <AnchorPane fx:id="anchorPaneTinhNangNhanKhauCanBo" layoutX="758.0" layoutY="5.0" prefHeight="603.0" prefWidth="157.0">
+               <children>
+                  <Button fx:id="buttonLogoutAdmin" layoutX="23.0" layoutY="7.0" mnemonicParsing="false" onAction="#setButtonLogoutAdmin" prefHeight="38.0" prefWidth="126.0" stylesheets="@Admin.css" text="Đăng xuất" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="buttonTaoBieuMauDipDacBietCanBoView" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#setButtonTaoBieuMauDipDacBietCanBoView" prefHeight="45.0" prefWidth="141.0" text="Tạo biểu mẫu ĐB" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="buttonTaoBieuMauDipBTCanBo" layoutX="10.0" layoutY="270.0" mnemonicParsing="false" onAction="#setButtonTaoBieuMauDipBTCanBo" prefHeight="45.0" prefWidth="141.0" text="Tạo biểu mẫu BT" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="141.0" text="Phê duyệt" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="430.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="141.0" text="Xóa" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false" onAction="#setButtonGiaiThuongCanBo" prefHeight="54.0" prefWidth="220.0" text="Giải Thưởng" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icon/IconAdminAward.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <TableView layoutX="220.0" layoutY="75.0" prefHeight="528.0" prefWidth="541.0">
+         <columns>
+            <TableColumn prefWidth="116.0" text="Lớp" />
+            <TableColumn prefWidth="136.0" text="Họ tên" />
+            <TableColumn prefWidth="153.0" text="Giải thưởng" />
+            <TableColumn prefWidth="135.0" text="Tình trạng" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

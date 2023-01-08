@@ -1,0 +1,27 @@
+#buttonLocThongTinHoKhauCanBo{
+    -fx-background-color: black;
+}
+#buttonLocThongTinHoKhauCanBo:hover{
+    -fx-background-color: #177306;
+}
+#buttonNewUserAdmin{
+    -fx-background-color: black;
+}
+#buttonNewUserAdmin:hover{
+    -fx-background-color: #BF3FBF;
+}
+#buttonSplitUserAdmin{
+    -fx-background-color: black;
+}
+#buttonSplitUserAdmin:hover{
+    -fx-background-color: #BF3FBF;
+}
+#buttonRemoveUserAdmin{
+    -fx-background-color: black;
+}
+#buttonRemoveUserAdmin:hover{
+    -fx-background-color: #BF3fBF;
+}
+#paneUserAdmin{
+    -fx-background-color: linear-gradient(#7758D1 2%,  #F7CBFD 40%);
+}

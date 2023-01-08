@@ -1,0 +1,33 @@
+#paneRightAdmin{
+    -fx-background-color: linear-gradient(#7758D1 2%,  #F7CBFD 40%);
+}
+#buttonLogoutAdmin{
+    -fx-background-color: black;
+}
+#buttonLogoutAdmin:hover{
+    -fx-background-color: #BF3FBF;
+}
+#buttonNewPeopleAdmin{
+    -fx-background-color: black;
+}
+#buttonNewPeopleAdmin:hover{
+    -fx-background-color: #BF3FBF;
+}
+#buttonTemporaryRegistrationPeoppleAdmin{
+    -fx-background-color: black;
+}
+#buttonTemporaryRegistrationPeoppleAdmin:hover{
+    -fx-background-color: #BF3FBF;
+}
+#buttonAbsentRegistrationAdmin{
+    -fx-background-color: black;
+}
+#buttonAbsentRegistrationAdmin:hover{
+    -fx-background-color: #BF3FBF;
+}
+#buttonRemovePeopleAdmin{
+    -fx-background-color: #000000;
+}
+#buttonRemovePeopleAdmin:hover{
+    -fx-background-color: #BF3FBF;
+}

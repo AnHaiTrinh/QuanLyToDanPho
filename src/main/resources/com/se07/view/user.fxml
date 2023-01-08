@@ -304,7 +304,7 @@
             <TextField layoutX="23.0" layoutY="37.0" prefHeight="31.0" prefWidth="364.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneSplitUserUser" prefHeight="603.0" prefWidth="915.0" stylesheets="@admin.css">
+      <AnchorPane fx:id="paneSplitUserUser" prefHeight="603.0" prefWidth="915.0" stylesheets="@Admin.css">
          <children>
             <GridPane layoutX="14.0" prefHeight="603.0" prefWidth="902.0">
                <columnConstraints>
@@ -473,12 +473,12 @@
                         </Label>
                         <Pane prefHeight="32.0" prefWidth="357.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <children>
-                              <Button fx:id="buttonCancelSplitUserUser" layoutX="260.0" layoutY="14.0" mnemonicParsing="false" onAction="#setButtonCancelSplitUserUser" prefHeight="31.0" prefWidth="90.0" stylesheets="@admin.css" text="Hủy" textFill="WHITE">
+                              <Button fx:id="buttonCancelSplitUserUser" layoutX="260.0" layoutY="14.0" mnemonicParsing="false" onAction="#setButtonCancelSplitUserUser" prefHeight="31.0" prefWidth="90.0" stylesheets="@Admin.css" text="Hủy" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="buttonAcceptSplitUserUser" layoutX="126.0" layoutY="14.0" mnemonicParsing="false" onAction="#setButtonAcceptSplitUserUser" prefHeight="31.0" prefWidth="90.0" stylesheets="@admin.css" text="Xác nhận" textFill="WHITE">
+                              <Button fx:id="buttonAcceptSplitUserUser" layoutX="126.0" layoutY="14.0" mnemonicParsing="false" onAction="#setButtonAcceptSplitUserUser" prefHeight="31.0" prefWidth="90.0" stylesheets="@Admin.css" text="Xác nhận" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
