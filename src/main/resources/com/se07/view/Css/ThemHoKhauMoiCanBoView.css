@@ -1,0 +1,67 @@
+#buttonHomeAdmin {
+    -fx-background-color: rgb(40, 132, 217);
+}
+
+#buttonHomeAdmin:hover {
+    -fx-background-color: rgba(4, 57, 244, 0.95)
+}
+
+#buttonPeopleAdmin {
+    -fx-background-color: rgba(0, 53, 240, 0.7);
+}
+
+#buttonPeopleAdmin:hover {
+    -fx-background-color: rgba(4, 57, 244, 0.95)
+}
+
+#buttonUserAdmin {
+    -fx-background-color: rgba(0, 53, 240, 0.7);
+}
+
+#buttonUserAdmin:hover {
+    -fx-background-color: rgba(4, 57, 244, 0.95)
+}
+
+#menuButtonAwardAdmin {
+    -fx-background-color: rgba(0, 53, 240, 0.7);
+}
+
+#menuButtonAwardAdmin:hover {
+    -fx-background-color: rgba(4, 57, 244, 0.95);
+}
+
+#buttonGiaiThuongCanBo {
+    -fx-background-color: rgba(0, 53, 240, 0.7);
+}
+
+#buttonGiaiThuongCanBo:hover {
+    -fx-background-color: rgba(4, 57, 244, 0.95)
+}
+
+#paneNewUserAdmin {
+    -fx-background-color: linear-gradient(#7758D1 2%, #F7CBFD 40%);
+}
+
+#buttonLogoutAdmin {
+    -fx-background-color: black;
+}
+
+#buttonLogoutAdmin:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonAcceptNewUserAdmin {
+    -fx-background-color: black;
+}
+
+#buttonCancelNewUserAdmin {
+    -fx-background-color: black;
+}
+
+#buttonAcceptNewUserAdmin:hover {
+    -fx-background-color: #177306;
+}
+
+#buttonCancelNewUserAdmin:hover {
+    -fx-background-color: #910c0c;
+}

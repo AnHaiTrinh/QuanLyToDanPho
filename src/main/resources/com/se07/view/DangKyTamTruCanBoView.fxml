@@ -16,12 +16,12 @@
 
 <AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/DangKyTamTruCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerDangKyTamTruCanBoView">
    <children>
-      <ImageView fx:id="imageLeftAdmin" fitHeight="603.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Icon/imageAdmin.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="buttonHomeAdmin" mnemonicParsing="false" onAction="#setButtonHomeAdmin" prefHeight="66.0" prefWidth="220.0" text="Trang chủ" textFill="WHITE">
+      <Button fx:id="buttonHomeAdmin" mnemonicParsing="false" onAction="#setButtonHomeAdmin" prefHeight="66.0" prefWidth="222.0" text="Trang chủ" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -33,7 +33,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="buttonPeopleAdmin" layoutY="121.0" mnemonicParsing="false" onAction="#setButtonPeopleAdmin" prefHeight="54.0" prefWidth="220.0" text="Nhân khẩu" textFill="#f2f2f2">
+      <Button fx:id="buttonPeopleAdmin" layoutY="121.0" mnemonicParsing="false" onAction="#setButtonPeopleAdmin" prefHeight="58.0" prefWidth="222.0" text="Nhân khẩu" textFill="#f2f2f2">
          <graphic>
             <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -45,7 +45,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="buttonUserAdmin" layoutY="211.0" mnemonicParsing="false" onAction="#setButtonUserAdmin" prefHeight="54.0" prefWidth="220.0" text="Hộ khẩu" textFill="#f2f2f2">
+      <Button fx:id="buttonUserAdmin" layoutY="211.0" mnemonicParsing="false" onAction="#setButtonUserAdmin" prefHeight="58.0" prefWidth="222.0" text="Hộ khẩu" textFill="#f2f2f2">
          <graphic>
             <ImageView fitHeight="46.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -92,7 +92,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false" onAction="#setButtonGiaiThuongCanBo" prefHeight="54.0" prefWidth="220.0" text="Giải Thưởng" textFill="WHITE">
+      <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false" onAction="#setButtonGiaiThuongCanBo" prefHeight="58.0" prefWidth="222.0" text="Giải Thưởng" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -152,7 +152,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField promptText="Bắt buộc" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Label text="Mã tạm trú" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="15.0" />
@@ -164,16 +164,16 @@
                </font>
             </Label>
             <TextField GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <DatePicker GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <TextField promptText="Bắt buộc" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <DatePicker promptText="Bắt buộc" GridPane.columnIndex="5" GridPane.rowIndex="3" />
             <TextField promptText="Bắt buộc" GridPane.columnIndex="2">
                <font>
                   <Font name="System Italic" size="15.0" />
                </font>
             </TextField>
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <DatePicker GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="5" />
+            <TextField promptText="Bắt buộc" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <DatePicker promptText="Bắt buộc" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <TextField promptText="Bắt buộc" GridPane.columnIndex="5" />
          </children>
       </GridPane>
       <Label layoutX="485.0" layoutY="81.0" text="Đăng ký tạm trú">
