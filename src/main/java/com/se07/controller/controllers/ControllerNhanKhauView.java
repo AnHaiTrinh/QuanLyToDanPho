@@ -59,4 +59,7 @@ public class ControllerNhanKhauView implements Initializable {
     public void setButtonGiaiThuongCanBo(ActionEvent e) throws IOException{
         controllerTrangChuView.setButtonGiaiThuongCanBo(e);
     }
+    public void setButtonLocThongTinHoKhauCanBo(){
+
+    }
 }

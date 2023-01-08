@@ -38,5 +38,8 @@ public class ControllerGiaiThuongCanBoView {
         Scene scene =  new Scene(fxmlLoader.load());
         stage.setScene(scene);
     }
+    public void setButtonLocThongTinHoKhauCanBo(){
+
+    }
 
 }

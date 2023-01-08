@@ -66,29 +66,29 @@
             </Button>
             <AnchorPane fx:id="anchorPaneTinhNangNhanKhauCanBo" layoutX="758.0" layoutY="5.0" prefHeight="603.0" prefWidth="157.0">
                <children>
-                  <Button fx:id="buttonLogoutAdmin" layoutX="23.0" layoutY="7.0" mnemonicParsing="false" onAction="#setButtonLogoutAdmin" prefHeight="38.0" prefWidth="126.0" stylesheets="@Admin.css" text="Đăng xuất" textFill="WHITE">
+                  <Button fx:id="buttonLogoutAdmin" layoutX="23.0" layoutY="7.0" mnemonicParsing="false" onAction="#setButtonLogoutAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@Admin.css" text="Đăng xuất" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonTaoBieuMauDipDacBietCanBoView" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#setButtonTaoBieuMauDipDacBietCanBoView" prefHeight="45.0" prefWidth="141.0" text="Tạo biểu mẫu ĐB" textFill="WHITE">
+                  <Button fx:id="buttonTaoBieuMauDipDacBietCanBoView" layoutX="21.0" layoutY="190.0" mnemonicParsing="false" onAction="#setButtonTaoBieuMauDipDacBietCanBoView" prefHeight="38.0" prefWidth="130.0" text="Tạo biểu mẫu ĐB" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonTaoBieuMauDipBTCanBo" layoutX="10.0" layoutY="270.0" mnemonicParsing="false" onAction="#setButtonTaoBieuMauDipBTCanBo" prefHeight="45.0" prefWidth="141.0" text="Tạo biểu mẫu BT" textFill="WHITE">
+                  <Button fx:id="buttonTaoBieuMauDipBTCanBo" layoutX="21.0" layoutY="270.0" mnemonicParsing="false" onAction="#setButtonTaoBieuMauDipBTCanBo" prefHeight="38.0" prefWidth="130.0" text="Tạo biểu mẫu BT" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button layoutX="10.0" layoutY="350.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="141.0" text="Phê duyệt" textFill="WHITE">
+                  <Button layoutX="21.0" layoutY="350.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="130.0" text="Phê duyệt" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button layoutX="10.0" layoutY="430.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="141.0" text="Xóa" textFill="WHITE">
+                  <Button layoutX="21.0" layoutY="430.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="130.0" text="Xóa" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
                </children>
@@ -105,15 +105,25 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
+            <TableView layoutX="220.0" layoutY="73.0" prefHeight="528.0" prefWidth="552.0">
+               <columns>
+                  <TableColumn prefWidth="116.0" text="Lớp" />
+                  <TableColumn prefWidth="136.0" text="Họ tên" />
+                  <TableColumn prefWidth="153.0" text="Giải thưởng" />
+                  <TableColumn prefWidth="145.0" text="Tình trạng" />
+               </columns>
+            </TableView>
          </children>
       </AnchorPane>
-      <TableView layoutX="220.0" layoutY="75.0" prefHeight="528.0" prefWidth="541.0">
-         <columns>
-            <TableColumn prefWidth="116.0" text="Lớp" />
-            <TableColumn prefWidth="136.0" text="Họ tên" />
-            <TableColumn prefWidth="153.0" text="Giải thưởng" />
-            <TableColumn prefWidth="135.0" text="Tình trạng" />
-         </columns>
-      </TableView>
+      <TextField fx:id="textFieldLocThongTinHoKhauCanBo" layoutX="220.0" layoutY="18.0" prefHeight="31.0" prefWidth="300.0" promptText="Tìm kiếm theo trường">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </TextField>
+      <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="554.0" layoutY="18.0" mnemonicParsing="false" onAction="#setButtonLocThongTinHoKhauCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

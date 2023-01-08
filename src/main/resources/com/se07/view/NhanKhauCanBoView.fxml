@@ -67,9 +67,9 @@
       </AnchorPane>
       <AnchorPane layoutX="220.0" prefHeight="603.0" prefWidth="538.0">
          <children>
-            <AnchorPane fx:id="paneMidPeopleAdmin" prefHeight="604.0" prefWidth="554.0">
+            <AnchorPane fx:id="paneMidPeopleAdmin" prefHeight="605.0" prefWidth="554.0">
                <children>
-                  <TableView layoutX="1.0" layoutY="63.0" prefHeight="541.0" prefWidth="552.0">
+                  <TableView layoutY="72.0" prefHeight="528.0" prefWidth="552.0">
                      <columns>
                         <TableColumn prefWidth="89.0" text="ID" />
                         <TableColumn prefWidth="73.0" text="Họ tên" />
@@ -78,29 +78,38 @@
                         <TableColumn prefWidth="175.0" text="Địa chỉ hiện tại" />
                      </columns>
                   </TableView>
-                  <TextField layoutX="1.0" layoutY="14.0" prefHeight="31.0" prefWidth="407.0" />
+                  <TextField fx:id="textFieldLocThongTinHoKhauCanBo" layoutY="18.0" prefHeight="31.0" prefWidth="300.0" promptText="Tìm kiếm theo tên">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="334.0" layoutY="18.0" mnemonicParsing="false" onAction="#setButtonLocThongTinHoKhauCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panePeopleAdmin" layoutX="760.0" layoutY="50.0" prefHeight="553.0" prefWidth="154.0">
          <children>
-            <Button fx:id="buttonNewPeopleAdmin" layoutX="21.0" layoutY="97.0" mnemonicParsing="false" onAction="#setButtonNewPeopleAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@admin.css" text="Thêm mới" textFill="#fcfcfc">
+            <Button fx:id="buttonNewPeopleAdmin" layoutX="21.0" layoutY="118.0" mnemonicParsing="false" onAction="#setButtonNewPeopleAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@admin.css" text="Thêm mới" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="buttonTemporaryRegistrationPeoppleAdmin" layoutX="21.0" layoutY="155.0" mnemonicParsing="false" onAction="#setButtonTemporaryRegistrationPeopleAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@admin.css" text="ĐK tạm vắng" textFill="#fcfcfc">
+            <Button fx:id="buttonTemporaryRegistrationPeoppleAdmin" layoutX="21.0" layoutY="176.0" mnemonicParsing="false" onAction="#setButtonTemporaryRegistrationPeopleAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@admin.css" text="ĐK tạm vắng" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="buttonAbsentRegistrationAdmin" layoutX="20.0" layoutY="216.0" mnemonicParsing="false" onAction="#setButtonAbsentRegistrationAdmin" prefHeight="38.0" prefWidth="130.0" text="ĐK Tạm trú" textFill="#fcfcfc">
+            <Button fx:id="buttonAbsentRegistrationAdmin" layoutX="20.0" layoutY="237.0" mnemonicParsing="false" onAction="#setButtonAbsentRegistrationAdmin" prefHeight="38.0" prefWidth="130.0" text="ĐK Tạm trú" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="buttonRemovePeopleAdmin" layoutX="21.0" layoutY="277.0" mnemonicParsing="false" onAction="#setButtonRemovePeopleAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@admin.css" text="Khai tử" textFill="#fcfcfc">
+            <Button fx:id="buttonRemovePeopleAdmin" layoutX="21.0" layoutY="298.0" mnemonicParsing="false" onAction="#setButtonRemovePeopleAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@admin.css" text="Khai tử" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
