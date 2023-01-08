@@ -8,13 +8,12 @@ public class ThongTinThanhTichModel {
     private String capThanhTich;
     private String kieuThanhTich;
     private String namHoc;
-    private String maPhanThuong;
     private byte[] minhChung;
     private String tinhTrang;
     private int idNguoiThucHien;
 
     public ThongTinThanhTichModel(int idNhap, String maNhanKhau, int lop, String truong, String capThanhTich,
-                                  String kieuThanhTich, String namHoc, String maPhanThuong, byte[] minhChung,
+                                  String kieuThanhTich, String namHoc, byte[] minhChung,
                                   String tinhTrang, int idNguoiThucHien) {
         this.idNhap = idNhap;
         this.maNhanKhau = maNhanKhau;
@@ -23,7 +22,6 @@ public class ThongTinThanhTichModel {
         this.capThanhTich = capThanhTich;
         this.kieuThanhTich = kieuThanhTich;
         this.namHoc = namHoc;
-        this.maPhanThuong = maPhanThuong;
         this.minhChung = minhChung;
         this.tinhTrang = tinhTrang;
         this.idNguoiThucHien = idNguoiThucHien;
@@ -83,14 +81,6 @@ public class ThongTinThanhTichModel {
 
     public void setNamHoc(String namHoc) {
         this.namHoc = namHoc;
-    }
-
-    public String getMaPhanThuong() {
-        return maPhanThuong;
-    }
-
-    public void setMaPhanThuong(String maPhanThuong) {
-        this.maPhanThuong = maPhanThuong;
     }
 
     public byte[] getMinhChung() {
