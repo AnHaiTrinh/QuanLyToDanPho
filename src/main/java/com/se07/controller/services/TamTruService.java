@@ -392,6 +392,20 @@ public class TamTruService {
         }
     }
 
+    public int getTamTruCountByVerified() {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select count(*) from tam_tru where tinhTrang = N'Đã xác nhận'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            rs.next();
+            return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+
+    }
 
 
 
