@@ -12,7 +12,6 @@
 
 <AnchorPane fx:id="anchorPaneCheckAwardAdmin" prefHeight="603.0" prefWidth="695.0" stylesheets="@Css/GiaiThuongDipDacBietCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerGiaiThuongCanBoView">
     <children>
-        <TextField layoutX="14.0" layoutY="18.0" prefHeight="31.0" prefWidth="531.0" />
         <Button fx:id="buttonSeachAwardAdmin1" layoutX="558.0" layoutY="16.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" style="-fx-background-radius: 15;">
             <graphic>
                 <ImageView fitHeight="31.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
@@ -24,7 +23,7 @@
         </Button>
         <AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/TrangChuCanBoView.css">
             <children>
-                <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Icon/imageAdmin.jpg" />
                     </image>
@@ -41,7 +40,7 @@
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Button>
-                <Button fx:id="buttonPeopleAdmin" layoutY="121.0" mnemonicParsing="false" onAction="#setButtonPeopleAdmin" prefHeight="57.0" prefWidth="220.0" text="Nhân khẩu" textFill="#f2f2f2">
+                <Button fx:id="buttonPeopleAdmin" layoutY="121.0" mnemonicParsing="false" onAction="#setButtonPeopleAdmin" prefHeight="58.0" prefWidth="222.0" text="Nhân khẩu" textFill="#f2f2f2">
                     <graphic>
                         <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -53,7 +52,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="buttonUserAdmin" layoutY="211.0" mnemonicParsing="false" onAction="#setButtonUserAdmin" prefHeight="54.0" prefWidth="220.0" text="Hộ khẩu" textFill="#f2f2f2">
+                <Button fx:id="buttonUserAdmin" layoutY="211.0" mnemonicParsing="false" onAction="#setButtonUserAdmin" prefHeight="58.0" prefWidth="222.0" text="Hộ khẩu" textFill="#f2f2f2">
                     <graphic>
                         <ImageView fitHeight="46.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -94,7 +93,7 @@
                         </Button>
                     </children>
                 </AnchorPane>
-                <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false" onAction="#setButtonGiaiThuongCanBo" onMouseMoved="#setTest" prefHeight="54.0" prefWidth="220.0" text="Giải Thưởng" textFill="WHITE">
+                <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false" onAction="#setButtonGiaiThuongCanBo" onMouseMoved="#setTest" prefHeight="58.0" prefWidth="222.0" text="Giải Thưởng" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -116,12 +115,12 @@
                 </TableView>
                 <Pane fx:id="paneTest" layoutX="224.0" layoutY="261.0" prefHeight="155.0" prefWidth="200.0">
                     <children>
-                        <Button fx:id="buttonXemPhanThuongDipDacBietCanBo" layoutY="5.0" mnemonicParsing="false" onAction="#setButtonXemPhanThuongDipDacBietCanBo" prefHeight="50.0" prefWidth="175.0" text="Dịp Đặc Biệt" textFill="WHITE">
+                        <Button fx:id="buttonXemPhanThuongDipDacBietCanBo" layoutY="15.0" mnemonicParsing="false" onAction="#setButtonXemPhanThuongDipDacBietCanBo" prefHeight="40.0" prefWidth="175.0" text="Dịp Đặc Biệt" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="15.0" />
                             </font>
                         </Button>
-                        <Button fx:id="buttonXemPhanThuongDipThuongCanBo" layoutY="87.0" mnemonicParsing="false" onAction="#setButtonXemPhanThuongDipThuongCanBo" prefHeight="50.0" prefWidth="175.0" text="Dịp thường" textFill="WHITE">
+                        <Button fx:id="buttonXemPhanThuongDipThuongCanBo" layoutY="80.0" mnemonicParsing="false" onAction="#setButtonXemPhanThuongDipThuongCanBo" prefHeight="40.0" prefWidth="175.0" text="Dịp thường" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="15.0" />
                             </font>
