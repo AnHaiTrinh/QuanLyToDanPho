@@ -259,4 +259,18 @@ public class NhanKhauService {
             return false;
         }
     }
+
+    public int getNhanKhauCount() {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select count(*) from nhan_khau where tinhTrang = N'Đã xác nhận'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            rs.next();
+            return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
 }

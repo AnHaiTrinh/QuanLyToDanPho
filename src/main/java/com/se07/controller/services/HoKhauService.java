@@ -170,4 +170,18 @@ public class HoKhauService {
             return false;
         }
     }
+
+    public int getHoKhauCount() {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select count(*) from ho_khau";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            rs.next();
+            return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
 }
