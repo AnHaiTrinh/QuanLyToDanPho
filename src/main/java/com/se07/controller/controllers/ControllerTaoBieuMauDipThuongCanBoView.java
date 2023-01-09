@@ -1,15 +1,9 @@
 package com.se07.controller.controllers;
 
-import com.se07.view.LoginView;
-import com.se07.view.Main;
-import com.se07.view.TaoBieuMauDipThuongCanBoView;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 
+import javafx.event.ActionEvent;
+
+import javafx.fxml.Initializable;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

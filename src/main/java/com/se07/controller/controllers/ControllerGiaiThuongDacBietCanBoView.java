@@ -10,13 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerGiaiThuongCanBoView implements Initializable {
+public class ControllerGiaiThuongDacBietCanBoView implements Initializable {
     @FXML
     Pane paneTest;
     @FXML

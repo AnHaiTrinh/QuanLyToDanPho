@@ -137,17 +137,12 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label text="Tình trạng" GridPane.columnIndex="4" GridPane.rowIndex="1">
+            <Label text="Từ ngày" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label text="Từ ngày" GridPane.columnIndex="4" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label text="Đến ngày" GridPane.columnIndex="4" GridPane.rowIndex="3">
+            <Label text="Đến ngày" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -163,16 +158,15 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="5" GridPane.rowIndex="1" />
             <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <DatePicker GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <DatePicker GridPane.columnIndex="5" GridPane.rowIndex="2" />
             <TextField promptText="Bắt buộc" GridPane.columnIndex="2">
                <font>
                   <Font name="System Italic" size="15.0" />
                </font>
             </TextField>
             <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <DatePicker GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <DatePicker GridPane.columnIndex="5" GridPane.rowIndex="1" />
             <TextField GridPane.columnIndex="5" />
          </children>
       </GridPane>

@@ -127,8 +127,8 @@ public class ControllerLoginView {
                             fileWriter.write(rs.getInt("ID") + "\n"+rs.getString("username")+"\n"
                             +rs.getString("password"));
                             fileWriter.close();
-                            Main main = new Main();
-                            main.openWindow();
+                            TrangChuCanBoView trangChuCanBoView = new TrangChuCanBoView();
+                            trangChuCanBoView.openWindow();
                             stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
                             stage.close();
                         } else if (role==2 &&checkBoxAdmin.isSelected()==false && checkBoxUser.isSelected()==true && checkBoxTreasurer.isSelected()==false) {

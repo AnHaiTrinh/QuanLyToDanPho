@@ -1,8 +1,5 @@
 package com.se07.controller.controllers;
-
 import com.se07.view.TaoBieuMauDipThuongCanBoView;
-import com.se07.view.TrangChuCanBoView;
-import com.se07.view.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;

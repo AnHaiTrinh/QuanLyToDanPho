@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneCheckAwardAdmin" prefHeight="603.0" prefWidth="695.0" stylesheets="@Css/GiaiThuongCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerGiaiThuongCanBoView">
+<AnchorPane fx:id="anchorPaneCheckAwardAdmin" prefHeight="603.0" prefWidth="695.0" stylesheets="@Css/GiaiThuongCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerGiaiThuongDacBietCanBoView">
    <children>
       <TextField layoutX="14.0" layoutY="18.0" prefHeight="31.0" prefWidth="531.0" />
       <Button fx:id="buttonSeachAwardAdmin1" layoutX="558.0" layoutY="16.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" style="-fx-background-radius: 15;">
@@ -111,7 +111,7 @@
                   <TableColumn prefWidth="116.0" text="Lớp" />
                   <TableColumn prefWidth="136.0" text="Họ tên" />
                   <TableColumn prefWidth="153.0" text="Giải thưởng" />
-                  <TableColumn prefWidth="145.0" text="Dịp đặc biệt" />
+                  <TableColumn prefWidth="145.0" text="Tình trạng" />
                </columns>
             </TableView>
             <Pane fx:id="paneTest" layoutX="224.0" layoutY="261.0" prefHeight="155.0" prefWidth="200.0">

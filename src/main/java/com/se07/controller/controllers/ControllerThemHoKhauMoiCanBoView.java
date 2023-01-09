@@ -6,12 +6,6 @@ import java.io.IOException;
 
 public class ControllerThemHoKhauMoiCanBoView {
     ControllerTrangChuView controllerTrangChuView = new ControllerTrangChuView();
-    public void setButtonCancelNewUserAdmin(){
-
-    }
-    public void setButtonAcceptNewUserAdmin(){
-
-    }
     public void setButtonHomeAdmin(ActionEvent e) throws IOException {
         controllerTrangChuView.setButtonHomeAdmin(e);
     }
