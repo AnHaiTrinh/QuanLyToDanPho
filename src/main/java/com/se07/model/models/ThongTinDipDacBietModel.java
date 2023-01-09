@@ -9,7 +9,7 @@ public class ThongTinDipDacBietModel {
     private int idNguoiThucHien;
 
     public ThongTinDipDacBietModel(int idNhap, String maNhanKhau, String dipdacBiet, int nam, String tinhTrang,
-                              int idNguoiThucHien) {
+                                   int idNguoiThucHien) {
         this.idNhap = idNhap;
         this.maNhanKhau = maNhanKhau;
         this.dipdacBiet = dipdacBiet;
