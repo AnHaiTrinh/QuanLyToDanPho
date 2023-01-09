@@ -1,0 +1,101 @@
+#buttonHomeAdmin {
+    -fx-background-color: rgb(40, 132, 217);
+}
+
+#buttonHomeAdmin:hover {
+    -fx-background-color: rgba(4, 57, 244, 0.95)
+}
+
+#buttonPeopleAdmin {
+    -fx-background-color: rgba(0, 53, 240, 0.7);
+}
+
+#buttonPeopleAdmin:hover {
+    -fx-background-color: rgba(4, 57, 244, 0.95)
+}
+
+#buttonUserAdmin {
+    -fx-background-color: rgba(0, 53, 240, 0.7);
+}
+
+#buttonUserAdmin:hover {
+    -fx-background-color: rgba(4, 57, 244, 0.95)
+}
+
+#buttonGiaiThuongCanBo {
+    -fx-background-color: rgba(0, 53, 240, 0.7);
+}
+
+#buttonGiaiThuongCanBo:hover {
+    -fx-background-color: rgba(4, 57, 244, 0.95);
+}
+
+#anchorPaneCheckAwardAdmin {
+    -fx-background-color: linear-gradient(#7758D1 2%, #F7CBFD 40%);
+}
+
+#buttonLogoutAdmin {
+    -fx-background-color: black
+}
+
+#buttonLogoutAdmin:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonLocThongTinHoKhauCanBo {
+    -fx-background-color: black;
+}
+
+#buttonLocThongTinHoKhauCanBo:hover {
+    -fx-background-color: #177306;
+}
+
+#buttonTaoBieuMauDipDacBietCanBoView {
+    -fx-background-color: black;
+}
+
+#buttonTaoBieuMauDipDacBietCanBoView:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonTaoBieuMauDipBTCanBo {
+    -fx-background-color: black;
+}
+
+#buttonTaoBieuMauDipBTCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+
+#buttonPheDuyetThanhTichCanBo {
+    -fx-background-color: black;
+}
+
+#buttonPheDuyetThanhTichCanBo:hover {
+    -fx-background-color: #177306;
+}
+
+
+#buttonXoaThanhTichCanBo {
+    -fx-background-color: black;
+}
+
+#buttonXoaThanhTichCanBo:hover {
+    -fx-background-color: #910c0c;
+}
+
+#buttonXemPhanThuongDipDacBietCanBo {
+    -fx-background-color: rgb(40, 132, 217);
+}
+
+#buttonXemPhanThuongDipDacBietCanBo:hover {
+    -fx-background-color: rgba(4, 57, 244, 0.95)
+}
+
+#buttonXemPhanThuongDipThuongCanBo {
+    -fx-background-color: rgb(40, 132, 217);
+}
+
+#buttonXemPhanThuongDipThuongCanBo:hover {
+    -fx-background-color: rgba(4, 57, 244, 0.95)
+}

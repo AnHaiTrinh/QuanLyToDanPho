@@ -21,48 +21,58 @@ public class ControllerGiaiThuongCanBoView implements Initializable {
     Pane paneTest;
     @FXML
     Button buttonGiaiThuongCanBo;
-    ControllerTrangChuView  controllerTrangChuView = new ControllerTrangChuView();
-    public void setButtonLogoutAdmin(){
+    ControllerTrangChuView controllerTrangChuView = new ControllerTrangChuView();
+
+    public void setButtonLogoutAdmin() {
 
     }
+
     public void setButtonHomeAdmin(ActionEvent e) throws IOException {
         controllerTrangChuView.setButtonHomeAdmin(e);
     }
-    public void setButtonPeopleAdmin(ActionEvent e) throws IOException{
+
+    public void setButtonPeopleAdmin(ActionEvent e) throws IOException {
         controllerTrangChuView.setButtonPeopleAdmin(e);
     }
-    public void setButtonUserAdmin(ActionEvent e) throws IOException{
+
+    public void setButtonUserAdmin(ActionEvent e) throws IOException {
         controllerTrangChuView.setButtonUserAdmin(e);
     }
-    public void setButtonGiaiThuongCanBo(ActionEvent e) throws IOException{
+
+    public void setButtonGiaiThuongCanBo(ActionEvent e) throws IOException {
         controllerTrangChuView.setButtonGiaiThuongCanBo(e);
     }
-    public void setButtonTaoBieuMauDipDacBietCanBoView(ActionEvent e) throws  IOException{
+
+    public void setButtonTaoBieuMauDipDacBietCanBoView(ActionEvent e) throws IOException {
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(TaoBieuMauDipThuongCanBoView.class.getResource("TaoBieuMauDipDacBietCanBoView.fxml"));
-        Scene scene =  new Scene(fxmlLoader.load());
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
     }
-    public void setButtonTaoBieuMauDipBTCanBo(ActionEvent e) throws IOException{
+
+    public void setButtonTaoBieuMauDipBTCanBo(ActionEvent e) throws IOException {
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(TaoBieuMauDipThuongCanBoView.class.getResource("TaoBieuMauDipThuongCanBoView.fxml"));
-        Scene scene =  new Scene(fxmlLoader.load());
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
     }
-    public void setButtonLocThongTinHoKhauCanBo(){
+
+    public void setButtonLocThongTinHoKhauCanBo() {
 
     }
 
-    public void setTest(){
+    public void setTest() {
 
     }
-    public  void setButtonXemPhanThuongDipThuongCanBo(ActionEvent e) throws IOException{
+
+    public void setButtonXemPhanThuongDipThuongCanBo(ActionEvent e) throws IOException {
         controllerTrangChuView.setButtonGiaiThuongCanBo(e);
     }
-    public void setButtonXemPhanThuongDipDacBietCanBo(ActionEvent e) throws  IOException{
+
+    public void setButtonXemPhanThuongDipDacBietCanBo(ActionEvent e) throws IOException {
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(TaoBieuMauDipThuongCanBoView.class.getResource("GiaiThuongDacBietCanBoView.fxml"));
-        Scene scene =  new Scene(fxmlLoader.load());
+        FXMLLoader fxmlLoader = new FXMLLoader(TaoBieuMauDipThuongCanBoView.class.getResource("GiaiThuongThanhTichCanBoView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
     }
 
