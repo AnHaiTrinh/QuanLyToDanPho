@@ -1,4 +1,5 @@
 package com.se07.controller.services;
+
 import com.se07.model.models.TamVangModel;
 import com.se07.util.ConnectionDatabase;
 import javafx.collections.FXCollections;
@@ -66,7 +67,7 @@ public class TamVangService {
     public ObservableList<TamVangModel> getTamVangByNoiTamVang(String noiTamVang) {
         ObservableList<TamVangModel> listTamVang = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from tam_vang where maNhanKhau = N'" + noiTamVang + "'";
+        String query = "select * from tam_vang where maNhanKhau like N'%" + noiTamVang + "%'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -129,7 +130,8 @@ public class TamVangService {
             statement.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();}
+            e.printStackTrace();
+        }
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -166,7 +168,8 @@ public class TamVangService {
             statement.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();}
+            e.printStackTrace();
+        }
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -194,7 +197,7 @@ public class TamVangService {
     public ObservableList<TamVangModel> getTamVangByidNguoiThucHien(int id) {
         ObservableList<TamVangModel> listTamVang = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from tam_vang where tinhTrang = '" + id + "'";
+        String query = "select * from tam_vang where idNguoiThucHien = '" + id + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -244,6 +247,7 @@ public class TamVangService {
         }
         return tamVangModel;
     }
+
     public boolean addTamVang(TamVangModel tamVangModel) {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "insert into tam_vang(maTamVang, maNhanKhau, noiTamVang, tuNgay, denNgay, lydo, " +
@@ -314,22 +318,6 @@ public class TamVangService {
     }
 
     public int getTamVangCount() {
-        Connection connection = ConnectionDatabase.getConnection();
-        String query = "select count(*) from tam_vang";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            rs.next();
-            return rs.getInt(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
-
-
-
-    public int getTamVangCountByVerified() {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select count(*) from tam_vang where tinhTrang = N'Đã xác nhận'";
         try {

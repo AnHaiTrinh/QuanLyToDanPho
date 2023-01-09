@@ -1,4 +1,5 @@
 package com.se07.controller.services;
+
 import com.se07.model.models.TamTruModel;
 import com.se07.util.ConnectionDatabase;
 import javafx.collections.FXCollections;
@@ -36,6 +37,7 @@ public class TamTruService {
         }
         return listTamTru;
     }
+
     public ObservableList<TamTruModel> getTamTruByCCCD(String CCCD) {
         ObservableList<TamTruModel> listTamTru = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
@@ -160,31 +162,32 @@ public class TamTruService {
             statement.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();}
-            try {
-                Statement statement = connection.createStatement();
-                ResultSet rs = statement.executeQuery(query);
-                while (rs.next()) {
-                    TamTruModel temp = new TamTruModel(
-                            rs.getString("maTamTru"),
-                            rs.getString("CCCD"),
-                            rs.getNString("hoTen"),
-                            rs.getNString("noiTamTru"),
-                            rs.getDate("tuNgay"),
-                            rs.getDate("denNgay"),
-                            rs.getString("lydo"),
-                            rs.getNString("tinhTrang"),
-                            rs.getInt("idNguoiThucHien"));
-                    listTamTru.add(temp);
-                }
-                statement.close();
-                connection.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return listTamTru;
+            e.printStackTrace();
         }
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                TamTruModel temp = new TamTruModel(
+                        rs.getString("maTamTru"),
+                        rs.getString("CCCD"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("noiTamTru"),
+                        rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"),
+                        rs.getString("lydo"),
+                        rs.getNString("tinhTrang"),
+                        rs.getInt("idNguoiThucHien"));
+                listTamTru.add(temp);
+            }
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listTamTru;
+    }
 
     public ObservableList<TamTruModel> getTamTruWhereDenNgayBetween(java.util.Date low, Date high) {
         ObservableList<TamTruModel> listTamTru = FXCollections.observableArrayList();
@@ -198,7 +201,8 @@ public class TamTruService {
             statement.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();}
+            e.printStackTrace();
+        }
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -307,6 +311,7 @@ public class TamTruService {
         }
         return tamTruModel;
     }
+
     public boolean addTamTru(TamTruModel tamTruModel) {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "insert into tam_tru(maTamTru, CCCD, hoTen, noiTamTru, tuNgay, denNgay, lydo, " +
@@ -380,20 +385,6 @@ public class TamTruService {
 
     public int getTamTruCount() {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select count(*) from tam_tru";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            rs.next();
-            return rs.getInt(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
-
-    public int getTamTruCountByVerified() {
-        Connection connection = ConnectionDatabase.getConnection();
         String query = "select count(*) from tam_tru where tinhTrang = N'Đã xác nhận'";
         try {
             Statement statement = connection.createStatement();
@@ -406,10 +397,4 @@ public class TamTruService {
         }
 
     }
-
-
-
-
-
-
 }
