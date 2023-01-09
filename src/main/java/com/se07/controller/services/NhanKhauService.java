@@ -3,11 +3,9 @@ package com.se07.controller.services;
 import com.se07.model.models.NhanKhauModel;
 import com.se07.util.ConnectionDatabase;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.util.List;
 import java.util.Optional;
 
 public class NhanKhauService {

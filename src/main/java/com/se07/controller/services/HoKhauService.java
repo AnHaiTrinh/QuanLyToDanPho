@@ -58,7 +58,7 @@ public class HoKhauService {
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            if (rs.next()) {
+            while (rs.next()) {
                 HoKhauModel temp = new HoKhauModel(rs.getString("maHoKhau"), rs.getNString("chuHo"),
                         rs.getNString("diachi"), rs.getDate("ngayLap"),
                         rs.getInt("idNguoiThucHien"));
@@ -79,7 +79,7 @@ public class HoKhauService {
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            if (rs.next()) {
+            while (rs.next()) {
                 HoKhauModel temp = new HoKhauModel(rs.getString("maHoKhau"), rs.getNString("chuHo"),
                         rs.getNString("diachi"), rs.getDate("ngayLap"),
                         rs.getInt("idNguoiThucHien"));
