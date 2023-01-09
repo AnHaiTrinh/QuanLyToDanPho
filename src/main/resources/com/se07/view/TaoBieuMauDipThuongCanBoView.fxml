@@ -14,14 +14,14 @@
 
 <AnchorPane fx:id="anchorPaneCreateFormAwardDipThuongAdmin" prefHeight="603.0" prefWidth="695.0" stylesheets="@Css/TaoBieuMauDipThuongCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerTaoBieuMauDipThuongCanBoView">
    <children>
-      <AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/TrangChuCanBoView.css">
+      <AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="915.0">
          <children>
-            <ImageView fx:id="imageLeftAdmin" fitHeight="603.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Icon/imageAdmin.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="buttonHomeAdmin" mnemonicParsing="false" onAction="#setButtonHomeAdmin" prefHeight="66.0" prefWidth="220.0" stylesheets="@Admin.css" text="Trang chủ" textFill="WHITE">
+            <Button fx:id="buttonHomeAdmin" mnemonicParsing="false" onAction="#setButtonHomeAdmin" prefHeight="66.0" prefWidth="222.0" text="Trang chủ" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -33,7 +33,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="buttonPeopleAdmin" layoutY="121.0" mnemonicParsing="false" onAction="#setButtonPeopleAdmin" prefHeight="54.0" prefWidth="220.0" stylesheets="@Admin.css" text="Nhân khẩu" textFill="#f2f2f2">
+            <Button fx:id="buttonPeopleAdmin" layoutY="121.0" mnemonicParsing="false" onAction="#setButtonPeopleAdmin" prefHeight="57.0" prefWidth="222.0" text="Nhân khẩu" textFill="#f2f2f2">
                <graphic>
                   <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -45,7 +45,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="buttonUserAdmin" layoutY="211.0" mnemonicParsing="false" onAction="#setButtonUserAdmin" prefHeight="54.0" prefWidth="220.0" stylesheets="@Admin.css" text="Hộ khẩu" textFill="#f2f2f2">
+            <Button fx:id="buttonUserAdmin" layoutY="211.0" mnemonicParsing="false" onAction="#setButtonUserAdmin" prefHeight="58.0" prefWidth="222.0" text="Hộ khẩu" textFill="#f2f2f2">
                <graphic>
                   <ImageView fitHeight="46.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -59,14 +59,14 @@
             </Button>
             <AnchorPane fx:id="anchorPaneTinhNangNhanKhauCanBo" layoutX="758.0" layoutY="5.0" prefHeight="603.0" prefWidth="157.0">
                <children>
-                  <Button fx:id="buttonLogoutAdmin" layoutX="23.0" layoutY="7.0" mnemonicParsing="false" onAction="#setButtonLogoutAdmin" prefHeight="38.0" prefWidth="130.0" stylesheets="@Admin.css" text="Đăng xuất" textFill="WHITE">
+                  <Button fx:id="buttonLogoutAdmin" layoutX="23.0" layoutY="7.0" mnemonicParsing="false" onAction="#setButtonLogoutAdmin" prefHeight="38.0" prefWidth="130.0" text="Đăng xuất" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
                </children>
             </AnchorPane>
-            <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false" onAction="#setButtonGiaiThuongCanBo" prefHeight="54.0" prefWidth="220.0" text="Giải Thưởng" textFill="WHITE">
+            <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false" onAction="#setButtonGiaiThuongCanBo" prefHeight="56.0" prefWidth="222.0" text="Giải Thưởng" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
