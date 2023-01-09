@@ -24,7 +24,7 @@
         </Button>
         <AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/TrangChuCanBoView.css">
             <children>
-                <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="227.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Icon/imageAdmin.jpg" />
                     </image>
@@ -41,7 +41,7 @@
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Button>
-                <Button fx:id="buttonPeopleAdmin" layoutY="121.0" mnemonicParsing="false" onAction="#setButtonPeopleAdmin" prefHeight="57.0" prefWidth="220.0" text="Nhân khẩu" textFill="#f2f2f2">
+                <Button fx:id="buttonPeopleAdmin" layoutY="121.0" mnemonicParsing="false" onAction="#setButtonPeopleAdmin" prefHeight="58.0" prefWidth="220.0" text="Nhân khẩu" textFill="#f2f2f2">
                     <graphic>
                         <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -53,7 +53,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="buttonUserAdmin" layoutY="211.0" mnemonicParsing="false" onAction="#setButtonUserAdmin" prefHeight="54.0" prefWidth="220.0" text="Hộ khẩu" textFill="#f2f2f2">
+                <Button fx:id="buttonUserAdmin" layoutY="211.0" mnemonicParsing="false" onAction="#setButtonUserAdmin" prefHeight="58.0" prefWidth="220.0" text="Hộ khẩu" textFill="#f2f2f2">
                     <graphic>
                         <ImageView fitHeight="46.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -94,7 +94,7 @@
                         </Button>
                     </children>
                 </AnchorPane>
-                <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false" onAction="#setButtonGiaiThuongCanBo" onMouseMoved="#setTest" prefHeight="54.0" prefWidth="220.0" text="Giải Thưởng" textFill="WHITE">
+                <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false" onAction="#setButtonGiaiThuongCanBo" onMouseMoved="#setTest" prefHeight="58.0" prefWidth="220.0" text="Giải Thưởng" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -106,7 +106,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Button>
-                <TableView layoutX="220.0" layoutY="80.0" prefHeight="528.0" prefWidth="552.0">
+                <TableView layoutX="221.0" layoutY="78.0" prefHeight="531.0" prefWidth="552.0">
                     <columns>
                         <TableColumn prefWidth="116.0" text="Lớp" />
                         <TableColumn prefWidth="136.0" text="Họ tên" />

@@ -97,10 +97,11 @@ public class HoKhauService {
         ObservableList<HoKhauModel> listHoKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select * from ho_khau where diaChi LIKE N'%" + diaChi + "%'";
+        System.out.println(query);
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            if (rs.next()) {
+            while (rs.next()) {
                 HoKhauModel temp = new HoKhauModel(rs.getString("maHoKhau"), rs.getNString("chuHo"),
                         rs.getNString("diachi"), rs.getDate("ngayLap"),
                         rs.getInt("idNguoiThucHien"));

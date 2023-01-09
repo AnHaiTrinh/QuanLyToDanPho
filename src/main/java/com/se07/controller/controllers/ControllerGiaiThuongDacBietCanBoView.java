@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -21,6 +22,9 @@ public class ControllerGiaiThuongDacBietCanBoView implements Initializable {
     @FXML
     Button buttonGiaiThuongCanBo;
     ControllerTrangChuView controllerTrangChuView = new ControllerTrangChuView();
+    @FXML
+    ComboBox comboBaxTimKiemThanhTichCanBo;
+    private String[] type = {"Music","Book","Film"};
 
     public void setButtonLogoutAdmin() {
 
@@ -78,6 +82,8 @@ public class ControllerGiaiThuongDacBietCanBoView implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        comboBaxTimKiemThanhTichCanBo.getItems().addAll(type);
+        comboBaxTimKiemThanhTichCanBo.getSelectionModel().selectFirst();
         paneTest.setVisible(false);
         buttonGiaiThuongCanBo.setOnMouseMoved(mouseEvent -> {
             System.out.println(234);

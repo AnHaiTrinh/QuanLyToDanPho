@@ -69,7 +69,7 @@
          <children>
             <AnchorPane fx:id="paneMidPeopleAdmin" prefHeight="605.0" prefWidth="554.0">
                <children>
-                  <TableView layoutX="2.0" layoutY="77.0" prefHeight="528.0" prefWidth="552.0">
+                  <TableView layoutX="2.0" layoutY="77.0" prefHeight="530.0" prefWidth="552.0">
                      <columns>
                         <TableColumn prefWidth="89.0" text="ID" />
                         <TableColumn prefWidth="73.0" text="Họ tên" />
