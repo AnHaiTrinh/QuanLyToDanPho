@@ -270,23 +270,24 @@ public class TamVangService {
 
     public boolean updateTamVang(TamVangModel tamVangModel) {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "update tam_vang set maTamVang = ?, " +
+        String query = "update tam_vang set " +
                 "maNhanKhau = ?, " +
                 "noiTamVang = ?," +
                 " tuNgay = ?, " +
-                "denNgay = ?, " +
-                "tinhTrang = ?, " +
+                "denNgay = ?, lydo = ?, " +
+                "tinhTrang = ?,  " +
+
                 "idNguoiThucHien = ? where maTamVang = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, tamVangModel.getMaTamVang());
-            statement.setString(2, tamVangModel.getMaNhanKhau());
-            statement.setNString(3, tamVangModel.getNoiTamVang());
-            statement.setDate(4, new java.sql.Date(tamVangModel.getTuNgay().getTime()));
-            statement.setDate(5, new java.sql.Date(tamVangModel.getDenNgay().getTime()));
-            statement.setNString(6, tamVangModel.getLyDo());
-            statement.setNString(7, tamVangModel.getTinhTrang());
-            statement.setInt(8, tamVangModel.getIdNguoiThucHien());
+            statement.setString(1, tamVangModel.getMaNhanKhau());
+            statement.setNString(2, tamVangModel.getNoiTamVang());
+            statement.setDate(3, new java.sql.Date(tamVangModel.getTuNgay().getTime()));
+            statement.setDate(4, new java.sql.Date(tamVangModel.getDenNgay().getTime()));
+            statement.setNString(5, tamVangModel.getLyDo());
+            statement.setNString(6, tamVangModel.getTinhTrang());
+            statement.setInt(7, tamVangModel.getIdNguoiThucHien());
+            statement.setString(8, tamVangModel.getMaTamVang());
             statement.executeUpdate();
             statement.close();
             connection.close();
@@ -309,6 +310,20 @@ public class TamVangService {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public int getTamVangCount() {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select count(*) from tam_vang";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            rs.next();
+            return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
         }
     }
 

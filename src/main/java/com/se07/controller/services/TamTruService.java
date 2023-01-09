@@ -334,25 +334,25 @@ public class TamTruService {
 
     public boolean updateTamTru(TamTruModel tamTruModel) {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "update tam_tru set maTamTru = ?, " +
+        String query = "update tam_tru set " +
                 "CCCD = ?, " +
                 "hoTen = ?, " +
                 "noiTamTru = ?," +
                 " tuNgay = ?, " +
-                "denNgay = ?, " +
+                "denNgay = ?, lydo = ?," +
                 "tinhTrang = ?, " +
                 "idNguoiThucHien = ? where maTamTru = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, tamTruModel.getMaTamTru());
-            statement.setString(2, tamTruModel.getCCCD());
-            statement.setNString(3, tamTruModel.getHoTen());
-            statement.setNString(4, tamTruModel.getNoiTamTru());
-            statement.setDate(5, new java.sql.Date(tamTruModel.getTuNgay().getTime()));
-            statement.setDate(6, new java.sql.Date(tamTruModel.getDenNgay().getTime()));
-            statement.setNString(7, tamTruModel.getLyDo());
-            statement.setNString(8, tamTruModel.getTinhTrang());
-            statement.setInt(9, tamTruModel.getIdNguoiThucHien());
+            statement.setString(1, tamTruModel.getCCCD());
+            statement.setNString(2, tamTruModel.getHoTen());
+            statement.setNString(3, tamTruModel.getNoiTamTru());
+            statement.setDate(4, new java.sql.Date(tamTruModel.getTuNgay().getTime()));
+            statement.setDate(5, new java.sql.Date(tamTruModel.getDenNgay().getTime()));
+            statement.setNString(6, tamTruModel.getLyDo());
+            statement.setNString(7, tamTruModel.getTinhTrang());
+            statement.setInt(8, tamTruModel.getIdNguoiThucHien());
+            statement.setString(9, tamTruModel.getMaTamTru());
             statement.executeUpdate();
             statement.close();
             connection.close();
@@ -378,6 +378,19 @@ public class TamTruService {
         }
     }
 
+    public int getTamTruCount() {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select count(*) from tam_tru";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            rs.next();
+            return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
 
 
 
