@@ -83,7 +83,7 @@
                         <Font name="System Italic" size="15.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="334.0" layoutY="18.0" mnemonicParsing="false" onAction="#setButtonLocThongTinHoKhauCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
+                  <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="335.0" layoutY="17.0" mnemonicParsing="false" onAction="#setButtonLocThongTinHoKhauCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

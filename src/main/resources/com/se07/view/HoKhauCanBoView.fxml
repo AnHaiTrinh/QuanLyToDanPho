@@ -31,7 +31,7 @@
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Button>
-                <Button fx:id="buttonPeopleAdmin" layoutY="121.0" mnemonicParsing="false" onAction="#setButtonPeopleAdmin" prefHeight="58.0" prefWidth="222.0" text="Nhân khẩu" textFill="#f2f2f2">
+                <Button fx:id="buttonPeopleAdmin" layoutY="121.0" mnemonicParsing="false" onAction="#setButtonPeopleAdmin" prefHeight="57.0" prefWidth="222.0" text="Nhân khẩu" textFill="#f2f2f2">
                     <graphic>
                         <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -83,27 +83,27 @@
         </AnchorPane>
         <AnchorPane fx:id="paneThongTinHoKhauCanBo" layoutX="220.0" prefHeight="603.0" prefWidth="540.0" stylesheets="@Css/HoKhauCanBoView.css">
             <children>
-                <TableView fx:id="tableViewTatCaHoKhauCanBo" layoutX="2.0" layoutY="75.0" onKeyPressed="#setNhanNutDeleteTrongBangHoKhauCanBo" prefHeight="532.0" prefWidth="552.0">
+                <TableView fx:id="tableViewTatCaHoKhauCanBo" layoutX="2.0" layoutY="75.0" onKeyPressed="#setNhanNutDeleteTrongBangHoKhauCanBo" prefHeight="533.0" prefWidth="552.0">
                     <columns>
                         <TableColumn fx:id="tableColumnMaHoHoKhauCanBo" prefWidth="134.0" text="Mã hộ" />
                         <TableColumn fx:id="tableColumnHotenHoKhauCanBo" prefWidth="202.0" text="Họ tên" />
                         <TableColumn fx:id="tableColumnDiaChiHoKhauCanBo" prefWidth="207.0" text="Địa chỉ" />
                     </columns>
                 </TableView>
-                <TextField fx:id="textFieldLocThongTinHoKhauCanBo" layoutX="1.0" layoutY="18.0" prefHeight="31.0" prefWidth="299.0" promptText="Tìm kiếm theo tên">
+                <TextField fx:id="textFieldLocThongTinHoKhauCanBo" layoutX="1.0" layoutY="18.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
                     <font>
                         <Font name="System Italic" size="15.0" />
                     </font>
                 </TextField>
-                <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="440.0" layoutY="18.0" mnemonicParsing="false" onAction="#setButtonLocThongTinHoKhauCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
+                <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="335.0" layoutY="17.0" mnemonicParsing="false" onAction="#setButtonLocThongTinHoKhauCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
                 </Button>
-            <ComboBox fx:id="comboBoxTimKiemHoKhauCanBo" layoutX="310.0" layoutY="17.0" prefHeight="31.0" prefWidth="119.0" />
+            <ComboBox fx:id="comboBoxTimKiemHoKhauCanBo" layoutX="224.0" layoutY="18.0" prefHeight="31.0" prefWidth="100.0" />
             </children>
         </AnchorPane>
-        <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false" onAction="#setButtonGiaiThuongCanBo" prefHeight="58.0" prefWidth="222.0" text="Giải Thưởng" textFill="WHITE">
+        <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false" onAction="#setButtonGiaiThuongCanBo" prefHeight="56.0" prefWidth="222.0" text="Giải Thưởng" textFill="WHITE">
             <graphic>
                 <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                     <image>

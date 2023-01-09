@@ -1,5 +1,5 @@
 package com.se07.controller.controllers;
-import com.se07.view.TaoBieuMauDipThuongCanBoView;
+import com.se07.view.TrangChuCanBoView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,19 +24,19 @@ public class ControllerNhanKhauView implements Initializable {
     }
     public void setButtonNewPeopleAdmin(ActionEvent e) throws IOException {
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(TaoBieuMauDipThuongCanBoView.class.getResource("ThemMoiNhanKhauCanBoView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("ThemMoiNhanKhauCanBoView.fxml"));
         Scene scene =  new Scene(fxmlLoader.load());
         stage.setScene(scene);
     }
     public void setButtonTemporaryRegistrationPeopleAdmin(ActionEvent e) throws IOException{
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(TaoBieuMauDipThuongCanBoView.class.getResource("DangKyTamVangCanBoView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("DangKyTamVangCanBoView.fxml"));
         Scene scene =  new Scene(fxmlLoader.load());
         stage.setScene(scene);
     }
     public void setButtonAbsentRegistrationAdmin(ActionEvent e) throws IOException{
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(TaoBieuMauDipThuongCanBoView.class.getResource("DangKyTamTruCanBoView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("DangKyTamTruCanBoView.fxml"));
         Scene scene =  new Scene(fxmlLoader.load());
         stage.setScene(scene);
     }

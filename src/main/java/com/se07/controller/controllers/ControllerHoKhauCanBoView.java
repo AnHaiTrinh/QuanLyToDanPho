@@ -2,7 +2,7 @@ package com.se07.controller.controllers;
 
 import com.se07.controller.services.HoKhauService;
 import com.se07.model.models.HoKhauModel;
-import com.se07.view.TaoBieuMauDipThuongCanBoView;
+import com.se07.view.TrangChuCanBoView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -62,6 +62,15 @@ public class ControllerHoKhauCanBoView implements Initializable {
             System.out.println(hoKhauModelObservableList);
             System.out.println(cauhoi);
             System.out.println(dieukienkiemtra);
+        } if(dieukienkiemtra.equals("Tên chủ hộ")){
+            ObservableList<HoKhauModel> hoKhauModelObservableList  = hoKhauService1.getHoKhauByChuHo(cauhoi);
+            tableColumnMaHoHoKhauCanBo.setCellValueFactory(new PropertyValueFactory<HoKhauModel, String>("maHoKhau"));
+            tableColumnHotenHoKhauCanBo.setCellValueFactory(new PropertyValueFactory<HoKhauModel, String>("chuHo"));
+            tableColumnDiaChiHoKhauCanBo.setCellValueFactory(new PropertyValueFactory<HoKhauModel, String>("diaChi"));
+            tableViewTatCaHoKhauCanBo.setItems(hoKhauModelObservableList);
+            System.out.println(hoKhauModelObservableList);
+            System.out.println(cauhoi);
+            System.out.println(dieukienkiemtra);
         }
     }
     public void setButtonHomeAdmin(ActionEvent e) throws IOException {
@@ -92,13 +101,13 @@ public class ControllerHoKhauCanBoView implements Initializable {
     }
     public void setButtonThemHoKhauCanBo(ActionEvent e) throws  IOException{
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(TaoBieuMauDipThuongCanBoView.class.getResource("ThemHoKhauMoiCanBoView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("ThemHoKhauMoiCanBoView.fxml"));
         Scene scene =  new Scene(fxmlLoader.load());
         stage.setScene(scene);
     }
     public void setButtonTachHoKhauCanBo(ActionEvent e) throws  IOException{
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(TaoBieuMauDipThuongCanBoView.class.getResource("TachHoKhauCanBoView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("TachHoKhauCanBoView.fxml"));
         Scene scene =  new Scene(fxmlLoader.load());
         stage.setScene(scene);
     }
