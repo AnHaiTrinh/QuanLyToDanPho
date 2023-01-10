@@ -12,14 +12,12 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-
+CREATE DATABASE se07;
 -- Dumping database structure for se07
 USE se07;
-use se07;
 -- Dumping structure for table se07.users
 CREATE TABLE  users (
-	ID INT NOT NULL,
+	ID INT IDENTITY(1, 1) NOT NULL,
 	username VARCHAR(30) NOT NULL ,
 	password VARCHAR(30) NOT NULL ,
 	role INT NOT NULL,
@@ -29,13 +27,13 @@ CREATE TABLE  users (
 
 -- Dumping data for table se07.users: -1 rows
 /*!40000 ALTER TABLE users DISABLE KEYS */;
-INSERT INTO users (ID, username, password, role) VALUES
-	(1, 'admin', '123456', 1),
-	(2, 'hogiadinh1', '111111', 2),
-	(3, 'thuquy', 'password', 0),
-	(4, 'hogiadinh2', '666', 2),
-	(5, 'hogiadinh3', '1den9', 2),
-	(6, 'hogiadinh4', 'psswd', 2);
+INSERT INTO users (username, password, role) VALUES
+	('admin', '123456', 1),
+	('hogiadinh1', '111111', 2),
+	('thuquy', 'password', 0),
+	('hogiadinh2', '666', 2),
+	('hogiadinh3', '1den9', 2),
+	('hogiadinh4', 'psswd', 2);
 
 /*!40000 ALTER TABLE ho_gia_dinh_user ENABLE KEYS */;
 
@@ -191,7 +189,7 @@ INSERT INTO tam_vang (maTamVang, maNhanKhau, noiTamVang, tuNgay, denNgay, lydo, 
 
 -- Dumping structure for table se07.thong_tin_dip_dac_biet
 CREATE TABLE  thong_tin_dip_dac_biet (
-	idNhap INT NOT NULL,
+	idNhap INT IDENTITY(1, 1) NOT NULL,
 	maNhanKhau VARCHAR(30) NOT NULL ,
 	dipDacBiet NVARCHAR(50) NOT NULL ,
 	nam INT NOT NULL,
@@ -205,16 +203,16 @@ CREATE TABLE  thong_tin_dip_dac_biet (
 
 -- Dumping data for table se07.thong_tin_dip_dac_biet: -1 rows
 /*!40000 ALTER TABLE thong_tin_dip_dac_biet DISABLE KEYS */;
-INSERT INTO thong_tin_dip_dac_biet (idNhap, maNhanKhau, dipDacBiet, nam, tinhTrang, idNguoiThucHien) VALUES
-	(1, 'NK8', N'Trung Thu', 2022, N'Đã xác nhận    ', 6),
-	(2, 'NK9', N'Trung Thu', 2022, N'Đã xác nhận    ', 6),
-	(4, 'NK8', N'Năm mới', 2023, N'Chờ xác nhận   ', 6),
-	(5, 'NK9', N'Năm mới', 2023, N'Đã xác nhận    ', 6);
+INSERT INTO thong_tin_dip_dac_biet (maNhanKhau, dipDacBiet, nam, tinhTrang, idNguoiThucHien) VALUES
+	('NK8', N'Trung Thu', 2022, N'Đã xác nhận    ', 6),
+	('NK9', N'Trung Thu', 2022, N'Đã xác nhận    ', 6),
+	('NK8', N'Năm mới', 2023, N'Chờ xác nhận   ', 6),
+	('NK9', N'Năm mới', 2023, N'Đã xác nhận    ', 6);
 /*!40000 ALTER TABLE thong_tin_dip_dac_biet ENABLE KEYS */;
 
 -- Dumping structure for table se07.thong_tin_thanh_tich
 CREATE TABLE  thong_tin_thanh_tich (
-	idNhap INT NOT NULL,
+	idNhap INT IDENTITY(1, 1) NOT NULL,
 	maNhanKhau VARCHAR(30) NOT NULL ,
 	lop INT NOT NULL,
 	truong NVARCHAR(100) NOT NULL ,
@@ -252,7 +250,7 @@ INSERT INTO trao_thuong_dip_dac_biet (idNhap, maPhanThuong, soLuong) VALUES
 	(1, 'PT04', 5),
 	(2, 'PT01', 2),
 	(2, 'PT04', 5),
-	(5, 'PT06', 1);
+	(4, 'PT06', 1);
 /*!40000 ALTER TABLE trao_thuong_dip_dac_biet ENABLE KEYS */;
 
 -- Dumping structure for table se07.trao_thuong_thanh_tich
@@ -266,14 +264,6 @@ CREATE TABLE  trao_thuong_thanh_tich (
 	CONSTRAINT trao_thuong_thanh_tich_FK2 FOREIGN KEY (maPhanThuong) REFERENCES phan_thuong (maPhanThuong) ,
 	CONSTRAINT check_soLuong CHECK (([soLuong]>(0)))
 );
-
--- Dumping data for table se07.trao_thuong_thanh_tich: -1 rows
-/*!40000 ALTER TABLE trao_thuong_thanh_tich DISABLE KEYS */;
-INSERT INTO trao_thuong_thanh_tich (idNhap, maPhanThuong, soLuong) VALUES
-	(1, 'PT02', 10);
-/*!40000 ALTER TABLE trao_thuong_thanh_tich ENABLE KEYS */;
-
-/*!40000 ALTER TABLE users ENABLE KEYS */;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
