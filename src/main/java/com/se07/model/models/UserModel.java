@@ -4,13 +4,13 @@ public class UserModel {
     private int ID;
     private String username;
     private String password;
-    private int roles;
+    private int role;
 
-    public UserModel(int ID, String username, String password, int roles) {
+    public UserModel(int ID, String username, String password, int role) {
         this.ID = ID;
         this.username = username;
         this.password = password;
-        this.roles = roles;
+        this.role = role;
     }
 
     public int getID() {
@@ -37,11 +37,11 @@ public class UserModel {
         this.password = password;
     }
 
-    public int getRoles() {
-        return roles;
+    public int getRole() {
+        return role;
     }
 
-    public void setRoles(int roles) {
-        this.roles = roles;
+    public void setRole(int role) {
+        this.role = role;
     }
 }
