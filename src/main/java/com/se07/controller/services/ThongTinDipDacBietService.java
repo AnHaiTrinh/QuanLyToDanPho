@@ -37,7 +37,7 @@ public class ThongTinDipDacBietService {
     public ObservableList<ThongTinDipDacBietModel> getThongTinDipDacBietByDip(String dip) {
         ObservableList<ThongTinDipDacBietModel> list = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from thong_tin_dip_dac_biet where dipDacBiet like N'" + dip + "%'";
+        String query = "select * from thong_tin_dip_dac_biet where dipDacBiet like N%'" + dip + "%'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);

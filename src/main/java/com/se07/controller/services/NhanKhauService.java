@@ -58,7 +58,7 @@ public class NhanKhauService {
     public ObservableList<NhanKhauModel> getAllNhanKhauByTen(String tenNhanKhau) {
         ObservableList<NhanKhauModel> listNhanKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from nhan_khau where hoTen = N'" + tenNhanKhau + "'";
+        String query = "select * from nhan_khau where hoTen like N'%" + tenNhanKhau + "%'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -78,33 +78,11 @@ public class NhanKhauService {
         return listNhanKhau;
     }
 
-    public ObservableList<NhanKhauModel> getAllNhanKhauStartsWithTen(String tenNhanKhau) {
-        ObservableList<NhanKhauModel> listNhanKhau = FXCollections.observableArrayList();
-        Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from nhan_khau where hoTen LIKE N'" + tenNhanKhau + "%'";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()) {
-                NhanKhauModel temp = new NhanKhauModel(rs.getString("maNhanKhau"),
-                        rs.getString("maHoKhau"), rs.getNString("hoTen"),
-                        rs.getNString("bietDanh"), rs.getDate("ngaySinh"),
-                        rs.getNString("gioiTinh"), rs.getNString("tonGiao"),
-                        rs.getNString("tinhTrang"), rs.getInt("idNguoiThucHien"));
-                listNhanKhau.add(temp);
-            }
-            statement.close();
-            connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listNhanKhau;
-    }
 
     public ObservableList<NhanKhauModel> getAllNhanKhauByBietDanh(String bietDanh) {
         ObservableList<NhanKhauModel> listNhanKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from nhan_khau where bietDanh = N'" + bietDanh + "'";
+        String query = "select * from nhan_khau where bietDanh like N'%" + bietDanh + "%'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -124,28 +102,6 @@ public class NhanKhauService {
         return listNhanKhau;
     }
 
-    public ObservableList<NhanKhauModel> getAllNhanKhauStartsWithBietDanh(String bietDanh) {
-        ObservableList<NhanKhauModel> listNhanKhau = FXCollections.observableArrayList();
-        Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from nhan_khau where bietDanh LIKE N'" + bietDanh + "%'";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()) {
-                NhanKhauModel temp = new NhanKhauModel(rs.getString("maNhanKhau"),
-                        rs.getString("maHoKhau"), rs.getNString("hoTen"),
-                        rs.getNString("bietDanh"), rs.getDate("ngaySinh"),
-                        rs.getNString("gioiTinh"), rs.getNString("tonGiao"),
-                        rs.getNString("tinhTrang"), rs.getInt("idNguoiThucHien"));
-                listNhanKhau.add(temp);
-            }
-            statement.close();
-            connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listNhanKhau;
-    }
 
     public ObservableList<NhanKhauModel> getAllNhanKhauByTinhTrang(String tinhTrang) {
         ObservableList<NhanKhauModel> listNhanKhau = FXCollections.observableArrayList();
