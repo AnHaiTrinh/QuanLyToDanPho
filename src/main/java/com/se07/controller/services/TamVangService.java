@@ -118,7 +118,7 @@ public class TamVangService {
         return listTamVang;
     }
 
-    public ObservableList<TamVangModel> getTamVangWhereTuNgayBetween(java.util.Date low, Date high) {
+    public ObservableList<TamVangModel> getTamVangWhereTuNgayBetween(Date low, Date high) {
         ObservableList<TamVangModel> listTamVang = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select * from tam_vang where tuNgay between ? and ?";
@@ -156,7 +156,7 @@ public class TamVangService {
         return listTamVang;
     }
 
-    public ObservableList<TamVangModel> getTamVangWhereDenNgayBetween(java.util.Date low, Date high) {
+    public ObservableList<TamVangModel> getTamVangWhereDenNgayBetween(Date low, Date high) {
         ObservableList<TamVangModel> listTamVang = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select * from tam_vang where denNgay between ? and ?";

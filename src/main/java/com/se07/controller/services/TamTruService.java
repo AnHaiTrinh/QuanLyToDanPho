@@ -69,7 +69,7 @@ public class TamTruService {
     public ObservableList<TamTruModel> getTamTruByHoTen(String hoTen) {
         ObservableList<TamTruModel> listTamTru = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from tam_tru where hoTen = N'" + hoTen + "'";
+        String query = "select * from tam_tru where hoTen like N'%" + hoTen + "%'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -97,7 +97,7 @@ public class TamTruService {
     public ObservableList<TamTruModel> getTamTruByNoiTamTru(String noiTamTru) {
         ObservableList<TamTruModel> listTamTru = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from tam_tru where noiTamTru = N'" + noiTamTru + "'";
+        String query = "select * from tam_tru where noiTamTru like N'%" + noiTamTru + "%'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -122,10 +122,10 @@ public class TamTruService {
         return listTamTru;
     }
 
-    public ObservableList<TamTruModel> getTamTruStartWithTen(String ten) {
+    public ObservableList<TamTruModel> getTamTruByTen(String ten) {
         ObservableList<TamTruModel> listTamTru = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from tam_tru where hoTen LIKE N'" + ten + "%'";
+        String query = "select * from tam_tru where hoTen LIKE N'%" + ten + "%'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -189,7 +189,7 @@ public class TamTruService {
         return listTamTru;
     }
 
-    public ObservableList<TamTruModel> getTamTruWhereDenNgayBetween(java.util.Date low, Date high) {
+    public ObservableList<TamTruModel> getTamTruWhereDenNgayBetween(Date low, Date high) {
         ObservableList<TamTruModel> listTamTru = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select * from tam_tru where denNgay between ? and ?";

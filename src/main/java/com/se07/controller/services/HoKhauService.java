@@ -54,7 +54,7 @@ public class HoKhauService {
     public ObservableList<HoKhauModel> getHoKhauByChuHo(String chuHo) {
         ObservableList<HoKhauModel> listHoKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from ho_khau where chuHo = N'" + chuHo + "'";
+        String query = "select * from ho_khau where chuHo like N'%" + chuHo + "%'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -72,26 +72,6 @@ public class HoKhauService {
         return listHoKhau;
     }
 
-    public ObservableList<HoKhauModel> getHoKhauStartsWithChuHo(String chuHo) {
-        ObservableList<HoKhauModel> listHoKhau = FXCollections.observableArrayList();
-        Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from ho_khau where chuHo LIKE N'" + chuHo + "%'";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()) {
-                HoKhauModel temp = new HoKhauModel(rs.getString("maHoKhau"), rs.getNString("chuHo"),
-                        rs.getNString("diachi"), rs.getDate("ngayLap"),
-                        rs.getInt("idNguoiThucHien"));
-                listHoKhau.add(temp);
-            }
-            statement.close();
-            connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listHoKhau;
-    }
 
     public ObservableList<HoKhauModel> getHoKhauByDiaChi(String diaChi) {
         ObservableList<HoKhauModel> listHoKhau = FXCollections.observableArrayList();
