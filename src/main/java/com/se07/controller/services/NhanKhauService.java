@@ -1,11 +1,14 @@
 package com.se07.controller.services;
 
+import com.se07.model.models.HoKhauModel;
 import com.se07.model.models.NhanKhauModel;
 import com.se07.util.ConnectionDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class NhanKhauService {
@@ -201,7 +204,7 @@ public class NhanKhauService {
 
     public boolean deleteNhanKhau(NhanKhauModel nhanKhauModel) {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "delete from nhan_khau where maNhanKhau = '" + nhanKhauModel.getMaHoKhau() + "'";
+        String query = "delete from nhan_khau where maNhanKhau = '" + nhanKhauModel.getMaNhanKhau() + "'";
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
@@ -227,4 +230,23 @@ public class NhanKhauService {
             return -1;
         }
     }
+    public List<String> getAllMaNhanKhau(){
+        List<String> listMaNhanKhau = new ArrayList<>();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select maNhanKhau from nhan_khau";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listMaNhanKhau.add(rs.getString(1));
+            }
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listMaNhanKhau;
+    }
+
+
 }

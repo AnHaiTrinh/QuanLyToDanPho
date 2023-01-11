@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="paneRightAdmin" prefHeight="604.0" prefWidth="554.0" stylesheets="@Css/NhanKhauCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerNhanKhauView">
+<AnchorPane fx:id="paneRightAdmin" prefHeight="604.0" prefWidth="554.0" stylesheets="@Css/NhanKhauCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerTamTruCanBoView">
    <children>
       <AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="915.0">
          <children>
@@ -75,15 +75,16 @@
                      <content>
                         <AnchorPane>
                            <children>
-                              <TableView fx:id="tableViewNhanKhauAdmin" editable="true" prefHeight="528.0" prefWidth="800.0">
+                              <TableView fx:id="tableViewNhanKhauAdmin" editable="true" prefHeight="528.0" prefWidth="717.0">
                                  <columns>
-                                    <TableColumn fx:id="tableComlumIDNhanKhauCanBo" prefWidth="89.0" text="ID" />
-                                    <TableColumn fx:id="tableComlumIDHoKhauNhanKhauCanBo" prefWidth="92.0" text="ID Hộ Khẩu" />
-                                    <TableColumn fx:id="tableComlumHoTenNhanKhauCanBo" prefWidth="130.0" text="Họ Tên" />
-                                    <TableColumn fx:id="tableComlumBietDanhNhanKhauCanBo" prefWidth="82.0" text="Biệt Danh" />
-                                    <TableColumn fx:id="tableComlumNgaySinhNhanKhauCanBo" prefWidth="160.0" text="Ngày sinh" />
-                                    <TableColumn fx:id="tableComlumGioiTinhNhanKhauCanBo" prefWidth="75.0" text="Giới tính" />
-                                    <TableColumn fx:id="tableComlumTonGiaoNhanKhauCanBo" prefWidth="75.0" text="Tôn giáo" />
+                                    <TableColumn fx:id="tableComlumIDNhanKhauCanBo" prefWidth="89.0" text="ID Tạm Vắng" />
+                                    <TableColumn fx:id="tableComlumIDHoKhauNhanKhauCanBo" prefWidth="92.0" text="ID Nhân Khẩu" />
+                                    <TableColumn fx:id="tableComlumHoTenNhanKhauCanBo" prefWidth="130.0" text="Nơi Tạm Vắng" />
+                                    <TableColumn fx:id="tableComlumBietDanhNhanKhauCanBo" prefWidth="104.0" text="Mã Tạm Vắng" />
+                                    <TableColumn fx:id="tableComlumNgaySinhNhanKhauCanBo" prefWidth="138.0" text="Họ tên" />
+                                    <TableColumn fx:id="tableComlumGioiTinhNhanKhauCanBo" prefWidth="75.0" text="Từ Ngày" />
+                                    <TableColumn fx:id="tableComlumTonGiaoNhanKhauCanBo" prefWidth="75.0" text="Đến Ngày" />
+                                    <TableColumn prefWidth="75.0" text="Lý Do" />
                                  </columns>
                               </TableView>
                            </children>
@@ -107,22 +108,12 @@
       </AnchorPane>
       <AnchorPane fx:id="panePeopleAdmin" layoutX="760.0" layoutY="50.0" prefHeight="553.0" prefWidth="154.0">
          <children>
-            <Button fx:id="buttonNewPeopleAdmin" layoutX="21.0" layoutY="118.0" mnemonicParsing="false" onAction="#setButtonNewPeopleAdmin" prefHeight="38.0" prefWidth="130.0" text="Thêm mới" textFill="#fcfcfc">
+            <Button fx:id="buttonThemMoiTamTruCanBo" layoutX="21.0" layoutY="118.0" mnemonicParsing="false" onAction="#setButtonThemMoiTamTruCanBo" prefHeight="38.0" prefWidth="130.0" text="Thêm mới" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="buttonTemporaryRegistrationPeoppleAdmin" layoutX="21.0" layoutY="176.0" mnemonicParsing="false" onAction="#setButtonTemporaryRegistrationPeopleAdmin" prefHeight="38.0" prefWidth="130.0" text="Tạm vắng" textFill="#fcfcfc">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="buttonAbsentRegistrationAdmin" layoutX="20.0" layoutY="237.0" mnemonicParsing="false" onAction="#setButtonAbsentRegistrationAdmin" prefHeight="38.0" prefWidth="130.0" text="Tạm trú" textFill="#fcfcfc">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="buttonRemovePeopleAdmin" layoutX="21.0" layoutY="298.0" mnemonicParsing="false" onAction="#setButtonRemovePeopleAdmin" prefHeight="38.0" prefWidth="130.0" text="Khai tử" textFill="#fcfcfc">
+            <Button fx:id="buttonXoaTamTruCanBo" layoutX="21.0" layoutY="221.0" mnemonicParsing="false" onAction="#setButtonXoaTamTruCanBo" prefHeight="38.0" prefWidth="130.0" text="Xóa" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

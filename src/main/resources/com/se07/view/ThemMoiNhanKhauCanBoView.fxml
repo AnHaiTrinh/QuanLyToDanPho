@@ -147,22 +147,17 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label text="Thường trú" GridPane.columnIndex="4" GridPane.rowIndex="1">
+            <Label text="Tôn giáo" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label text="Tôn giáo" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <Label text="Ngày sinh" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label text="Ngày sinh" GridPane.columnIndex="4" GridPane.rowIndex="3">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="textFieldBietDanhThemMoiNhanKhauCanBo" promptText="Không bắt buộc" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Label text="Mã nhân khẩu" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="15.0" />
@@ -173,13 +168,12 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <ComboBox prefHeight="31.0" prefWidth="209.0" GridPane.columnIndex="5" />
-            <TextField GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <ComboBox prefHeight="31.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <DatePicker GridPane.columnIndex="5" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="2" />
+            <ComboBox fx:id="comboBoxGioiTinhThemMoiNhanKhauCanBo" prefHeight="31.0" prefWidth="209.0" GridPane.columnIndex="5" />
+            <ComboBox fx:id="comboBoxMaHoKhauThemMoiNhanKhauCanBo" prefHeight="31.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="textFieldHoTenThemMoiNhanKhauCanBo" promptText="Bắt buộc" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <DatePicker fx:id="datePickerNgaySinhThemMoiNhanKhauCanBo" prefHeight="31.0" prefWidth="213.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <TextField fx:id="textFieldTonGiaoThemMoiNhanKhauCanBo" promptText="Không bắt buộc" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <TextField fx:id="textFieldMaNhanKhauThemMoiNhanKhauCanBo" promptText="Bắt buộc" GridPane.columnIndex="2" />
          </children>
       </GridPane>
    </children>

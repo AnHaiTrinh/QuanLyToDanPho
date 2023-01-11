@@ -32,6 +32,7 @@ public class ControllerTrangChuView implements Initializable {
     AnchorPane anchorPaneChinhCanBo;
     @FXML
     Label lableTenNguoiDangNhap, lableSoNhanKhau, lableSoHoKhau, lableNhanKhauTamTru, lableNhanKhauTamVang;
+    final int id = UserInfo.getUserId();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
