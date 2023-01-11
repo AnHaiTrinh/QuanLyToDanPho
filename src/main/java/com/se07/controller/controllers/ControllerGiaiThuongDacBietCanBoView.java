@@ -22,6 +22,7 @@ public class ControllerGiaiThuongDacBietCanBoView implements Initializable {
     @FXML
     Button buttonGiaiThuongCanBo;
     ControllerTrangChuView controllerTrangChuView = new ControllerTrangChuView();
+
     public void setButtonLogoutAdmin() {
 
     }
@@ -80,11 +81,9 @@ public class ControllerGiaiThuongDacBietCanBoView implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         paneTest.setVisible(false);
         buttonGiaiThuongCanBo.setOnMouseMoved(mouseEvent -> {
-            System.out.println(234);
             paneTest.setVisible(true);
         });
         paneTest.setOnMouseExited(mouseEvent -> {
-            System.out.println(345);
             paneTest.setVisible(false);
         });
     }

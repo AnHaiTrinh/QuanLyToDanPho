@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="paneUserAdmin" onKeyPressed="#setNhanNutHoKhauCanBo" prefHeight="603.0" prefWidth="537.0" stylesheets="@Css/HoKhauCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerHoKhauCanBoView">
+<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="537.0" stylesheets="@Css/HoKhauCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerHoKhauCanBoView">
     <children>
-        <AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="915.0">
+        <AnchorPane prefHeight="603.0" prefWidth="915.0">
             <children>
                 <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -83,24 +83,24 @@
         </AnchorPane>
         <AnchorPane fx:id="paneThongTinHoKhauCanBo" layoutX="220.0" prefHeight="603.0" prefWidth="540.0" stylesheets="@Css/HoKhauCanBoView.css">
             <children>
-                <TableView fx:id="tableViewTatCaHoKhauCanBo" layoutY="80.0" onKeyPressed="#setNhanNutDeleteTrongBangHoKhauCanBo" prefHeight="528.0" prefWidth="552.0">
+                <TableView fx:id="tableViewTatCaHoKhauCanBo" layoutX="2.0" layoutY="80.0" onKeyPressed="#setNhanNutDeleteTrongBangHoKhauCanBo" prefHeight="528.0" prefWidth="552.0">
                     <columns>
-                        <TableColumn fx:id="tableColumnMaHoHoKhauCanBo" prefWidth="134.0" text="Mã hộ" />
-                        <TableColumn fx:id="tableColumnHotenHoKhauCanBo" prefWidth="202.0" text="Họ tên" />
-                        <TableColumn fx:id="tableColumnDiaChiHoKhauCanBo" prefWidth="207.0" text="Địa chỉ" />
+                        <TableColumn fx:id="tableColumnMaHoHoKhauCanBo" prefWidth="110.0" text="Mã hộ" />
+                        <TableColumn fx:id="tableColumnHotenHoKhauCanBo" prefWidth="194.0" text="Họ tên" />
+                        <TableColumn fx:id="tableColumnDiaChiHoKhauCanBo" prefWidth="239.0" text="Địa chỉ" />
                     </columns>
                 </TableView>
-                <TextField fx:id="textFieldLocThongTinHoKhauCanBo" layoutX="1.0" layoutY="18.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
+                <TextField fx:id="textFieldLocThongTinHoKhauCanBo" layoutX="2.0" layoutY="18.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
                     <font>
                         <Font name="System Italic" size="15.0" />
                     </font>
                 </TextField>
-                <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="335.0" layoutY="18.0" mnemonicParsing="false" onAction="#setButtonLocThongTinHoKhauCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
+                <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="337.0" layoutY="18.0" mnemonicParsing="false" onAction="#setButtonLocThongTinHoKhauCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
                 </Button>
-            <ComboBox fx:id="comboBoxTimKiemHoKhauCanBo" layoutX="224.0" layoutY="18.0" prefHeight="31.0" prefWidth="100.0" />
+                <ComboBox fx:id="comboBoxTimKiemHoKhauCanBo" layoutX="226.0" layoutY="18.0" prefHeight="31.0" prefWidth="100.0" />
             </children>
         </AnchorPane>
         <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false" onAction="#setButtonGiaiThuongCanBo" prefHeight="58.0" prefWidth="222.0" text="Giải Thưởng" textFill="WHITE">

@@ -88,7 +88,7 @@
             <RowConstraints maxHeight="116.0" minHeight="10.0" prefHeight="103.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="68.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="68.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Icon/NhanKhau.png" />
                </image>
@@ -107,14 +107,14 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lableSoNhanKhau" text="123" textFill="#282626" GridPane.rowIndex="1">
+                  <Label fx:id="lableSoNhanKhau" textFill="#282626" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                </children>
             </GridPane>
-            <ImageView fitHeight="78.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+            <ImageView fitHeight="70.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                <image>
                   <Image url="@Icon/HoKhau.png" />
                </image>
@@ -133,7 +133,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lableSoHoKhau" text="123" textFill="#282626" GridPane.rowIndex="1">
+                  <Label fx:id="lableSoHoKhau" textFill="#282626" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -165,7 +165,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lableNhanKhauTamTru" text="12" textFill="#282626" GridPane.rowIndex="1">
+                        <Label fx:id="lableNhanKhauTamTru" textFill="#282626" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
@@ -186,7 +186,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lableNhanKhauTamVang" text="30" textFill="#282626" GridPane.rowIndex="1">
+                        <Label fx:id="lableNhanKhauTamVang" textFill="#282626" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
@@ -212,7 +212,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lableTenNguoiDangNhap" layoutX="610.0" layoutY="14.0" prefHeight="38.0" prefWidth="166.0" text="Xin chào, Lê Anh Vũ" textFill="WHITE">
+      <Label fx:id="lableTenNguoiDangNhap" layoutX="610.0" layoutY="14.0" prefHeight="38.0" prefWidth="166.0" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
