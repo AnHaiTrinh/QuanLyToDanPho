@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -71,27 +71,35 @@
          <children>
             <AnchorPane fx:id="paneMidPeopleAdmin" prefHeight="605.0" prefWidth="554.0">
                <children>
-                  <TableView editable="true" layoutX="2.0" layoutY="80.0" prefHeight="515.0" prefWidth="552.0">
-                     <columns>
-                        <TableColumn prefWidth="89.0" text="ID" />
-                        <TableColumn prefWidth="73.0" text="Họ tên" />
-                        <TableColumn prefWidth="107.0" text="Ngày sinh" />
-                        <TableColumn prefWidth="109.0" text="Giới tính" />
-                        <TableColumn prefWidth="175.0" text="Địa chỉ hiện tại" />
-                     </columns>
-                  </TableView>
-                  <TextField fx:id="textFieldLocThongTinHoKhauCanBo" layoutX="2.0" layoutY="18.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
-                     <font>
-                        <Font name="System Italic" size="15.0" />
-                     </font>
-                  </TextField>
+                  <ScrollPane layoutX="2.0" layoutY="80.0" prefHeight="526.0" prefWidth="554.0">
+                     <content>
+                        <AnchorPane>
+                           <children>
+                              <TableView editable="true" prefHeight="528.0" prefWidth="552.0">
+                                 <columns>
+                                    <TableColumn prefWidth="89.0" text="ID" />
+                                    <TableColumn prefWidth="73.0" text="Họ tên" />
+                                    <TableColumn prefWidth="107.0" text="Ngày sinh" />
+                                    <TableColumn prefWidth="109.0" text="Giới tính" />
+                                    <TableColumn prefWidth="175.0" text="Địa chỉ hiện tại" />
+                                    <TableColumn prefWidth="75.0" text="Column X" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
                   <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="337.0" layoutY="18.0" mnemonicParsing="false" onAction="#setButtonLocThongTinHoKhauCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
                   <ComboBox fx:id="comboBoxTimKiemHoKhauCanBo" layoutX="226.0" layoutY="18.0" prefHeight="31.0" prefWidth="100.0" />
-                  <ScrollBar layoutX="2.0" layoutY="593.0" prefWidth="552.0" />
+                  <TextField fx:id="textFieldLocThongTinHoKhauCanBo" layoutX="2.0" layoutY="18.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                  </TextField>
                </children>
             </AnchorPane>
          </children>
