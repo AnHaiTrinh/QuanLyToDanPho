@@ -41,3 +41,44 @@
 #buttonDangXuatCanBo:hover {
     -fx-background-color: #BF3FBF;
 }
+
+#buttonLocThongTinGiaiThuongCanBo {
+    -fx-background-color: black;
+}
+
+#buttonLocThongTinGiaiThuongCanBo:hover {
+    -fx-background-color: #177306;
+}
+
+#buttonTaoBieuMauCanBo {
+    -fx-background-color: black
+}
+
+#buttonTaoBieuMauCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonGiaiThuongDipDacBietCanBo {
+    -fx-background-color: black
+}
+
+#buttonGiaiThuongDipDacBietCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonGiaiThuongThanhTichCanBo {
+    -fx-background-color: black
+}
+
+#buttonGiaiThuongThanhTichCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonXoaDipTraoThuongCanBo {
+    -fx-background-color: black
+}
+
+#buttonXoaDipTraoThuongCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+

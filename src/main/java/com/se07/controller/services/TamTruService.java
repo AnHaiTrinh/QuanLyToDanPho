@@ -19,10 +19,10 @@ public class TamTruService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruModel temp = new TamTruModel(
-                        rs.getString("maTamTru"),
+                        rs.getInt("maTamTru"),
+                        rs.getString("maHoKhau"),
                         rs.getString("CCCD"),
                         rs.getNString("hoTen"),
-                        rs.getNString("noiTamTru"),
                         rs.getDate("tuNgay"),
                         rs.getDate("denNgay"),
                         rs.getString("lydo"),
@@ -47,10 +47,10 @@ public class TamTruService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruModel temp = new TamTruModel(
-                        rs.getString("maTamTru"),
+                        rs.getInt("maTamTru"),
+                        rs.getString("maHoKhau"),
                         rs.getString("CCCD"),
                         rs.getNString("hoTen"),
-                        rs.getNString("noiTamTru"),
                         rs.getDate("tuNgay"),
                         rs.getDate("denNgay"),
                         rs.getString("lydo"),
@@ -75,38 +75,10 @@ public class TamTruService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruModel temp = new TamTruModel(
-                        rs.getString("maTamTru"),
+                        rs.getInt("maTamTru"),
+                        rs.getString("maHoKhau"),
                         rs.getString("CCCD"),
                         rs.getNString("hoTen"),
-                        rs.getNString("noiTamTru"),
-                        rs.getDate("tuNgay"),
-                        rs.getDate("denNgay"),
-                        rs.getString("lydo"),
-                        rs.getNString("tinhTrang"),
-                        rs.getInt("idNguoiThucHien"));
-                listTamTru.add(temp);
-            }
-            statement.close();
-            connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listTamTru;
-    }
-
-    public ObservableList<TamTruModel> getTamTruByNoiTamTru(String noiTamTru) {
-        ObservableList<TamTruModel> listTamTru = FXCollections.observableArrayList();
-        Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from tam_tru where noiTamTru like N'%" + noiTamTru + "%'";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()) {
-                TamTruModel temp = new TamTruModel(
-                        rs.getString("maTamTru"),
-                        rs.getString("CCCD"),
-                        rs.getNString("hoTen"),
-                        rs.getNString("noiTamTru"),
                         rs.getDate("tuNgay"),
                         rs.getDate("denNgay"),
                         rs.getString("lydo"),
@@ -131,10 +103,10 @@ public class TamTruService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruModel temp = new TamTruModel(
-                        rs.getString("maTamTru"),
+                        rs.getInt("maTamTru"),
+                        rs.getString("maHoKhau"),
                         rs.getString("CCCD"),
                         rs.getNString("hoTen"),
-                        rs.getNString("noiTamTru"),
                         rs.getDate("tuNgay"),
                         rs.getDate("denNgay"),
                         rs.getString("lydo"),
@@ -169,10 +141,10 @@ public class TamTruService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruModel temp = new TamTruModel(
-                        rs.getString("maTamTru"),
+                        rs.getInt("maTamTru"),
+                        rs.getString("maHoKhau"),
                         rs.getString("CCCD"),
                         rs.getNString("hoTen"),
-                        rs.getNString("noiTamTru"),
                         rs.getDate("tuNgay"),
                         rs.getDate("denNgay"),
                         rs.getString("lydo"),
@@ -208,7 +180,7 @@ public class TamTruService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruModel temp = new TamTruModel(
-                        rs.getString("maTamTru"),
+                        rs.getInt("maTamTru"),
                         rs.getString("CCCD"),
                         rs.getNString("hoTen"),
                         rs.getNString("noiTamTru"),
@@ -237,7 +209,7 @@ public class TamTruService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruModel temp = new TamTruModel(
-                        rs.getString("maTamTru"),
+                        rs.getInt("maTamTru"),
                         rs.getString("CCCD"),
                         rs.getNString("hoTen"),
                         rs.getNString("noiTamTru"),
@@ -265,7 +237,7 @@ public class TamTruService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruModel temp = new TamTruModel(
-                        rs.getString("maTamTru"),
+                        rs.getInt("maTamTru"),
                         rs.getString("CCCD"),
                         rs.getNString("hoTen"),
                         rs.getNString("noiTamTru"),
@@ -293,7 +265,7 @@ public class TamTruService {
             ResultSet rs = statement.executeQuery(query);
             if (rs.next()) {
                 TamTruModel temp = new TamTruModel(
-                        rs.getString("maTamTru"),
+                        rs.getInt("maTamTru"),
                         rs.getString("CCCD"),
                         rs.getNString("hoTen"),
                         rs.getNString("noiTamTru"),
@@ -314,19 +286,18 @@ public class TamTruService {
 
     public boolean addTamTru(TamTruModel tamTruModel) {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "insert into tam_tru(maTamTru, CCCD, hoTen, noiTamTru, tuNgay, denNgay, lydo, " +
+        String query = "insert into tam_tru(maHoKhau, CCCD, hoTen, tuNgay, denNgay, lydo, " +
                 "tinhTrang, idNguoiThucHien) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, tamTruModel.getMaTamTru());
+            statement.setString(1, tamTruModel.getMaHoKhau());
             statement.setString(2, tamTruModel.getCCCD());
             statement.setNString(3, tamTruModel.getHoTen());
-            statement.setNString(4, tamTruModel.getNoiTamTru());
-            statement.setDate(5, new java.sql.Date(tamTruModel.getTuNgay().getTime()));
-            statement.setDate(6, new java.sql.Date(tamTruModel.getDenNgay().getTime()));
-            statement.setNString(7, tamTruModel.getLyDo());
-            statement.setNString(8, tamTruModel.getTinhTrang());
-            statement.setInt(9, tamTruModel.getIdNguoiThucHien());
+            statement.setDate(4, new java.sql.Date(tamTruModel.getTuNgay().getTime()));
+            statement.setDate(5, new java.sql.Date(tamTruModel.getDenNgay().getTime()));
+            statement.setNString(6, tamTruModel.getLyDo());
+            statement.setNString(7, tamTruModel.getTinhTrang());
+            statement.setInt(8, tamTruModel.getIdNguoiThucHien());
             statement.executeUpdate();
             statement.close();
             connection.close();
@@ -337,27 +308,28 @@ public class TamTruService {
         }
     }
 
+
     public boolean updateTamTru(TamTruModel tamTruModel) {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "update tam_tru set " +
+                "maHoKhau = ?," +
                 "CCCD = ?, " +
                 "hoTen = ?, " +
-                "noiTamTru = ?," +
                 " tuNgay = ?, " +
                 "denNgay = ?, lydo = ?," +
                 "tinhTrang = ?, " +
                 "idNguoiThucHien = ? where maTamTru = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, tamTruModel.getCCCD());
-            statement.setNString(2, tamTruModel.getHoTen());
-            statement.setNString(3, tamTruModel.getNoiTamTru());
+            statement.setNString(1, tamTruModel.getMaHoKhau());
+            statement.setString(2, tamTruModel.getCCCD());
+            statement.setNString(3, tamTruModel.getHoTen());
             statement.setDate(4, new java.sql.Date(tamTruModel.getTuNgay().getTime()));
             statement.setDate(5, new java.sql.Date(tamTruModel.getDenNgay().getTime()));
             statement.setNString(6, tamTruModel.getLyDo());
             statement.setNString(7, tamTruModel.getTinhTrang());
             statement.setInt(8, tamTruModel.getIdNguoiThucHien());
-            statement.setString(9, tamTruModel.getMaTamTru());
+            statement.setInt(9, tamTruModel.getMaTamTru());
             statement.executeUpdate();
             statement.close();
             connection.close();

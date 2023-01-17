@@ -1,33 +1,25 @@
-#buttonHomeAdmin {
+#buttonTrangChuCanBo {
     -fx-background-color: rgb(40, 132, 217);
 }
 
-#buttonHomeAdmin:hover {
+#buttonTrangChuCanBo:hover {
     -fx-background-color: rgba(4, 57, 244, 0.95)
 }
 
-#buttonPeopleAdmin {
+#buttonNhanKhauCanBo {
     -fx-background-color: rgba(0, 53, 240, 0.7);
 }
 
-#buttonPeopleAdmin:hover {
+#buttonNhanKhauCanBo:hover {
     -fx-background-color: rgba(4, 57, 244, 0.95)
 }
 
-#buttonUserAdmin {
+#buttonHoKhauCanBo {
     -fx-background-color: rgba(0, 53, 240, 0.7);
 }
 
-#buttonUserAdmin:hover {
+#buttonHoKhauCanBo:hover {
     -fx-background-color: rgba(4, 57, 244, 0.95)
-}
-
-#menuButtonAwardAdmin {
-    -fx-background-color: rgba(0, 53, 240, 0.7);
-}
-
-#menuButtonAwardAdmin:hover {
-    -fx-background-color: rgba(4, 57, 244, 0.95);
 }
 
 #buttonGiaiThuongCanBo {
@@ -50,42 +42,58 @@
     -fx-background-color: #177306;
 }
 
-#buttonLogoutAdmin {
+#buttonDangXuatCanBo {
     -fx-background-color: black;
 }
 
-#buttonLogoutAdmin:hover {
+#buttonDangXuatCanBo:hover {
     -fx-background-color: #BF3FBF;
 }
 
-#buttonNewPeopleAdmin {
+#buttonThemNhanKhauCanBo {
     -fx-background-color: black;
 }
 
-#buttonNewPeopleAdmin:hover {
+#buttonThemNhanKhauCanBo:hover {
     -fx-background-color: #BF3FBF;
 }
 
-#buttonTemporaryRegistrationPeoppleAdmin {
+#buttonTamVangCanBo {
     -fx-background-color: black;
 }
 
-#buttonTemporaryRegistrationPeoppleAdmin:hover {
+#buttonTamVangCanBo:hover {
     -fx-background-color: #BF3FBF;
 }
 
-#buttonAbsentRegistrationAdmin {
+#buttonTamTruCanBo {
     -fx-background-color: black;
 }
 
-#buttonAbsentRegistrationAdmin:hover {
+#buttonTamTruCanBo:hover {
     -fx-background-color: #BF3FBF;
 }
 
-#buttonRemovePeopleAdmin {
+#buttonXacNhanNhanKhauCanBo {
     -fx-background-color: #000000;
 }
 
-#buttonRemovePeopleAdmin:hover {
+#buttonXacNhanNhanKhauCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonTuChoiNhanKhauCanBo {
+    -fx-background-color: #000000;
+}
+
+#buttonTuChoiNhanKhauCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonXoaNhanKhauCanBo {
+    -fx-background-color: #000000;
+}
+
+#buttonXoaNhanKhauCanBo:hover {
     -fx-background-color: #BF3FBF;
 }

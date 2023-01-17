@@ -41,3 +41,51 @@
 #buttonDangXuatCanBo:hover {
     -fx-background-color: #BF3FBF;
 }
+
+#buttonLocThongTinTamVangCanBo {
+    -fx-background-color: black;
+}
+
+#buttonLocThongTinTamVangCanBo:hover {
+    -fx-background-color: #177306;
+}
+
+#buttonThemMoiTamVangCanBo {
+    -fx-background-color: black
+}
+
+#buttonThemMoiTamVangCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonXacNhanTamVangCanBo {
+    -fx-background-color: black
+}
+
+#buttonXacNhanTamVangCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonTuChoiTamVangCanBo {
+    -fx-background-color: black
+}
+
+#buttonTuChoiTamVangCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonXoaTamVangCanBo {
+    -fx-background-color: black
+}
+
+#buttonXoaTamVangCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonThoatTamVangCanBo {
+    -fx-background-color: black
+}
+
+#buttonThoatTamVangCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}

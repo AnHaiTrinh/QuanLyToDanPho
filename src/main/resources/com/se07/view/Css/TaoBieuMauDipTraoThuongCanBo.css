@@ -27,7 +27,7 @@
 }
 
 #buttonGiaiThuongCanBo:hover {
-    -fx-background-color: rgba(4, 57, 244, 0.95);
+    -fx-background-color: rgba(4, 57, 244, 0.95)
 }
 
 #anchorPaneChinhCanBo {
@@ -35,9 +35,25 @@
 }
 
 #buttonDangXuatCanBo {
-    -fx-background-color: black
+    -fx-background-color: black;
 }
 
 #buttonDangXuatCanBo:hover {
     -fx-background-color: #BF3FBF;
+}
+
+#buttonXacNhanTaoBieuMauDipTraoThuongCanBo {
+    -fx-background-color: black;
+}
+
+#buttonHuyTaoBieuMauDipTraoThuongCanBo {
+    -fx-background-color: black;
+}
+
+#buttonXacNhanTaoBieuMauDipTraoThuongCanBo:hover {
+    -fx-background-color: #177306;
+}
+
+#buttonHuyTaoBieuMauDipTraoThuongCanBo:hover {
+    -fx-background-color: #910c0c;
 }

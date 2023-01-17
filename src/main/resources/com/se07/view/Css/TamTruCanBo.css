@@ -41,3 +41,51 @@
 #buttonDangXuatCanBo:hover {
     -fx-background-color: #BF3FBF;
 }
+
+#buttonLocThongTinTamTruCanBo {
+    -fx-background-color: black;
+}
+
+#buttonLocThongTinTamTruCanBo:hover {
+    -fx-background-color: #177306;
+}
+
+#buttonThemMoiTamTruCanBo {
+    -fx-background-color: black
+}
+
+#buttonThemMoiTamTruCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonXacNhanTamTruCanBo {
+    -fx-background-color: black
+}
+
+#buttonXacNhanTamTruCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonTuChoiTamTruCanBo {
+    -fx-background-color: black;
+}
+
+#buttonTuChoiTamTruCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonXoaTamTruCanBo {
+    -fx-background-color: black
+}
+
+#buttonXoaTamTruCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}
+
+#buttonThoatTamTruCanBo {
+    -fx-background-color: black
+}
+
+#buttonThoatTamTruCanBo:hover {
+    -fx-background-color: #BF3FBF;
+}

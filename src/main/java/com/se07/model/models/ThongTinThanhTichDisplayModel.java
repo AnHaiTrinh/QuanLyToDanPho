@@ -2,30 +2,33 @@ package com.se07.model.models;
 
 import java.io.File;
 
-public class ThongTinThanhTichModel {
+public class ThongTinThanhTichDisplayModel {
     private int idNhap;
-    private int idDip;
     private String maNhanKhau;
+    private String hoTen;
+    private String tenDip;
+    private int nam;
     private int lop;
     private String truong;
     private String capThanhTich;
     private String kieuThanhTich;
     private File minhChung;
     private String tinhTrang;
-    private int idNguoiThucHien;
 
-    public ThongTinThanhTichModel(int idNhap, int idDip, String maNhanKhau, int lop, String truong, String capThanhTich,
-                                  String kieuThanhTich, File minhChung, String tinhTrang, int idNguoiThucHien) {
+    public ThongTinThanhTichDisplayModel(int idNhap, String maNhanKhau, String hoTen, String tenDip, int nam, int lop,
+                                         String truong, String capThanhTich, String kieuThanhTich,
+                                         File minhChung, String tinhTrang) {
         this.idNhap = idNhap;
-        this.idDip = idDip;
         this.maNhanKhau = maNhanKhau;
+        this.hoTen = hoTen;
+        this.tenDip = tenDip;
+        this.nam = nam;
         this.lop = lop;
         this.truong = truong;
         this.capThanhTich = capThanhTich;
         this.kieuThanhTich = kieuThanhTich;
         this.minhChung = minhChung;
         this.tinhTrang = tinhTrang;
-        this.idNguoiThucHien = idNguoiThucHien;
     }
 
     public int getIdNhap() {
@@ -36,20 +39,36 @@ public class ThongTinThanhTichModel {
         this.idNhap = idNhap;
     }
 
-    public int getIdDip() {
-        return idDip;
-    }
-
-    public void setIdDip(int idDip) {
-        this.idDip = idDip;
-    }
-
     public String getMaNhanKhau() {
         return maNhanKhau;
     }
 
     public void setMaNhanKhau(String maNhanKhau) {
         this.maNhanKhau = maNhanKhau;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public String getTenDip() {
+        return tenDip;
+    }
+
+    public void setTenDip(String tenDip) {
+        this.tenDip = tenDip;
+    }
+
+    public int getNam() {
+        return nam;
+    }
+
+    public void setNam(int nam) {
+        this.nam = nam;
     }
 
     public int getLop() {
@@ -98,13 +117,5 @@ public class ThongTinThanhTichModel {
 
     public void setTinhTrang(String tinhTrang) {
         this.tinhTrang = tinhTrang;
-    }
-
-    public int getIdNguoiThucHien() {
-        return idNguoiThucHien;
-    }
-
-    public void setIdNguoiThucHien(int idNguoiThucHien) {
-        this.idNguoiThucHien = idNguoiThucHien;
     }
 }

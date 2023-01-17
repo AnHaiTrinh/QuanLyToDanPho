@@ -3,12 +3,14 @@ package com.se07.controller.controllers;
 import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.NhanKhauService;
 import com.se07.model.models.NhanKhauModel;
-import com.se07.util.UserInfo;
-import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,36 +19,59 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ControllerThemMoiNhanKhauCanBoView extends ControllerTrangChuView implements Initializable {
-    @FXML
-    AnchorPane paneNewPeopleAdmin;
+public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
     @FXML
     TextField textFieldMaNhanKhauThemMoiNhanKhauCanBo, textFieldHoTenThemMoiNhanKhauCanBo,
             textFieldTonGiaoThemMoiNhanKhauCanBo, textFieldBietDanhThemMoiNhanKhauCanBo;
     @FXML
     DatePicker datePickerNgaySinhThemMoiNhanKhauCanBo;
     @FXML
-    ComboBox  comboBoxGioiTinhThemMoiNhanKhauCanBo, comboBoxMaHoKhauThemMoiNhanKhauCanBo;
-    private String [] listGioiTinh ={"Nam","Nữ","Không rõ"};
-    private String [] listHoKhau ={};
-    HoKhauService hoKhauService =  new HoKhauService();
-    LocalDate today =  LocalDate.now();
+    ComboBox comboBoxGioiTinhThemMoiNhanKhauCanBo, comboBoxMaHoKhauThemMoiNhanKhauCanBo;
+    private String[] listGioiTinh = {"Nam", "Nữ", "Không rõ"};
+    HoKhauService hoKhauService = new HoKhauService();
+    final LocalDate today = LocalDate.now();
+
+    final String tinhTrang = "Đã xác nhận";
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        paneNewPeopleAdmin.setVisible(true);
         comboBoxGioiTinhThemMoiNhanKhauCanBo.getItems().addAll(listGioiTinh);
         comboBoxGioiTinhThemMoiNhanKhauCanBo.getSelectionModel().selectFirst();
         List<String> list = hoKhauService.getAllMaHoKhau();
-        for (String a: list) {
+        for (String a : list) {
             comboBoxMaHoKhauThemMoiNhanKhauCanBo.getItems().add(a);
         }
         comboBoxMaHoKhauThemMoiNhanKhauCanBo.getSelectionModel().selectFirst();
         datePickerNgaySinhThemMoiNhanKhauCanBo.setValue(today);
+        anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {
+            if (keyEvent.getCode() == KeyCode.ENTER) {
+                themMoiNhanKhauCanBo();
+            } else if (keyEvent.getCode() == KeyCode.Q) {
+                try {
+                    huyThemMoiNhanKhauCanBo(keyEvent);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
-    public void setButtonAcceptNewPeopleAdmin(ActionEvent e) throws  IOException{
-        NhanKhauService nhanKhauService =  new NhanKhauService();
-        if(textFieldHoTenThemMoiNhanKhauCanBo.getText().isBlank()||textFieldMaNhanKhauThemMoiNhanKhauCanBo.getText().isBlank()){
-            Alert alert =  new Alert(Alert.AlertType.INFORMATION);
+
+    public void onPressedButtonThemMoiNhanKhauCanBo(MouseEvent e) {
+        if (e.isPrimaryButtonDown()) {
+            themMoiNhanKhauCanBo();
+        }
+    }
+
+    public void onPressedButtonHuyThemMoiNhanKhauCanBo(MouseEvent e) throws IOException {
+        if (e.isPrimaryButtonDown()) {
+            huyThemMoiNhanKhauCanBo(e);
+        }
+    }
+
+    public void themMoiNhanKhauCanBo() {
+        NhanKhauService nhanKhauService = new NhanKhauService();
+        if (textFieldHoTenThemMoiNhanKhauCanBo.getText().isBlank() || textFieldMaNhanKhauThemMoiNhanKhauCanBo.getText().isBlank()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Vui lòng nhập đầy đủ các trường");
             alert.showAndWait();
@@ -55,30 +80,29 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerTrangChuView i
         String maNhanKhau = textFieldMaNhanKhauThemMoiNhanKhauCanBo.getText();
         String gioiTinh = String.valueOf(comboBoxGioiTinhThemMoiNhanKhauCanBo.getValue());
         String maHoKhau = String.valueOf(comboBoxMaHoKhauThemMoiNhanKhauCanBo.getValue());
-        String hoTen =  textFieldHoTenThemMoiNhanKhauCanBo.getText();
+        String hoTen = textFieldHoTenThemMoiNhanKhauCanBo.getText();
         String tonGiao = textFieldTonGiaoThemMoiNhanKhauCanBo.getText();
-        String bietDanh =  textFieldBietDanhThemMoiNhanKhauCanBo.getText();
+        String bietDanh = textFieldBietDanhThemMoiNhanKhauCanBo.getText();
         Date ngaysinh = new Date(datePickerNgaySinhThemMoiNhanKhauCanBo.getValue().toEpochDay());
-        String tinhTrang = "Đã xác nhận";
-        NhanKhauModel nhanKhauModel = new NhanKhauModel(maNhanKhau, maHoKhau, hoTen, bietDanh, ngaysinh, gioiTinh, tonGiao,tinhTrang, id);
-        if(!nhanKhauService.getNhanKhauByMaNhanKhau(maNhanKhau).isEmpty()){
+        NhanKhauModel nhanKhauModel = new NhanKhauModel(maNhanKhau, maHoKhau, hoTen, bietDanh, ngaysinh, gioiTinh, tonGiao, tinhTrang, id);
+        if (!nhanKhauService.getNhanKhauByMaNhanKhau(maNhanKhau).isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Mã nhân khẩu đã tồn tại");
             alert.showAndWait();
-        }else {
-            if(nhanKhauService.addNhanKhau(nhanKhauModel)){
+        } else {
+            if (nhanKhauService.addNhanKhau(nhanKhauModel)) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Thông báo");
                 alert.setHeaderText("");
                 alert.setContentText("Bạn đã thêm thành công");
-                if(alert.showAndWait().get()== ButtonType.OK){
+                if (alert.showAndWait().get() == ButtonType.OK) {
                     textFieldMaNhanKhauThemMoiNhanKhauCanBo.setText("");
                     textFieldHoTenThemMoiNhanKhauCanBo.setText("");
                     textFieldBietDanhThemMoiNhanKhauCanBo.setText("");
                     textFieldTonGiaoThemMoiNhanKhauCanBo.setText("");
                 }
-            }else {
+            } else {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Thông báo");
                 alert.setHeaderText("");
@@ -87,12 +111,13 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerTrangChuView i
             }
         }
     }
-    public void setButtonCancelNewPeopleAdmin(ActionEvent e) throws IOException{
+
+    public void huyThemMoiNhanKhauCanBo(Event e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo");
-        alert.setHeaderText("Bạn muốn hủy thêm nhân khẩu mới");
-        if(alert.showAndWait().get()==ButtonType.OK) {
-            super.setButtonPeopleAdmin(e);
+        alert.setContentText("Bạn chắc chắn muốn thoát?");
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            loadNhanKhauCanBoView((Stage) ((Node) e.getSource()).getScene().getWindow());
         }
     }
 }

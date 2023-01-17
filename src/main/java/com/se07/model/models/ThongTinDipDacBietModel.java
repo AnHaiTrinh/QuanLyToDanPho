@@ -2,18 +2,15 @@ package com.se07.model.models;
 
 public class ThongTinDipDacBietModel {
     private int idNhap;
+    private int idDip;
     private String maNhanKhau;
-    private String dipdacBiet;
-    private int nam;
     private String tinhTrang;
     private int idNguoiThucHien;
 
-    public ThongTinDipDacBietModel(int idNhap, String maNhanKhau, String dipdacBiet, int nam, String tinhTrang,
-                                   int idNguoiThucHien) {
+    public ThongTinDipDacBietModel(int idNhap, int idDip, String maNhanKhau, String tinhTrang, int idNguoiThucHien) {
         this.idNhap = idNhap;
+        this.idDip = idDip;
         this.maNhanKhau = maNhanKhau;
-        this.dipdacBiet = dipdacBiet;
-        this.nam = nam;
         this.tinhTrang = tinhTrang;
         this.idNguoiThucHien = idNguoiThucHien;
     }
@@ -26,28 +23,20 @@ public class ThongTinDipDacBietModel {
         this.idNhap = idNhap;
     }
 
+    public int getIdDip() {
+        return idDip;
+    }
+
+    public void setIdDip(int idDip) {
+        this.idDip = idDip;
+    }
+
     public String getMaNhanKhau() {
         return maNhanKhau;
     }
 
     public void setMaNhanKhau(String maNhanKhau) {
         this.maNhanKhau = maNhanKhau;
-    }
-
-    public String getDipdacBiet() {
-        return dipdacBiet;
-    }
-
-    public void setDipdacBiet(String dipdacBiet) {
-        this.dipdacBiet = dipdacBiet;
-    }
-
-    public int getNam() {
-        return nam;
-    }
-
-    public void setNam(int nam) {
-        this.nam = nam;
     }
 
     public String getTinhTrang() {

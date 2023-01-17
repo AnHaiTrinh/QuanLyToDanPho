@@ -1,24 +1,24 @@
-#buttonHomeAdmin {
+#buttonTrangChuCanBo {
     -fx-background-color: rgb(40, 132, 217);
 }
 
-#buttonHomeAdmin:hover {
+#buttonTrangChuCanBo:hover {
     -fx-background-color: rgba(4, 57, 244, 0.95)
 }
 
-#buttonPeopleAdmin {
+#buttonNhanKhauCanBo {
     -fx-background-color: rgba(0, 53, 240, 0.7);
 }
 
-#buttonPeopleAdmin:hover {
+#buttonNhanKhauCanBo:hover {
     -fx-background-color: rgba(4, 57, 244, 0.95)
 }
 
-#buttonUserAdmin {
+#buttonHoKhauCanBo {
     -fx-background-color: rgba(0, 53, 240, 0.7);
 }
 
-#buttonUserAdmin:hover {
+#buttonHoKhauCanBo:hover {
     -fx-background-color: rgba(4, 57, 244, 0.95)
 }
 
@@ -30,72 +30,62 @@
     -fx-background-color: rgba(4, 57, 244, 0.95);
 }
 
-#anchorPaneCheckAwardAdmin {
+#anchorPaneChinhCanBo {
     -fx-background-color: linear-gradient(#7758D1 2%, #F7CBFD 40%);
 }
 
-#buttonLogoutAdmin {
+#buttonDangXuatCanBo {
     -fx-background-color: black
 }
 
-#buttonLogoutAdmin:hover {
+#buttonDangXuatCanBo:hover {
     -fx-background-color: #BF3FBF;
 }
 
-#buttonLocThongTinHoKhauCanBo {
+#buttonLocThongTinDipDacBietCanBo {
     -fx-background-color: black;
 }
 
-#buttonLocThongTinHoKhauCanBo:hover {
+#buttonLocThongTinDipDacBietCanBo:hover {
     -fx-background-color: #177306;
 }
 
-#buttonTaoBieuMauDipDacBietCanBoView {
+#buttonTuChoiThongTinDipDacBietCanBo {
     -fx-background-color: black;
 }
 
-#buttonTaoBieuMauDipDacBietCanBoView:hover {
+#buttonTuChoiThongTinDipDacBietCanBo:hover {
     -fx-background-color: #BF3FBF;
 }
 
-#buttonTaoBieuMauDipBTCanBo {
+#buttonThemMoiThongTinDipDacBietCanBo {
     -fx-background-color: black;
 }
 
-#buttonTaoBieuMauDipBTCanBo:hover {
+#buttonThemMoiThongTinDipDacBietCanBo:hover {
     -fx-background-color: #BF3FBF;
 }
 
-
-#buttonPheDuyetDipBTCanBo {
+#buttonPheDuyetThongTinDipDacBietCanBo {
     -fx-background-color: black;
 }
 
-#buttonPheDuyetDipBTCanBo:hover {
-    -fx-background-color: #177306;
+#buttonPheDuyetThongTinDipDacBietCanBo:hover {
+    -fx-background-color: #BF3FBF;
 }
 
-
-#buttonXoaDipBTCanBo {
+#buttonXoaThongTinDipDacBietCanBo {
     -fx-background-color: black;
 }
 
-#buttonXoaDipBTCanBo:hover {
-    -fx-background-color: #910c0c;
+#buttonXoaThongTinDipDacBietCanBo:hover {
+    -fx-background-color: #BF3FBF;
 }
 
-#buttonXemPhanThuongDipDacBietCanBo {
-    -fx-background-color: rgb(40, 132, 217);
+#buttonThoatThongTinDipDacBietCanBo {
+    -fx-background-color: black;
 }
 
-#buttonXemPhanThuongDipDacBietCanBo:hover {
-    -fx-background-color: rgba(4, 57, 244, 0.95)
-}
-
-#buttonXemPhanThuongDipThuongCanBo {
-    -fx-background-color: rgb(40, 132, 217);
-}
-
-#buttonXemPhanThuongDipThuongCanBo:hover {
-    -fx-background-color: rgba(4, 57, 244, 0.95)
+#buttonThoatThongTinDipDacBietCanBo:hover {
+    -fx-background-color: #BF3FBF;
 }

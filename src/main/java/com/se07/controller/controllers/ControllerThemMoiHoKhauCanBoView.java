@@ -2,22 +2,23 @@ package com.se07.controller.controllers;
 
 import com.se07.controller.services.HoKhauService;
 import com.se07.model.models.HoKhauModel;
-import com.se07.util.UserInfo;
-import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.spec.RSAOtherPrimeInfo;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class ControllerThemHoKhauMoiCanBoView extends ControllerTrangChuView implements Initializable {
+public class ControllerThemMoiHoKhauCanBoView extends ControllerCanBoView {
     LocalDate today = LocalDate.now();
-
-    final int idNguoiThucHien = UserInfo.getUserId();
     @FXML
     TextField textFieldMaChuHoThemMoiHoKhauCanBo, textFieldMaHoKhauThemMoiHoKhauCanBo, textFieldDiaChiThemMoiHoKhauCanBo;
     @FXML
@@ -25,17 +26,38 @@ public class ControllerThemHoKhauMoiCanBoView extends ControllerTrangChuView imp
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        super.initialize(url, resourceBundle);
+        anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {
+            if (keyEvent.getCode() == KeyCode.ENTER) {
+                dangKyHoKhauCanBo();
+            } else if (keyEvent.getCode() == KeyCode.Q) {
+                try {
+                    huyDangKyHoKhauCanBo(keyEvent);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
         datePickerNgayThanhLapThemMoiHoKhauCanBo.setValue(today);
     }
 
-    public void setButtonCancelNewUserAdmin(ActionEvent e) throws IOException {
-        super.setButtonUserAdmin(e);
+    public void onPressedButtonHuyDangKyHoKhauCanBo(MouseEvent e) throws IOException {
+        if (e.isPrimaryButtonDown()) {
+            huyDangKyHoKhauCanBo(e);
+        }
     }
 
-    public void setButtonAcceptNewUserAdmin() {
+    public void onPressedButtonDangKyHoKhauCanBo(MouseEvent e) {
+        if (e.isPrimaryButtonDown()) {
+            dangKyHoKhauCanBo();
+        }
+    }
+
+    public void dangKyHoKhauCanBo() {
         HoKhauService hoKhauService = new HoKhauService();
         if (textFieldMaHoKhauThemMoiHoKhauCanBo.getText().isBlank() ||
-                textFieldDiaChiThemMoiHoKhauCanBo.getText().isBlank() || datePickerNgayThanhLapThemMoiHoKhauCanBo.getValue().equals("")) {
+                textFieldDiaChiThemMoiHoKhauCanBo.getText().isBlank() ||
+                datePickerNgayThanhLapThemMoiHoKhauCanBo.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Vui lòng nhập đầy đủ các trường");
@@ -46,9 +68,9 @@ public class ControllerThemHoKhauMoiCanBoView extends ControllerTrangChuView imp
         String maChuHo = textFieldMaChuHoThemMoiHoKhauCanBo.getText();
         Date ngayLap = new Date(datePickerNgayThanhLapThemMoiHoKhauCanBo.getValue().toEpochDay());
         String diaChi = textFieldDiaChiThemMoiHoKhauCanBo.getText();
-        HoKhauModel hoKhauModel = new HoKhauModel(maHoKhau, maChuHo, diaChi, ngayLap, idNguoiThucHien);
+        HoKhauModel hoKhauModel = new HoKhauModel(maHoKhau, maChuHo, diaChi, ngayLap, id);
 
-        if (!hoKhauService.getHoKhauByMaHoKhau(maHoKhau).isEmpty()) {
+        if (hoKhauService.getHoKhauByMaHoKhau(maHoKhau).isPresent()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Mã hộ khẩu đã tồn tại");
@@ -71,6 +93,15 @@ public class ControllerThemHoKhauMoiCanBoView extends ControllerTrangChuView imp
                 alert.setContentText("Thêm thất bại");
                 alert.showAndWait();
             }
+        }
+    }
+
+    public void huyDangKyHoKhauCanBo(Event e) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Thông báo");
+        alert.setContentText("Bạn chắc chắn muốn thoát?");
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            loadHoKhauCanBoView((Stage) ((Node) e.getSource()).getScene().getWindow());
         }
     }
 }

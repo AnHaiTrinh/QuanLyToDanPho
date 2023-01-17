@@ -1,91 +1,58 @@
 package com.se07.controller.controllers;
-import com.se07.view.TrangChuCanBoView;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import org.w3c.dom.events.MouseEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerGiaiThuongCanBoView implements Initializable {
-    @FXML
-    Pane paneTest;
-    @FXML
-    Button buttonGiaiThuongCanBo;
-    ControllerTrangChuView controllerTrangChuView = new ControllerTrangChuView();
-
-    public void setButtonLogoutAdmin() {
-
-    }
-
-    public void setButtonHomeAdmin(ActionEvent e) throws IOException {
-        controllerTrangChuView.setButtonHomeAdmin(e);
-    }
-
-    public void setButtonPeopleAdmin(ActionEvent e) throws IOException {
-        controllerTrangChuView.setButtonPeopleAdmin(e);
-    }
-
-    public void setButtonUserAdmin(ActionEvent e) throws IOException {
-        controllerTrangChuView.setButtonUserAdmin(e);
-    }
-
-    public void setButtonGiaiThuongCanBo(ActionEvent e) throws IOException {
-        controllerTrangChuView.setButtonGiaiThuongCanBo(e);
-    }
-
-    public void setButtonTaoBieuMauDipDacBietCanBoView(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("TaoBieuMauDipDacBietCanBoView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-    }
-
-    public void setButtonTaoBieuMauDipBTCanBo(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("TaoBieuMauDipThuongCanBoView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-    }
-
-    public void setButtonLocThongTinHoKhauCanBo() {
-
-    }
-
-    public void setTest() {
-
-    }
-
-    public void setButtonXemPhanThuongDipThuongCanBo(ActionEvent e) throws IOException {
-        controllerTrangChuView.setButtonGiaiThuongCanBo(e);
-    }
-
-    public void setButtonXemPhanThuongDipDacBietCanBo(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("GiaiThuongThanhTichCanBoView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-    }
-
-
+public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        paneTest.setVisible(false);
-        buttonGiaiThuongCanBo.setOnMouseMoved(mouseEvent -> {
-            System.out.println(234);
-            paneTest.setVisible(true);
-        });
-        paneTest.setOnMouseExited(mouseEvent -> {
-            System.out.println(345);
-            paneTest.setVisible(false);
-        });
+        super.initialize(url, resourceBundle);
+    }
+
+    @Override
+    public void onPressedButtonGiaiThuongCanBo(MouseEvent e) {
+    }
+
+    public void onPressedButtonTaoBieuMauCanBo(MouseEvent e) throws IOException {
+        if (e.isPrimaryButtonDown()) {
+
+        }
+    }
+
+    public void onPressedButtonGiaiThuongDipDacBietCanBo(MouseEvent e) {
+        if (e.isPrimaryButtonDown()) {
+
+        }
+    }
+
+    public void onPressedButtonGiaiThuongThanhTichCanBo(MouseEvent e) {
+        if (e.isPrimaryButtonDown()) {
+
+        }
+    }
+
+    public void onPressedButtonXoaDipTraoThuongCanBo(MouseEvent e) {
+        if (e.isPrimaryButtonDown()) {
+
+        }
+    }
+
+    public void onPressedButtonLocThongTinDipTraoThuongCanBo(MouseEvent e) {
+        if (e.isPrimaryButtonDown()) {
+
+        }
+    }
+
+    public void onDeletePressedTrongBangDipTraoThuongCanBo(KeyEvent e) {
+        if (e.getCode() == KeyCode.DELETE) {
+
+        }
     }
 }

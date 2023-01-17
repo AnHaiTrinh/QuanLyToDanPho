@@ -1,24 +1,24 @@
-#buttonHomeAdmin {
+#buttonTrangChuCanBo {
     -fx-background-color: rgb(40, 132, 217);
 }
 
-#buttonHomeAdmin:hover {
+#buttonTrangChuCanBo:hover {
     -fx-background-color: rgba(4, 57, 244, 0.95)
 }
 
-#buttonPeopleAdmin {
+#buttonNhanKhauCanBo {
     -fx-background-color: rgba(0, 53, 240, 0.7);
 }
 
-#buttonPeopleAdmin:hover {
+#buttonNhanKhauCanBo:hover {
     -fx-background-color: rgba(4, 57, 244, 0.95)
 }
 
-#buttonUserAdmin {
+#buttonHoKhauCanBo {
     -fx-background-color: rgba(0, 53, 240, 0.7);
 }
 
-#buttonUserAdmin:hover {
+#buttonHoKhauCanBo:hover {
     -fx-background-color: rgba(4, 57, 244, 0.95)
 }
 
@@ -42,11 +42,11 @@
     -fx-background-color: linear-gradient(#7758D1 2%, #F7CBFD 40%);
 }
 
-#buttonLogoutAdmin {
+#buttonDangXuatCanBo {
     -fx-background-color: black
 }
 
-#buttonLogoutAdmin:hover {
+#buttonDangXuatCanBo:hover {
     -fx-background-color: #BF3FBF;
 }
 
@@ -56,30 +56,6 @@
 
 #buttonLocThongTinHoKhauCanBo:hover {
     -fx-background-color: #177306;
-}
-
-#buttonNewUserAdmin {
-    -fx-background-color: black;
-}
-
-#buttonNewUserAdmin:hover {
-    -fx-background-color: #BF3FBF;
-}
-
-#buttonSplitUserAdmin {
-    -fx-background-color: black;
-}
-
-#buttonSplitUserAdmin:hover {
-    -fx-background-color: #BF3FBF;
-}
-
-#buttonRemoveUserAdmin {
-    -fx-background-color: black;
-}
-
-#buttonRemoveUserAdmin:hover {
-    -fx-background-color: #BF3fBF;
 }
 
 #buttonThemHoKhauCanBo {

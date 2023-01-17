@@ -19,7 +19,7 @@ public class TamVangService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamVangModel temp = new TamVangModel(
-                        rs.getString("maTamVang"),
+                        rs.getInt("maTamVang"),
                         rs.getString("maNhanKhau"),
                         rs.getNString("noiTamVang"),
                         rs.getDate("tuNgay"),
@@ -46,7 +46,7 @@ public class TamVangService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamVangModel temp = new TamVangModel(
-                        rs.getString("maTamVang"),
+                        rs.getInt("maTamVang"),
                         rs.getString("maNhanKhau"),
                         rs.getNString("noiTamVang"),
                         rs.getDate("tuNgay"),
@@ -73,7 +73,7 @@ public class TamVangService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamVangModel temp = new TamVangModel(
-                        rs.getString("maTamVang"),
+                        rs.getInt("maTamVang"),
                         rs.getString("maNhanKhau"),
                         rs.getNString("noiTamVang"),
                         rs.getDate("tuNgay"),
@@ -100,7 +100,7 @@ public class TamVangService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamVangModel temp = new TamVangModel(
-                        rs.getString("maTamVang"),
+                        rs.getInt("maTamVang"),
                         rs.getString("maNhanKhau"),
                         rs.getNString("noiTamVang"),
                         rs.getDate("tuNgay"),
@@ -137,7 +137,7 @@ public class TamVangService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamVangModel temp = new TamVangModel(
-                        rs.getString("maTamVang"),
+                        rs.getInt("maTamVang"),
                         rs.getString("maNhanKhau"),
                         rs.getNString("noiTamVang"),
                         rs.getDate("tuNgay"),
@@ -175,7 +175,7 @@ public class TamVangService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamVangModel temp = new TamVangModel(
-                        rs.getString("maTamVang"),
+                        rs.getInt("maTamVang"),
                         rs.getString("maNhanKhau"),
                         rs.getNString("noiTamVang"),
                         rs.getDate("tuNgay"),
@@ -203,7 +203,7 @@ public class TamVangService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamVangModel temp = new TamVangModel(
-                        rs.getString("maTamVang"),
+                        rs.getInt("maTamVang"),
                         rs.getString("maNhanKhau"),
                         rs.getNString("noiTamVang"),
                         rs.getDate("tuNgay"),
@@ -230,7 +230,7 @@ public class TamVangService {
             ResultSet rs = statement.executeQuery(query);
             if (rs.next()) {
                 TamVangModel temp = new TamVangModel(
-                        rs.getString("maTamVang"),
+                        rs.getInt("maTamVang"),
                         rs.getString("maNhanKhau"),
                         rs.getNString("noiTamVang"),
                         rs.getDate("tuNgay"),
@@ -250,18 +250,17 @@ public class TamVangService {
 
     public boolean addTamVang(TamVangModel tamVangModel) {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "insert into tam_vang(maTamVang, maNhanKhau, noiTamVang, tuNgay, denNgay, lydo, " +
-                "tinhTrang, idNguoiThucHien) values ( ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "insert into tam_vang(maNhanKhau, noiTamVang, tuNgay, denNgay, lydo, " +
+                "tinhTrang, idNguoiThucHien) values (?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, tamVangModel.getMaTamVang());
-            statement.setString(2, tamVangModel.getMaNhanKhau());
-            statement.setNString(3, tamVangModel.getNoiTamVang());
-            statement.setDate(4, new java.sql.Date(tamVangModel.getTuNgay().getTime()));
-            statement.setDate(5, new java.sql.Date(tamVangModel.getDenNgay().getTime()));
-            statement.setNString(6, tamVangModel.getLyDo());
-            statement.setNString(7, tamVangModel.getTinhTrang());
-            statement.setInt(8, tamVangModel.getIdNguoiThucHien());
+            statement.setString(1, tamVangModel.getMaNhanKhau());
+            statement.setNString(2, tamVangModel.getNoiTamVang());
+            statement.setDate(3, new java.sql.Date(tamVangModel.getTuNgay().getTime()));
+            statement.setDate(4, new java.sql.Date(tamVangModel.getDenNgay().getTime()));
+            statement.setNString(5, tamVangModel.getLyDo());
+            statement.setNString(6, tamVangModel.getTinhTrang());
+            statement.setInt(7, tamVangModel.getIdNguoiThucHien());
             statement.executeUpdate();
             statement.close();
             connection.close();
@@ -291,7 +290,7 @@ public class TamVangService {
             statement.setNString(5, tamVangModel.getLyDo());
             statement.setNString(6, tamVangModel.getTinhTrang());
             statement.setInt(7, tamVangModel.getIdNguoiThucHien());
-            statement.setString(8, tamVangModel.getMaTamVang());
+            statement.setInt(8, tamVangModel.getMaTamVang());
             statement.executeUpdate();
             statement.close();
             connection.close();

@@ -1,33 +1,25 @@
-#buttonHomeAdmin {
+#buttonTrangChuCanBo {
     -fx-background-color: rgb(40, 132, 217);
 }
 
-#buttonHomeAdmin:hover {
+#buttonTrangChuCanBo:hover {
     -fx-background-color: rgba(4, 57, 244, 0.95)
 }
 
-#buttonPeopleAdmin {
+#buttonNhanKhauCanBo {
     -fx-background-color: rgba(0, 53, 240, 0.7);
 }
 
-#buttonPeopleAdmin:hover {
+#buttonNhanKhauCanBo:hover {
     -fx-background-color: rgba(4, 57, 244, 0.95)
 }
 
-#buttonUserAdmin {
+#buttonHoKhauCanBo {
     -fx-background-color: rgba(0, 53, 240, 0.7);
 }
 
-#buttonUserAdmin:hover {
+#buttonHoKhauCanBo:hover {
     -fx-background-color: rgba(4, 57, 244, 0.95)
-}
-
-#menuButtonAwardAdmin {
-    -fx-background-color: rgba(0, 53, 240, 0.7);
-}
-
-#menuButtonAwardAdmin:hover {
-    -fx-background-color: rgba(4, 57, 244, 0.95);
 }
 
 #buttonGiaiThuongCanBo {
@@ -38,30 +30,30 @@
     -fx-background-color: rgba(4, 57, 244, 0.95)
 }
 
-#anchorPaneCreateFormAwardDipThuongAdmin {
+#anchorPaneChinhCanBo {
     -fx-background-color: linear-gradient(#7758D1 2%, #F7CBFD 40%);
 }
 
-#buttonLogoutAdmin {
+#buttonDangXuatCanBo {
     -fx-background-color: black;
 }
 
-#buttonLogoutAdmin:hover {
+#buttonDangXuatCanBo:hover {
     -fx-background-color: #BF3FBF;
 }
 
-#buttonXacNhanTaoMauDipThuongCanBo {
+#buttonDangKyHoKhauCanBo {
     -fx-background-color: black;
 }
 
-#buttonHuyTaoMauDipThuongCanBo {
+#buttonHuyDangKyHoKhauCanBo {
     -fx-background-color: black;
 }
 
-#buttonXacNhanTaoMauDipThuongCanBo:hover {
+#buttonDangKyHoKhauCanBo:hover {
     -fx-background-color: #177306;
 }
 
-#buttonHuyTaoMauDipThuongCanBo:hover {
+#buttonHuyDangKyHoKhauCanBo:hover {
     -fx-background-color: #910c0c;
 }

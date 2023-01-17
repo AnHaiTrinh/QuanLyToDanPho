@@ -2,26 +2,24 @@ package com.se07.model.models;
 
 import java.util.Date;
 
-public class TamVangModel {
+public class TamVangDisplayModel {
     private int maTamVang;
-    private String maNhanKhau;
+    private String hoTen;
     private String noiTamVang;
     private Date tuNgay;
     private Date denNgay;
     private String lyDo;
     private String tinhTrang;
-    private int idNguoiThucHien;
 
-    public TamVangModel(int maTamVang, String maNhanKhau, String noiTamVang, Date tuNgay,
-                        Date denNgay, String lyDo, String tinhTrang, int idNguoiThucHien) {
+    public TamVangDisplayModel(int maTamVang, String hoTen, String noiTamVang, Date tuNgay, Date denNgay,
+                               String lyDo, String tinhTrang) {
         this.maTamVang = maTamVang;
-        this.maNhanKhau = maNhanKhau;
+        this.hoTen = hoTen;
         this.noiTamVang = noiTamVang;
         this.tuNgay = tuNgay;
         this.denNgay = denNgay;
         this.lyDo = lyDo;
         this.tinhTrang = tinhTrang;
-        this.idNguoiThucHien = idNguoiThucHien;
     }
 
     public int getMaTamVang() {
@@ -32,12 +30,12 @@ public class TamVangModel {
         this.maTamVang = maTamVang;
     }
 
-    public String getMaNhanKhau() {
-        return maNhanKhau;
+    public String getHoTen() {
+        return hoTen;
     }
 
-    public void setMaNhanKhau(String maNhanKhau) {
-        this.maNhanKhau = maNhanKhau;
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
     }
 
     public String getNoiTamVang() {
@@ -78,13 +76,5 @@ public class TamVangModel {
 
     public void setTinhTrang(String tinhTrang) {
         this.tinhTrang = tinhTrang;
-    }
-
-    public int getIdNguoiThucHien() {
-        return idNguoiThucHien;
-    }
-
-    public void setIdNguoiThucHien(int idNguoiThucHien) {
-        this.idNguoiThucHien = idNguoiThucHien;
     }
 }
