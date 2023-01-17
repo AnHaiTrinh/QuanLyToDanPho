@@ -5,7 +5,6 @@ import com.se07.controller.services.NhanKhauService;
 import com.se07.model.models.NhanKhauModel;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -117,7 +116,7 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
         alert.setTitle("Thông báo");
         alert.setContentText("Bạn chắc chắn muốn thoát?");
         if (alert.showAndWait().get() == ButtonType.OK) {
-            loadNhanKhauCanBoView((Stage) ((Node) e.getSource()).getScene().getWindow());
+            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "NhanKhauCanBoView.fxml");
         }
     }
 }

@@ -1,23 +1,16 @@
 package com.se07.controller.controllers;
 
 import com.se07.controller.services.NhanKhauService;
-import com.se07.model.models.HoKhauModel;
 import com.se07.model.models.NhanKhauModel;
-import com.se07.view.TrangChuCanBoView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -66,19 +59,19 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
 
     public void onPressedButtonThemMoiNhanKhauCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
-            loadThemMoiNhanKhauCanBoView((Stage) ((Node) e.getSource()).getScene().getWindow());
+            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "ThemMoiNhanKhauCanBoView.fxml");
         }
     }
 
     public void onPressedButtonTamVangCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
-            loadTamVangCanBo((Stage) ((Node) e.getSource()).getScene().getWindow());
+            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "TamVangCanBo.fxml");
         }
     }
 
     public void onPressedButtonTamTruCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
-            loadTamTruCanBo((Stage) ((Node) e.getSource()).getScene().getWindow());
+            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "TamTruCanBo.fxml");
         }
     }
 
@@ -115,24 +108,6 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
     public void displayAllNhanKhauCanBo() {
         ObservableList<NhanKhauModel> hoKhauModelObservableList = nhanKhauService.getAllNhanKhau();
         tableViewNhanKhauAdmin.setItems(hoKhauModelObservableList);
-    }
-
-    public void loadThemMoiNhanKhauCanBoView(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("ThemMoiNhanKhauCanBoView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-    }
-
-    public void loadTamVangCanBo(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("TamVangCanBo.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-    }
-
-    public void loadTamTruCanBo(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("TamTruCanBo.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
     }
 
     public void tuChoiNhanKhauCanBo() {

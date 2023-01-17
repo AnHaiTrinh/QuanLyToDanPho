@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.security.spec.RSAOtherPrimeInfo;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -101,7 +100,7 @@ public class ControllerThemMoiHoKhauCanBoView extends ControllerCanBoView {
         alert.setTitle("Thông báo");
         alert.setContentText("Bạn chắc chắn muốn thoát?");
         if (alert.showAndWait().get() == ButtonType.OK) {
-            loadHoKhauCanBoView((Stage) ((Node) e.getSource()).getScene().getWindow());
+            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "HoKhauCanBoView.fxml");
         }
     }
 }

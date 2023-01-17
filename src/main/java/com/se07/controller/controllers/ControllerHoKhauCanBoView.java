@@ -83,13 +83,13 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
 
     public void onPressedButtonThemHoKhauCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
-            loadThemMoiHoKhauCanBoView((Stage) ((Node) e.getSource()).getScene().getWindow());
+            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "ThemMoiHoKhauCanBoView.fxml");
         }
     }
 
     public void onPressedButtonTachHoKhauCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
-            loadTachHoKhauCanBoView((Stage) ((Node) e.getSource()).getScene().getWindow());
+            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "TachHoKhauCanBoView.fxml");
         }
     }
 
@@ -150,17 +150,5 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
             }
         }
         tableViewTatCaHoKhauCanBo.setItems(hoKhauModelObservableList);
-    }
-
-    public void loadThemMoiHoKhauCanBoView(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("ThemMoiHoKhauCanBoView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-    }
-
-    public void loadTachHoKhauCanBoView(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("TachHoKhauCanBoView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
     }
 }

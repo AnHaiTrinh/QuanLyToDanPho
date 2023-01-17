@@ -1,12 +1,11 @@
 package com.se07.controller.controllers;
 
+import com.se07.util.SceneLoader;
 import com.se07.util.UserInfo;
 import com.se07.view.*;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -29,6 +28,7 @@ public class ControllerCanBoView implements Initializable {
 
     final int id = UserInfo.getUserId();
     final String username = UserInfo.getUsername();
+    final SceneLoader sceneLoader = new SceneLoader();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,27 +49,27 @@ public class ControllerCanBoView implements Initializable {
 
     public void onPressedButtonTrangChuCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
-            loadTrangChuCanBoView((Stage) ((Node) e.getSource()).getScene().getWindow());
+            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "TrangChuCanBoView.fxml");
 
         }
     }
 
     public void onPressedButtonNhanKhauCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
-            loadNhanKhauCanBoView((Stage) ((Node) e.getSource()).getScene().getWindow());
+            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "NhanKhauCanBoView.fxml");
         }
     }
 
     public void onPressedButtonHoKhauCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
-            loadHoKhauCanBoView((Stage) ((Node) e.getSource()).getScene().getWindow());
+            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "HoKhauCanBoView.fxml");
         }
     }
 
 
     public void onPressedButtonGiaiThuongCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
-            loadGiaiThuongCanBoView((Stage) ((Node) e.getSource()).getScene().getWindow());
+            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "GiaiThuongCanBoView.fxml");
         }
     }
 
@@ -77,30 +77,6 @@ public class ControllerCanBoView implements Initializable {
         if (e.isPrimaryButtonDown()) {
             dangXuatCanBoView((Stage) ((Node) e.getSource()).getScene().getWindow());
         }
-    }
-
-    public void loadTrangChuCanBoView(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("TrangChuCanBoView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-    }
-
-    public void loadNhanKhauCanBoView(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("NhanKhauCanBoView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-    }
-
-    public void loadHoKhauCanBoView(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("HoKhauCanBoView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-    }
-
-    public void loadGiaiThuongCanBoView(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("GiaiThuongCanBoView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
     }
 
     public void dangXuatCanBoView(Stage stage) {

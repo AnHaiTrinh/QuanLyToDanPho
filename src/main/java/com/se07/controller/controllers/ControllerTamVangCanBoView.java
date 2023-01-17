@@ -1,7 +1,6 @@
 package com.se07.controller.controllers;
 
 import com.se07.view.TrangChuCanBoView;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,7 +15,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.security.Key;
 import java.util.ResourceBundle;
 
 public class ControllerTamVangCanBoView extends ControllerCanBoView {
@@ -69,7 +67,7 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
         alert.setTitle("Thông báo");
         alert.setContentText("Bạn chắc chắn muốn thoát?");
         if (alert.showAndWait().get() == ButtonType.OK) {
-            loadNhanKhauCanBoView((Stage) ((Node) e.getSource()).getScene().getWindow());
+            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "NhanKhauCanBoView.fxml");
         }
     }
 
