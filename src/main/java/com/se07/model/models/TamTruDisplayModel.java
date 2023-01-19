@@ -12,8 +12,22 @@ public class TamTruDisplayModel {
     private String lyDo;
     private String tinhTrang;
 
+    private int idNguoiThucHien;
+
+    public TamTruDisplayModel(String CCCD, String hoTen, String noiTamTru, Date tuNgay, Date denNgay, String lyDo,
+                              String tinhTrang, int idNguoiThucHien) {
+        this.CCCD = CCCD;
+        this.hoTen = hoTen;
+        this.noiTamTru = noiTamTru;
+        this.tuNgay = tuNgay;
+        this.denNgay = denNgay;
+        this.lyDo = lyDo;
+        this.tinhTrang = tinhTrang;
+        this.idNguoiThucHien = idNguoiThucHien;
+    }
+
     public TamTruDisplayModel(int maTamTru, String CCCD, String hoTen, String noiTamTru, Date tuNgay, Date denNgay,
-                              String lyDo, String tinhTrang) {
+                              String lyDo, String tinhTrang, int idNguoiThucHien) {
         this.maTamTru = maTamTru;
         this.CCCD = CCCD;
         this.hoTen = hoTen;
@@ -22,6 +36,7 @@ public class TamTruDisplayModel {
         this.denNgay = denNgay;
         this.lyDo = lyDo;
         this.tinhTrang = tinhTrang;
+        this.idNguoiThucHien = idNguoiThucHien;
     }
 
     public int getMaTamTru() {
@@ -86,5 +101,13 @@ public class TamTruDisplayModel {
 
     public void setTinhTrang(String tinhTrang) {
         this.tinhTrang = tinhTrang;
+    }
+
+    public int getIdNguoiThucHien() {
+        return idNguoiThucHien;
+    }
+
+    public void setIdNguoiThucHien(int idNguoiThuchien) {
+        this.idNguoiThucHien = idNguoiThuchien;
     }
 }

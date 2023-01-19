@@ -13,6 +13,18 @@ public class TamTruModel {
     private String tinhTrang;
     private int idNguoiThucHien;
 
+    public TamTruModel(String maHoKhau, String CCCD, String hoTen, Date tuNgay, Date denNgay, String lyDo,
+                       String tinhTrang, int idNguoiThucHien) {
+        this.maHoKhau = maHoKhau;
+        this.CCCD = CCCD;
+        this.hoTen = hoTen;
+        this.tuNgay = tuNgay;
+        this.denNgay = denNgay;
+        this.lyDo = lyDo;
+        this.tinhTrang = tinhTrang;
+        this.idNguoiThucHien = idNguoiThucHien;
+    }
+
     public TamTruModel(int maTamTru, String maHoKhau, String CCCD, String hoTen, Date tuNgay, Date denNgay,
                        String lyDo, String tinhTrang, int idNguoiThucHien) {
         this.maTamTru = maTamTru;

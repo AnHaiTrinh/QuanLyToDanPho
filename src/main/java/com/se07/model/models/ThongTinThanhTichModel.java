@@ -14,6 +14,19 @@ public class ThongTinThanhTichModel {
     private String tinhTrang;
     private int idNguoiThucHien;
 
+    public ThongTinThanhTichModel(int idDip, String maNhanKhau, int lop, String truong, String capThanhTich,
+                                  String kieuThanhTich, File minhChung, String tinhTrang, int idNguoiThucHien) {
+        this.idDip = idDip;
+        this.maNhanKhau = maNhanKhau;
+        this.lop = lop;
+        this.truong = truong;
+        this.capThanhTich = capThanhTich;
+        this.kieuThanhTich = kieuThanhTich;
+        this.minhChung = minhChung;
+        this.tinhTrang = tinhTrang;
+        this.idNguoiThucHien = idNguoiThucHien;
+    }
+
     public ThongTinThanhTichModel(int idNhap, int idDip, String maNhanKhau, int lop, String truong, String capThanhTich,
                                   String kieuThanhTich, File minhChung, String tinhTrang, int idNguoiThucHien) {
         this.idNhap = idNhap;

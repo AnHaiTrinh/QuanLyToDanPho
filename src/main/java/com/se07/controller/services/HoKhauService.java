@@ -185,4 +185,21 @@ public class HoKhauService {
         }
         return listMaHoKhau;
     }
+
+    public String getMaHoKhauByDiaChi(String diaChi) {
+        String maHoKhau = null;
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select maHoKhau from ho_khau where diaChi = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, diaChi);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                maHoKhau = rs.getString(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return maHoKhau;
+    }
 }

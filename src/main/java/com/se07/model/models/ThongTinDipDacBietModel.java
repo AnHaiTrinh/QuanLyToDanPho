@@ -7,6 +7,13 @@ public class ThongTinDipDacBietModel {
     private String tinhTrang;
     private int idNguoiThucHien;
 
+    public ThongTinDipDacBietModel(int idDip, String maNhanKhau, String tinhTrang, int idNguoiThucHien) {
+        this.idDip = idDip;
+        this.maNhanKhau = maNhanKhau;
+        this.tinhTrang = tinhTrang;
+        this.idNguoiThucHien = idNguoiThucHien;
+    }
+
     public ThongTinDipDacBietModel(int idNhap, int idDip, String maNhanKhau, String tinhTrang, int idNguoiThucHien) {
         this.idNhap = idNhap;
         this.idDip = idDip;

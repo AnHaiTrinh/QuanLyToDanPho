@@ -1,7 +1,9 @@
 package com.se07.controller.controllers;
 
 import com.se07.controller.services.NhanKhauService;
+import com.se07.controller.services.TamVangService;
 import com.se07.model.models.NhanKhauModel;
+import com.se07.model.models.TamVangModel;
 import com.se07.view.TrangChuCanBoView;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -18,6 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -33,15 +36,16 @@ public class ControllerDangKyTamVangCanBoView extends ControllerCanBoView {
     @FXML
     ComboBox comBoBoxMaNhanKhauTamVangCanBo;
 
+    final String tinhTrang = "Đã xác nhận";
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
         datePickerTuNgayTamVangCanBo.setValue(today);
         datePickerDenNgayTamVangCanBo.setValue(today);
-        List<String> list = (new NhanKhauService()).getAllMaNhanKhau();
-        for (String a : list) {
-            comBoBoxMaNhanKhauTamVangCanBo.getItems().add(a);
-        }
+        comBoBoxMaNhanKhauTamVangCanBo.getItems().addAll(new NhanKhauService().getAllMaNhanKhau());
+        comBoBoxMaNhanKhauTamVangCanBo.getSelectionModel().selectFirst();
+        textFieldHoTenTamVangCanBo.setEditable(false);
         anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
                 xacNhanDangKyTamVangCanBo();
@@ -75,7 +79,36 @@ public class ControllerDangKyTamVangCanBoView extends ControllerCanBoView {
     }
 
     public void xacNhanDangKyTamVangCanBo() {
-
+        TamVangService tamVangService = new TamVangService();
+        if (textFieldLyDoTamVangCanBo.getText().isBlank() || textFieldNoiTamVangCanBo.getText().isBlank()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Vui lòng nhập đầy đủ các trường");
+            alert.showAndWait();
+            return;
+        }
+        String maNhanKhau = String.valueOf(comBoBoxMaNhanKhauTamVangCanBo.getValue());
+        String noiTamVang = textFieldNoiTamVangCanBo.getText();
+        Date tuNgay = new Date(datePickerTuNgayTamVangCanBo.getValue().toEpochDay());
+        Date denNgay = new Date(datePickerDenNgayTamVangCanBo.getValue().toEpochDay());
+        String lyDo = textFieldLyDoTamVangCanBo.getText();
+        TamVangModel tamVangModel = new TamVangModel(maNhanKhau, noiTamVang, tuNgay, denNgay, lyDo, tinhTrang, id);
+        if (tamVangService.addTamVang(tamVangModel)) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("");
+            alert.setContentText("Bạn đã đăng ký thành công");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                textFieldNoiTamVangCanBo.setText("");
+                textFieldLyDoTamVangCanBo.setText("");
+            }
+            return;
+        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText("");
+        alert.setContentText("Đăng ký tạm vắng thất bại!");
+        alert.showAndWait();
     }
 
     public void huyXacNhanDangKyTamVangCanBo(Event e) throws IOException {
@@ -89,6 +122,4 @@ public class ControllerDangKyTamVangCanBoView extends ControllerCanBoView {
             stage.setScene(scene);
         }
     }
-
-
 }

@@ -11,6 +11,15 @@ public class DipTraoThuongModel {
     private String kieu;
     private String ghiChu;
 
+    public DipTraoThuongModel(String tenDip, int nam, Date ngayTao, Date ngayKetThuc, String kieu, String ghiChu) {
+        this.tenDip = tenDip;
+        this.nam = nam;
+        this.ngayTao = ngayTao;
+        this.ngayKetThuc = ngayKetThuc;
+        this.kieu = kieu;
+        this.ghiChu = ghiChu;
+    }
+
     public DipTraoThuongModel(int id, String tenDip, int nam, Date ngayTao, Date ngayKetThuc, String kieu, String ghiChu) {
         this.id = id;
         this.tenDip = tenDip;

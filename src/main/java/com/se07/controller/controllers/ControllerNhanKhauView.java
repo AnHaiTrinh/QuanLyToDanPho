@@ -276,7 +276,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         tableViewNhanKhauAdmin.setItems(nhanKhauModelObservableList);
     }
 
-    private void updateNhanKhauCanBo(NhanKhauModel nhanKhauModel) {
+    public void updateNhanKhauCanBo(NhanKhauModel nhanKhauModel) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo!");
         if (nhanKhauService.updateNhanKhau(nhanKhauModel)) {

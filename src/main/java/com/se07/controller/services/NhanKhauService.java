@@ -230,8 +230,9 @@ public class NhanKhauService {
             return -1;
         }
     }
-    public List<String> getAllMaNhanKhau(){
-        List<String> listMaNhanKhau = new ArrayList<>();
+
+    public ObservableList<String> getAllMaNhanKhau() {
+        ObservableList<String> listMaNhanKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select maNhanKhau from nhan_khau";
         try {
