@@ -28,6 +28,8 @@ public class ControllerCanBoView implements Initializable {
 
     final int id = UserInfo.getUserId();
     final String username = UserInfo.getUsername();
+
+    final String tinhTrang = "Đã xác nhận";
     final SceneLoader sceneLoader = new SceneLoader();
 
     @Override
@@ -89,12 +91,4 @@ public class ControllerCanBoView implements Initializable {
             loginView.openWindow();
         }
     }
-
-//    public void setMenuItemCreateAwardAdmin(ActionEvent e) throws IOException {
-//        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-//        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("TaoBieuMauDipThuongCanBoView.fxml"));
-//        Scene scene1 = new Scene(fxmlLoader.load());
-//        stage.setScene(scene1);
-//    }
-
 }

@@ -71,12 +71,11 @@
                             <content>
                                 <AnchorPane>
                                     <children>
-                                        <TableView fx:id="tableViewNhanKhauAdmin" editable="true" onKeyPressed="#onDeletePressedTrongBangTamTruCanBo" prefHeight="528.0" prefWidth="1082.0">
+                                        <TableView fx:id="tableViewNhanKhauAdmin" editable="true" onKeyPressed="#onDeletePressedTrongBangTamTruCanBo" prefHeight="528.0" prefWidth="1050.0">
                                             <columns>
-                                                <TableColumn fx:id="tableComlumIDNhanKhauCanBo" prefWidth="60.0" text="ID" />
                                                 <TableColumn fx:id="tableComlumIDHoKhauNhanKhauCanBo" prefWidth="120.0" text="CCCD" />
-                                                <TableColumn fx:id="tableComlumHoTenNhanKhauCanBo" prefWidth="189.0" text="Họ tên" />
-                                                <TableColumn fx:id="tableComlumGioiTinhNhanKhauCanBo" prefWidth="152.0" text="Nơi tạm trú" />
+                                                <TableColumn fx:id="tableComlumHoTenNhanKhauCanBo" prefWidth="161.0" text="Họ tên" />
+                                                <TableColumn fx:id="tableComlumGioiTinhNhanKhauCanBo" prefWidth="207.0" text="Nơi tạm trú" />
                                                 <TableColumn fx:id="tableComlumTonGiaoNhanKhauCanBo" prefWidth="100.0" text="Từ ngày" />
                                                 <TableColumn prefWidth="100.0" text="Đến ngày" />
                                     <TableColumn prefWidth="250.0" text="Lý do" />

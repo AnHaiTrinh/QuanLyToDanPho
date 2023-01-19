@@ -3,7 +3,6 @@ package com.se07.model.models;
 import java.util.Date;
 
 public class TamVangDisplayModel {
-    private int maTamVang;
     private String hoTen;
     private String noiTamVang;
     private Date tuNgay;
@@ -22,26 +21,6 @@ public class TamVangDisplayModel {
         this.lyDo = lyDo;
         this.tinhTrang = tinhTrang;
         this.idNguoiThucHien = idNguoiThucHien;
-    }
-
-    public TamVangDisplayModel(int maTamVang, String hoTen, String noiTamVang, Date tuNgay, Date denNgay,
-                               String lyDo, String tinhTrang, int idNguoiThucHien) {
-        this.maTamVang = maTamVang;
-        this.hoTen = hoTen;
-        this.noiTamVang = noiTamVang;
-        this.tuNgay = tuNgay;
-        this.denNgay = denNgay;
-        this.lyDo = lyDo;
-        this.tinhTrang = tinhTrang;
-        this.idNguoiThucHien = idNguoiThucHien;
-    }
-
-    public int getMaTamVang() {
-        return maTamVang;
-    }
-
-    public void setMaTamVang(int maTamVang) {
-        this.maTamVang = maTamVang;
     }
 
     public String getHoTen() {

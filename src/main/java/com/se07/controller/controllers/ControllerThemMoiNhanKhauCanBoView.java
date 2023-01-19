@@ -32,8 +32,6 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
     final HoKhauService hoKhauService = new HoKhauService();
     LocalDate today = LocalDate.now();
 
-    final String tinhTrang = "Đã xác nhận";
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBoxGioiTinhThemMoiNhanKhauCanBo.getItems().addAll(listGioiTinh);

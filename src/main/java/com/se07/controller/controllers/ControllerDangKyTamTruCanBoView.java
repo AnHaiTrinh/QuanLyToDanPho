@@ -1,9 +1,7 @@
 package com.se07.controller.controllers;
 
-import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.TamTruService;
 import com.se07.model.models.TamTruDisplayModel;
-import com.se07.model.models.TamTruModel;
 import com.se07.view.TrangChuCanBoView;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -33,8 +31,6 @@ public class ControllerDangKyTamTruCanBoView extends ControllerCanBoView {
     DatePicker datePickerTuNgayTamTruCanBo, datePickerDenNgayTamTruCanBo;
 
     LocalDate today = LocalDate.now();
-
-    final String tinhTrang = "Đã xác nhận";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

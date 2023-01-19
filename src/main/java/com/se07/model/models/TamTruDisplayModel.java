@@ -3,7 +3,6 @@ package com.se07.model.models;
 import java.util.Date;
 
 public class TamTruDisplayModel {
-    private int maTamTru;
     private String CCCD;
     private String hoTen;
     private String noiTamTru;
@@ -24,27 +23,6 @@ public class TamTruDisplayModel {
         this.lyDo = lyDo;
         this.tinhTrang = tinhTrang;
         this.idNguoiThucHien = idNguoiThucHien;
-    }
-
-    public TamTruDisplayModel(int maTamTru, String CCCD, String hoTen, String noiTamTru, Date tuNgay, Date denNgay,
-                              String lyDo, String tinhTrang, int idNguoiThucHien) {
-        this.maTamTru = maTamTru;
-        this.CCCD = CCCD;
-        this.hoTen = hoTen;
-        this.noiTamTru = noiTamTru;
-        this.tuNgay = tuNgay;
-        this.denNgay = denNgay;
-        this.lyDo = lyDo;
-        this.tinhTrang = tinhTrang;
-        this.idNguoiThucHien = idNguoiThucHien;
-    }
-
-    public int getMaTamTru() {
-        return maTamTru;
-    }
-
-    public void setMaTamTru(int maTamTru) {
-        this.maTamTru = maTamTru;
     }
 
     public String getCCCD() {

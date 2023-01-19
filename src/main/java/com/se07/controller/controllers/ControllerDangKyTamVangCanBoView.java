@@ -36,13 +36,11 @@ public class ControllerDangKyTamVangCanBoView extends ControllerCanBoView {
     @FXML
     ComboBox comBoBoxMaNhanKhauTamVangCanBo;
 
-    final String tinhTrang = "Đã xác nhận";
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
         datePickerTuNgayTamVangCanBo.setValue(today);
-        datePickerDenNgayTamVangCanBo.setValue(today);
+        datePickerDenNgayTamVangCanBo.setValue(today.plusDays(7));
         comBoBoxMaNhanKhauTamVangCanBo.getItems().addAll(new NhanKhauService().getAllMaNhanKhau());
         comBoBoxMaNhanKhauTamVangCanBo.getSelectionModel().selectFirst();
         textFieldHoTenTamVangCanBo.setEditable(false);

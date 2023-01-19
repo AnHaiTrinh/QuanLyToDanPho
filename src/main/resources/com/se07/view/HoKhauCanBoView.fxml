@@ -86,7 +86,7 @@
                 <TableView fx:id="tableViewTatCaHoKhauCanBo" layoutX="2.0" layoutY="80.0" onKeyPressed="#onDeletePressedTrongBangHoKhauCanBo" prefHeight="528.0" prefWidth="552.0">
                     <columns>
                         <TableColumn fx:id="tableColumnMaHoHoKhauCanBo" prefWidth="110.0" text="Mã hộ" />
-                        <TableColumn fx:id="tableColumnHotenHoKhauCanBo" prefWidth="194.0" text="Họ tên" />
+                        <TableColumn fx:id="tableColumnHotenHoKhauCanBo" prefWidth="194.0" text="Tên chủ hộ" />
                         <TableColumn fx:id="tableColumnDiaChiHoKhauCanBo" prefWidth="247.0" text="Địa chỉ" />
                     </columns>
                 </TableView>

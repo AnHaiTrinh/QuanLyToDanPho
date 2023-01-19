@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 
 public class ControllerNhanKhauView extends ControllerCanBoView {
     @FXML
-    TableView<NhanKhauModel> tableViewNhanKhauAdmin;
+    TableView<NhanKhauModel> tableViewNhanKhauCanBo;
     @FXML
     TableColumn<NhanKhauModel, String> tableComlumIDNhanKhauCanBo, tableComlumIDHoKhauNhanKhauCanBo,
             tableComlumHoTenNhanKhauCanBo, tableComlumBietDanhNhanKhauCanBo, tableComlumGioiTinhNhanKhauCanBo,
@@ -40,7 +40,8 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
     ComboBox comboBoxTimKiemHoKhauCanBo;
     @FXML
     TextField textFieldLocThongTinNhanKhauCanBo;
-    final private String[] listTimKiem = {"Mã hộ khẩu", "Họ tên", "Biệt danh", "Tình trạng", "Mã nhân khẩu"};
+    final private ObservableList<String> listTimKiem = FXCollections.observableArrayList(
+            "Mã hộ khẩu", "Họ tên", "Biệt danh", "Tình trạng", "Mã nhân khẩu");
 
     final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ");
 
@@ -53,7 +54,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         super.initialize(url, resourceBundle);
         comboBoxTimKiemHoKhauCanBo.getItems().addAll(listTimKiem);
         comboBoxTimKiemHoKhauCanBo.getSelectionModel().selectFirst();
-        tableViewNhanKhauAdmin.setEditable(true);
+        tableViewNhanKhauCanBo.setEditable(true);
         tableComlumIDNhanKhauCanBo.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("maNhanKhau"));
         tableComlumIDHoKhauNhanKhauCanBo.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("maHoKhau"));
         tableComlumHoTenNhanKhauCanBo.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("hoTen"));
@@ -191,11 +192,11 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
 
     public void displayAllNhanKhauCanBo() {
         ObservableList<NhanKhauModel> hoKhauModelObservableList = nhanKhauService.getAllNhanKhau();
-        tableViewNhanKhauAdmin.setItems(hoKhauModelObservableList);
+        tableViewNhanKhauCanBo.setItems(hoKhauModelObservableList);
     }
 
     public void tuChoiNhanKhauCanBo() {
-        NhanKhauModel nhanKhauModel = tableViewNhanKhauAdmin.getSelectionModel().getSelectedItem();
+        NhanKhauModel nhanKhauModel = tableViewNhanKhauCanBo.getSelectionModel().getSelectedItem();
         if (nhanKhauModel == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
@@ -214,7 +215,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
     }
 
     public void xacNhanNhanKhauCanBo() {
-        NhanKhauModel nhanKhauModel = tableViewNhanKhauAdmin.getSelectionModel().getSelectedItem();
+        NhanKhauModel nhanKhauModel = tableViewNhanKhauCanBo.getSelectionModel().getSelectedItem();
         if (nhanKhauModel == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
@@ -238,7 +239,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
     }
 
     public void xoaNhanKhauCanBo() {
-        NhanKhauModel nhanKhauModel = tableViewNhanKhauAdmin.getSelectionModel().getSelectedItem();
+        NhanKhauModel nhanKhauModel = tableViewNhanKhauCanBo.getSelectionModel().getSelectedItem();
         if (nhanKhauModel == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
@@ -273,7 +274,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
                 nhanKhauModelObservableList.add(nhanKhauModel.get());
             }
         }
-        tableViewNhanKhauAdmin.setItems(nhanKhauModelObservableList);
+        tableViewNhanKhauCanBo.setItems(nhanKhauModelObservableList);
     }
 
     public void updateNhanKhauCanBo(NhanKhauModel nhanKhauModel) {
