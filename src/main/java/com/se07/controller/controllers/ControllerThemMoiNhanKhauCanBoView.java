@@ -64,7 +64,7 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
         }
     }
 
-    public void themMoiNhanKhauCanBo() {
+    private void themMoiNhanKhauCanBo() {
         NhanKhauService nhanKhauService = new NhanKhauService();
         if (textFieldHoTenThemMoiNhanKhauCanBo.getText().isBlank() || textFieldMaNhanKhauThemMoiNhanKhauCanBo.getText().isBlank()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -108,7 +108,7 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
         }
     }
 
-    public void huyThemMoiNhanKhauCanBo(Event e) throws IOException {
+    private void huyThemMoiNhanKhauCanBo(Event e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo");
         alert.setContentText("Bạn chắc chắn muốn thoát?");

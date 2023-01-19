@@ -52,7 +52,7 @@ public class ControllerThemMoiHoKhauCanBoView extends ControllerCanBoView {
         }
     }
 
-    public void dangKyHoKhauCanBo() {
+    private void dangKyHoKhauCanBo() {
         HoKhauService hoKhauService = new HoKhauService();
         if (textFieldMaHoKhauThemMoiHoKhauCanBo.getText().isBlank() ||
                 textFieldDiaChiThemMoiHoKhauCanBo.getText().isBlank() ||
@@ -95,7 +95,7 @@ public class ControllerThemMoiHoKhauCanBoView extends ControllerCanBoView {
         }
     }
 
-    public void huyDangKyHoKhauCanBo(Event e) throws IOException {
+    private void huyDangKyHoKhauCanBo(Event e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo");
         alert.setContentText("Bạn chắc chắn muốn thoát?");

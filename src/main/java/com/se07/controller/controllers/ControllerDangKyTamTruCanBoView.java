@@ -65,7 +65,7 @@ public class ControllerDangKyTamTruCanBoView extends ControllerCanBoView {
         }
     }
 
-    public void huyXacNhanDangKyTamTruCanBo(Event e) throws IOException {
+    private void huyXacNhanDangKyTamTruCanBo(Event e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo");
         alert.setContentText("Bạn chắc chắn muốn thoát?");
@@ -77,7 +77,7 @@ public class ControllerDangKyTamTruCanBoView extends ControllerCanBoView {
         }
     }
 
-    public void xacNhanDangKyTamTruCanBo() {
+    private void xacNhanDangKyTamTruCanBo() {
         TamTruService tamTruService = new TamTruService();
         if (textFieldCCCDTamTruCanBo.getText().isBlank() ||
                 textFieldHoTenTamTruCanBo.getText().isBlank() ||

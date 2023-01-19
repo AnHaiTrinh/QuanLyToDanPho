@@ -76,7 +76,7 @@ public class ControllerDangKyTamVangCanBoView extends ControllerCanBoView {
         textFieldHoTenTamVangCanBo.setText(hoKhauModel.get().getHoTen());
     }
 
-    public void xacNhanDangKyTamVangCanBo() {
+    private void xacNhanDangKyTamVangCanBo() {
         TamVangService tamVangService = new TamVangService();
         if (textFieldLyDoTamVangCanBo.getText().isBlank() || textFieldNoiTamVangCanBo.getText().isBlank()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -109,7 +109,7 @@ public class ControllerDangKyTamVangCanBoView extends ControllerCanBoView {
         alert.showAndWait();
     }
 
-    public void huyXacNhanDangKyTamVangCanBo(Event e) throws IOException {
+    private void huyXacNhanDangKyTamVangCanBo(Event e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo");
         alert.setContentText("Bạn chắc chắn muốn thoát?");

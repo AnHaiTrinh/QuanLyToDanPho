@@ -99,12 +99,12 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
         }
     }
 
-    public void displayAllHoKhauCanBo() {
+    private void displayAllHoKhauCanBo() {
         ObservableList<HoKhauModel> hoKhauModelObservableList = hoKhauService.getAllHoKhau();
         tableViewTatCaHoKhauCanBo.setItems(hoKhauModelObservableList);
     }
 
-    public void updateHoKhauCanBo(HoKhauModel hoKhauModel) {
+    private void updateHoKhauCanBo(HoKhauModel hoKhauModel) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo!");
         if (hoKhauService.updateHoKhau(hoKhauModel)) {
@@ -117,7 +117,7 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
         }
     }
 
-    public void xoaHoKhauCanBo() {
+    private void xoaHoKhauCanBo() {
         HoKhauModel hoKhauModel = tableViewTatCaHoKhauCanBo.getSelectionModel().getSelectedItem();
         if (hoKhauModel == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -135,7 +135,7 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
         }
     }
 
-    public void locThongTinHoKhauCanBo() {
+    private void locThongTinHoKhauCanBo() {
         String dieuKienKiemTra = String.valueOf(comboBoxTimKiemHoKhauCanBo.getValue());
         String cauHoi = textFieldLocThongTinHoKhauCanBo.getText();
         ObservableList<HoKhauModel> hoKhauModelObservableList = FXCollections.observableArrayList();

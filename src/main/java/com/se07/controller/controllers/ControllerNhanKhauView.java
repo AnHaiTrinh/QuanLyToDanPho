@@ -190,12 +190,12 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         }
     }
 
-    public void displayAllNhanKhauCanBo() {
+    private void displayAllNhanKhauCanBo() {
         ObservableList<NhanKhauModel> hoKhauModelObservableList = nhanKhauService.getAllNhanKhau();
         tableViewNhanKhauCanBo.setItems(hoKhauModelObservableList);
     }
 
-    public void tuChoiNhanKhauCanBo() {
+    private void tuChoiNhanKhauCanBo() {
         NhanKhauModel nhanKhauModel = tableViewNhanKhauCanBo.getSelectionModel().getSelectedItem();
         if (nhanKhauModel == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -214,7 +214,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         }
     }
 
-    public void xacNhanNhanKhauCanBo() {
+    private void xacNhanNhanKhauCanBo() {
         NhanKhauModel nhanKhauModel = tableViewNhanKhauCanBo.getSelectionModel().getSelectedItem();
         if (nhanKhauModel == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -238,7 +238,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         }
     }
 
-    public void xoaNhanKhauCanBo() {
+    private void xoaNhanKhauCanBo() {
         NhanKhauModel nhanKhauModel = tableViewNhanKhauCanBo.getSelectionModel().getSelectedItem();
         if (nhanKhauModel == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -256,7 +256,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         }
     }
 
-    public void locThongTinNhanKhauCanBo() {
+    private void locThongTinNhanKhauCanBo() {
         String dieuKienKiemTra = String.valueOf(comboBoxTimKiemHoKhauCanBo.getValue());
         String cauHoi = textFieldLocThongTinNhanKhauCanBo.getText();
         ObservableList<NhanKhauModel> nhanKhauModelObservableList = FXCollections.observableArrayList();
@@ -277,7 +277,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         tableViewNhanKhauCanBo.setItems(nhanKhauModelObservableList);
     }
 
-    public void updateNhanKhauCanBo(NhanKhauModel nhanKhauModel) {
+    private void updateNhanKhauCanBo(NhanKhauModel nhanKhauModel) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo!");
         if (nhanKhauService.updateNhanKhau(nhanKhauModel)) {
