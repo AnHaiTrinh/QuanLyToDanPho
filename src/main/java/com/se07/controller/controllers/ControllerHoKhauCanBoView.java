@@ -25,20 +25,20 @@ import java.util.ResourceBundle;
 
 public class ControllerHoKhauCanBoView extends ControllerCanBoView {
     @FXML
-    private TableColumn<HoKhauModel, String> tableColumnMaHoHoKhauCanBo, tableColumnHotenHoKhauCanBo, tableColumnDiaChiHoKhauCanBo;
+    TableColumn<HoKhauModel, String> tableColumnMaHoHoKhauCanBo, tableColumnHotenHoKhauCanBo, tableColumnDiaChiHoKhauCanBo;
     @FXML
-    private TableView<HoKhauModel> tableViewTatCaHoKhauCanBo;
+    TableView<HoKhauModel> tableViewTatCaHoKhauCanBo;
     @FXML
-    private ComboBox comboBoxTimKiemHoKhauCanBo;
+    ComboBox comboBoxTimKiemHoKhauCanBo;
     @FXML
-    private TextField textFieldLocThongTinHoKhauCanBo;
-    private String[] listTimKiem = {"Tên chủ hộ", "Mã hộ khẩu", "Địa chỉ"};
-    HoKhauService hoKhauService = new HoKhauService();
+    TextField textFieldLocThongTinHoKhauCanBo;
+    private ObservableList<String> listTimKiem = FXCollections.observableArrayList("Tên chủ hộ", "Mã hộ khẩu", "Địa chỉ");
+    final HoKhauService hoKhauService = new HoKhauService();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
-        comboBoxTimKiemHoKhauCanBo.getItems().addAll(listTimKiem);
+        comboBoxTimKiemHoKhauCanBo = new ComboBox<>(listTimKiem);
         comboBoxTimKiemHoKhauCanBo.getSelectionModel().selectFirst();
         tableViewTatCaHoKhauCanBo.setEditable(true);
         tableColumnMaHoHoKhauCanBo.setCellValueFactory(new PropertyValueFactory<HoKhauModel, String>("maHoKhau"));

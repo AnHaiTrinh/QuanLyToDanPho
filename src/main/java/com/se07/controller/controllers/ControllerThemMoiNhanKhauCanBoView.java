@@ -3,6 +3,8 @@ package com.se07.controller.controllers;
 import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.NhanKhauService;
 import com.se07.model.models.NhanKhauModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -26,9 +28,9 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
     DatePicker datePickerNgaySinhThemMoiNhanKhauCanBo;
     @FXML
     ComboBox comboBoxGioiTinhThemMoiNhanKhauCanBo, comboBoxMaHoKhauThemMoiNhanKhauCanBo;
-    private String[] listGioiTinh = {"Nam", "Nữ", "Không rõ"};
-    HoKhauService hoKhauService = new HoKhauService();
-    final LocalDate today = LocalDate.now();
+    final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ");
+    final HoKhauService hoKhauService = new HoKhauService();
+    LocalDate today = LocalDate.now();
 
     final String tinhTrang = "Đã xác nhận";
 
@@ -36,10 +38,7 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBoxGioiTinhThemMoiNhanKhauCanBo.getItems().addAll(listGioiTinh);
         comboBoxGioiTinhThemMoiNhanKhauCanBo.getSelectionModel().selectFirst();
-        List<String> list = hoKhauService.getAllMaHoKhau();
-        for (String a : list) {
-            comboBoxMaHoKhauThemMoiNhanKhauCanBo.getItems().add(a);
-        }
+        comboBoxMaHoKhauThemMoiNhanKhauCanBo.getItems().addAll(hoKhauService.getAllMaHoKhau());
         comboBoxMaHoKhauThemMoiNhanKhauCanBo.getSelectionModel().selectFirst();
         datePickerNgaySinhThemMoiNhanKhauCanBo.setValue(today);
         anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {

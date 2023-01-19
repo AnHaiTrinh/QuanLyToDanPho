@@ -79,45 +79,37 @@
               </Button>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="220.0" prefHeight="603.0" prefWidth="538.0">
-            <children>
-                <AnchorPane fx:id="paneMidPeopleAdmin" prefHeight="605.0" prefWidth="554.0">
-                    <children>
-                        <ScrollPane layoutX="2.0" layoutY="80.0" prefHeight="526.0" prefWidth="554.0">
-                            <content>
-                                <AnchorPane>
-                                    <children>
-                                        <TableView fx:id="tableViewNhanKhauAdmin" editable="true" onKeyPressed="#onDeletePressedTrongBangNhanKhauCanBo" prefHeight="528.0" prefWidth="800.0">
-                                            <columns>
-                                                <TableColumn fx:id="tableComlumIDNhanKhauCanBo" prefWidth="64.0" text="ID" />
-                                                <TableColumn fx:id="tableComlumIDHoKhauNhanKhauCanBo" prefWidth="117.0" text="Mã Hộ Khẩu" />
-                                                <TableColumn fx:id="tableComlumHoTenNhanKhauCanBo" prefWidth="130.0" text="Họ Tên" />
-                                                <TableColumn fx:id="tableComlumBietDanhNhanKhauCanBo" prefWidth="82.0" text="Biệt Danh" />
-                                                <TableColumn fx:id="tableComlumNgaySinhNhanKhauCanBo" prefWidth="160.0" text="Ngày sinh" />
-                                                <TableColumn fx:id="tableComlumGioiTinhNhanKhauCanBo" prefWidth="75.0" text="Giới tính" />
-                                                <TableColumn fx:id="tableComlumTonGiaoNhanKhauCanBo" prefWidth="75.0" text="Tôn giáo" />
-                                                <TableColumn fx:id="tableComlumTinhTrangNhanKhauCanBo" prefWidth="95.0" text="Tình trạng" />
-                                            </columns>
-                                        </TableView>
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </ScrollPane>
-                        <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="337.0" layoutY="18.0" mnemonicParsing="false" onMousePressed="#onPressedButtonLocThongTinNhanKhauCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="15.0" />
-                            </font>
-                        </Button>
-                        <ComboBox fx:id="comboBoxTimKiemHoKhauCanBo" layoutX="226.0" layoutY="18.0" prefHeight="31.0" prefWidth="100.0" />
-                        <TextField fx:id="textFieldLocThongTinNhanKhauCanBo" layoutX="2.0" layoutY="18.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
-                            <font>
-                                <Font name="System Italic" size="15.0" />
-                            </font>
-                        </TextField>
-                    </children>
-                </AnchorPane>
-            </children>
-        </AnchorPane>
+          <AnchorPane fx:id="paneMidPeopleAdmin" layoutX="220.0" prefHeight="605.0" prefWidth="554.0">
+              <children>
+                  <ScrollPane layoutX="2.0" layoutY="80.0" prefHeight="526.0" prefWidth="554.0">
+                      <content>
+                            <TableView fx:id="tableViewNhanKhauAdmin" editable="true" onKeyPressed="#onDeletePressedTrongBangNhanKhauCanBo" prefHeight="528.0" prefWidth="800.0">
+                                <columns>
+                                    <TableColumn fx:id="tableComlumIDNhanKhauCanBo" prefWidth="64.0" text="ID" />
+                                    <TableColumn fx:id="tableComlumIDHoKhauNhanKhauCanBo" prefWidth="117.0" text="Mã Hộ Khẩu" />
+                                    <TableColumn fx:id="tableComlumHoTenNhanKhauCanBo" prefWidth="130.0" text="Họ Tên" />
+                                    <TableColumn fx:id="tableComlumBietDanhNhanKhauCanBo" prefWidth="109.0" text="Biệt Danh" />
+                                    <TableColumn fx:id="tableComlumNgaySinhNhanKhauCanBo" prefWidth="105.0" text="Ngày sinh" />
+                                    <TableColumn fx:id="tableComlumGioiTinhNhanKhauCanBo" text="Giới tính" />
+                                    <TableColumn fx:id="tableComlumTonGiaoNhanKhauCanBo" prefWidth="88.0" text="Tôn giáo" />
+                                    <TableColumn fx:id="tableComlumTinhTrangNhanKhauCanBo" prefWidth="106.0" text="Tình trạng" />
+                                </columns>
+                            </TableView>
+                      </content>
+                  </ScrollPane>
+                  <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="337.0" layoutY="18.0" mnemonicParsing="false" onMousePressed="#onPressedButtonLocThongTinNhanKhauCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
+                      <font>
+                          <Font name="System Bold" size="15.0" />
+                      </font>
+                  </Button>
+                  <ComboBox fx:id="comboBoxTimKiemHoKhauCanBo" layoutX="226.0" layoutY="18.0" prefHeight="31.0" prefWidth="100.0" />
+                  <TextField fx:id="textFieldLocThongTinNhanKhauCanBo" layoutX="2.0" layoutY="18.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
+                      <font>
+                          <Font name="System Italic" size="15.0" />
+                      </font>
+                  </TextField>
+              </children>
+          </AnchorPane>
         <AnchorPane fx:id="panePeopleAdmin" layoutX="760.0" layoutY="50.0" prefHeight="553.0" prefWidth="154.0">
             <children>
                 <Button fx:id="buttonThemNhanKhauCanBo" layoutX="21.0" layoutY="115.0" mnemonicParsing="false" onMousePressed="#onPressedButtonThemMoiNhanKhauCanBo" prefHeight="38.0" prefWidth="130.0" text="Thêm mới" textFill="#fcfcfc">
