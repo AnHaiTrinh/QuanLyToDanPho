@@ -142,6 +142,12 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
     public void onPressedButtonNhanKhauCanBo(MouseEvent e) {
     }
 
+    public void onEnterPressedTrongOTimKiemNhanKhauCanBo(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            locThongTinNhanKhauCanBo();
+        }
+    }
+
     public void onPressedButtonThemMoiNhanKhauCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "ThemMoiNhanKhauCanBoView.fxml");

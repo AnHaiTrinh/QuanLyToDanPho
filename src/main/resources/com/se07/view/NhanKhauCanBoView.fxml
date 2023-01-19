@@ -103,7 +103,7 @@
                       </font>
                   </Button>
                   <ComboBox fx:id="comboBoxTimKiemHoKhauCanBo" layoutX="226.0" layoutY="18.0" prefHeight="31.0" prefWidth="100.0" />
-                  <TextField fx:id="textFieldLocThongTinNhanKhauCanBo" layoutX="2.0" layoutY="18.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
+                  <TextField fx:id="textFieldLocThongTinNhanKhauCanBo" layoutX="2.0" layoutY="18.0" onKeyPressed="#onEnterPressedTrongOTimKiemNhanKhauCanBo" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
                       <font>
                           <Font name="System Italic" size="15.0" />
                       </font>

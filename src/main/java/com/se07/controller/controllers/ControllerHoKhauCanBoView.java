@@ -38,7 +38,7 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
-        comboBoxTimKiemHoKhauCanBo = new ComboBox<>(listTimKiem);
+        comboBoxTimKiemHoKhauCanBo.getItems().addAll(listTimKiem);
         comboBoxTimKiemHoKhauCanBo.getSelectionModel().selectFirst();
         tableViewTatCaHoKhauCanBo.setEditable(true);
         tableColumnMaHoHoKhauCanBo.setCellValueFactory(new PropertyValueFactory<HoKhauModel, String>("maHoKhau"));
@@ -67,6 +67,12 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
 
     @Override
     public void onPressedButtonHoKhauCanBo(MouseEvent e) throws IOException {
+    }
+
+    public void onEnterPressedTrongOTimKiemHoKhauCanBo(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            locThongTinHoKhauCanBo();
+        }
     }
 
     public void onDeletePressedTrongBangHoKhauCanBo(KeyEvent keyEvent) {

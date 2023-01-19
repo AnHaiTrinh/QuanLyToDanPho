@@ -90,7 +90,7 @@
                         <TableColumn fx:id="tableColumnDiaChiHoKhauCanBo" prefWidth="247.0" text="Địa chỉ" />
                     </columns>
                 </TableView>
-                <TextField fx:id="textFieldLocThongTinHoKhauCanBo" layoutX="2.0" layoutY="18.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
+                <TextField fx:id="textFieldLocThongTinHoKhauCanBo" layoutX="2.0" layoutY="18.0" onKeyPressed="#onEnterPressedTrongOTimKiemHoKhauCanBo" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
                     <font>
                         <Font name="System Italic" size="15.0" />
                     </font>
