@@ -28,7 +28,7 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
     DatePicker datePickerNgaySinhThemMoiNhanKhauCanBo;
     @FXML
     ComboBox comboBoxGioiTinhThemMoiNhanKhauCanBo, comboBoxMaHoKhauThemMoiNhanKhauCanBo;
-    final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ");
+    final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ","Khác");
     final HoKhauService hoKhauService = new HoKhauService();
     LocalDate today = LocalDate.now();
 

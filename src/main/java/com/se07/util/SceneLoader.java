@@ -13,4 +13,9 @@ public class SceneLoader {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
     }
+    public void loadFxmlFileHoGiaDinh(Stage stage, String filename) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource(filename));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+    }
 }
