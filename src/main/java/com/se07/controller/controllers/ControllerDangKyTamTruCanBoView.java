@@ -1,7 +1,8 @@
 package com.se07.controller.controllers;
 
+import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.TamTruService;
-import com.se07.model.models.TamTruDisplayModel;
+import com.se07.model.models.TamTruModel;
 import com.se07.view.TrangChuCanBoView;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -32,6 +34,8 @@ public class ControllerDangKyTamTruCanBoView extends ControllerCanBoView {
 
     LocalDate today = LocalDate.now();
 
+    final String tinhTrang = "Đã xác nhận";
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
@@ -46,7 +50,7 @@ public class ControllerDangKyTamTruCanBoView extends ControllerCanBoView {
                 }
             }
         });
-        comboBoxNoiTamTruCanBo.getItems().add("Số 1, Tạ Quang Bửu, Hai Bà trưng, Hà Nội");
+        comboBoxNoiTamTruCanBo.getItems().add("");
         comboBoxNoiTamTruCanBo.getSelectionModel().selectFirst();
         datePickerTuNgayTamTruCanBo.setValue(today);
         datePickerDenNgayTamTruCanBo.setValue(today.plusDays(7));
@@ -79,6 +83,7 @@ public class ControllerDangKyTamTruCanBoView extends ControllerCanBoView {
 
     public void xacNhanDangKyTamTruCanBo() {
         TamTruService tamTruService = new TamTruService();
+        HoKhauService hoKhauService = new HoKhauService();
         if (textFieldCCCDTamTruCanBo.getText().isBlank() ||
                 textFieldHoTenTamTruCanBo.getText().isBlank() ||
                 textFieldLyDoTamTruCanBo.getText().isBlank()) {
@@ -88,24 +93,26 @@ public class ControllerDangKyTamTruCanBoView extends ControllerCanBoView {
             alert.showAndWait();
             return;
         }
-        String cccd = textFieldCCCDTamTruCanBo.getText();
-        String hoTen = textFieldHoTenTamTruCanBo.getText();
-        String noiTamTru = String.valueOf(comboBoxNoiTamTruCanBo.getValue());
-        Date tuNgay = new Date(datePickerTuNgayTamTruCanBo.getValue().toEpochDay());
-        Date denNgay = new Date(datePickerDenNgayTamTruCanBo.getValue().toEpochDay());
-        String lyDo = textFieldLyDoTamTruCanBo.getText();
-        TamTruDisplayModel tamTruDisplayModel = new TamTruDisplayModel(cccd, hoTen, noiTamTru, tuNgay, denNgay, lyDo, tinhTrang, id);
-        if (tamTruService.addTamtru(tamTruDisplayModel)) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText("");
-            alert.setContentText("Bạn đã đăng ký thành công");
-            if (alert.showAndWait().get() == ButtonType.OK) {
-                textFieldCCCDTamTruCanBo.setText("");
-                textFieldHoTenTamTruCanBo.setText("");
-                textFieldLyDoTamTruCanBo.setText("");
+        String maHoKhau = hoKhauService.getMaHoKhauByDiaChi(String.valueOf(comboBoxNoiTamTruCanBo.getValue()));
+        if (maHoKhau != null) {
+            String cccd = textFieldCCCDTamTruCanBo.getText();
+            String hoTen = textFieldHoTenTamTruCanBo.getText();
+            Date tuNgay = Date.from(datePickerTuNgayTamTruCanBo.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+            Date denNgay = Date.from(datePickerDenNgayTamTruCanBo.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+            String lyDo = textFieldLyDoTamTruCanBo.getText();
+            TamTruModel tamTruModel = new TamTruModel(maHoKhau, cccd, hoTen, tuNgay, denNgay, lyDo, tinhTrang, id);
+            if (tamTruService.addTamTru(tamTruModel)) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Thông báo");
+                alert.setHeaderText("");
+                alert.setContentText("Bạn đã đăng ký thành công");
+                if (alert.showAndWait().get() == ButtonType.OK) {
+                    textFieldCCCDTamTruCanBo.setText("");
+                    textFieldHoTenTamTruCanBo.setText("");
+                    textFieldLyDoTamTruCanBo.setText("");
+                }
+                return;
             }
-            return;
         }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo");

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -97,17 +98,25 @@
                             </TableView>
                       </content>
                   </ScrollPane>
-                  <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="337.0" layoutY="18.0" mnemonicParsing="false" onMousePressed="#onPressedButtonLocThongTinNhanKhauCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
-                      <font>
-                          <Font name="System Bold" size="15.0" />
-                      </font>
-                  </Button>
-                  <ComboBox fx:id="comboBoxTimKiemHoKhauCanBo" layoutX="226.0" layoutY="18.0" prefHeight="31.0" prefWidth="100.0" />
-                  <TextField fx:id="textFieldLocThongTinNhanKhauCanBo" layoutX="2.0" layoutY="18.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
-                      <font>
-                          <Font name="System Italic" size="15.0" />
-                      </font>
-                  </TextField>
+            <AnchorPane layoutX="2.0" layoutY="3.0" onKeyPressed="#onEnterPressedTrongOTimKiemNhanKhauCanBo">
+               <children>
+                        <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="335.0" layoutY="15.0" mnemonicParsing="false" onMousePressed="#onPressedButtonLocThongTinNhanKhauCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Button>
+                        <ComboBox fx:id="comboBoxTimKiemNhanKhauCanBo" layoutX="224.0" layoutY="15.0" onAction="#onSelectionComboBoxTimKiemTamVangCanBo" prefHeight="31.0" prefWidth="100.0" />
+                        <TextField fx:id="textFieldLocThongTinNhanKhauCanBo" layoutY="15.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
+                            <font>
+                                <Font name="System Italic" size="15.0" />
+                            </font>
+                        </TextField>
+                  <DatePicker fx:id="datePickerTu" layoutX="30.0" prefHeight="20.0" prefWidth="160.0" promptText="Từ" />
+                  <DatePicker fx:id="datePickerDen" layoutX="30.0" layoutY="40.0" prefHeight="20.0" prefWidth="160.0" promptText="Đến" />
+                  <ComboBox fx:id="comboBoxGioiTinhNhanKhauCanBo" layoutY="15.0" prefHeight="31.0" prefWidth="213.0" />
+                  <ComboBox fx:id="comboBoxTinhTrangNhanKhauCanBo" layoutY="15.0" prefHeight="31.0" prefWidth="213.0" />
+               </children>
+            </AnchorPane>
               </children>
           </AnchorPane>
         <AnchorPane fx:id="panePeopleAdmin" layoutX="760.0" layoutY="50.0" prefHeight="553.0" prefWidth="154.0">

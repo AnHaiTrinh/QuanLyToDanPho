@@ -81,7 +81,7 @@ public class ControllerCanBoView implements Initializable {
         }
     }
 
-    public void dangXuatCanBoView(Stage stage) {
+    private void dangXuatCanBoView(Stage stage) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo!");
         alert.setHeaderText("Bạn muốn đăng xuất ?");

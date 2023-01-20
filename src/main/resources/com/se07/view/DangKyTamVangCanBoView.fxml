@@ -152,7 +152,7 @@
                 <TextField fx:id="textFieldHoTenTamVangCanBo" promptText="Bắt buộc" GridPane.columnIndex="5" />
                 <DatePicker fx:id="datePickerDenNgayTamVangCanBo" prefHeight="31.0" prefWidth="264.0" promptText="Bắt buộc" GridPane.columnIndex="5" GridPane.rowIndex="2" />
                 <DatePicker fx:id="datePickerTuNgayTamVangCanBo" prefHeight="31.0" prefWidth="236.0" promptText="Bắt buộc" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                <ComboBox fx:id="comBoBoxMaNhanKhauTamVangCanBo" onAction="#onSelectioncomBoBoxMaNhanKhauTamVangCanBo" prefHeight="31.0" prefWidth="206.0" GridPane.columnIndex="2" />
+                <ComboBox fx:id="comBoBoxMaNhanKhauTamVangCanBo" onAction="#onSelectionComBoBoxMaNhanKhauTamVangCanBo" prefHeight="31.0" prefWidth="206.0" GridPane.columnIndex="2" />
                 <Label text="Mã nhân khẩu" GridPane.columnIndex="1">
                     <font>
                         <Font name="System Bold" size="15.0" />
