@@ -201,7 +201,7 @@ public class NhanKhauService {
 
     public boolean deleteNhanKhau(NhanKhauModel nhanKhauModel) {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "delete from nhan_khau where maNhanKhau = '" + nhanKhauModel.getMaHoKhau() + "'";
+        String query = "delete from nhan_khau where maNhanKhau = '" + nhanKhauModel.getMaNhanKhau() + "'";
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
@@ -226,5 +226,93 @@ public class NhanKhauService {
             e.printStackTrace();
             return -1;
         }
+    }
+
+    public ObservableList<String> getAllMaNhanKhau() {
+        ObservableList<String> listMaNhanKhau = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select maNhanKhau from nhan_khau";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listMaNhanKhau.add(rs.getString(1));
+            }
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listMaNhanKhau;
+    }
+
+    public ObservableList<NhanKhauModel> getNhanKhauByNgaySinhBetween(java.util.Date tu, java.util.Date den) {
+        ObservableList<NhanKhauModel> nhanKhauModelObservableList = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select * from nhan_khau where ngaySinh between ? and ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setDate(1, new java.sql.Date(tu.getTime()));
+            statement.setDate(2, new java.sql.Date(den.getTime()));
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                NhanKhauModel temp = new NhanKhauModel(rs.getString("maNhanKhau"),
+                        rs.getString("maHoKhau"), rs.getNString("hoTen"),
+                        rs.getNString("bietDanh"), rs.getDate("ngaySinh"),
+                        rs.getNString("gioiTinh"), rs.getNString("tonGiao"),
+                        rs.getNString("tinhTrang"), rs.getInt("idNguoiThucHien"));
+                nhanKhauModelObservableList.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return nhanKhauModelObservableList;
+    }
+
+    public ObservableList<NhanKhauModel> getNhanKhauByGioiTinh(String gioiTinh) {
+        ObservableList<NhanKhauModel> nhanKhauModelObservableList = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select * from nhan_khau where gioiTinh = N'" + gioiTinh + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                NhanKhauModel temp = new NhanKhauModel(rs.getString("maNhanKhau"),
+                        rs.getString("maHoKhau"), rs.getNString("hoTen"),
+                        rs.getNString("bietDanh"), rs.getDate("ngaySinh"),
+                        rs.getNString("gioiTinh"), rs.getNString("tonGiao"),
+                        rs.getNString("tinhTrang"), rs.getInt("idNguoiThucHien"));
+                nhanKhauModelObservableList.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return nhanKhauModelObservableList;
+    }
+
+    public ObservableList<NhanKhauModel> getNhanKhauByTonGiao(String tonGiao) {
+        ObservableList<NhanKhauModel> nhanKhauModelObservableList = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query;
+        if (tonGiao.isBlank()) {
+            query = "select * from nhan_khau where tonGiao is null";
+        } else {
+            query = "select * from nhan_khau where tonGiao like N'%" + tonGiao + "%'";
+        }
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                NhanKhauModel temp = new NhanKhauModel(rs.getString("maNhanKhau"),
+                        rs.getString("maHoKhau"), rs.getNString("hoTen"),
+                        rs.getNString("bietDanh"), rs.getDate("ngaySinh"),
+                        rs.getNString("gioiTinh"), rs.getNString("tonGiao"),
+                        rs.getNString("tinhTrang"), rs.getInt("idNguoiThucHien"));
+                nhanKhauModelObservableList.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return nhanKhauModelObservableList;
     }
 }

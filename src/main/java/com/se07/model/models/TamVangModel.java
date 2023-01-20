@@ -3,7 +3,7 @@ package com.se07.model.models;
 import java.util.Date;
 
 public class TamVangModel {
-    private String maTamVang;
+    private int maTamVang;
     private String maNhanKhau;
     private String noiTamVang;
     private Date tuNgay;
@@ -12,8 +12,19 @@ public class TamVangModel {
     private String tinhTrang;
     private int idNguoiThucHien;
 
-    public TamVangModel(String maTamVang, String maNhanKhau, String noiTamVang, Date tuNgay, Date denNgay, String lyDo,
-                        String tinhTrang, int idNguoiThucHien) {
+    public TamVangModel(String maNhanKhau, String noiTamVang, Date tuNgay, Date denNgay, String lyDo, String tinhTrang,
+                        int idNguoiThucHien) {
+        this.maNhanKhau = maNhanKhau;
+        this.noiTamVang = noiTamVang;
+        this.tuNgay = tuNgay;
+        this.denNgay = denNgay;
+        this.lyDo = lyDo;
+        this.tinhTrang = tinhTrang;
+        this.idNguoiThucHien = idNguoiThucHien;
+    }
+
+    public TamVangModel(int maTamVang, String maNhanKhau, String noiTamVang, Date tuNgay,
+                        Date denNgay, String lyDo, String tinhTrang, int idNguoiThucHien) {
         this.maTamVang = maTamVang;
         this.maNhanKhau = maNhanKhau;
         this.noiTamVang = noiTamVang;
@@ -24,11 +35,11 @@ public class TamVangModel {
         this.idNguoiThucHien = idNguoiThucHien;
     }
 
-    public String getMaTamVang() {
+    public int getMaTamVang() {
         return maTamVang;
     }
 
-    public void setMaTamVang(String maTamVang) {
+    public void setMaTamVang(int maTamVang) {
         this.maTamVang = maTamVang;
     }
 

@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class HoKhauService {
@@ -163,5 +165,63 @@ public class HoKhauService {
             e.printStackTrace();
             return -1;
         }
+    }
+
+    public ObservableList<String> getAllMaHoKhau() {
+        ObservableList<String> listMaHoKhau = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select maHoKhau from ho_khau";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listMaHoKhau.add(rs.getString(1));
+            }
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listMaHoKhau;
+    }
+
+    public String getMaHoKhauByDiaChi(String diaChi) {
+        String maHoKhau = null;
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select maHoKhau from ho_khau where diaChi = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, diaChi);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                maHoKhau = rs.getString(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return maHoKhau;
+    }
+
+    public ObservableList<HoKhauModel> getHoKhauByNgaySinhBetween(java.util.Date tu, java.util.Date den) {
+        ObservableList<HoKhauModel> hoKhauModelObservableList = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select * from ho_khau where ngayLap between ? and ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setDate(1, new java.sql.Date(tu.getTime()));
+            statement.setDate(2, new java.sql.Date(den.getTime()));
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                HoKhauModel temp = new HoKhauModel(rs.getString("maHoKhau"),
+                        rs.getNString("chuHo"),
+                        rs.getNString("diachi"),
+                        rs.getDate("ngayLap"),
+                        rs.getInt("idNguoiThucHien"));
+                hoKhauModelObservableList.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return hoKhauModelObservableList;
     }
 }

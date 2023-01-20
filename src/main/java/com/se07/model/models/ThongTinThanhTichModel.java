@@ -1,27 +1,41 @@
 package com.se07.model.models;
 
+import java.io.File;
+
 public class ThongTinThanhTichModel {
     private int idNhap;
+    private int idDip;
     private String maNhanKhau;
     private int lop;
     private String truong;
     private String capThanhTich;
     private String kieuThanhTich;
-    private String namHoc;
-    private byte[] minhChung;
+    private File minhChung;
     private String tinhTrang;
     private int idNguoiThucHien;
 
-    public ThongTinThanhTichModel(int idNhap, String maNhanKhau, int lop, String truong, String capThanhTich,
-                                  String kieuThanhTich, String namHoc, byte[] minhChung,
-                                  String tinhTrang, int idNguoiThucHien) {
-        this.idNhap = idNhap;
+    public ThongTinThanhTichModel(int idDip, String maNhanKhau, int lop, String truong, String capThanhTich,
+                                  String kieuThanhTich, File minhChung, String tinhTrang, int idNguoiThucHien) {
+        this.idDip = idDip;
         this.maNhanKhau = maNhanKhau;
         this.lop = lop;
         this.truong = truong;
         this.capThanhTich = capThanhTich;
         this.kieuThanhTich = kieuThanhTich;
-        this.namHoc = namHoc;
+        this.minhChung = minhChung;
+        this.tinhTrang = tinhTrang;
+        this.idNguoiThucHien = idNguoiThucHien;
+    }
+
+    public ThongTinThanhTichModel(int idNhap, int idDip, String maNhanKhau, int lop, String truong, String capThanhTich,
+                                  String kieuThanhTich, File minhChung, String tinhTrang, int idNguoiThucHien) {
+        this.idNhap = idNhap;
+        this.idDip = idDip;
+        this.maNhanKhau = maNhanKhau;
+        this.lop = lop;
+        this.truong = truong;
+        this.capThanhTich = capThanhTich;
+        this.kieuThanhTich = kieuThanhTich;
         this.minhChung = minhChung;
         this.tinhTrang = tinhTrang;
         this.idNguoiThucHien = idNguoiThucHien;
@@ -33,6 +47,14 @@ public class ThongTinThanhTichModel {
 
     public void setIdNhap(int idNhap) {
         this.idNhap = idNhap;
+    }
+
+    public int getIdDip() {
+        return idDip;
+    }
+
+    public void setIdDip(int idDip) {
+        this.idDip = idDip;
     }
 
     public String getMaNhanKhau() {
@@ -75,19 +97,11 @@ public class ThongTinThanhTichModel {
         this.kieuThanhTich = kieuThanhTich;
     }
 
-    public String getNamHoc() {
-        return namHoc;
-    }
-
-    public void setNamHoc(String namHoc) {
-        this.namHoc = namHoc;
-    }
-
-    public byte[] getMinhChung() {
+    public File getMinhChung() {
         return minhChung;
     }
 
-    public void setMinhChung(byte[] minhChung) {
+    public void setMinhChung(File minhChung) {
         this.minhChung = minhChung;
     }
 

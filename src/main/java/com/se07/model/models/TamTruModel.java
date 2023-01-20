@@ -3,22 +3,21 @@ package com.se07.model.models;
 import java.util.Date;
 
 public class TamTruModel {
-    private String maTamTru;
+    private int maTamTru;
+    private String maHoKhau;
     private String CCCD;
     private String hoTen;
-    private String noiTamTru;
     private Date tuNgay;
     private Date denNgay;
     private String lyDo;
     private String tinhTrang;
     private int idNguoiThucHien;
 
-    public TamTruModel(String maTamTru, String CCCD, String hoTen, String noiTamTru, Date tuNgay, Date denNgay,
-                       String lyDo, String tinhTrang, int idNguoiThucHien) {
-        this.maTamTru = maTamTru;
+    public TamTruModel(String maHoKhau, String CCCD, String hoTen, Date tuNgay, Date denNgay, String lyDo,
+                       String tinhTrang, int idNguoiThucHien) {
+        this.maHoKhau = maHoKhau;
         this.CCCD = CCCD;
         this.hoTen = hoTen;
-        this.noiTamTru = noiTamTru;
         this.tuNgay = tuNgay;
         this.denNgay = denNgay;
         this.lyDo = lyDo;
@@ -26,12 +25,33 @@ public class TamTruModel {
         this.idNguoiThucHien = idNguoiThucHien;
     }
 
-    public String getMaTamTru() {
+    public TamTruModel(int maTamTru, String maHoKhau, String CCCD, String hoTen, Date tuNgay, Date denNgay,
+                       String lyDo, String tinhTrang, int idNguoiThucHien) {
+        this.maTamTru = maTamTru;
+        this.maHoKhau = maHoKhau;
+        this.CCCD = CCCD;
+        this.hoTen = hoTen;
+        this.tuNgay = tuNgay;
+        this.denNgay = denNgay;
+        this.lyDo = lyDo;
+        this.tinhTrang = tinhTrang;
+        this.idNguoiThucHien = idNguoiThucHien;
+    }
+
+    public int getMaTamTru() {
         return maTamTru;
     }
 
-    public void setMaTamTru(String maTamTru) {
+    public void setMaTamTru(int maTamTru) {
         this.maTamTru = maTamTru;
+    }
+
+    public String getMaHoKhau() {
+        return maHoKhau;
+    }
+
+    public void setMaHoKhau(String maHoKhau) {
+        this.maHoKhau = maHoKhau;
     }
 
     public String getCCCD() {
@@ -48,14 +68,6 @@ public class TamTruModel {
 
     public void setHoTen(String hoTen) {
         this.hoTen = hoTen;
-    }
-
-    public String getNoiTamTru() {
-        return noiTamTru;
-    }
-
-    public void setNoiTamTru(String noiTamTru) {
-        this.noiTamTru = noiTamTru;
     }
 
     public Date getTuNgay() {

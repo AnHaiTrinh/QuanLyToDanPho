@@ -1,0 +1,19 @@
+#paneSplitUserCanBo {
+    -fx-background-color: linear-gradient(#7758D1 2%, #F7CBFD 40%);
+}
+
+#buttonChapNhanTachHoKhauCanBo {
+    -fx-background-color: black;
+}
+
+#buttonChapNhanTachHoKhauCanBo:hover {
+    -fx-background-color: #177306;
+}
+
+#buttonKhongChapNhanTachHoKhauCanBo {
+    -fx-background-color: black;
+}
+
+#buttonKhongChapNhanTachHoKhauCanBo:hover {
+    -fx-background-color: #910c0c;
+}
