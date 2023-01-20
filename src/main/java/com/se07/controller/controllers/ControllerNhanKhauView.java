@@ -2,11 +2,12 @@ package com.se07.controller.controllers;
 
 import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.NhanKhauService;
-import com.se07.model.models.HoKhauModel;
 import com.se07.model.models.NhanKhauModel;
+import com.se07.util.ComponentVisibility;
 import com.se07.util.MyDateStringConverter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -18,12 +19,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.util.converter.DateStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -37,11 +38,13 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
     @FXML
     TableColumn<NhanKhauModel, Date> tableComlumNgaySinhNhanKhauCanBo;
     @FXML
-    ComboBox comboBoxTimKiemHoKhauCanBo;
+    ComboBox comboBoxTimKiemNhanKhauCanBo, comboBoxGioiTinhNhanKhauCanBo, comboBoxTinhTrangNhanKhauCanBo;
     @FXML
     TextField textFieldLocThongTinNhanKhauCanBo;
+    @FXML
+    DatePicker datePickerTu, datePickerDen;
     final private ObservableList<String> listTimKiem = FXCollections.observableArrayList(
-            "Mã hộ khẩu", "Họ tên", "Biệt danh", "Tình trạng", "Mã nhân khẩu");
+            "Mã nhân khẩu", "Mã hộ khẩu", "Họ tên", "Biệt danh", "Ngày sinh", "Giới tính", "Tôn giáo", "Tình trạng");
 
     final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ");
 
@@ -52,9 +55,17 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
-        comboBoxTimKiemHoKhauCanBo.getItems().addAll(listTimKiem);
-        comboBoxTimKiemHoKhauCanBo.getSelectionModel().selectFirst();
+        comboBoxTimKiemNhanKhauCanBo.getItems().addAll(listTimKiem);
+        comboBoxTimKiemNhanKhauCanBo.getSelectionModel().selectFirst();
+        comboBoxGioiTinhNhanKhauCanBo.getItems().addAll(listGioiTinh);
+        comboBoxGioiTinhNhanKhauCanBo.getSelectionModel().selectFirst();
+        ComponentVisibility.change(comboBoxGioiTinhNhanKhauCanBo, false);
+        comboBoxTinhTrangNhanKhauCanBo.getItems().addAll(listTinhTrang);
+        comboBoxTinhTrangNhanKhauCanBo.getSelectionModel().selectFirst();
+        ComponentVisibility.change(comboBoxTinhTrangNhanKhauCanBo, false);
         tableViewNhanKhauCanBo.setEditable(true);
+        ComponentVisibility.change(datePickerTu, false);
+        ComponentVisibility.change(datePickerDen, false);
         tableComlumIDNhanKhauCanBo.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("maNhanKhau"));
         tableComlumIDHoKhauNhanKhauCanBo.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("maHoKhau"));
         tableComlumHoTenNhanKhauCanBo.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("hoTen"));
@@ -138,6 +149,35 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         displayAllNhanKhauCanBo();
     }
 
+    public void onSelectionComboBoxTimKiemTamVangCanBo(ActionEvent e) {
+        String truongTimKiem = String.valueOf(comboBoxTimKiemNhanKhauCanBo.getValue());
+        if (truongTimKiem.equals("Ngày sinh")) {
+            ComponentVisibility.change(textFieldLocThongTinNhanKhauCanBo, false);
+            ComponentVisibility.change(comboBoxTinhTrangNhanKhauCanBo, false);
+            ComponentVisibility.change(comboBoxGioiTinhNhanKhauCanBo, false);
+            ComponentVisibility.change(datePickerTu, true);
+            ComponentVisibility.change(datePickerDen, true);
+        } else if (truongTimKiem.equals("Giới tính")) {
+            ComponentVisibility.change(textFieldLocThongTinNhanKhauCanBo, false);
+            ComponentVisibility.change(comboBoxTinhTrangNhanKhauCanBo, false);
+            ComponentVisibility.change(comboBoxGioiTinhNhanKhauCanBo, true);
+            ComponentVisibility.change(datePickerTu, false);
+            ComponentVisibility.change(datePickerDen, false);
+        } else if (truongTimKiem.equals("Tình trạng")) {
+            ComponentVisibility.change(textFieldLocThongTinNhanKhauCanBo, false);
+            ComponentVisibility.change(comboBoxTinhTrangNhanKhauCanBo, true);
+            ComponentVisibility.change(comboBoxGioiTinhNhanKhauCanBo, false);
+            ComponentVisibility.change(datePickerTu, false);
+            ComponentVisibility.change(datePickerDen, false);
+        } else {
+            ComponentVisibility.change(textFieldLocThongTinNhanKhauCanBo, true);
+            ComponentVisibility.change(comboBoxTinhTrangNhanKhauCanBo, false);
+            ComponentVisibility.change(comboBoxGioiTinhNhanKhauCanBo, false);
+            ComponentVisibility.change(datePickerTu, false);
+            ComponentVisibility.change(datePickerDen, false);
+        }
+    }
+
     @Override
     public void onPressedButtonNhanKhauCanBo(MouseEvent e) {
     }
@@ -208,6 +248,11 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
             alert.setTitle("Thông báo");
             alert.setHeaderText("Vui lòng chọn nhân khẩu muốn từ chối");
             alert.showAndWait();
+        } else if (nhanKhauModel.getTinhTrang().equals("Đã từ chối")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Nhân khẩu đã bị từ chối");
+            alert.showAndWait();
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
@@ -256,29 +301,57 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
             alert.setTitle("Thông báo");
             alert.setHeaderText("Bạn chắc chắn muốn xóa người này!");
             if (alert.showAndWait().get() == ButtonType.OK) {
-                nhanKhauService.deleteNhanKhau(nhanKhauModel);
+                Alert info = new Alert(Alert.AlertType.INFORMATION);
+                info.setTitle("Thông báo");
+                if (nhanKhauService.deleteNhanKhau(nhanKhauModel)) {
+                    info.setHeaderText("Xóa thành công!");
+                } else {
+                    info.setHeaderText("Xóa không thành công!");
+                }
+                info.showAndWait();
                 displayAllNhanKhauCanBo();
             }
         }
     }
 
     private void locThongTinNhanKhauCanBo() {
-        String dieuKienKiemTra = String.valueOf(comboBoxTimKiemHoKhauCanBo.getValue());
+        String dieuKienKiemTra = String.valueOf(comboBoxTimKiemNhanKhauCanBo.getValue());
         String cauHoi = textFieldLocThongTinNhanKhauCanBo.getText();
         ObservableList<NhanKhauModel> nhanKhauModelObservableList = FXCollections.observableArrayList();
-        if (dieuKienKiemTra.equals("Mã hộ khẩu")) {
-            nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauTrongHoKhau(cauHoi);
-        } else if (dieuKienKiemTra.equals("Họ tên")) {
-            nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByTen(cauHoi);
-        } else if (dieuKienKiemTra.equals("Biệt danh")) {
-            nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByBietDanh(cauHoi);
-        } else if (dieuKienKiemTra.equals("Tình trạng")) {
-            nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByTinhTrang(cauHoi);
-        } else {
-            Optional<NhanKhauModel> nhanKhauModel = nhanKhauService.getNhanKhauByMaNhanKhau(cauHoi);
-            if (nhanKhauModel.isPresent()) {
-                nhanKhauModelObservableList.add(nhanKhauModel.get());
-            }
+        switch (dieuKienKiemTra) {
+            case "Mã nhân khẩu":
+                Optional<NhanKhauModel> nhanKhauModel = nhanKhauService.getNhanKhauByMaNhanKhau(cauHoi);
+                if (nhanKhauModel.isPresent()) {
+                    nhanKhauModelObservableList.add(nhanKhauModel.get());
+                }
+                break;
+            case "Mã hộ khẩu":
+                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauTrongHoKhau(cauHoi);
+                break;
+            case "Họ tên":
+                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByTen(cauHoi);
+                break;
+            case "Biệt danh":
+                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByBietDanh(cauHoi);
+                break;
+            case "Ngày sinh":
+                nhanKhauModelObservableList = nhanKhauService.getNhanKhauByNgaySinhBetween(
+                        Date.from(datePickerTu.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                        Date.from(datePickerDen.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                break;
+            case "Giới tính":
+                nhanKhauModelObservableList = nhanKhauService.getNhanKhauByGioiTinh(
+                        String.valueOf(comboBoxGioiTinhNhanKhauCanBo.getValue())
+                );
+                break;
+            case "Tôn giáo":
+                nhanKhauModelObservableList = nhanKhauService.getNhanKhauByTonGiao(cauHoi);
+                break;
+            case "Tình trạng":
+                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByTinhTrang(
+                        String.valueOf(comboBoxTinhTrangNhanKhauCanBo.getValue())
+                );
+                break;
         }
         tableViewNhanKhauCanBo.setItems(nhanKhauModelObservableList);
     }

@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -65,7 +66,7 @@ public class ControllerThemMoiHoKhauCanBoView extends ControllerCanBoView {
         }
         String maHoKhau = textFieldMaHoKhauThemMoiHoKhauCanBo.getText();
         String maChuHo = textFieldMaChuHoThemMoiHoKhauCanBo.getText();
-        Date ngayLap = new Date(datePickerNgayThanhLapThemMoiHoKhauCanBo.getValue().toEpochDay());
+        Date ngayLap = Date.from(datePickerNgayThanhLapThemMoiHoKhauCanBo.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
         String diaChi = textFieldDiaChiThemMoiHoKhauCanBo.getText();
         HoKhauModel hoKhauModel = new HoKhauModel(maHoKhau, maChuHo, diaChi, ngayLap, id);
 

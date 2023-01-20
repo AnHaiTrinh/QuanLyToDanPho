@@ -309,31 +309,6 @@ public class TamTruService {
         }
     }
 
-    public boolean addTamtru(TamTruDisplayModel tamTruDisplayModel) {
-        Connection connection = ConnectionDatabase.getConnection();
-        String query = "insert into tam_tru(maHoKhau, CCCD, hoTen, tuNgay, denNgay, lydo, tinhTrang, idNguoiThucHien)" +
-                "values (?, ?, ?, ?, ?, ?, ?, ?)";
-        try {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, new HoKhauService().getMaHoKhauByDiaChi(tamTruDisplayModel.getNoiTamTru()));
-            statement.setString(2, tamTruDisplayModel.getCCCD());
-            statement.setNString(3, tamTruDisplayModel.getHoTen());
-            statement.setDate(4, new java.sql.Date(tamTruDisplayModel.getTuNgay().getTime()));
-            statement.setDate(5, new java.sql.Date(tamTruDisplayModel.getDenNgay().getTime()));
-            statement.setNString(6, tamTruDisplayModel.getLyDo());
-            statement.setNString(7, tamTruDisplayModel.getTinhTrang());
-            statement.setInt(8, tamTruDisplayModel.getIdNguoiThucHien());
-            statement.executeUpdate();
-            statement.close();
-            connection.close();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-
     public boolean updateTamTru(TamTruModel tamTruModel) {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "update tam_tru set " +

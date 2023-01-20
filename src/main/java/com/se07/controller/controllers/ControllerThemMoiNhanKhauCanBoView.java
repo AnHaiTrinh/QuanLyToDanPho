@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -79,7 +80,7 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
         String hoTen = textFieldHoTenThemMoiNhanKhauCanBo.getText();
         String tonGiao = textFieldTonGiaoThemMoiNhanKhauCanBo.getText();
         String bietDanh = textFieldBietDanhThemMoiNhanKhauCanBo.getText();
-        Date ngaysinh = new Date(datePickerNgaySinhThemMoiNhanKhauCanBo.getValue().toEpochDay());
+        Date ngaysinh = Date.from(datePickerNgaySinhThemMoiNhanKhauCanBo.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
         NhanKhauModel nhanKhauModel = new NhanKhauModel(maNhanKhau, maHoKhau, hoTen, bietDanh, ngaysinh, gioiTinh, tonGiao, tinhTrang, id);
         if (!nhanKhauService.getNhanKhauByMaNhanKhau(maNhanKhau).isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

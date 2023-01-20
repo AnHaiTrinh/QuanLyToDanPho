@@ -201,4 +201,27 @@ public class HoKhauService {
         }
         return maHoKhau;
     }
+
+    public ObservableList<HoKhauModel> getHoKhauByNgaySinhBetween(java.util.Date tu, java.util.Date den) {
+        ObservableList<HoKhauModel> hoKhauModelObservableList = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select * from ho_khau where ngayLap between ? and ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setDate(1, new java.sql.Date(tu.getTime()));
+            statement.setDate(2, new java.sql.Date(den.getTime()));
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                HoKhauModel temp = new HoKhauModel(rs.getString("maHoKhau"),
+                        rs.getNString("chuHo"),
+                        rs.getNString("diachi"),
+                        rs.getDate("ngayLap"),
+                        rs.getInt("idNguoiThucHien"));
+                hoKhauModelObservableList.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return hoKhauModelObservableList;
+    }
 }

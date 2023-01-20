@@ -3,6 +3,7 @@ package com.se07.model.models;
 import java.util.Date;
 
 public class TamTruDisplayModel {
+    private int maTamtru;
     private String CCCD;
     private String hoTen;
     private String noiTamTru;
@@ -11,10 +12,9 @@ public class TamTruDisplayModel {
     private String lyDo;
     private String tinhTrang;
 
-    private int idNguoiThucHien;
-
-    public TamTruDisplayModel(String CCCD, String hoTen, String noiTamTru, Date tuNgay, Date denNgay, String lyDo,
-                              String tinhTrang, int idNguoiThucHien) {
+    public TamTruDisplayModel(int maTamtru, String CCCD, String hoTen, String noiTamTru, Date tuNgay, Date denNgay,
+                              String lyDo, String tinhTrang) {
+        this.maTamtru = maTamtru;
         this.CCCD = CCCD;
         this.hoTen = hoTen;
         this.noiTamTru = noiTamTru;
@@ -22,7 +22,21 @@ public class TamTruDisplayModel {
         this.denNgay = denNgay;
         this.lyDo = lyDo;
         this.tinhTrang = tinhTrang;
-        this.idNguoiThucHien = idNguoiThucHien;
+    }
+
+    public TamTruDisplayModel(String CCCD, String hoTen, String noiTamTru, Date tuNgay, Date denNgay, String lyDo,
+                              String tinhTrang) {
+        this.CCCD = CCCD;
+        this.hoTen = hoTen;
+        this.noiTamTru = noiTamTru;
+        this.tuNgay = tuNgay;
+        this.denNgay = denNgay;
+        this.lyDo = lyDo;
+        this.tinhTrang = tinhTrang;
+    }
+
+    public int getMaTamtru() {
+        return maTamtru;
     }
 
     public String getCCCD() {
@@ -79,13 +93,5 @@ public class TamTruDisplayModel {
 
     public void setTinhTrang(String tinhTrang) {
         this.tinhTrang = tinhTrang;
-    }
-
-    public int getIdNguoiThucHien() {
-        return idNguoiThucHien;
-    }
-
-    public void setIdNguoiThucHien(int idNguoiThuchien) {
-        this.idNguoiThucHien = idNguoiThuchien;
     }
 }

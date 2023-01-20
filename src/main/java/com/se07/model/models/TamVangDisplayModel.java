@@ -3,6 +3,8 @@ package com.se07.model.models;
 import java.util.Date;
 
 public class TamVangDisplayModel {
+    private int maTamVang;
+    private String maNhanKhau;
     private String hoTen;
     private String noiTamVang;
     private Date tuNgay;
@@ -10,17 +12,39 @@ public class TamVangDisplayModel {
     private String lyDo;
     private String tinhTrang;
 
-    private int idNguoiThucHien;
-
-    public TamVangDisplayModel(String hoTen, String noiTamVang, Date tuNgay, Date denNgay, String lyDo,
-                               String tinhTrang, int idNguoiThucHien) {
+    public TamVangDisplayModel(String maNhanKhau, String hoTen, String noiTamVang, Date tuNgay, Date denNgay,
+                               String lyDo, String tinhTrang) {
+        this.maNhanKhau = maNhanKhau;
         this.hoTen = hoTen;
         this.noiTamVang = noiTamVang;
         this.tuNgay = tuNgay;
         this.denNgay = denNgay;
         this.lyDo = lyDo;
         this.tinhTrang = tinhTrang;
-        this.idNguoiThucHien = idNguoiThucHien;
+    }
+
+    public TamVangDisplayModel(int maTamVang, String maNhanKhau, String hoTen, String noiTamVang, Date tuNgay,
+                               Date denNgay, String lyDo, String tinhTrang) {
+        this.maTamVang = maTamVang;
+        this.maNhanKhau = maNhanKhau;
+        this.hoTen = hoTen;
+        this.noiTamVang = noiTamVang;
+        this.tuNgay = tuNgay;
+        this.denNgay = denNgay;
+        this.lyDo = lyDo;
+        this.tinhTrang = tinhTrang;
+    }
+
+    public int getMaTamVang() {
+        return maTamVang;
+    }
+
+    public String getMaNhanKhau() {
+        return maNhanKhau;
+    }
+
+    public void setMaNhanKhau(String maNhanKhau) {
+        this.maNhanKhau = maNhanKhau;
     }
 
     public String getHoTen() {
@@ -69,13 +93,5 @@ public class TamVangDisplayModel {
 
     public void setTinhTrang(String tinhTrang) {
         this.tinhTrang = tinhTrang;
-    }
-
-    public int getIdNguoiThucHien() {
-        return idNguoiThucHien;
-    }
-
-    public void setIdNguoiThucHien(int idNguoiThucHien) {
-        this.idNguoiThucHien = idNguoiThucHien;
     }
 }
