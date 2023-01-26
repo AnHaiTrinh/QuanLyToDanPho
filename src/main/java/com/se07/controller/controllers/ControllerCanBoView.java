@@ -19,6 +19,10 @@ import java.net.URL;
 
 import java.util.ResourceBundle;
 
+/**
+ * Lớp controller cơ sở để các lớp controller cho tổ trưởng khác kế thừa
+ * Dùng để điều khiển các nút chung của các màn hình tổ trưởng (Trang chủ, Hộ khẩu, Nhân khẩu, Giải thưởng, Đăng xuất)
+ */
 public class ControllerCanBoView implements Initializable {
 
     @FXML
@@ -49,38 +53,76 @@ public class ControllerCanBoView implements Initializable {
         });
     }
 
+    /**
+     * Phương thức được gọi khi nhấn nút Trang chủ
+     * Nếu chuột trái được nhấn sẽ chuyển sang màn hình Trang chủ
+     *
+     * @param e Sự kiện chuột bắt được khi nhấn nút Trang chủ
+     * @throws IOException
+     */
     public void onPressedButtonTrangChuCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "TrangChuCanBoView.fxml");
-
         }
     }
 
+    /**
+     * Phương thức được gọi khi nhấn nút Nhân khẩu
+     * Nếu chuột trái được nhấn sẽ chuyển sang màn hình quản lý Nhân khẩu
+     *
+     * @param e Sự kiện chuột bắt được khi nhân nút Nhân Khẩu
+     * @throws IOException
+     */
     public void onPressedButtonNhanKhauCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "NhanKhauCanBoView.fxml");
         }
     }
 
+    /**
+     * Phương thức được gọi khi nhấn nút Hộ khẩu
+     * Nếu chuột trái được nhấn sẽ chuyển sang màn hình quản lý Hộ khẩu
+     *
+     * @param e Sự kiện chuột bắt được khi nhân nút Hộ Khẩu
+     * @throws IOException
+     */
     public void onPressedButtonHoKhauCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "HoKhauCanBoView.fxml");
         }
     }
 
-
+    /**
+     * Phương thức được gọi khi nhấn nút Giải thưởng
+     * Nếu chuột trái được nhấn sẽ chuyển sang màn hình quản lý Giải thưởng
+     *
+     * @param e Sự kiện chuột bắt được khi nhân nút Giải thưởng
+     * @throws IOException
+     */
     public void onPressedButtonGiaiThuongCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "GiaiThuongCanBoView.fxml");
         }
     }
 
+    /**
+     * Phương thức được gọi khi nhấn nút Đăng xuất
+     * Nếu chuột trái được nhấn sẽ đăng xuất về màn hình Đăng nhập
+     *
+     * @param e Sự kiện chuột bắt được khi nhân nút Đăng xuất
+     * @throws IOException
+     */
     public void onPressedButtonDangXuatCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
             dangXuatCanBoView((Stage) ((Node) e.getSource()).getScene().getWindow());
         }
     }
 
+    /**
+     * Phương thức đăng xuất khỏi phần mềm và trở lại màn hình đăng nhập
+     *
+     * @param stage Màn hình hiện tại
+     */
     private void dangXuatCanBoView(Stage stage) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo!");

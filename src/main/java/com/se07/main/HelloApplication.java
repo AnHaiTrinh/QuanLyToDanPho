@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 
+import java.io.File;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
@@ -15,6 +16,13 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         LoginView loginView = new LoginView();
         loginView.openWindow();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        File userInfo = new File("src/main/resources/UserData.txt");
+        userInfo.delete();
+        super.stop();
     }
 
     public static void main(String[] args) {
