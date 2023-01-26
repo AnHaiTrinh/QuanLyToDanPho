@@ -6,11 +6,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
+/**
+ * Lớp cung cấp các phương thức truy vấn đến cơ sở dữ liệu liên quan đến hộ khẩu
+ */
 public class HoKhauService {
+    /**
+     * @return Tất cả các bản ghi hộ khẩu duới dạng HoKhauModel
+     */
     public ObservableList<HoKhauModel> getAllHoKhau() {
         ObservableList<HoKhauModel> listHoKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
@@ -25,13 +29,16 @@ public class HoKhauService {
                 listHoKhau.add(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listHoKhau;
     }
 
+    /**
+     * @param maHoKhau Mã hộ khẩu muốn tìm kiếm
+     * @return Hộ khẩu theo mã hộ khẩu nếu có, ngược lại trả về {@code Optional.empty()}
+     */
     public Optional<HoKhauModel> getHoKhauByMaHoKhau(String maHoKhau) {
         Optional<HoKhauModel> hoKhauModel = Optional.empty();
         Connection connection = ConnectionDatabase.getConnection();
@@ -46,13 +53,16 @@ public class HoKhauService {
                 hoKhauModel = Optional.of(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return hoKhauModel;
     }
 
+    /**
+     * @param chuHo Tên chủ hộ muốn tìm kiếm
+     * @return Danh sách các hộ khẩu có tên chủ hộ giống chuỗi đầu vào
+     */
     public ObservableList<HoKhauModel> getHoKhauByChuHo(String chuHo) {
         ObservableList<HoKhauModel> listHoKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
@@ -67,14 +77,16 @@ public class HoKhauService {
                 listHoKhau.add(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listHoKhau;
     }
 
-
+    /**
+     * @param diaChi Địa chỉ muốn tìm kiếm
+     * @return Danh sách các hộ khẩu có địa chỉ giống chuỗi đầu vào
+     */
     public ObservableList<HoKhauModel> getHoKhauByDiaChi(String diaChi) {
         ObservableList<HoKhauModel> listHoKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
@@ -89,13 +101,18 @@ public class HoKhauService {
                 listHoKhau.add(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listHoKhau;
     }
 
+    /**
+     * Phương thức thêm mới hộ khẩu vào cơ sở dữ liệu
+     *
+     * @param hoKhauModel Đối tượng chứa thông tin hộ khẩu muốn thêm mới
+     * @return {@code true} nếu thêm thành công ngược lại trả về {@code false}
+     */
     public boolean addHoKhau(HoKhauModel hoKhauModel) {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "insert into ho_khau(maHoKhau, chuHo, diaChi, ngayLap, idNguoiThucHien) " +
@@ -109,7 +126,6 @@ public class HoKhauService {
             statement.setInt(5, hoKhauModel.getIdNguoiThucHien());
             statement.executeUpdate();
             statement.close();
-            connection.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -117,6 +133,12 @@ public class HoKhauService {
         }
     }
 
+    /**
+     * Phương thức cập nhật hộ khẩu dựa vào mã hộ khẩu
+     *
+     * @param hoKhauModel Đối tượng chứa thông tin hộ khẩu muốn thay đổi
+     * @return {@code true} nếu cập nhật thành công ngược lại trả về {@code false}
+     */
     public boolean updateHoKhau(HoKhauModel hoKhauModel) {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "update ho_khau set ChuHo = ?, diaChi = ?, ngayLap = ?, idNguoiThucHien = ?" +
@@ -130,7 +152,6 @@ public class HoKhauService {
             statement.setString(5, hoKhauModel.getMaHoKhau());
             statement.executeUpdate();
             statement.close();
-            connection.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -138,6 +159,12 @@ public class HoKhauService {
         }
     }
 
+    /**
+     * Phương thức xóa hộ khẩu dựa vào mã hộ khẩu
+     *
+     * @param hoKhauModel Đối tượng chứa thông tin hộ khẩu muốn xóa
+     * @return {@code true} nếu xóa thành công ngược lại trả về {@code false}
+     */
     public boolean deleteHoKhau(HoKhauModel hoKhauModel) {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "delete from ho_khau " + "where maHoKhau = '" + hoKhauModel.getMaHoKhau() + "'";
@@ -145,7 +172,6 @@ public class HoKhauService {
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
             statement.close();
-            connection.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -153,6 +179,9 @@ public class HoKhauService {
         }
     }
 
+    /**
+     * @return Số lượng hộ khẩu
+     */
     public int getHoKhauCount() {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select count(*) from ho_khau";
@@ -160,13 +189,18 @@ public class HoKhauService {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             rs.next();
-            return rs.getInt(1);
+            int count = rs.getInt(1);
+            statement.close();
+            return count;
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
         }
     }
 
+    /**
+     * @return Danh sách tất cả mã hộ khẩu
+     */
     public ObservableList<String> getAllMaHoKhau() {
         ObservableList<String> listMaHoKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
@@ -178,13 +212,18 @@ public class HoKhauService {
                 listMaHoKhau.add(rs.getString(1));
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listMaHoKhau;
     }
 
+    /**
+     * Phương thức trả về mã hộ khẩu dựa vào địa chỉ
+     *
+     * @param diaChi Địa chỉ của hộ khẩu cần tìm
+     * @return Mã hộ khẩu ứng với địa chỉ tương ứng
+     */
     public String getMaHoKhauByDiaChi(String diaChi) {
         String maHoKhau = null;
         Connection connection = ConnectionDatabase.getConnection();
@@ -196,13 +235,19 @@ public class HoKhauService {
             if (rs.next()) {
                 maHoKhau = rs.getString(1);
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return maHoKhau;
     }
 
-    public ObservableList<HoKhauModel> getHoKhauByNgaySinhBetween(java.util.Date tu, java.util.Date den) {
+    /**
+     * @param tu  Ngày đầu
+     * @param den Ngày cuối
+     * @return Danh sách hộ khẩu có ngày lập từ ngày {@code tu} đến ngày {@code den}
+     */
+    public ObservableList<HoKhauModel> getHoKhauByNgayLapBetween(java.util.Date tu, java.util.Date den) {
         ObservableList<HoKhauModel> hoKhauModelObservableList = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select * from ho_khau where ngayLap between ? and ?";
@@ -219,6 +264,7 @@ public class HoKhauService {
                         rs.getInt("idNguoiThucHien"));
                 hoKhauModelObservableList.add(temp);
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

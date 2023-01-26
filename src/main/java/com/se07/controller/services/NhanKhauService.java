@@ -8,7 +8,13 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 import java.util.Optional;
 
+/**
+ * Lớp cung cấp các phương thức truy vấn đến cơ sở dữ liệu liên quan đến nhân khẩu
+ */
 public class NhanKhauService {
+    /**
+     * @return Danh sách tất cả các nhân khẩu
+     */
     public ObservableList<NhanKhauModel> getAllNhanKhau() {
         ObservableList<NhanKhauModel> listNhanKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
@@ -25,13 +31,16 @@ public class NhanKhauService {
                 listNhanKhau.add(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listNhanKhau;
     }
 
+    /**
+     * @param maHoKhau Mã hộ khẩu muốn tìm kiếm
+     * @return Danh sách nhân khẩu trong hộ khẩu có mã hộ khẩu như đầu vào
+     */
     public ObservableList<NhanKhauModel> getAllNhanKhauTrongHoKhau(String maHoKhau) {
         ObservableList<NhanKhauModel> listNhanKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
@@ -48,13 +57,16 @@ public class NhanKhauService {
                 listNhanKhau.add(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listNhanKhau;
     }
 
+    /**
+     * @param tenNhanKhau Họ tên nhân khẩu muốn tìm kiếm
+     * @return Danh sách nhân khẩu có họ tên giống đầu vào
+     */
     public ObservableList<NhanKhauModel> getAllNhanKhauByTen(String tenNhanKhau) {
         ObservableList<NhanKhauModel> listNhanKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
@@ -71,14 +83,16 @@ public class NhanKhauService {
                 listNhanKhau.add(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listNhanKhau;
     }
 
-
+    /**
+     * @param bietDanh Biệt danh muốn tìm kiếm
+     * @return Danh sách các nhân khẩu có biệt danh giống như đầu vào
+     */
     public ObservableList<NhanKhauModel> getAllNhanKhauByBietDanh(String bietDanh) {
         ObservableList<NhanKhauModel> listNhanKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
@@ -95,14 +109,16 @@ public class NhanKhauService {
                 listNhanKhau.add(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listNhanKhau;
     }
 
-
+    /**
+     * @param tinhTrang Tình trạng muốn tìm kiếm
+     * @return Danh sách các nhân khẩu có tình trạng như đầu vào
+     */
     public ObservableList<NhanKhauModel> getAllNhanKhauByTinhTrang(String tinhTrang) {
         ObservableList<NhanKhauModel> listNhanKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
@@ -119,13 +135,16 @@ public class NhanKhauService {
                 listNhanKhau.add(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listNhanKhau;
     }
 
+    /**
+     * @param maNhanKhau Mã nhân khẩu muốn tìm kiếm
+     * @return Nhân khẩu theo mã nhân khẩu nếu có, ngược lại trả về {@code Optinal.empty()}
+     */
     public Optional<NhanKhauModel> getNhanKhauByMaNhanKhau(String maNhanKhau) {
         Optional<NhanKhauModel> nhanKhauModel = Optional.empty();
         Connection connection = ConnectionDatabase.getConnection();
@@ -142,13 +161,18 @@ public class NhanKhauService {
                 nhanKhauModel = Optional.of(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return nhanKhauModel;
     }
 
+    /**
+     * Phương thức thêm mới nhân khẩu vào cơ sở dữ liệu
+     *
+     * @param nhanKhauModel Đối tượng chứa thông tin nhân khẩu muốn thêm mới
+     * @return {@code true} nếu thêm thành công ngược lại trả về {@code false}
+     */
     public boolean addNhanKhau(NhanKhauModel nhanKhauModel) {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "insert into nhan_khau(maNhanKhau, maHoKhau, hoTen, bietdanh, ngaySinh, gioiTinh, tonGiao, " +
@@ -166,7 +190,6 @@ public class NhanKhauService {
             statement.setInt(9, nhanKhauModel.getIdNguoiThucHien());
             statement.executeUpdate();
             statement.close();
-            connection.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -174,6 +197,12 @@ public class NhanKhauService {
         }
     }
 
+    /**
+     * Phương thức cập nhật nhân khẩu dựa vào mã nhân khẩu
+     *
+     * @param nhanKhauModel Đối tượng chứa thông tin nhân khẩu muốn thay đổi
+     * @return {@code true} nếu cập nhật thành công ngược lại trả về {@code false}
+     */
     public boolean updateNhanKhau(NhanKhauModel nhanKhauModel) {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "update nhan_khau set maHoKhau = ?, hoTen = ?, bietdanh = ?, ngaySinh = ?, gioiTinh = ?, " +
@@ -191,7 +220,6 @@ public class NhanKhauService {
             statement.setString(9, nhanKhauModel.getMaNhanKhau());
             statement.executeUpdate();
             statement.close();
-            connection.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -199,6 +227,12 @@ public class NhanKhauService {
         }
     }
 
+    /**
+     * Phương thức xóa nhân khẩu dựa vào mã nhân khẩu
+     *
+     * @param nhanKhauModel Đối tượng chứa thông tin nhân khẩu muốn xóa
+     * @return {@code true} nếu xóa thành công ngược lại trả về {@code false}
+     */
     public boolean deleteNhanKhau(NhanKhauModel nhanKhauModel) {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "delete from nhan_khau where maNhanKhau = '" + nhanKhauModel.getMaNhanKhau() + "'";
@@ -206,7 +240,6 @@ public class NhanKhauService {
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
             statement.close();
-            connection.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -214,6 +247,9 @@ public class NhanKhauService {
         }
     }
 
+    /**
+     * @return Số lượng nhân khẩu đã xác nhận
+     */
     public int getNhanKhauCount() {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select count(*) from nhan_khau where tinhTrang = N'Đã xác nhận'";
@@ -221,13 +257,18 @@ public class NhanKhauService {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             rs.next();
-            return rs.getInt(1);
+            int count = rs.getInt(1);
+            statement.close();
+            return count;
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
         }
     }
 
+    /**
+     * @return Danh sách tất cả mã nhân khẩu
+     */
     public ObservableList<String> getAllMaNhanKhau() {
         ObservableList<String> listMaNhanKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
@@ -239,13 +280,17 @@ public class NhanKhauService {
                 listMaNhanKhau.add(rs.getString(1));
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listMaNhanKhau;
     }
 
+    /**
+     * @param tu  Ngày đầu
+     * @param den Ngày cuối
+     * @return Danh sách nhân khẩu có ngày sinh từ ngày {@code tu} đến ngày {@code den}
+     */
     public ObservableList<NhanKhauModel> getNhanKhauByNgaySinhBetween(java.util.Date tu, java.util.Date den) {
         ObservableList<NhanKhauModel> nhanKhauModelObservableList = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
@@ -263,12 +308,17 @@ public class NhanKhauService {
                         rs.getNString("tinhTrang"), rs.getInt("idNguoiThucHien"));
                 nhanKhauModelObservableList.add(temp);
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return nhanKhauModelObservableList;
     }
 
+    /**
+     * @param gioiTinh Giới tính muốn tìm kiếm
+     * @return Danh sách nhân khẩu có giới tính như đầu vào
+     */
     public ObservableList<NhanKhauModel> getNhanKhauByGioiTinh(String gioiTinh) {
         ObservableList<NhanKhauModel> nhanKhauModelObservableList = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
@@ -284,18 +334,23 @@ public class NhanKhauService {
                         rs.getNString("tinhTrang"), rs.getInt("idNguoiThucHien"));
                 nhanKhauModelObservableList.add(temp);
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return nhanKhauModelObservableList;
     }
 
+    /**
+     * @param tonGiao Tôn giáo muốn tìm kiếm. Nếu để trống sẽ tìm tất cả nhân khẩu không có tôn giáo
+     * @return Danh sách nhân khẩu có tôn giáo giống đầu vào
+     */
     public ObservableList<NhanKhauModel> getNhanKhauByTonGiao(String tonGiao) {
         ObservableList<NhanKhauModel> nhanKhauModelObservableList = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query;
         if (tonGiao.isBlank()) {
-            query = "select * from nhan_khau where tonGiao is null";
+            query = "select * from nhan_khau where tonGiao is null or tonGiao = N''";
         } else {
             query = "select * from nhan_khau where tonGiao like N'%" + tonGiao + "%'";
         }
@@ -310,6 +365,7 @@ public class NhanKhauService {
                         rs.getNString("tinhTrang"), rs.getInt("idNguoiThucHien"));
                 nhanKhauModelObservableList.add(temp);
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

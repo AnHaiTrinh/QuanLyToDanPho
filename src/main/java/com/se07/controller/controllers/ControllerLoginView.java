@@ -64,7 +64,7 @@ public class ControllerLoginView {
     private void exit() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Đăng xuất");
-        alert.setHeaderText("Bạn thực sự muốn đăng xuất");
+        alert.setHeaderText("Bạn thực sự muốn thoát");
         if (alert.showAndWait().get() == ButtonType.OK) {
             stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
             stage.close();
