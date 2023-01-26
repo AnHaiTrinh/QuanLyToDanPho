@@ -73,6 +73,10 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         comboBoxGioiTinhNhanKhauCanBo.getSelectionModel().selectFirst();
         comboBoxTinhTrangNhanKhauCanBo.getItems().addAll(listTinhTrang);
         comboBoxTinhTrangNhanKhauCanBo.getSelectionModel().selectFirst();
+        ComponentVisibility.change(comboBoxGioiTinhNhanKhauCanBo, false);
+        ComponentVisibility.change(comboBoxTinhTrangNhanKhauCanBo, false);
+        ComponentVisibility.change(datePickerTu, false);
+        ComponentVisibility.change(datePickerDen, false);
 
         tableViewNhanKhauCanBo.setEditable(true);
         tableComlumIDHoKhauNhanKhauCanBo.setCellFactory(t -> new ComboBoxTableCell(listMaHoKhau));
