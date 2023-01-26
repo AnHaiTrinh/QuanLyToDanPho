@@ -2,7 +2,6 @@ package com.se07.controller.controllers;
 
 import com.se07.controller.services.NhanKhauService;
 import com.se07.controller.services.TamVangService;
-import com.se07.model.models.NhanKhauModel;
 import com.se07.model.models.TamVangDisplayModel;
 import com.se07.model.models.TamVangModel;
 import com.se07.util.ComponentVisibility;
@@ -10,7 +9,6 @@ import com.se07.util.MyDateStringConverter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -24,7 +22,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -47,26 +44,18 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
     @FXML
     DatePicker datePickerTu, datePickerDen;
 
-    ObservableList<String> listTimKiem = FXCollections.observableArrayList(
+    final ObservableList<String> listTimKiem = FXCollections.observableArrayList(
             "Mã nhân khẩu", "Họ tên", "Nơi tạm vắng", "Ngày", "Tình trạng");
     final private ObservableList<String> listTinhTrang =
             FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
     final private TamVangService tamVangService = new TamVangService();
     final private NhanKhauService nhanKhauService = new NhanKhauService();
-
-    LocalDate today = LocalDate.now();
+    final ObservableList<String> listMaNhanKhau = nhanKhauService.getAllMaNhanKhau();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
-        comboBoxTimKiemTamVangCanBo.getItems().addAll(listTimKiem);
-        comboBoxTimKiemTamVangCanBo.getSelectionModel().selectFirst();
-        comboBoxTinhTrangTamVangCanBo.getItems().addAll(listTinhTrang);
-        comboBoxTinhTrangTamVangCanBo.getSelectionModel().selectFirst();
-        ComponentVisibility.change(comboBoxTinhTrangTamVangCanBo, false);
-        ComponentVisibility.change(datePickerTu, false);
-        ComponentVisibility.change(datePickerDen, false);
-        tableViewTamVangCanBo.setEditable(true);
+
         tableColumnMaNhanKhauTamVangCanBo.setCellValueFactory(new PropertyValueFactory<TamVangDisplayModel, String>("maNhanKhau"));
         tableColumnHoTenTamVangCanBo.setCellValueFactory(new PropertyValueFactory<TamVangDisplayModel, String>("hoTen"));
         tableColumnNoiTamVangCanBo.setCellValueFactory(new PropertyValueFactory<TamVangDisplayModel, String>("noiTamVang"));
@@ -74,78 +63,23 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
         tableColumnDenNgayTamVangcanBo.setCellValueFactory(new PropertyValueFactory<TamVangDisplayModel, Date>("denNgay"));
         tableColumnLyDoTamVangCanBo.setCellValueFactory(new PropertyValueFactory<TamVangDisplayModel, String>("lyDo"));
         tableColumnTinhTrangTamVangCanBo.setCellValueFactory(new PropertyValueFactory<TamVangDisplayModel, String>("tinhTrang"));
-        tableColumnMaNhanKhauTamVangCanBo.setCellFactory(t -> new ComboBoxTableCell<>(nhanKhauService.getAllMaNhanKhau()));
-        tableColumnMaNhanKhauTamVangCanBo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<TamVangDisplayModel, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<TamVangDisplayModel, String> event) {
-                TamVangDisplayModel tamVangDisplayModel = event.getRowValue();
-                tamVangDisplayModel.setMaNhanKhau(event.getNewValue());
-                updateTamVangCanBo(tamVangDisplayModel);
-            }
-        });
+
+        comboBoxTimKiemTamVangCanBo.getItems().addAll(listTimKiem);
+        comboBoxTimKiemTamVangCanBo.getSelectionModel().selectFirst();
+        comboBoxTinhTrangTamVangCanBo.getItems().addAll(listTinhTrang);
+        comboBoxTinhTrangTamVangCanBo.getSelectionModel().selectFirst();
+        ComponentVisibility.change(comboBoxTinhTrangTamVangCanBo, false);
+        ComponentVisibility.change(datePickerTu, false);
+        ComponentVisibility.change(datePickerDen, false);
+
+        tableViewTamVangCanBo.setEditable(true);
+        tableColumnMaNhanKhauTamVangCanBo.setCellFactory(t -> new ComboBoxTableCell(listMaNhanKhau));
         tableColumnNoiTamVangCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
-        tableColumnNoiTamVangCanBo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<TamVangDisplayModel, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<TamVangDisplayModel, String> event) {
-                TamVangDisplayModel tamVangDisplayModel = event.getRowValue();
-                tamVangDisplayModel.setNoiTamVang(event.getNewValue());
-                updateTamVangCanBo(tamVangDisplayModel);
-            }
-        });
         tableColumnLyDoTamVangCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
-        tableColumnLyDoTamVangCanBo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<TamVangDisplayModel, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<TamVangDisplayModel, String> event) {
-                TamVangDisplayModel tamVangDisplayModel = event.getRowValue();
-                tamVangDisplayModel.setLyDo(event.getNewValue());
-                updateTamVangCanBo(tamVangDisplayModel);
-            }
-        });
         tableColumnTuNgayTamVangcanBo.setCellFactory(TextFieldTableCell.forTableColumn(new MyDateStringConverter("yyyy-MM-dd")));
-        tableColumnTuNgayTamVangcanBo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<TamVangDisplayModel, Date>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<TamVangDisplayModel, Date> event) {
-                TamVangDisplayModel tamVangDisplayModel = event.getRowValue();
-                Date tuNgayMoi = event.getNewValue();
-                if (tuNgayMoi != null) {
-                    tamVangDisplayModel.setTuNgay(tuNgayMoi);
-                    updateTamVangCanBo(tamVangDisplayModel);
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Thông báo");
-                    alert.setHeaderText("Vui lòng nhập ngày hợp lệ đúng định dạng năm-tháng-ngày");
-                    alert.showAndWait();
-                    displayAlltamVangCanBo();
-                }
-            }
-        });
         tableColumnDenNgayTamVangcanBo.setCellFactory(TextFieldTableCell.forTableColumn(new MyDateStringConverter("yyyy-MM-dd")));
-        tableColumnDenNgayTamVangcanBo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<TamVangDisplayModel, Date>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<TamVangDisplayModel, Date> event) {
-                TamVangDisplayModel tamVangDisplayModel = event.getRowValue();
-                Date denNgayMoi = event.getNewValue();
-                if (denNgayMoi != null) {
-                    tamVangDisplayModel.setTuNgay(denNgayMoi);
-                    updateTamVangCanBo(tamVangDisplayModel);
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Thông báo");
-                    alert.setHeaderText("Vui lòng nhập ngày hợp lệ đúng định dạng năm-tháng-ngày");
-                    alert.showAndWait();
-                    displayAlltamVangCanBo();
-                }
-            }
-        });
         tableColumnTinhTrangTamVangCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listTinhTrang));
-        tableColumnTinhTrangTamVangCanBo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<TamVangDisplayModel, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<TamVangDisplayModel, String> event) {
-                TamVangDisplayModel tamVangDisplayModel = event.getRowValue();
-                tamVangDisplayModel.setTinhTrang(event.getNewValue());
-                updateTamVangCanBo(tamVangDisplayModel);
-            }
-        });
+
         displayAlltamVangCanBo();
     }
 
@@ -312,9 +246,18 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
             case "Nơi tạm vắng":
                 tamVangDisplayModelObservableList = tamVangService.getTamVangByNoiTamVang(cauHoi);
             case "Ngày":
-                tamVangDisplayModelObservableList = tamVangService.getTamVangByNgayBetween(
-                        Date.from(datePickerTu.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
-                        Date.from(datePickerDen.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                if (datePickerTu.getValue() != null && datePickerDen.getValue() != null) {
+                    tamVangDisplayModelObservableList = tamVangService.getTamVangByNgayBetween(
+                            Date.from(datePickerTu.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                            Date.from(datePickerDen.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText("Vui lòng nhập đầy đủ thông tin!");
+                    alert.showAndWait();
+                    displayAlltamVangCanBo();
+                    return;
+                }
                 break;
             case "Tình trạng":
                 tamVangDisplayModelObservableList = tamVangService.getTamVangBytinhTrang(
@@ -323,6 +266,77 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
                 break;
         }
         tableViewTamVangCanBo.setItems(tamVangDisplayModelObservableList);
+    }
+
+    public void handleOnEditCommit(TableColumn.CellEditEvent<TamVangDisplayModel, ?> event) {
+        int column = event.getTablePosition().getColumn();
+        TamVangDisplayModel tamVangDisplayModel = event.getRowValue();
+        switch (column) {
+            case 0:
+                tamVangDisplayModel.setMaNhanKhau((String) event.getNewValue());
+                break;
+            case 2:
+                tamVangDisplayModel.setNoiTamVang((String) event.getNewValue());
+                break;
+            case 3:
+                Date tuNgayMoi = (Date) event.getNewValue();
+                if (tuNgayMoi != null) {
+                    tamVangDisplayModel.setTuNgay(tuNgayMoi);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
+                    alert.showAndWait();
+                    displayAlltamVangCanBo();
+                    return;
+                }
+                break;
+            case 4:
+                Date denNgayMoi = (Date) event.getNewValue();
+                if (denNgayMoi != null) {
+                    tamVangDisplayModel.setDenNgay(denNgayMoi);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
+                    alert.showAndWait();
+                    displayAlltamVangCanBo();
+                    return;
+                }
+                break;
+            case 5:
+                tamVangDisplayModel.setLyDo((String) event.getNewValue());
+                break;
+            case 6:
+                tamVangDisplayModel.setTinhTrang((String) event.getNewValue());
+                break;
+        }
+        updateTamVangCanBo(tamVangDisplayModel);
+    }
+
+    public void handleOnEditCancel(TableColumn.CellEditEvent<TamVangDisplayModel, ?> event) {
+        int column = event.getTablePosition().getColumn();
+        TamVangDisplayModel tamVangDisplayModel = event.getRowValue();
+        switch (column) {
+            case 0:
+                tamVangDisplayModel.setMaNhanKhau((String) event.getOldValue());
+                break;
+            case 2:
+                tamVangDisplayModel.setNoiTamVang((String) event.getOldValue());
+                break;
+            case 3:
+                tamVangDisplayModel.setTuNgay((Date) event.getOldValue());
+                break;
+            case 4:
+                tamVangDisplayModel.setDenNgay((Date) event.getOldValue());
+                break;
+            case 5:
+                tamVangDisplayModel.setLyDo((String) event.getOldValue());
+                break;
+            case 6:
+                tamVangDisplayModel.setTinhTrang((String) event.getOldValue());
+                break;
+        }
     }
 
     private void updateTamVangCanBo(TamVangDisplayModel tamVangDisplayModel) {

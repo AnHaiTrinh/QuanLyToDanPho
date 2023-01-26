@@ -8,7 +8,6 @@ import com.se07.util.MyDateStringConverter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -22,12 +21,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Lớp controller điều khiển màn hình quản lý nhân khẩu của tổ trưởng
+ */
 public class ControllerNhanKhauView extends ControllerCanBoView {
     @FXML
     TableView<NhanKhauModel> tableViewNhanKhauCanBo;
@@ -46,6 +47,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
     final private ObservableList<String> listTimKiem = FXCollections.observableArrayList(
             "Mã nhân khẩu", "Mã hộ khẩu", "Họ tên", "Biệt danh", "Ngày sinh", "Giới tính", "Tôn giáo", "Tình trạng");
 
+    private final ObservableList<String> listMaHoKhau = new HoKhauService().getAllMaHoKhau();
     final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ");
 
     final private ObservableList<String> listTinhTrang =
@@ -55,17 +57,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
-        comboBoxTimKiemNhanKhauCanBo.getItems().addAll(listTimKiem);
-        comboBoxTimKiemNhanKhauCanBo.getSelectionModel().selectFirst();
-        comboBoxGioiTinhNhanKhauCanBo.getItems().addAll(listGioiTinh);
-        comboBoxGioiTinhNhanKhauCanBo.getSelectionModel().selectFirst();
-        ComponentVisibility.change(comboBoxGioiTinhNhanKhauCanBo, false);
-        comboBoxTinhTrangNhanKhauCanBo.getItems().addAll(listTinhTrang);
-        comboBoxTinhTrangNhanKhauCanBo.getSelectionModel().selectFirst();
-        ComponentVisibility.change(comboBoxTinhTrangNhanKhauCanBo, false);
-        tableViewNhanKhauCanBo.setEditable(true);
-        ComponentVisibility.change(datePickerTu, false);
-        ComponentVisibility.change(datePickerDen, false);
+
         tableComlumIDNhanKhauCanBo.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("maNhanKhau"));
         tableComlumIDHoKhauNhanKhauCanBo.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("maHoKhau"));
         tableComlumHoTenNhanKhauCanBo.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("hoTen"));
@@ -74,81 +66,32 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         tableComlumGioiTinhNhanKhauCanBo.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("gioiTinh"));
         tableComlumTonGiaoNhanKhauCanBo.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("tonGiao"));
         tableComlumTinhTrangNhanKhauCanBo.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("tinhTrang"));
-        tableComlumIDHoKhauNhanKhauCanBo.setCellFactory(t -> new ComboBoxTableCell(new HoKhauService().getAllMaHoKhau()));
-        tableComlumIDHoKhauNhanKhauCanBo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<NhanKhauModel, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<NhanKhauModel, String> event) {
-                NhanKhauModel nhanKhauModel = event.getRowValue();
-                nhanKhauModel.setMaHoKhau(event.getNewValue());
-                updateNhanKhauCanBo(nhanKhauModel);
-            }
-        });
+
+        comboBoxTimKiemNhanKhauCanBo.getItems().addAll(listTimKiem);
+        comboBoxTimKiemNhanKhauCanBo.getSelectionModel().selectFirst();
+        comboBoxGioiTinhNhanKhauCanBo.getItems().addAll(listGioiTinh);
+        comboBoxGioiTinhNhanKhauCanBo.getSelectionModel().selectFirst();
+        comboBoxTinhTrangNhanKhauCanBo.getItems().addAll(listTinhTrang);
+        comboBoxTinhTrangNhanKhauCanBo.getSelectionModel().selectFirst();
+
+        tableViewNhanKhauCanBo.setEditable(true);
+        tableComlumIDHoKhauNhanKhauCanBo.setCellFactory(t -> new ComboBoxTableCell(listMaHoKhau));
         tableComlumHoTenNhanKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
-        tableComlumHoTenNhanKhauCanBo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<NhanKhauModel, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<NhanKhauModel, String> event) {
-                NhanKhauModel nhanKhauModel = event.getRowValue();
-                nhanKhauModel.setHoTen(event.getNewValue());
-                updateNhanKhauCanBo(nhanKhauModel);
-            }
-        });
         tableComlumBietDanhNhanKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
-        tableComlumBietDanhNhanKhauCanBo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<NhanKhauModel, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<NhanKhauModel, String> event) {
-                NhanKhauModel nhanKhauModel = event.getRowValue();
-                nhanKhauModel.setBietDanh(event.getNewValue());
-                updateNhanKhauCanBo(nhanKhauModel);
-            }
-        });
         tableComlumNgaySinhNhanKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn(new MyDateStringConverter("yyyy-MM-dd")));
-        tableComlumNgaySinhNhanKhauCanBo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<NhanKhauModel, Date>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<NhanKhauModel, Date> event) {
-                NhanKhauModel nhanKhauModel = event.getRowValue();
-                Date ngaySinhMoi = event.getNewValue();
-                if (ngaySinhMoi != null) {
-                    nhanKhauModel.setNgaySinh(ngaySinhMoi);
-                    updateNhanKhauCanBo(nhanKhauModel);
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Thông báo");
-                    alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
-                    alert.showAndWait();
-                    displayAllNhanKhauCanBo();
-                }
-            }
-        });
         tableComlumGioiTinhNhanKhauCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listGioiTinh));
-        tableComlumGioiTinhNhanKhauCanBo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<NhanKhauModel, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<NhanKhauModel, String> event) {
-                NhanKhauModel nhanKhauModel = event.getRowValue();
-                nhanKhauModel.setGioiTinh(event.getNewValue());
-                updateNhanKhauCanBo(nhanKhauModel);
-            }
-        });
         tableComlumTonGiaoNhanKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
-        tableComlumTonGiaoNhanKhauCanBo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<NhanKhauModel, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<NhanKhauModel, String> event) {
-                NhanKhauModel nhanKhauModel = event.getRowValue();
-                nhanKhauModel.setTonGiao(event.getNewValue());
-                updateNhanKhauCanBo(nhanKhauModel);
-            }
-        });
         tableComlumTinhTrangNhanKhauCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listTinhTrang));
-        tableComlumTinhTrangNhanKhauCanBo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<NhanKhauModel, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<NhanKhauModel, String> event) {
-                NhanKhauModel nhanKhauModel = event.getRowValue();
-                nhanKhauModel.setTinhTrang(event.getNewValue());
-                updateNhanKhauCanBo(nhanKhauModel);
-            }
-        });
+
         displayAllNhanKhauCanBo();
     }
 
+    /**
+     * Phương thức được gọi khi lựa chọn trường tìm kiếm
+     * Tùy vào trường được chọn sẽ hiển thị giao diện lựa chọn phù hợp
+     *
+     * @param e Sự kiện hành động bắt được
+     */
     public void onSelectionComboBoxTimKiemTamVangCanBo(ActionEvent e) {
         String truongTimKiem = String.valueOf(comboBoxTimKiemNhanKhauCanBo.getValue());
         if (truongTimKiem.equals("Ngày sinh")) {
@@ -182,65 +125,129 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
     public void onPressedButtonNhanKhauCanBo(MouseEvent e) {
     }
 
+    /**
+     * Phương thức được gọi khi nhấn phím trong ô tìm kiếm
+     * Nếu phím ENTER được nhấn sẽ thực hiện lọc thông tin theo trường đã chọn
+     *
+     * @param keyEvent Sự kiện phím bắt được
+     */
     public void onEnterPressedTrongOTimKiemNhanKhauCanBo(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             locThongTinNhanKhauCanBo();
         }
     }
 
+    /**
+     * Phương thức đươc gọi khi nhấn nút thêm mới
+     * Nếu chuột trái được nhấn sẽ chuyển sang màn hình thêm mới nhân khẩu
+     *
+     * @param e Sự kiện chuột bắt được
+     * @throws IOException
+     */
     public void onPressedButtonThemMoiNhanKhauCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "ThemMoiNhanKhauCanBoView.fxml");
         }
     }
 
+    /**
+     * Phương thức đươc gọi khi nhấn nút Tạm vắng
+     * Nếu chuột trái được nhấn sẽ chuyển sang màn hình quản lý tạm vắng
+     *
+     * @param e Sự kiện chuột bắt được
+     * @throws IOException
+     */
     public void onPressedButtonTamVangCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "TamVangCanBo.fxml");
         }
     }
 
+    /**
+     * Phương thức đươc gọi khi nhấn nút tạm trú
+     * Nếu chuột trái được nhấn sẽ chuyển sang màn hình quản lý tạm trú
+     *
+     * @param e Sự kiện chuột bắt được
+     * @throws IOException
+     */
     public void onPressedButtonTamTruCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "TamTruCanBo.fxml");
         }
     }
 
+    /**
+     * Phương thức được gọi khi nhấn nút xác nhận
+     * Nếu chuột trái được nhấn sẽ thực hiện xác nhận nhân khẩu
+     *
+     * @param e Sự kiện chuột bắt được
+     */
     public void onPressedButtonXacNhanNhanKhauCanBo(MouseEvent e) {
         if (e.isPrimaryButtonDown()) {
             xacNhanNhanKhauCanBo();
         }
     }
 
+    /**
+     * Phương thức được gọi khi nhấn phím trong bảng nhân khẩu
+     * Nếu phím DELETE được nhấn sẽ thực hiện xóa nhân khẩu
+     *
+     * @param e Sự kiện phím bắt được
+     */
     public void onDeletePressedTrongBangNhanKhauCanBo(KeyEvent e) {
         if (e.getCode() == KeyCode.DELETE) {
             xoaNhanKhauCanBo();
         }
     }
 
+    /**
+     * Phương thức được gọi khi nhấn nút từ chối
+     * Nếu chuột trái được nhấn sẽ thực hiện từ chối nhân khẩu
+     *
+     * @param e Sự kiện chuột bắt được
+     */
     public void onPressedButtonTuChoiNhanKhauCanBo(MouseEvent e) {
         if (e.isPrimaryButtonDown()) {
             tuChoiNhanKhauCanBo();
         }
     }
 
+    /**
+     * Phương thức được gọi khi nhấn nút xóa
+     * Nếu chuột trái được nhấn sẽ thực hiện xóa nhân khẩu
+     *
+     * @param e Sự kiện chuột bắt được
+     */
     public void onPressedButtonXoaNhanKhauCanBo(MouseEvent e) {
         if (e.isPrimaryButtonDown()) {
             xoaNhanKhauCanBo();
         }
     }
 
+    /**
+     * Phương thức được gọi khi nhấn nút tìm kiếm
+     * Nếu chuột trái được nhấn sẽ thực hiện lọc thông tin nhân khẩu
+     *
+     * @param e Sự kiện chuột bắt được
+     */
     public void onPressedButtonLocThongTinNhanKhauCanBo(MouseEvent e) {
         if (e.isPrimaryButtonDown()) {
             locThongTinNhanKhauCanBo();
         }
     }
 
+    /**
+     * Phương thức hiển thị tất cả nhân khẩu
+     */
     private void displayAllNhanKhauCanBo() {
-        ObservableList<NhanKhauModel> hoKhauModelObservableList = nhanKhauService.getAllNhanKhau();
-        tableViewNhanKhauCanBo.setItems(hoKhauModelObservableList);
+        ObservableList<NhanKhauModel> nhanKhauModelObservableList = nhanKhauService.getAllNhanKhau();
+        tableViewNhanKhauCanBo.setItems(nhanKhauModelObservableList);
     }
 
+    /**
+     * Phương thức từ chối nhân khẩu được chọn trong bảng hiển thị
+     * Nếu không có nhân khẩu nào được chọn sẽ thông báo cho người dùng
+     */
     private void tuChoiNhanKhauCanBo() {
         NhanKhauModel nhanKhauModel = tableViewNhanKhauCanBo.getSelectionModel().getSelectedItem();
         if (nhanKhauModel == null) {
@@ -265,6 +272,10 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         }
     }
 
+    /**
+     * Phương thức xác nhận nhân khẩu được chọn trong bảng hiển thị
+     * Nếu không có nhân khẩu nào được chọn sẽ thông báo cho người dùng
+     */
     private void xacNhanNhanKhauCanBo() {
         NhanKhauModel nhanKhauModel = tableViewNhanKhauCanBo.getSelectionModel().getSelectedItem();
         if (nhanKhauModel == null) {
@@ -289,6 +300,10 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         }
     }
 
+    /**
+     * Phương thức xóa hộ khẩu được chọn trong bảng hiển thị
+     * Nếu không có hộ khẩu nào được chọn sẽ thông báo cho người dùng
+     */
     private void xoaNhanKhauCanBo() {
         NhanKhauModel nhanKhauModel = tableViewNhanKhauCanBo.getSelectionModel().getSelectedItem();
         if (nhanKhauModel == null) {
@@ -314,6 +329,10 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         }
     }
 
+    /**
+     * Phương thức tìm kiếm nhân khẩu theo trường tiêu chí đã chọn
+     * Các trường tìm kiếm hợp lệ là Mã nhân khẩu, Mã hộ khẩu, Họ tên, Biệt danh, Ngày sinh, Giới tính, Tôn giáo, Tình trạng
+     */
     private void locThongTinNhanKhauCanBo() {
         String dieuKienKiemTra = String.valueOf(comboBoxTimKiemNhanKhauCanBo.getValue());
         String cauHoi = textFieldLocThongTinNhanKhauCanBo.getText();
@@ -335,9 +354,18 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
                 nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByBietDanh(cauHoi);
                 break;
             case "Ngày sinh":
-                nhanKhauModelObservableList = nhanKhauService.getNhanKhauByNgaySinhBetween(
-                        Date.from(datePickerTu.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
-                        Date.from(datePickerDen.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                if (datePickerTu.getValue() != null && datePickerDen.getValue() != null) {
+                    nhanKhauModelObservableList = nhanKhauService.getNhanKhauByNgaySinhBetween(
+                            Date.from(datePickerTu.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                            Date.from(datePickerDen.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText("Vui lòng nhập đầy đủ thông tin!");
+                    alert.showAndWait();
+                    displayAllNhanKhauCanBo();
+                    return;
+                }
                 break;
             case "Giới tính":
                 nhanKhauModelObservableList = nhanKhauService.getNhanKhauByGioiTinh(
@@ -356,6 +384,88 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         tableViewNhanKhauCanBo.setItems(nhanKhauModelObservableList);
     }
 
+    /**
+     * Phương thức xử lý sự kiện khi một ô trong bảng được thay đổi
+     *
+     * @param event Sự kiện ô được thay đổi trong bảng
+     */
+    public void handleOnEditCommit(TableColumn.CellEditEvent<NhanKhauModel, ?> event) {
+        int column = event.getTablePosition().getColumn();
+        NhanKhauModel nhanKhauModel = event.getRowValue();
+        switch (column) {
+            case 1:
+                nhanKhauModel.setMaHoKhau((String) event.getNewValue());
+                break;
+            case 2:
+                nhanKhauModel.setHoTen((String) event.getNewValue());
+                break;
+            case 3:
+                nhanKhauModel.setBietDanh((String) event.getNewValue());
+                break;
+            case 4:
+                Date ngaySinhMoi = (Date) event.getNewValue();
+                if (ngaySinhMoi != null) {
+                    nhanKhauModel.setNgaySinh(ngaySinhMoi);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
+                    alert.showAndWait();
+                    displayAllNhanKhauCanBo();
+                    return;
+                }
+                break;
+            case 5:
+                nhanKhauModel.setGioiTinh((String) event.getNewValue());
+                break;
+            case 6:
+                nhanKhauModel.setTonGiao((String) event.getNewValue());
+                break;
+            case 7:
+                nhanKhauModel.setTinhTrang((String) event.getNewValue());
+                break;
+        }
+        updateNhanKhauCanBo(nhanKhauModel);
+    }
+
+    /**
+     * Phương thức xử lý sự kiện khi một ô trong bảng được thay đổi
+     *
+     * @param event Sự kiện ô được thay đổi trong bảng
+     */
+    public void handleOnEditCancel(TableColumn.CellEditEvent<NhanKhauModel, ?> event) {
+        int column = event.getTablePosition().getColumn();
+        NhanKhauModel nhanKhauModel = event.getRowValue();
+        switch (column) {
+            case 1:
+                nhanKhauModel.setMaHoKhau((String) event.getOldValue());
+                break;
+            case 2:
+                nhanKhauModel.setHoTen((String) event.getOldValue());
+                break;
+            case 3:
+                nhanKhauModel.setBietDanh((String) event.getOldValue());
+                break;
+            case 4:
+                nhanKhauModel.setNgaySinh((Date) event.getOldValue());
+                break;
+            case 5:
+                nhanKhauModel.setGioiTinh((String) event.getOldValue());
+                break;
+            case 6:
+                nhanKhauModel.setTonGiao((String) event.getOldValue());
+                break;
+            case 7:
+                nhanKhauModel.setTinhTrang((String) event.getOldValue());
+                break;
+        }
+    }
+
+    /**
+     * Phương thức cập nhật thông tin nhân khẩu
+     *
+     * @param nhanKhauModel Lớp chứa thông tin của nhân khẩu muốn thay đổi
+     */
     private void updateNhanKhauCanBo(NhanKhauModel nhanKhauModel) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo!");

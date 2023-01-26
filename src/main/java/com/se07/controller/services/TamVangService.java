@@ -31,7 +31,6 @@ public class TamVangService {
                 listTamVang.add(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,6 +53,7 @@ public class TamVangService {
                         rs.getNString("tinhTrang"));
                 tamVangDisplayModels.add(tmp);
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,6 +77,7 @@ public class TamVangService {
                         rs.getNString("tinhTrang"));
                 tamVangDisplayModels.add(tmp);
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,6 +101,7 @@ public class TamVangService {
                         rs.getNString("tinhTrang"));
                 tamVangDisplayModels.add(tmp);
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -124,7 +126,6 @@ public class TamVangService {
                 listTamVang.add(tmp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -149,7 +150,6 @@ public class TamVangService {
                 listTamVang.add(tmp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -178,7 +178,6 @@ public class TamVangService {
                 listTamVang.add(tmp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -195,7 +194,6 @@ public class TamVangService {
             statement.setDate(2, new java.sql.Date(high.getTime()));
             statement.executeUpdate();
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -215,7 +213,7 @@ public class TamVangService {
                 listTamVang.add(temp);
             }
             statement.close();
-            connection.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -233,7 +231,6 @@ public class TamVangService {
             statement.setDate(2, new java.sql.Date(high.getTime()));
             statement.executeUpdate();
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -253,7 +250,6 @@ public class TamVangService {
                 listTamVang.add(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -281,7 +277,6 @@ public class TamVangService {
                 listTamVang.add(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -308,7 +303,6 @@ public class TamVangService {
                 tamVangModel = Optional.of(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -330,7 +324,6 @@ public class TamVangService {
             statement.setInt(7, tamVangModel.getIdNguoiThucHien());
             statement.executeUpdate();
             statement.close();
-            connection.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -346,7 +339,6 @@ public class TamVangService {
                 " tuNgay = ?, " +
                 "denNgay = ?, lydo = ?, " +
                 "tinhTrang = ?,  " +
-
                 "idNguoiThucHien = ? where maTamVang = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -360,7 +352,6 @@ public class TamVangService {
             statement.setInt(8, tamVangModel.getMaTamVang());
             statement.executeUpdate();
             statement.close();
-            connection.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -375,7 +366,6 @@ public class TamVangService {
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
             statement.close();
-            connection.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -390,7 +380,6 @@ public class TamVangService {
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
             statement.close();
-            connection.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -405,12 +394,13 @@ public class TamVangService {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             rs.next();
-            return rs.getInt(1);
+            int count = rs.getInt(1);
+            statement.close();
+            return count;
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
         }
-
     }
 
     public TamVangModel convertDisplayModelToModel(TamVangDisplayModel tamVangDisplayModel) {

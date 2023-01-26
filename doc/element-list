@@ -1,0 +1,7 @@
+module:com.se07.main
+com.se07.controller.controllers
+com.se07.controller.services
+com.se07.main
+com.se07.model.models
+com.se07.util
+com.se07.view

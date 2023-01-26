@@ -17,6 +17,9 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+/**
+ * Lớp controller điều khiển màn hình thêm mới hộ khẩu của tổ trưởng
+ */
 public class ControllerThemMoiHoKhauCanBoView extends ControllerCanBoView {
     LocalDate today = LocalDate.now();
     @FXML
@@ -27,6 +30,7 @@ public class ControllerThemMoiHoKhauCanBoView extends ControllerCanBoView {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
+
         anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
                 dangKyHoKhauCanBo();
@@ -41,18 +45,36 @@ public class ControllerThemMoiHoKhauCanBoView extends ControllerCanBoView {
         datePickerNgayThanhLapThemMoiHoKhauCanBo.setValue(today);
     }
 
+    /**
+     * Phương thức được gọi khi nhấn nút hủy
+     * Nếu chuột trái được nhấn sẽ thực hiện hủy đăng ký hộ khẩu
+     *
+     * @param e Sự kiện chuột bắt được
+     * @throws IOException
+     */
     public void onPressedButtonHuyDangKyHoKhauCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
             huyDangKyHoKhauCanBo(e);
         }
     }
 
+    /**
+     * Phương thức được gọi khi nhấn nút đăng ký
+     * Nếu chuột trái được nhấn sẽ thực hiện đăng ký hộ khẩu
+     *
+     * @param e Sự kiện chuột bắt được
+     */
     public void onPressedButtonDangKyHoKhauCanBo(MouseEvent e) {
         if (e.isPrimaryButtonDown()) {
             dangKyHoKhauCanBo();
         }
     }
 
+    /**
+     * Phương thức lưu thông tin hộ khẩu người dùng đã nhập
+     * Nếu các trường không được điền đầy đủ sẽ hiển thị thông báo
+     * Nếu thành công sẽ lưu vào cơ sở dữ liệu và trở lại giao diện thêm mới hộ khẩu
+     */
     private void dangKyHoKhauCanBo() {
         HoKhauService hoKhauService = new HoKhauService();
         if (textFieldMaHoKhauThemMoiHoKhauCanBo.getText().isBlank() ||
@@ -96,6 +118,12 @@ public class ControllerThemMoiHoKhauCanBoView extends ControllerCanBoView {
         }
     }
 
+    /**
+     * Phương thức hủy đăng ký hộ khẩu mới và trở về giao diện quản lý hộ khẩu
+     *
+     * @param e Sự kiện kích hoạt
+     * @throws IOException
+     */
     private void huyDangKyHoKhauCanBo(Event e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo");
