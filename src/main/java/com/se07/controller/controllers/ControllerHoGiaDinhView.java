@@ -3,9 +3,12 @@ package com.se07.controller.controllers;
 import com.se07.controller.services.HoKhauService;
 import com.se07.util.SceneLoader;
 import com.se07.util.UserInfo;
+import com.se07.view.LoginView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -43,14 +46,20 @@ public class ControllerHoGiaDinhView implements Initializable {
     public void onPressedButtonGiaiThuongHoGiaDinh(MouseEvent e) throws IOException{
         System.out.println(3);
     }
-    public void onPressedButtonTraCuuThongTInPhanThuongHoGiaDinh(){
-        System.out.println(4);
+    public void onPressedButtonDangXuatHoGiaDinh(MouseEvent e) throws IOException{
+        if(e.isPrimaryButtonDown()){
+            dangXuatHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow());
+        }
     }
-    public void onPressedButtonNhapThongTinPhanThuongHoGiaDinh(){
-
-    }
-    public void onPressedButtonDangXuatHoGiaDinh(){
-
+    public void dangXuatHoGiaDinh(Stage stage){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Thông báo!");
+        alert.setHeaderText("Bạn muốn đăng xuất ?");
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            stage.close();
+            LoginView loginView = new LoginView();
+            loginView.openWindow();
+        }
     }
 
 

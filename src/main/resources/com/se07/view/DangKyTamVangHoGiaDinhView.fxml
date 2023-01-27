@@ -146,12 +146,18 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldHoTenThemMoiNhanKhauCanBo" promptText="Bắt buộc" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <DatePicker fx:id="datePickerNgaySinhThemMoiNhanKhauCanBo" prefHeight="31.0" prefWidth="213.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <ComboBox prefHeight="31.0" prefWidth="219.0" GridPane.columnIndex="2" />
-            <DatePicker GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="5" />
+            <TextField fx:id="textFieldLyDoDangKyTamVangHoGiaDinh" promptText="Bắt buộc" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <DatePicker fx:id="datePickerDenNgayDangKyTamVangHoGiaDinh" prefHeight="31.0" prefWidth="213.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <ComboBox fx:id="comBoBoxMaNhanKhauDangKyTamVangHoGiaDinh" onAction="#onSelectionComBoBoxMaNhanKhauDangKyTamVangHoGiaDinh" prefHeight="31.0" prefWidth="219.0" GridPane.columnIndex="2" />
+            <DatePicker fx:id="datePickerTuNgayDangKyTamVangHoGiaDinh" prefHeight="31.0" prefWidth="213.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <TextField fx:id="textFieldNoiTamVangDangKyTamVangHoGiaDinh" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="textFieldHoTenDangKyTamVangHoGiaDinh" GridPane.columnIndex="5" />
+            <Label text="Mã tạm vắng" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textFieldMaTamVangDangKyTamVangHoGiaDinh" promptText="Bắt buộc" GridPane.columnIndex="2" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>
