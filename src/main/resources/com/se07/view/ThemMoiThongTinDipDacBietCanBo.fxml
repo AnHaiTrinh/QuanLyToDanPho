@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="695.0" stylesheets="@Css/ThemMoiThongTinDipDacBietCanBo.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerThemMoiHoKhauCanBoView">
+<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="695.0" stylesheets="@Css/ThemMoiThongTinDipDacBietCanBo.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerThemMoiThongTinDipDacBietCanBo">
     <children>
           <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
               <image>
@@ -62,6 +62,11 @@
                           <Font name="System Bold" size="15.0" />
                       </font>
                   </Button>
+              <Button fx:id="buttonHuyThongTinDipDacBietCanBo" layoutX="13.0" layoutY="552.0" mnemonicParsing="false" onMousePressed="#onPressedButtonHuyThongTinDipDacBietCanBo" prefHeight="31.0" prefWidth="105.0" text="Hủy" textFill="#f8f8f8">
+                  <font>
+                      <Font name="System Bold" size="15.0" />
+                  </font>
+              </Button>
               </children>
           </AnchorPane>
           <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false" onMousePressed="#onPressedButtonGiaiThuongCanBo" prefHeight="58.0" prefWidth="222.0" text="Giải Thưởng" textFill="WHITE">
@@ -117,30 +122,17 @@
                         <Font name="System Bold" size="15.0" />
                     </font>
                 </Label>
-                <TextField promptText="Bắt buộc" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                <TextField fx:id="textFieldHoTenDipDacBietCanBo" editable="false" promptText="Bắt buộc" GridPane.columnIndex="5" GridPane.rowIndex="1">
                     <font>
                         <Font name="System Italic" size="15.0" />
                     </font>
                 </TextField>
-                <TextField promptText="Bắt buộc" GridPane.columnIndex="2">
-                    <font>
-                        <Font name="System Italic" size="15.0" />
-                    </font>
-                </TextField>
-            <TextField layoutX="500.0" layoutY="111.0" promptText="Bắt buộc" GridPane.columnIndex="5">
-               <font>
-                  <Font name="System Italic" size="15.0" />
-               </font>
-            </TextField>
-            <ComboBox prefHeight="31.0" prefWidth="197.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboBoxMaNhanKhauDipDacBietCanBo" onAction="#onSelectionComboBoxMaNhanKhauDipDacBietCanBo" prefHeight="31.0" prefWidth="197.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboBoxTenDipDacBietCanBo" onAction="#onSelectionComboBoxTenDipDacBietCanBo" prefHeight="31.0" prefWidth="199.0" GridPane.columnIndex="2" />
+            <ComboBox fx:id="comboBoxNamDipDacBietCanBo" layoutX="156.0" layoutY="59.0" onAction="#onSelectionComboBoxNamDipDacBietCanBo" prefHeight="31.0" prefWidth="199.0" GridPane.columnIndex="5" />
             </children>
         </GridPane>
-        <Button fx:id="buttonHuyThongTinDipDacBietCanBo" layoutX="770.0" layoutY="558.0" mnemonicParsing="false" onMousePressed="#onPressedButtonHuyDangKyHoKhauCanBo" prefHeight="31.0" prefWidth="105.0" text="Hủy" textFill="#f8f8f8">
-            <font>
-                <Font name="System Bold" size="15.0" />
-            </font>
-        </Button>
-        <Button fx:id="buttonHoanThanhThongTinDipDacBietCanBo" layoutX="640.0" layoutY="558.0" mnemonicParsing="false" onMousePressed="#onPressedButtonDangKyHoKhauCanBo" prefHeight="31.0" prefWidth="105.0" text="Hoàn thành" textFill="#f8f8f8">
+        <Button fx:id="buttonHoanThanhThongTinDipDacBietCanBo" layoutX="640.0" layoutY="558.0" mnemonicParsing="false" onMousePressed="#onPressedButtonHoanThanhThongTinDipDacBietCanBo" prefHeight="31.0" prefWidth="105.0" text="Hoàn thành" textFill="#f8f8f8">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
