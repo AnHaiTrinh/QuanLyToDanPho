@@ -2,6 +2,7 @@ package com.se07.controller.services;
 
 import com.se07.model.models.TamTruDisplayModel;
 import com.se07.model.models.TamTruModel;
+
 import com.se07.util.ConnectionDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,7 +41,6 @@ public class TamTruService {
                 listTamTru.add(temp);
             }
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -246,7 +246,6 @@ public class TamTruService {
             statement.setDate(2, new java.sql.Date(high.getTime()));
             statement.executeUpdate();
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -301,9 +300,50 @@ public class TamTruService {
                 list.add(temp);
             }
             statement.close();
-            connection.close();
 
         }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    /**
+     *
+     * @param tu
+     * @param den
+     * @return các bản ghi tạm trú từ từ ngày tu đến ngày den
+     */
+    public ObservableList<TamTruDisplayModel> getTamTruByNgayBetween(Date tu, Date den) {
+        ObservableList<TamTruDisplayModel> list = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
+                "from tam_tru, ho_khau" +
+                "where (tam_tru.maHoKhau= ho_khau.maHoKhau) and (t.tuNgay between ? and ?) and (t.denNgay between ? and ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setDate(1, new java.sql.Date(tu.getTime()));
+            statement.setDate(2, new java.sql.Date(den.getTime()));
+            statement.setDate(3, new java.sql.Date(tu.getTime()));
+            statement.setDate(4, new java.sql.Date(den.getTime()));
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                TamTruDisplayModel temp = new TamTruDisplayModel(
+                        rs.getInt("maTamTru"),
+                        rs.getString("CCCD"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("noiTamTru"),
+                        rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"),
+                        rs.getNString("lydo"),
+                        rs.getNString("tinhTrang"));
+
+                list.add(temp);
+
+
+
+            }
+            statement.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
@@ -324,6 +364,7 @@ public class TamTruService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruDisplayModel temp = new TamTruDisplayModel(
+                        rs.getInt("maTamTru"),
                         rs.getString("CCCD"),
                         rs.getNString("hoTen"),
                         rs.getNString("noiTamTru"),
@@ -335,7 +376,6 @@ public class TamTruService {
                 list.add(temp);
             }
             statement.close();
-            connection.close();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -365,7 +405,6 @@ public class TamTruService {
             statement.setInt(8, tamTruModel.getIdNguoiThucHien());
             statement.executeUpdate();
             statement.close();
-            connection.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -403,7 +442,6 @@ public class TamTruService {
             statement.setInt(9, tamTruModel.getMaTamTru());
             statement.executeUpdate();
             statement.close();
-            connection.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -423,7 +461,6 @@ public class TamTruService {
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
             statement.close();
-            connection.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
