@@ -52,6 +52,8 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
     final private NhanKhauService nhanKhauService = new NhanKhauService();
     final ObservableList<String> listMaNhanKhau = nhanKhauService.getAllMaNhanKhau();
 
+    final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
@@ -76,8 +78,8 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
         tableColumnMaNhanKhauTamVangCanBo.setCellFactory(t -> new ComboBoxTableCell(listMaNhanKhau));
         tableColumnNoiTamVangCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnLyDoTamVangCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
-        tableColumnTuNgayTamVangcanBo.setCellFactory(TextFieldTableCell.forTableColumn(new MyDateStringConverter("yyyy-MM-dd")));
-        tableColumnDenNgayTamVangcanBo.setCellFactory(TextFieldTableCell.forTableColumn(new MyDateStringConverter("yyyy-MM-dd")));
+        tableColumnTuNgayTamVangcanBo.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
+        tableColumnDenNgayTamVangcanBo.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
         tableColumnTinhTrangTamVangCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listTinhTrang));
 
         displayAlltamVangCanBo();

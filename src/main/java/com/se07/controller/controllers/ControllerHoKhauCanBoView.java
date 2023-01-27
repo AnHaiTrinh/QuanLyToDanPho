@@ -44,6 +44,8 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
             "Tên chủ hộ", "Mã hộ khẩu", "Địa chỉ", "Ngày lập");
     final HoKhauService hoKhauService = new HoKhauService();
 
+    final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
@@ -61,7 +63,7 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
         tableViewTatCaHoKhauCanBo.setEditable(true);
         tableColumnHotenHoKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnDiaChiHoKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
-        tableColumnNgayLapHoKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn(new MyDateStringConverter("yyyy-MM-dd")));
+        tableColumnNgayLapHoKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
 
         displayAllHoKhauCanBo();
     }

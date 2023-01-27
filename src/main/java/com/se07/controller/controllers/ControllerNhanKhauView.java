@@ -54,6 +54,8 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
             FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
     final NhanKhauService nhanKhauService = new NhanKhauService();
 
+    final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
@@ -82,7 +84,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         tableComlumIDHoKhauNhanKhauCanBo.setCellFactory(t -> new ComboBoxTableCell(listMaHoKhau));
         tableComlumHoTenNhanKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
         tableComlumBietDanhNhanKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
-        tableComlumNgaySinhNhanKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn(new MyDateStringConverter("yyyy-MM-dd")));
+        tableComlumNgaySinhNhanKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
         tableComlumGioiTinhNhanKhauCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listGioiTinh));
         tableComlumTonGiaoNhanKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
         tableComlumTinhTrangNhanKhauCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listTinhTrang));
@@ -381,8 +383,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
                 break;
             case "Tình trạng":
                 nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByTinhTrang(
-                        String.valueOf(comboBoxTinhTrangNhanKhauCanBo.getValue())
-                );
+                        String.valueOf(comboBoxTinhTrangNhanKhauCanBo.getValue()));
                 break;
         }
         tableViewNhanKhauCanBo.setItems(nhanKhauModelObservableList);
