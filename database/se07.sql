@@ -246,7 +246,6 @@ CREATE TABLE thong_tin_thanh_tich
     truong          NVARCHAR(100)       NOT NULL,
     capThanhTich    NVARCHAR(20)        NOT NULL,
     kieuThanhTich   NVARCHAR(20)        NOT NULL,
-    namHoc          VARCHAR(10)         NOT NULL,
     minhChung       VARBINARY           NOT NULL,
     tinhTrang       NVARCHAR(15)        NULL DEFAULT N'Chờ xác nhận',
     idNguoiThucHien INT                 NOT NULL,
