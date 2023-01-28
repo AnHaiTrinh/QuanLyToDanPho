@@ -103,6 +103,39 @@ public class TraoThuongService {
 
     /**
      *
+     * @param maHoKhau
+     * @return các bản ghi trao thưởng thành tích theo hộ khẩu
+     */
+    public ObservableList<TraoThuongDisplayModel> getTraoThuongThanhTichByHoKhau(String maHoKhau) {
+        ObservableList<TraoThuongDisplayModel> list = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+
+        String query = " select giaTri, soLuong " +
+                "from trao_thuong_thanh_tich, phan_thuong, thong_tin_thanh_tich, nhan_khau " +
+                "where trao_thuong_thanh_tich.maPhanThuong = phan_thuong.maPhanThuong" +
+                "and thong_tin_thanh_tich.idNhap = trao_thuong_thanh_tich.idNhap" +
+                "and thong_tin_thanh_tich.maNhanKhau =nhan_khau.maNhanKhau " +
+                "and nhan_khau.maHoKhau = '"+ maHoKhau +"' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                TraoThuongDisplayModel temp = new TraoThuongDisplayModel(
+                        rs.getInt("idNhap"),
+                        rs.getNString("tenPhanThuong"),
+                        rs.getDouble("giaTri"),
+                        rs.getInt("soLuong"));
+                list.add(temp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    /**
+     *
      * @param traoThuongModel
      * @return thêm một bản ghi trao thưởng thành tích
      */
@@ -264,6 +297,39 @@ public class TraoThuongService {
 
     /**
      *
+     * @param maHoKhau
+     * @return các bản ghi trao thưởng dịp đặc biệt theo hộ khẩu
+     */
+
+    public ObservableList<TraoThuongDisplayModel> getTraoThuongDipDacBietByHoKhau(String maHoKhau) {
+        ObservableList<TraoThuongDisplayModel> list = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = " select idNhap, tenPhanThuong, giaTri, soLuong " +
+                "from trao_thuong_thanh_tich, phan_thuong, thong_tin_thanh_tich, nhan_khau " +
+                "where trao_thuong_thanh_tich.maPhanThuong = phan_thuong.maPhanThuong" +
+                "and thong_tin_thanh_tich.idNhap = trao_thuong_thanh_tich.idNhap" +
+                "and thong_tin_thanh_tich.maNhanKhau =nhan_khau.maNhanKhau " +
+                "and nhan_khau.maHoKhau = '"+ maHoKhau +"' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                TraoThuongDisplayModel temp = new TraoThuongDisplayModel(
+                        rs.getInt("idNhap"),
+                        rs.getNString("tenPhanThuong"),
+                        rs.getDouble("giaTri"),
+                        rs.getInt("soLuong"));
+                list.add(temp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    /**
+     *
      * @param traoThuongModel
      * @return thêm một bản ghi trao thưởng dịp đặc biệt
      */
@@ -339,7 +405,7 @@ public class TraoThuongService {
 
     public double getAllGiaTriTraoThuongThanhTichByNamHoc(String namHoc) {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = " giaTri, soLuong " +
+        String query = " select giaTri, soLuong " +
                 "from trao_thuong_thanh_tich, phan_thuong, thong_tin_thanh_tich, nhan_khau " +
                 "where trao_thuong_thanh_tich.maPhanThuong = phan_thuong.maPhanThuong" +
                 "and thong_tin_thanh_tich.idNhap = trao_thuong_thanh_tich.idNhap" +
@@ -371,7 +437,7 @@ public class TraoThuongService {
      */
     public double getGiaTriTraoThuongThanhTichByHoKhau(String maHoKhau) {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = " giaTri, soLuong " +
+        String query = " select giaTri, soLuong " +
                 "from trao_thuong_thanh_tich, phan_thuong, thong_tin_thanh_tich, nhan_khau " +
                 "where trao_thuong_thanh_tich.maPhanThuong = phan_thuong.maPhanThuong" +
                 "and thong_tin_thanh_tich.idNhap = trao_thuong_thanh_tich.idNhap" +
@@ -395,7 +461,7 @@ public class TraoThuongService {
 
     public double getAllGiaTriTraoThuongDipDacBietByNam(int nam) {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = " giaTri, soLuong " +
+        String query = "select giaTri, soLuong " +
                 "from trao_thuong_dip_dac_biet, phan_thuong, thong_tin_dip_dac_biet, nhan_khau " +
                 "where trao_thuong_dip_dac_biet.maPhanThuong = phan_thuong.maPhanThuong" +
                 "and thong_tin_dip_dac_biet.idNhap = trao_thuong_dip_dac_biet.idNhap" +
@@ -422,7 +488,7 @@ public class TraoThuongService {
 
     public double getGiaTriTraoThuongDipDacBietByHoKhau(String maHoKhau ) {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = " giaTri, soLuong " +
+        String query = " select giaTri, soLuong " +
                 "from trao_thuong_dip_dac_biet, phan_thuong, thong_tin_dip_dac_biet, nhan_khau " +
                 "where trao_thuong_dip_dac_biet.maPhanThuong = phan_thuong.maPhanThuong" +
                 "and thong_tin_dip_dac_biet.idNhap = trao_thuong_dip_dac_biet.idNhap" +

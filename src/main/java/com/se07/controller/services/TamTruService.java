@@ -229,7 +229,7 @@ public class TamTruService {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
                 "from tam_tru t, ho_khau" +
-                "where (tam_tru.maHoKhau= ho_khau.maHoKhau) and (t.tuNgay < ?) and (t.denNgay > ?)";
+                "where (tam_tru.maHoKhau= ho_khau.maHoKhau) and (t.tuNgay <= ?) and (t.denNgay => ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setDate(1, new java.sql.Date(den.getTime()));
@@ -435,7 +435,10 @@ public class TamTruService {
         public TamTruModel convertDisplayModelToModel (TamTruDisplayModel tamTruDisplayModel){
             TamTruModel tamTruModel = getTamTruByMaTamTru(tamTruDisplayModel.getMaTamtru()).get();
 
-            return tamTruModel;
+            return new TamTruModel(tamTruDisplayModel.getMaTamtru(),tamTruModel.getMaHoKhau(), tamTruDisplayModel.getCCCD(),
+                    tamTruDisplayModel.getHoTen(),tamTruDisplayModel.getTuNgay(), tamTruDisplayModel.getDenNgay(),
+                    tamTruDisplayModel.getLyDo(),tamTruDisplayModel.getTinhTrang(), tamTruModel.getIdNguoiThucHien());
+
         }
 
     }

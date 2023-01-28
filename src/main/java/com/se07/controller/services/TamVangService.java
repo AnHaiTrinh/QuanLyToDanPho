@@ -161,7 +161,7 @@ public class TamVangService {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
                 "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
-                "where (t.tuNgay < ?) and (t.denNgay > ?)";
+                "where (t.tuNgay <= ?) and (t.denNgay => ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setDate(1, new java.sql.Date(den.getTime()));
