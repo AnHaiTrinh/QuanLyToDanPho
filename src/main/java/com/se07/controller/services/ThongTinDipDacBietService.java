@@ -12,6 +12,24 @@ import java.sql.Statement;
 import java.util.Optional;
 
 public class ThongTinDipDacBietService {
+    public boolean addThongTinDipDacBiet(ThongTinDipDacBietModel thongTinDipDacBietModel) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "insert into thong_tin_dip_dac_biet(idDip, maNhanKhau, tinhTrang, idNguoiThucHien) " +
+                "values(?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, thongTinDipDacBietModel.getIdDip());
+            statement.setString(2, thongTinDipDacBietModel.getMaNhanKhau());
+            statement.setNString(3, thongTinDipDacBietModel.getTinhTrang());
+            statement.setInt(4, thongTinDipDacBietModel.getIdNguoiThucHien());
+            statement.executeUpdate();
+            statement.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 //    public ObservableList<ThongTinDipDacBietModel> getAllThongTinDipDacBiet() {
 //        ObservableList<ThongTinDipDacBietModel> list = FXCollections.observableArrayList();
 //        Connection connection = ConnectionDatabase.getConnection();

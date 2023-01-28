@@ -29,7 +29,8 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
 
     public void onPressedButtonThemMoiTamTruCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
-            loadThemMoiTamTruCanBo((Stage) ((Node) e.getSource()).getScene().getWindow());
+            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(),
+                    "DangKyTamTruCanBoView.fxml");
         }
     }
 
@@ -64,11 +65,5 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
         if (alert.showAndWait().get() == ButtonType.OK) {
             sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(), "NhanKhauCanBoView.fxml");
         }
-    }
-
-    public void loadThemMoiTamTruCanBo(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("DangKyTamTruCanBoView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
     }
 }

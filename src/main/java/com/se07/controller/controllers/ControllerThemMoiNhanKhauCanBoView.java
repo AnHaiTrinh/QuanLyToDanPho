@@ -16,10 +16,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Lớp controller điều khiển màn hình thêm mới nhân khẩu của tổ trưởng
+ */
 public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
     @FXML
     TextField textFieldMaNhanKhauThemMoiNhanKhauCanBo, textFieldHoTenThemMoiNhanKhauCanBo,
@@ -39,6 +43,7 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
         comboBoxMaHoKhauThemMoiNhanKhauCanBo.getItems().addAll(hoKhauService.getAllMaHoKhau());
         comboBoxMaHoKhauThemMoiNhanKhauCanBo.getSelectionModel().selectFirst();
         datePickerNgaySinhThemMoiNhanKhauCanBo.setValue(today);
+
         anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
                 themMoiNhanKhauCanBo();
@@ -52,19 +57,37 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
         });
     }
 
+    /**
+     * Phương thức được gọi khi nhấn nút xác nhận
+     * Nếu chuột trái được nhấn sẽ thực hiện thêm mới nhân khẩu
+     *
+     * @param e Sự kiện chuột bắt được
+     */
     public void onPressedButtonThemMoiNhanKhauCanBo(MouseEvent e) {
         if (e.isPrimaryButtonDown()) {
             themMoiNhanKhauCanBo();
         }
     }
 
+    /**
+     * Phương thức được gọi khi nhấn nút hủy
+     * Nếu chuột trái được nhấn sẽ thực hiện hủy đăng ký nhân khẩu
+     *
+     * @param e Sự kiện chuột bắt được
+     * @throws IOException
+     */
     public void onPressedButtonHuyThemMoiNhanKhauCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
             huyThemMoiNhanKhauCanBo(e);
         }
     }
 
-    public void themMoiNhanKhauCanBo() {
+    /**
+     * Phương thức lưu thông tin nhân khẩu người dùng đã nhập
+     * Nếu các trường không được điền đầy đủ sẽ hiển thị thông báo
+     * Nếu thành công sẽ lưu vào cơ sở dữ liệu và trở lại giao diện thêm mới nhân khẩu
+     */
+    private void themMoiNhanKhauCanBo() {
         NhanKhauService nhanKhauService = new NhanKhauService();
         if (textFieldHoTenThemMoiNhanKhauCanBo.getText().isBlank() || textFieldMaNhanKhauThemMoiNhanKhauCanBo.getText().isBlank()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -79,13 +102,14 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
         String hoTen = textFieldHoTenThemMoiNhanKhauCanBo.getText();
         String tonGiao = textFieldTonGiaoThemMoiNhanKhauCanBo.getText();
         String bietDanh = textFieldBietDanhThemMoiNhanKhauCanBo.getText();
-        Date ngaysinh = new Date(datePickerNgaySinhThemMoiNhanKhauCanBo.getValue().toEpochDay());
+        Date ngaysinh = Date.from(datePickerNgaySinhThemMoiNhanKhauCanBo.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
         NhanKhauModel nhanKhauModel = new NhanKhauModel(maNhanKhau, maHoKhau, hoTen, bietDanh, ngaysinh, gioiTinh, tonGiao, tinhTrang, id);
         if (!nhanKhauService.getNhanKhauByMaNhanKhau(maNhanKhau).isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Mã nhân khẩu đã tồn tại");
             alert.showAndWait();
+            textFieldMaNhanKhauThemMoiNhanKhauCanBo.requestFocus();
         } else {
             if (nhanKhauService.addNhanKhau(nhanKhauModel)) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -108,7 +132,13 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
         }
     }
 
-    public void huyThemMoiNhanKhauCanBo(Event e) throws IOException {
+    /**
+     * Phương thức hủy thêm mới nhân khẩu và trở về giao diện quản lý nhân khẩu
+     *
+     * @param e Sự kiện kích hoạt
+     * @throws IOException
+     */
+    private void huyThemMoiNhanKhauCanBo(Event e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo");
         alert.setContentText("Bạn chắc chắn muốn thoát?");

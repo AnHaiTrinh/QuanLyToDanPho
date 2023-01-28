@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="695.0" stylesheets="@Css/GiaiThuongDipDacBietCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerGiaiThuongThanhTichCanBoView">
+<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="695.0" stylesheets="@Css/GiaiThuongDipDacBietCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerGiaiThuongDipDacBietCanBoView">
     <children>
         <AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="915.0">
             <children>
@@ -110,12 +110,12 @@
                   <TableColumn prefWidth="126.0" text="Tình Trạng" />
                     </columns>
                 </TableView>
-                <TextField fx:id="textFieldLocThongTinHoKhauCanBo1" layoutX="222.0" layoutY="18.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
+                <TextField fx:id="textFieldLocThongTinDipDacBietCanBo" layoutX="222.0" layoutY="18.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
                     <font>
                         <Font name="System Italic" size="15.0" />
                     </font>
                 </TextField>
-                <ComboBox fx:id="comboBoxTimKiemHoKhauCanBo" layoutX="446.0" layoutY="18.0" prefHeight="31.0" prefWidth="100.0" />
+                <ComboBox fx:id="comboBoxTimKiemDipDacBietCanBo" layoutX="446.0" layoutY="18.0" prefHeight="31.0" prefWidth="100.0" />
                 <Button fx:id="buttonLocThongTinDipDacBietCanBo" layoutX="557.0" layoutY="18.0" mnemonicParsing="false" onMousePressed="#onPressedButtonLocThongTinDipDacBietCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="15.0" />

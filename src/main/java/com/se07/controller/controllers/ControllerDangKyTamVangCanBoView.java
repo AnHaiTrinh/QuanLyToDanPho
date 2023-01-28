@@ -20,8 +20,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -36,13 +36,14 @@ public class ControllerDangKyTamVangCanBoView extends ControllerCanBoView {
     @FXML
     ComboBox comBoBoxMaNhanKhauTamVangCanBo;
 
+    final private NhanKhauService nhanKhauService = new NhanKhauService();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
         datePickerTuNgayTamVangCanBo.setValue(today);
         datePickerDenNgayTamVangCanBo.setValue(today.plusDays(7));
         comBoBoxMaNhanKhauTamVangCanBo.getItems().addAll(new NhanKhauService().getAllMaNhanKhau());
-        comBoBoxMaNhanKhauTamVangCanBo.getSelectionModel().selectFirst();
         textFieldHoTenTamVangCanBo.setEditable(false);
         anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
@@ -69,14 +70,13 @@ public class ControllerDangKyTamVangCanBoView extends ControllerCanBoView {
         }
     }
 
-    public void onSelectioncomBoBoxMaNhanKhauTamVangCanBo(ActionEvent e) {
+    public void onSelectionComBoBoxMaNhanKhauTamVangCanBo(ActionEvent e) {
         String maNhanKhau = String.valueOf(comBoBoxMaNhanKhauTamVangCanBo.getValue());
-        NhanKhauService nhanKhauService = new NhanKhauService();
         Optional<NhanKhauModel> hoKhauModel = nhanKhauService.getNhanKhauByMaNhanKhau(maNhanKhau);
         textFieldHoTenTamVangCanBo.setText(hoKhauModel.get().getHoTen());
     }
 
-    public void xacNhanDangKyTamVangCanBo() {
+    private void xacNhanDangKyTamVangCanBo() {
         TamVangService tamVangService = new TamVangService();
         if (textFieldLyDoTamVangCanBo.getText().isBlank() || textFieldNoiTamVangCanBo.getText().isBlank()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -87,8 +87,8 @@ public class ControllerDangKyTamVangCanBoView extends ControllerCanBoView {
         }
         String maNhanKhau = String.valueOf(comBoBoxMaNhanKhauTamVangCanBo.getValue());
         String noiTamVang = textFieldNoiTamVangCanBo.getText();
-        Date tuNgay = new Date(datePickerTuNgayTamVangCanBo.getValue().toEpochDay());
-        Date denNgay = new Date(datePickerDenNgayTamVangCanBo.getValue().toEpochDay());
+        Date tuNgay = Date.from(datePickerTuNgayTamVangCanBo.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date denNgay = Date.from(datePickerDenNgayTamVangCanBo.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
         String lyDo = textFieldLyDoTamVangCanBo.getText();
         TamVangModel tamVangModel = new TamVangModel(maNhanKhau, noiTamVang, tuNgay, denNgay, lyDo, tinhTrang, id);
         if (tamVangService.addTamVang(tamVangModel)) {
@@ -109,7 +109,7 @@ public class ControllerDangKyTamVangCanBoView extends ControllerCanBoView {
         alert.showAndWait();
     }
 
-    public void huyXacNhanDangKyTamVangCanBo(Event e) throws IOException {
+    private void huyXacNhanDangKyTamVangCanBo(Event e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo");
         alert.setContentText("Bạn chắc chắn muốn thoát?");

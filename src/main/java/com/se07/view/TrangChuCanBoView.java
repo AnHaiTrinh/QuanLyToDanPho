@@ -8,10 +8,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * Lớp hiển thị giao diện của tổ trưởng sau khi đăng nhập thành công
+ */
 public class TrangChuCanBoView {
     public Stage stage;
-    public Stage openWindow() {
-        try{//
+
+    /**
+     * Phương thức hiển thị màn hình trang chủ của tổ trưởng
+     */
+    public void openWindow() {
+        try {
             stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(LoginView.class.getResource("TrangChuCanBoView.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 915, 603);
@@ -19,12 +26,9 @@ public class TrangChuCanBoView {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(scene);
             stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e){
-            System.out.println(1);
-            System.out.println(e.getMessage());
-        }
-        return null;
     }
 
 }
