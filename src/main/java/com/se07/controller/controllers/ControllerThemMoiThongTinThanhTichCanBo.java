@@ -5,6 +5,7 @@ import com.se07.controller.services.NhanKhauService;
 import com.se07.controller.services.ThongTinThanhTichService;
 import com.se07.model.models.NhanKhauModel;
 import com.se07.model.models.ThongTinThanhTichModel;
+import com.se07.util.MyIntegerStringConverter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,6 +37,8 @@ public class ControllerThemMoiThongTinThanhTichCanBo extends ControllerCanBoView
     private final DipTraoThuongService dipTraoThuongService = new DipTraoThuongService();
 
     private final ThongTinThanhTichService thongTinThanhTichService = new ThongTinThanhTichService();
+
+    private final MyIntegerStringConverter integerStringConverter = new MyIntegerStringConverter();
     final ObservableList<String> listCapThanhTich = FXCollections.observableArrayList(
             "Trường", "Quận/Huyện", "Tỉnh/Thành phố", "Quốc gia", "Quốc tế");
 
@@ -120,11 +123,19 @@ public class ControllerThemMoiThongTinThanhTichCanBo extends ControllerCanBoView
             alert.showAndWait();
             return;
         }
+        int lop = integerStringConverter.fromString(textFieldLopThanhTichCanBo.getText());
+        if (lop <= 0 || lop > 12) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Vui lòng nhập lớp hợp lệ (từ 1 - 12)");
+            alert.showAndWait();
+            textFieldLopThanhTichCanBo.requestFocus();
+            return;
+        }
         String tenDip = String.valueOf(comboBoxTenDipThanhTichCanBo.getValue());
         int nam = Integer.parseInt(String.valueOf(comboBoxNamThanhTichCanBo.getValue()));
         String maNhanKhau = String.valueOf(comboBoxMaNhanKhauThanhTichCanBo.getValue());
         int idDip = dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, nam).get().getId();
-        int lop = Integer.parseInt(textFieldLopThanhTichCanBo.getText());
         String truong = textFieldTruongThanhTichCanBo.getText();
         String kieuThanhTich = String.valueOf(comboBoxKieuThanhTichCanBo.getValue());
         String capThanhTich = String.valueOf(comboBoxCapThanhTichCanBo.getValue());
