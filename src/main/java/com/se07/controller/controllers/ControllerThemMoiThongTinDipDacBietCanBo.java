@@ -17,6 +17,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,6 +25,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ControllerThemMoiThongTinDipDacBietCanBo extends ControllerCanBoView {
+    @FXML
+    GridPane gridPaneThemMoiThongTinDipDacBietCanBo;
     @FXML
     ComboBox comboBoxTenDipDacBietCanBo, comboBoxNamDipDacBietCanBo, comboBoxMaNhanKhauDipDacBietCanBo;
     @FXML
@@ -38,7 +41,7 @@ public class ControllerThemMoiThongTinDipDacBietCanBo extends ControllerCanBoVie
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
 
-        anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {
+        gridPaneThemMoiThongTinDipDacBietCanBo.setOnKeyPressed((keyEvent) -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
                 themMoiThongTinDipDacBietCanBo();
             } else if (keyEvent.getCode() == KeyCode.Q) {
