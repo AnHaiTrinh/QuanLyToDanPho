@@ -1,6 +1,7 @@
 package com.se07.controller.services;
 
 import com.se07.model.models.DipTraoThuongModel;
+import com.se07.model.models.UserModel;
 import com.se07.util.ConnectionDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.Optional;
 
 public class DipTraoThuongService {
     public ObservableList<DipTraoThuongModel> getAllDipTraoThuong() {
@@ -221,5 +223,167 @@ public class DipTraoThuongService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public ObservableList<String> getAllTenTraoThuongThanhTich() {
+        ObservableList<String> listTenDipThanhTich = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select distinct tenDip from dip_trao_thuong where kieu = N'Thành tích'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listTenDipThanhTich.add(rs.getString("tenDip"));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listTenDipThanhTich;
+    }
+
+    public ObservableList<String> getAllTenTraoThuongDipDacBiet() {
+        ObservableList<String> listTenDipThanhTich = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select distinct tenDip from dip_trao_thuong where kieu = N'Dịp đặc biệt'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listTenDipThanhTich.add(rs.getString("tenDip"));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listTenDipThanhTich;
+    }
+
+    public ObservableList<Integer> getAllNamTraoThuongDipDacBiet() {
+        ObservableList<Integer> listNamThanhTich = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select distinct nam from dip_trao_thuong where kieu = N'Dịp đặc biệt'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listNamThanhTich.add(rs.getInt("nam"));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listNamThanhTich;
+    }
+
+    public ObservableList<Integer> getAllNamTraoThuongThanhTich() {
+        ObservableList<Integer> listNamThanhTich = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select distinct nam from dip_trao_thuong where kieu = N'Thành tích'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listNamThanhTich.add(rs.getInt("nam"));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listNamThanhTich;
+    }
+
+    public Optional<DipTraoThuongModel> getDipTraoThuongByTenAndNam(String tenDip, int nam) {
+        Optional<DipTraoThuongModel> dipTraoThuongModel = Optional.empty();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select * from dip_trao_thuong where tenDip = ? and nam = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setNString(1, tenDip);
+            statement.setInt(2, nam);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                DipTraoThuongModel temp = new DipTraoThuongModel(
+                        rs.getInt("id"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getDate("ngayTao"),
+                        rs.getDate("ngayKetThuc"),
+                        rs.getNString("kieu"),
+                        rs.getNString("ghiChu"));
+                dipTraoThuongModel = Optional.of(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dipTraoThuongModel;
+    }
+
+    public ObservableList<Integer> getNamByTenDipThanhTich(String tenDip) {
+        ObservableList<Integer> listNamThanhTich = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select distinct nam from dip_trao_thuong where kieu = N'Thành tích' and tenDip = N'" + tenDip + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listNamThanhTich.add(rs.getInt("nam"));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listNamThanhTich;
+    }
+
+    public ObservableList<String> getTenDipThanhTichByNam(int nam) {
+        ObservableList<String> listTenDipThanhTich = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select distinct tenDip from dip_trao_thuong where kieu = N'Thành tích' and nam = " + nam;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listTenDipThanhTich.add(rs.getString("tenDip"));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listTenDipThanhTich;
+    }
+
+    public ObservableList<Integer> getNamByTenDipDacBiet(String tenDip) {
+        ObservableList<Integer> listNamThanhTich = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select distinct nam from dip_trao_thuong where kieu = N'Dịp đặc biệt' and tenDip = N'" + tenDip + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listNamThanhTich.add(rs.getInt("nam"));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listNamThanhTich;
+    }
+
+    public ObservableList<String> getTenDipDacBietByNam(int nam) {
+        ObservableList<String> listTenDipThanhTich = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select distinct tenDip from dip_trao_thuong where kieu = N'Dịp đặc biệt' and nam = " + nam;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listTenDipThanhTich.add(rs.getString("tenDip"));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listTenDipThanhTich;
     }
 }

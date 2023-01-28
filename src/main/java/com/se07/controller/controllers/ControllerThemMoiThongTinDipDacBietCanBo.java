@@ -49,24 +49,18 @@ public class ControllerThemMoiThongTinDipDacBietCanBo extends ControllerCanBoVie
                 }
             }
         });
+
+        comboBoxMaNhanKhauDipDacBietCanBo.getItems().addAll(nhanKhauService.getAllMaNhanKhau());
+        comboBoxTenDipDacBietCanBo.getItems().addAll(dipTraoThuongService.getAllTenTraoThuongDipDacBiet());
+        comboBoxNamDipDacBietCanBo.getItems().addAll(dipTraoThuongService.getAllNamTraoThuongDipDacBiet());
     }
 
     public void onSelectionComboBoxTenDipDacBietCanBo(ActionEvent e) {
-        if (comboBoxNamDipDacBietCanBo.getValue() == null) {
-            String tenDip = String.valueOf(comboBoxTenDipDacBietCanBo.getValue());
-            ObservableList<String> listNam = dipTraoThuongService.getNamByTenDipTraoThuong(tenDip);
-            comboBoxNamDipDacBietCanBo.getItems().addAll(listNam);
-            comboBoxNamDipDacBietCanBo.getSelectionModel().selectFirst();
-        }
-    }
-
-    public void onSelectionComboBoxNamDipDacBietCanBo(ActionEvent e) {
-        if (comboBoxTenDipDacBietCanBo.getValue() == null) {
-            int nam = Integer.parseInt(String.valueOf(comboBoxNamDipDacBietCanBo.getValue()));
-            ObservableList<Integer> listTenDip = dipTraoThuongService.getTenDipByNamTraoThuong(nam);
-            comboBoxTenDipDacBietCanBo.getItems().addAll(listTenDip);
-            comboBoxTenDipDacBietCanBo.getSelectionModel().selectFirst();
-        }
+        String tenDip = String.valueOf(comboBoxTenDipDacBietCanBo.getValue());
+        ObservableList<Integer> listNam = dipTraoThuongService.getNamByTenDipDacBiet(tenDip);
+        comboBoxNamDipDacBietCanBo.getItems().clear();
+        comboBoxNamDipDacBietCanBo.getItems().addAll(listNam);
+        comboBoxNamDipDacBietCanBo.getSelectionModel().selectFirst();
     }
 
     public void onSelectionComboBoxMaNhanKhauDipDacBietCanBo(ActionEvent e) {
@@ -100,13 +94,14 @@ public class ControllerThemMoiThongTinDipDacBietCanBo extends ControllerCanBoVie
         String tenDip = String.valueOf(comboBoxTenDipDacBietCanBo.getValue());
         int nam = Integer.parseInt(String.valueOf(comboBoxNamDipDacBietCanBo.getValue()));
         String maNhanKhau = String.valueOf(comboBoxMaNhanKhauDipDacBietCanBo.getValue());
-        int idDip = dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, nam);
+        int idDip = dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, nam).get().getId();
         ThongTinDipDacBietModel thongTinDipDacBietModel = new ThongTinDipDacBietModel(idDip, maNhanKhau, tinhTrang, id);
         if (thongTinDipDacBietService.addThongTinDipDacBiet(thongTinDipDacBietModel)) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("");
             alert.setContentText("Bạn đã thêm thông tin thành công");
+            alert.showAndWait();
             return;
         }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

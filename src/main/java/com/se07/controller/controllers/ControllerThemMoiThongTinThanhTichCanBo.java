@@ -5,6 +5,7 @@ import com.se07.controller.services.NhanKhauService;
 import com.se07.controller.services.ThongTinThanhTichService;
 import com.se07.model.models.NhanKhauModel;
 import com.se07.model.models.ThongTinThanhTichModel;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -35,6 +36,13 @@ public class ControllerThemMoiThongTinThanhTichCanBo extends ControllerCanBoView
     private final DipTraoThuongService dipTraoThuongService = new DipTraoThuongService();
 
     private final ThongTinThanhTichService thongTinThanhTichService = new ThongTinThanhTichService();
+    final ObservableList<String> listCapThanhTich = FXCollections.observableArrayList(
+            "Trường", "Quận/Huyện", "Tỉnh/Thành phố", "Quốc gia", "Quốc tế");
+
+    final ObservableList<String> listKieuThanhTich = FXCollections.observableArrayList(
+            "Học sinh khá", "Học sinh giỏi", "Học sinh xuất sắc",
+            "Giải nhất", "Giải nhì", "Giải ba", "Giải khuyến khích",
+            "Huy chương Vàng", "Huy chương Bạc", "Huy chương Đồng");
 
     private File minhChung;
 
@@ -53,6 +61,12 @@ public class ControllerThemMoiThongTinThanhTichCanBo extends ControllerCanBoView
                 }
             }
         });
+
+        comboBoxMaNhanKhauThanhTichCanBo.getItems().addAll(nhanKhauService.getAllMaNhanKhau());
+        comboBoxTenDipThanhTichCanBo.getItems().addAll(dipTraoThuongService.getAllTenTraoThuongThanhTich());
+        comboBoxNamThanhTichCanBo.getItems().addAll(dipTraoThuongService.getAllNamTraoThuongThanhTich());
+        comboBoxCapThanhTichCanBo.getItems().addAll(listCapThanhTich);
+        comboBoxKieuThanhTichCanBo.getItems().addAll(listKieuThanhTich);
     }
 
     public void onPressedButtonThemMinhChungThanhTichCanBo(MouseEvent e) {
@@ -62,21 +76,11 @@ public class ControllerThemMoiThongTinThanhTichCanBo extends ControllerCanBoView
     }
 
     public void onSelectionComboBoxTenDipThanhTichCanBo(ActionEvent e) {
-        if (comboBoxNamThanhTichCanBo.getValue() == null) {
-            String tenDip = String.valueOf(comboBoxTenDipThanhTichCanBo.getValue());
-            ObservableList<String> listNam = dipTraoThuongService.getNamByTenDipTraoThuong(tenDip);
-            comboBoxNamThanhTichCanBo.getItems().addAll(listNam);
-            comboBoxNamThanhTichCanBo.getSelectionModel().selectFirst();
-        }
-    }
-
-    public void onSelectionComboBoxNamThanhTichCanBo(ActionEvent e) {
-        if (comboBoxTenDipThanhTichCanBo.getValue() == null) {
-            int nam = Integer.parseInt(String.valueOf(comboBoxNamThanhTichCanBo.getValue()));
-            ObservableList<Integer> listTenDip = dipTraoThuongService.getTenDipByNamTraoThuong(nam);
-            comboBoxTenDipThanhTichCanBo.getItems().addAll(listTenDip);
-            comboBoxTenDipThanhTichCanBo.getSelectionModel().selectFirst();
-        }
+        String tenDip = String.valueOf(comboBoxTenDipThanhTichCanBo.getValue());
+        ObservableList<Integer> listNam = dipTraoThuongService.getNamByTenDipThanhTich(tenDip);
+        comboBoxNamThanhTichCanBo.getItems().clear();
+        comboBoxNamThanhTichCanBo.getItems().addAll(listNam);
+        comboBoxNamThanhTichCanBo.getSelectionModel().selectFirst();
     }
 
     public void onSelectionComboBoxMaNhanKhauThanhTichCanBo(ActionEvent e) {
@@ -119,7 +123,7 @@ public class ControllerThemMoiThongTinThanhTichCanBo extends ControllerCanBoView
         String tenDip = String.valueOf(comboBoxTenDipThanhTichCanBo.getValue());
         int nam = Integer.parseInt(String.valueOf(comboBoxNamThanhTichCanBo.getValue()));
         String maNhanKhau = String.valueOf(comboBoxMaNhanKhauThanhTichCanBo.getValue());
-        int idDip = dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, nam);
+        int idDip = dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, nam).get().getId();
         int lop = Integer.parseInt(textFieldLopThanhTichCanBo.getText());
         String truong = textFieldTruongThanhTichCanBo.getText();
         String kieuThanhTich = String.valueOf(comboBoxKieuThanhTichCanBo.getValue());
@@ -131,6 +135,10 @@ public class ControllerThemMoiThongTinThanhTichCanBo extends ControllerCanBoView
             alert.setTitle("Thông báo");
             alert.setHeaderText("");
             alert.setContentText("Bạn đã thêm thông tin thành công");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                buttonThemMinhChungThanhTichCanBo.setText("Thêm tệp");
+                minhChung = null;
+            }
             return;
         }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

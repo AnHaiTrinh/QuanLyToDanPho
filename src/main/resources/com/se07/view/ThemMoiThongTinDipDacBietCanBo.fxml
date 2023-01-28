@@ -129,7 +129,7 @@
                 </TextField>
             <ComboBox fx:id="comboBoxMaNhanKhauDipDacBietCanBo" onAction="#onSelectionComboBoxMaNhanKhauDipDacBietCanBo" prefHeight="31.0" prefWidth="197.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <ComboBox fx:id="comboBoxTenDipDacBietCanBo" onAction="#onSelectionComboBoxTenDipDacBietCanBo" prefHeight="31.0" prefWidth="199.0" GridPane.columnIndex="2" />
-            <ComboBox fx:id="comboBoxNamDipDacBietCanBo" layoutX="156.0" layoutY="59.0" onAction="#onSelectionComboBoxNamDipDacBietCanBo" prefHeight="31.0" prefWidth="199.0" GridPane.columnIndex="5" />
+            <ComboBox fx:id="comboBoxNamDipDacBietCanBo" layoutX="156.0" layoutY="59.0" prefHeight="31.0" prefWidth="199.0" GridPane.columnIndex="5" />
             </children>
         </GridPane>
         <Button fx:id="buttonHoanThanhThongTinDipDacBietCanBo" layoutX="640.0" layoutY="558.0" mnemonicParsing="false" onMousePressed="#onPressedButtonHoanThanhThongTinDipDacBietCanBo" prefHeight="31.0" prefWidth="105.0" text="Hoàn thành" textFill="#f8f8f8">
