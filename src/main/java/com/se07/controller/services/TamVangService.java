@@ -161,13 +161,11 @@ public class TamVangService {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
                 "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
-                "where (t.tuNgay between ? and ?) and (t.denNgay between ? and ?)";
+                "where (t.tuNgay < ?) and (t.denNgay > ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setDate(1, new java.sql.Date(tu.getTime()));
-            statement.setDate(2, new java.sql.Date(den.getTime()));
-            statement.setDate(3, new java.sql.Date(tu.getTime()));
-            statement.setDate(4, new java.sql.Date(den.getTime()));
+            statement.setDate(1, new java.sql.Date(den.getTime()));
+            statement.setDate(2, new java.sql.Date(tu.getTime()));
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 TamVangDisplayModel tmp = new TamVangDisplayModel(rs.getInt("maTamVang"),

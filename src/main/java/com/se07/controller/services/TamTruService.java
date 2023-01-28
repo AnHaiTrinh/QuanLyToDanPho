@@ -311,20 +311,18 @@ public class TamTruService {
      *
      * @param tu
      * @param den
-     * @return các bản ghi tạm trú từ từ ngày tu đến ngày den
+     * @return các bản ghi tạm trú có ngày tạm trú nằm trong khoảng từ tu đến den
      */
     public ObservableList<TamTruDisplayModel> getTamTruByNgayBetween(Date tu, Date den) {
         ObservableList<TamTruDisplayModel> list = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
-                "from tam_tru, ho_khau" +
-                "where (tam_tru.maHoKhau= ho_khau.maHoKhau) and (t.tuNgay between ? and ?) and (t.denNgay between ? and ?)";
+                "from tam_tru t, ho_khau" +
+                "where (tam_tru.maHoKhau= ho_khau.maHoKhau) and (t.tuNgay < ?) and (t.denNgay between > ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setDate(1, new java.sql.Date(tu.getTime()));
-            statement.setDate(2, new java.sql.Date(den.getTime()));
-            statement.setDate(3, new java.sql.Date(tu.getTime()));
-            statement.setDate(4, new java.sql.Date(den.getTime()));
+            statement.setDate(1, new java.sql.Date(den.getTime()));
+            statement.setDate(2, new java.sql.Date(tu.getTime()));
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 TamTruDisplayModel temp = new TamTruDisplayModel(
@@ -357,7 +355,7 @@ public class TamTruService {
     public ObservableList<TamTruDisplayModel> getDisplayTamTruByIDNguoiThucHien(int id){
         ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query= "select CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang, tam_tru.idNguoiThucHien" +
+        String query= "select CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
                 "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and tam_tru.idNguoiThucHien = '"+ id + "'";
         try {
             Statement statement =connection.createStatement();
