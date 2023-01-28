@@ -331,6 +331,122 @@ public class TraoThuongService {
     }
 
 
+    /**
+     *
+     * @param namHoc
+     * @return tổng giá trị phần thưởng thành tích được trao theo năm học
+     */
+
+    public double getAllGiaTriTraoThuongThanhTichByNamHoc(String namHoc) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = " giaTri, soLuong " +
+                "from trao_thuong_thanh_tich, phan_thuong, thong_tin_thanh_tich, nhan_khau " +
+                "where trao_thuong_thanh_tich.maPhanThuong = phan_thuong.maPhanThuong" +
+                "and thong_tin_thanh_tich.idNhap = trao_thuong_thanh_tich.idNhap" +
+                "and thong_tin_thanh_tich.maNhanKhau =nhan_khau.maNhanKhau " +
+                "and thong_tin_thanh_tich.namHoc = '"+namHoc+"'"
+
+                ;
+
+        double result = 0;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                result +=  rs.getDouble("giaTri") * rs.getInt("soLuong");
+
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
+    /**
+     *
+     * @param maHoKhau
+     * @return tổng giá trị các phần quà trao thưởng thành tích mà một hộ khẩu nhận được
+     */
+    public double getGiaTriTraoThuongThanhTichByHoKhau(String maHoKhau) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = " giaTri, soLuong " +
+                "from trao_thuong_thanh_tich, phan_thuong, thong_tin_thanh_tich, nhan_khau " +
+                "where trao_thuong_thanh_tich.maPhanThuong = phan_thuong.maPhanThuong" +
+                "and thong_tin_thanh_tich.idNhap = trao_thuong_thanh_tich.idNhap" +
+                "and thong_tin_thanh_tich.maNhanKhau =nhan_khau.maNhanKhau " +
+                "and nhan_khau.maHoKhau = '"+ maHoKhau +"' ";
+
+        double result = 0;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                result +=  rs.getDouble("giaTri") * rs.getInt("soLuong");
+
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public double getAllGiaTriTraoThuongDipDacBietByNam(int nam) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = " giaTri, soLuong " +
+                "from trao_thuong_dip_dac_biet, phan_thuong, thong_tin_dip_dac_biet, nhan_khau " +
+                "where trao_thuong_dip_dac_biet.maPhanThuong = phan_thuong.maPhanThuong" +
+                "and thong_tin_dip_dac_biet.idNhap = trao_thuong_dip_dac_biet.idNhap" +
+                "and thong_tin_dip_dac_biet.maNhanKhau =nhan_khau.maNhanKhau " +
+                "and thong_tin_dip_dac_biet.nam ='"+nam+"'" ;
+
+        double result = 0;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                result +=  rs.getDouble("giaTri") * rs.getInt("soLuong");
+
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
+
+
+    public double getGiaTriTraoThuongDipDacBietByHoKhau(String maHoKhau ) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = " giaTri, soLuong " +
+                "from trao_thuong_dip_dac_biet, phan_thuong, thong_tin_dip_dac_biet, nhan_khau " +
+                "where trao_thuong_dip_dac_biet.maPhanThuong = phan_thuong.maPhanThuong" +
+                "and thong_tin_dip_dac_biet.idNhap = trao_thuong_dip_dac_biet.idNhap" +
+                "and thong_tin_dip_dac_biet.maNhanKhau =nhan_khau.maNhanKhau " +
+                "and nhan_khau.maHoKhau = '"+ maHoKhau +"' ";
+
+        double result = 0;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                result +=  rs.getDouble("giaTri") * rs.getInt("soLuong");
+
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
+
+
 
 }
 
