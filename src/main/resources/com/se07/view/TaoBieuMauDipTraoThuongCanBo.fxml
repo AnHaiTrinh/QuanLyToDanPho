@@ -155,13 +155,13 @@
                     </font>
                 </Label>
                 <TextField fx:id="textFieldNamDipTraoThuongCanBo" promptText="Bắt buộc" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                <DatePicker fx:id="datePickerNgayKetThucDipTraoThuongCanBo" promptText="Bắt buộc" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                <DatePicker fx:id="datePickerNgayKetThucDipTraoThuongCanBo" prefHeight="31.0" prefWidth="303.0" promptText="Bắt buộc" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                 <TextField fx:id="textFieldTenDipTraoThuongCanBo" promptText="Bắt buộc" GridPane.columnIndex="2">
                     <font>
                         <Font name="System Italic" size="15.0" />
                     </font>
                 </TextField>
-                <DatePicker fx:id="datePickerNgayTaoDipTraoThuongCanBo" editable="false" promptText="Bắt buộc" GridPane.columnIndex="5" />
+                <DatePicker fx:id="datePickerNgayTaoDipTraoThuongCanBo" editable="false" prefHeight="31.0" prefWidth="277.0" promptText="Bắt buộc" GridPane.columnIndex="5" />
             <ComboBox fx:id="comboBoxKieuDipTraoThuongCanBo" prefHeight="31.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             </children>
         </GridPane>
