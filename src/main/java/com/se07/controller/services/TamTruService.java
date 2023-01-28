@@ -2,7 +2,6 @@ package com.se07.controller.services;
 
 import com.se07.model.models.TamTruDisplayModel;
 import com.se07.model.models.TamTruModel;
-
 import com.se07.util.ConnectionDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -183,95 +182,7 @@ public class TamTruService {
         return list;
     }
 
-    /**
-     *
-     * @param low
-     * @param high
-     * @return thông tin tạm trú với ngày bắt đầu tạm trú trong khoảng từ low dến high
-     */
-    public ObservableList<TamTruDisplayModel> getDisplayTamTruWhereTuNgayBetween(java.util.Date low, Date high){
-        ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
-        Connection connection = ConnectionDatabase.getConnection();
-        String query= "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
-                "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and tuNgay between ? and ? ";
-        try {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setDate(1, new java.sql.Date(low.getTime()));
-            statement.setDate(2, new java.sql.Date(high.getTime()));
-            statement.executeUpdate();
-            statement.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            Statement statement =connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()) {
-                TamTruDisplayModel temp = new TamTruDisplayModel(
-                        rs.getInt("maTamTru"),
-                        rs.getString("CCCD"),
-                        rs.getNString("hoTen"),
-                        rs.getNString("noiTamTru"),
-                        rs.getDate("tuNgay"),
-                        rs.getDate("denNgay"),
-                        rs.getNString("lydo"),
-                        rs.getNString("tinhTrang"));
 
-                list.add(temp);
-            }
-            statement.close();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return list;
-    }
-
-
-
-    /**
-     *
-     * @param low
-     * @param high
-     * @return thông tin tạm trú với ngày kết thúc tạm trú trong khoảng từ low dến high
-     */
-    public ObservableList<TamTruDisplayModel> getDisplayTamTruWhereDenNgayBetween(java.util.Date low, Date high){
-        ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
-        Connection connection = ConnectionDatabase.getConnection();
-        String query= "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
-                "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and denNgay between ? and ? ";
-        try {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setDate(1, new java.sql.Date(low.getTime()));
-            statement.setDate(2, new java.sql.Date(high.getTime()));
-            statement.executeUpdate();
-            statement.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            Statement statement =connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()) {
-                TamTruDisplayModel temp = new TamTruDisplayModel(
-                        rs.getInt("maTamTru"),
-                        rs.getString("CCCD"),
-                        rs.getNString("hoTen"),
-                        rs.getNString("noiTamTru"),
-                        rs.getDate("tuNgay"),
-                        rs.getDate("denNgay"),
-                        rs.getNString("lydo"),
-                        rs.getNString("tinhTrang"));
-
-                list.add(temp);
-            }
-            statement.close();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return list;
-    }
 
     /**
      *
@@ -379,7 +290,43 @@ public class TamTruService {
             e.printStackTrace();
         }
         return list;
+
+
+
     }
+
+    /**
+     *
+     * @param maTamTru
+     * @return bản ghi tạm trú có mã tạm trú là maTamTru
+     */
+    public Optional<TamTruModel> getTamTruByMaTamTru(int maTamTru) {
+        Optional<TamTruModel> tamTruModel = Optional.empty();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select * from tam_tru where maTamTru = '" + maTamTru + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            if (rs.next()) {
+                TamTruModel temp = new TamTruModel(
+                        rs.getInt("maTamTru"),
+                        rs.getString("maHoKhau"),
+                        rs.getNString("CCCD"),
+                        rs.getNString("hoTen"),
+                        rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"),
+                        rs.getString("lydo"),
+                        rs.getNString("tinhTrang"),
+                        rs.getInt("idNguoiThucHien"));
+                tamTruModel = Optional.of(temp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tamTruModel;
+    }
+
 
 
     /**
@@ -483,6 +430,14 @@ public class TamTruService {
             e.printStackTrace();
             return -1;
         }
+    }
+
+        public TamTruModel convertDisplayModelToModel (TamTruDisplayModel tamTruDisplayModel){
+            TamTruModel tamTruModel = getTamTruByMaTamTru(tamTruDisplayModel.getMaTamtru()).get();
+
+            return tamTruModel;
+        }
 
     }
-}
+
+
