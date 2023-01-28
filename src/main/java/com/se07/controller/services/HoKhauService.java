@@ -2,6 +2,7 @@ package com.se07.controller.services;
 
 import com.se07.model.models.HoKhauModel;
 import com.se07.util.ConnectionDatabase;
+import eu.hansolo.tilesfx.tools.Helper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -201,5 +202,23 @@ public class HoKhauService {
             e.printStackTrace();
         }
         return maHoKhau;
+    }
+
+    public String getMaHoKhauByIdChuHo(int id) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String ans = "";
+        String query = "select ho_gia_dinh_user.maHoKhau from ho_gia_dinh_user where ho_gia_dinh_user.id = '" + id + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            if (rs.next()) {
+                ans = rs.getString("maHoKhau");
+            }
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ans;
     }
 }

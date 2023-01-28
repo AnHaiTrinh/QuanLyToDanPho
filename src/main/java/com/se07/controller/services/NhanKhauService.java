@@ -248,4 +248,22 @@ public class NhanKhauService {
         }
         return listMaNhanKhau;
     }
+    public ObservableList<String> getAllMaNhanKhauTrongHoKhau(String maHoKhau) {
+        ObservableList<String> listMaNhanKhauTrongHoKhau = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select * from nhan_khau where maHoKhau = '" + maHoKhau + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                String ans = rs.getString("maNhanKhau");
+                listMaNhanKhauTrongHoKhau.add(ans);
+            }
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listMaNhanKhauTrongHoKhau;
+    }
 }
