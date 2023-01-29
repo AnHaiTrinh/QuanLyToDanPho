@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,12 +27,14 @@ public class ControllerThemMoiHoKhauCanBoView extends ControllerCanBoView {
     TextField textFieldMaChuHoThemMoiHoKhauCanBo, textFieldMaHoKhauThemMoiHoKhauCanBo, textFieldDiaChiThemMoiHoKhauCanBo;
     @FXML
     DatePicker datePickerNgayThanhLapThemMoiHoKhauCanBo;
+    @FXML
+    GridPane gridPaneThemMoiHoKhauCanBo;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
 
-        anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {
+        gridPaneThemMoiHoKhauCanBo.setOnKeyPressed((keyEvent) -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
                 dangKyHoKhauCanBo();
             } else if (keyEvent.getCode() == KeyCode.Q) {

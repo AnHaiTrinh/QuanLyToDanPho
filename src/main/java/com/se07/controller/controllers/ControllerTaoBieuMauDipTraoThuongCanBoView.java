@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,11 +18,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ControllerTaoBieuMauDipTraoThuongCanBoView extends ControllerCanBoView {
+    @FXML
+    GridPane gridPaneTaoBieuMauDipTraoThuongCanBo;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         super.initialize(url, resourceBundle);
-        anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {
+        gridPaneTaoBieuMauDipTraoThuongCanBo.setOnKeyPressed((keyEvent) -> {
             if (keyEvent.getCode().equals(KeyCode.ENTER)) {
                 xacNhanTaoBieuMauDipTraoThuongCanBo();
             } else if (keyEvent.getCode().equals(KeyCode.Q)) {

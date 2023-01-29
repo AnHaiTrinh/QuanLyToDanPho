@@ -16,7 +16,6 @@ import java.util.Optional;
 public class TamTruService {
 
     /**
-     *
      * @return tất cả bản ghi tạm trú dưới dạng TamTruModel
      */
     public ObservableList<TamTruModel> getAllTamTru() {
@@ -47,16 +46,15 @@ public class TamTruService {
     }
 
     /**
-     *
      * @return tất cả bản ghi tạm trú dưới dạng  TamTruDisplayModel
      */
-    public ObservableList<TamTruDisplayModel> getDisplayTamTru(){
-        ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
+    public ObservableList<TamTruDisplayModel> getDisplayTamTru() {
+        ObservableList<TamTruDisplayModel> list = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query= "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang," +
+        String query = "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang " +
                 "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau";
         try {
-            Statement statement =connection.createStatement();
+            Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruDisplayModel temp = new TamTruDisplayModel(
@@ -73,24 +71,23 @@ public class TamTruService {
             }
             statement.close();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
     }
 
     /**
-     *
      * @param CCCD
      * @return thông tin tạm trú theo căn cước công dân
      */
-    public ObservableList<TamTruDisplayModel> getDisplayTamTruByCCCD(String CCCD){
-        ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
+    public ObservableList<TamTruDisplayModel> getDisplayTamTruByCCCD(String CCCD) {
+        ObservableList<TamTruDisplayModel> list = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query= "select maTamTru ,CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
-                "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and CCCD LIKE '%"+ CCCD + "%'";
+        String query = "select maTamTru ,CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
+                " from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and CCCD LIKE '%" + CCCD + "%'";
         try {
-            Statement statement =connection.createStatement();
+            Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruDisplayModel temp = new TamTruDisplayModel(
@@ -107,24 +104,23 @@ public class TamTruService {
             }
             statement.close();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
     }
 
     /**
-     *
      * @param hoTen
      * @return thông tin tạm trú theo họ tên
      */
-    public ObservableList<TamTruDisplayModel> getDisplayTamTruByHoTen(String hoTen){
-        ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
+    public ObservableList<TamTruDisplayModel> getDisplayTamTruByHoTen(String hoTen) {
+        ObservableList<TamTruDisplayModel> list = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query= "select maTamTru,CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
-                "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and hoTen LIKE N'%"+ hoTen + "%'";
+        String query = "select maTamTru,CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
+                " from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and hoTen LIKE N'%" + hoTen + "%'";
         try {
-            Statement statement =connection.createStatement();
+            Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruDisplayModel temp = new TamTruDisplayModel(
@@ -141,25 +137,24 @@ public class TamTruService {
             }
             statement.close();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
     }
 
     /**
-     *
      * @param noiTamTru
      * @return thông tin tạm trú theo nơi tạm trú
      */
 
-    public ObservableList<TamTruDisplayModel> getDisplayTamTruByNoiTamTru(String noiTamTru){
-        ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
+    public ObservableList<TamTruDisplayModel> getDisplayTamTruByNoiTamTru(String noiTamTru) {
+        ObservableList<TamTruDisplayModel> list = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query= "select maTamTru ,CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
-                "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and ho_khau.diaChi LIKE N'%"+ noiTamTru + "%'";
+        String query = "select maTamTru ,CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
+                " from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and ho_khau.diaChi LIKE N'%" + noiTamTru + "%'";
         try {
-            Statement statement =connection.createStatement();
+            Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruDisplayModel temp = new TamTruDisplayModel(
@@ -176,26 +171,24 @@ public class TamTruService {
             }
             statement.close();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
     }
 
 
-
     /**
-     *
      * @param tinhTrang
      * @return thông tin tạm trú theo tình trạng
      */
-    public ObservableList<TamTruDisplayModel> getDisplayTamTruByTinhTrang(String tinhTrang){
-        ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
+    public ObservableList<TamTruDisplayModel> getDisplayTamTruByTinhTrang(String tinhTrang) {
+        ObservableList<TamTruDisplayModel> list = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query= "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
-                "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and tinhTrang = N'"+ tinhTrang + "'";
+        String query = "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
+                " from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and tinhTrang = N'" + tinhTrang + "'";
         try {
-            Statement statement =connection.createStatement();
+            Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruDisplayModel temp = new TamTruDisplayModel(
@@ -212,14 +205,13 @@ public class TamTruService {
             }
             statement.close();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
     }
 
     /**
-     *
      * @param tu
      * @param den
      * @return các bản ghi tạm trú có ngày tạm trú nằm trong khoảng từ tu đến den
@@ -227,9 +219,9 @@ public class TamTruService {
     public ObservableList<TamTruDisplayModel> getTamTruByNgayBetween(Date tu, Date den) {
         ObservableList<TamTruDisplayModel> list = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
-                "from tam_tru t, ho_khau" +
-                "where (tam_tru.maHoKhau= ho_khau.maHoKhau) and (t.tuNgay <= ?) and (t.denNgay => ?)";
+        String query = "select maTamTru, CCCD, t.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, t.tinhTrang" +
+                " from tam_tru t, ho_khau" +
+                " where (t.maHoKhau= ho_khau.maHoKhau) and (t.tuNgay <= ?) and (t.denNgay >= ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setDate(1, new java.sql.Date(den.getTime()));
@@ -249,7 +241,6 @@ public class TamTruService {
                 list.add(temp);
 
 
-
             }
             statement.close();
         } catch (Exception e) {
@@ -259,17 +250,16 @@ public class TamTruService {
     }
 
     /**
-     *
      * @param id
      * @return thông tin tạm trú theo id người thực hiện
      */
-    public ObservableList<TamTruDisplayModel> getDisplayTamTruByIDNguoiThucHien(int id){
-        ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
+    public ObservableList<TamTruDisplayModel> getDisplayTamTruByIDNguoiThucHien(int id) {
+        ObservableList<TamTruDisplayModel> list = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query= "select CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
-                "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and tam_tru.idNguoiThucHien = '"+ id + "'";
+        String query = "select CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
+                " from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and tam_tru.idNguoiThucHien = '" + id + "'";
         try {
-            Statement statement =connection.createStatement();
+            Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruDisplayModel temp = new TamTruDisplayModel(
@@ -286,24 +276,22 @@ public class TamTruService {
             }
             statement.close();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
 
 
-
     }
 
     /**
-     *
      * @param maTamTru
      * @return bản ghi tạm trú có mã tạm trú là maTamTru
      */
     public Optional<TamTruModel> getTamTruByMaTamTru(int maTamTru) {
         Optional<TamTruModel> tamTruModel = Optional.empty();
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from tam_tru where maTamTru = '" + maTamTru + "'";
+        String query = "select * from tam_tru where maTamTru = " + maTamTru;
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -311,7 +299,7 @@ public class TamTruService {
                 TamTruModel temp = new TamTruModel(
                         rs.getInt("maTamTru"),
                         rs.getString("maHoKhau"),
-                        rs.getNString("CCCD"),
+                        rs.getString("CCCD"),
                         rs.getNString("hoTen"),
                         rs.getDate("tuNgay"),
                         rs.getDate("denNgay"),
@@ -328,9 +316,7 @@ public class TamTruService {
     }
 
 
-
     /**
-     *
      * @param tamTruModel
      * @return thêm một bản ghi tạm trú
      */
@@ -358,7 +344,6 @@ public class TamTruService {
     }
 
     /**
-     *
      * @param tamTruModel
      * @return cập nhật một bản ghi tạm trú
      */
@@ -395,7 +380,6 @@ public class TamTruService {
     }
 
     /**
-     *
      * @param tamTruModel
      * @return xóa một bản ghi tạm trú
      */
@@ -413,8 +397,21 @@ public class TamTruService {
         }
     }
 
+    public boolean deleteTamTru(TamTruDisplayModel tamTruDisplayModelModel) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "delete from tam_tru where maTamTru = '" + tamTruDisplayModelModel.getMaTamtru() + "'";
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+            statement.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     /**
-     *
      * @return số lượng bản ghi tạm trú
      */
 
@@ -432,15 +429,13 @@ public class TamTruService {
         }
     }
 
-        public TamTruModel convertDisplayModelToModel (TamTruDisplayModel tamTruDisplayModel){
-            TamTruModel tamTruModel = getTamTruByMaTamTru(tamTruDisplayModel.getMaTamtru()).get();
-
-            return new TamTruModel(tamTruDisplayModel.getMaTamtru(),tamTruModel.getMaHoKhau(), tamTruDisplayModel.getCCCD(),
-                    tamTruDisplayModel.getHoTen(),tamTruDisplayModel.getTuNgay(), tamTruDisplayModel.getDenNgay(),
-                    tamTruDisplayModel.getLyDo(),tamTruDisplayModel.getTinhTrang(), tamTruModel.getIdNguoiThucHien());
-
-        }
-
+    public TamTruModel convertDisplayModelToModel(TamTruDisplayModel tamTruDisplayModel) {
+        String maHoKhau = new HoKhauService().getMaHoKhauByDiaChi(tamTruDisplayModel.getNoiTamTru());
+        TamTruModel tamTruModel = getTamTruByMaTamTru(tamTruDisplayModel.getMaTamtru()).get();
+        return new TamTruModel(tamTruDisplayModel.getMaTamtru(), maHoKhau, tamTruDisplayModel.getCCCD(),
+                tamTruDisplayModel.getHoTen(), tamTruDisplayModel.getTuNgay(), tamTruDisplayModel.getDenNgay(),
+                tamTruDisplayModel.getLyDo(), tamTruDisplayModel.getTinhTrang(), tamTruModel.getIdNguoiThucHien());
     }
+}
 
 

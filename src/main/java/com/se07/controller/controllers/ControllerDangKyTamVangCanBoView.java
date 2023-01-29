@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ import java.util.ResourceBundle;
 
 public class ControllerDangKyTamVangCanBoView extends ControllerCanBoView {
     @FXML
-    AnchorPane anchorPaneChinhCanBo;
+    GridPane gridPaneDangKyTamVangCanBo;
     LocalDate today = LocalDate.now();
     @FXML
     DatePicker datePickerTuNgayTamVangCanBo, datePickerDenNgayTamVangCanBo;
@@ -43,7 +44,7 @@ public class ControllerDangKyTamVangCanBoView extends ControllerCanBoView {
         datePickerDenNgayTamVangCanBo.setValue(today.plusDays(7));
         comBoBoxMaNhanKhauTamVangCanBo.getItems().addAll(new NhanKhauService().getAllMaNhanKhau());
         textFieldHoTenTamVangCanBo.setEditable(false);
-        anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {
+        gridPaneDangKyTamVangCanBo.setOnKeyPressed((keyEvent) -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
                 xacNhanDangKyTamVangCanBo();
             } else if (keyEvent.getCode() == KeyCode.Q) {

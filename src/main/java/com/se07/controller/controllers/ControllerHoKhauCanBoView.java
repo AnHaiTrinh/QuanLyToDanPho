@@ -44,6 +44,8 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
             "Tên chủ hộ", "Mã hộ khẩu", "Địa chỉ", "Ngày lập");
     final HoKhauService hoKhauService = new HoKhauService();
 
+    private final MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
@@ -61,7 +63,7 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
         tableViewTatCaHoKhauCanBo.setEditable(true);
         tableColumnHotenHoKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnDiaChiHoKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
-        tableColumnNgayLapHoKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn(new MyDateStringConverter("yyyy-MM-dd")));
+        tableColumnNgayLapHoKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
 
         displayAllHoKhauCanBo();
     }
@@ -193,7 +195,7 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Thông báo");
-                    alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
+                    alert.setHeaderText("Vui lòng nhập ngày hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     displayAllHoKhauCanBo();
                     return;
