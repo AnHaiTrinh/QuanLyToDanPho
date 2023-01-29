@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/TrangChuCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllershogiadinh.ControllerNhanKhauHoGiaDinhView">
+<AnchorPane fx:id="anchorPaneChinhNhanKhauHoGiaDinh" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/NhanKhauHoGiaDinhView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllershogiadinh.ControllerNhanKhauHoGiaDinhView">
    <children>
       <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -52,7 +52,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <Button fx:id="buttonGiaiThuongHoGiaDinh" layoutY="220.0" mnemonicParsing="false" onMousePressed="#onPressedButtonGiaiThuongHoGiaDinh" prefHeight="58.0" prefWidth="222.0" text="Phần Thưởng" textFill="WHITE">
+      <Button fx:id="buttonGiaiThuongHoGiaDinh" layoutY="220.0" mnemonicParsing="false" onMousePressed="#onPressedButtonGiaiThuongHoGiaDinh" prefHeight="58.0" prefWidth="222.0" text="Phần thưởng" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -79,21 +79,21 @@
                            <children>
                               <TableView fx:id="tableViewNhanKhauHoGiaDinh" editable="true" prefHeight="528.0" prefWidth="800.0">
                                  <columns>
-                                    <TableColumn fx:id="tableComlumIDNhanKhauHoGiaDinh" prefWidth="89.0" text="ID" />
-                                    <TableColumn fx:id="tableComlumIDHoKhauNhanKhauHoGiaDinh" prefWidth="92.0" text="ID Hộ Khẩu" />
-                                    <TableColumn fx:id="tableComlumHoTenNhanKhauHoGiaDinh" prefWidth="130.0" text="Họ Tên" />
-                                    <TableColumn fx:id="tableComlumBietDanhNhanKhauHoGiaDinh" prefWidth="82.0" text="Biệt Danh" />
-                                    <TableColumn fx:id="tableComlumNgaySinhNhanKhauHoGiaDinh" prefWidth="160.0" text="Ngày sinh" />
-                                    <TableColumn fx:id="tableComlumGioiTinhNhanKhauHoGiaDinh" prefWidth="75.0" text="Giới tính" />
-                                    <TableColumn fx:id="tableComlumTonGiaoNhanKhauHoGiaDinh" prefWidth="75.0" text="Tôn giáo" />
-                                    <TableColumn fx:id="tableComlumTinhTrangNhanKhauHoGiaDinh" prefWidth="75.0" text="Tình trạng" />
+                                    <TableColumn fx:id="tableComlumIDNhanKhauHoGiaDinh" prefWidth="45.0" text="ID" />
+                                    <TableColumn fx:id="tableComlumIDHoKhauNhanKhauHoGiaDinh" prefWidth="98.0" text="ID Hộ Khẩu" />
+                                    <TableColumn fx:id="tableComlumHoTenNhanKhauHoGiaDinh" prefWidth="139.0" text="Họ Tên" />
+                                    <TableColumn fx:id="tableComlumBietDanhNhanKhauHoGiaDinh" prefWidth="86.0" text="Biệt Danh" />
+                                    <TableColumn fx:id="tableComlumNgaySinhNhanKhauHoGiaDinh" prefWidth="129.0" text="Ngày sinh" />
+                                    <TableColumn fx:id="tableComlumGioiTinhNhanKhauHoGiaDinh" prefWidth="98.0" text="Giới tính" />
+                                    <TableColumn fx:id="tableComlumTonGiaoNhanKhauHoGiaDinh" prefWidth="108.0" text="Tôn giáo" />
+                                    <TableColumn fx:id="tableComlumTinhTrangNhanKhauHoGiaDinh" prefWidth="93.0" text="Tình trạng" />
                                  </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
                      </content>
                   </ScrollPane>
-                  <Button fx:id="buttonLocThongTinHoKhauCanBo" layoutX="337.0" layoutY="18.0" mnemonicParsing="false" onMousePressed="#onPressedButtonLocThongTinHoGiaDinh" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
+                  <Button fx:id="buttonLocThongTinHoKhauHoGiaDinh" layoutX="337.0" layoutY="18.0" mnemonicParsing="false" onMousePressed="#onPressedButtonLocThongTinHoGiaDinh" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -110,22 +110,22 @@
       </AnchorPane>
       <AnchorPane fx:id="panePeopleAdmin" layoutX="761.0" layoutY="52.0" prefHeight="553.0" prefWidth="154.0">
          <children>
-            <Button fx:id="buttonNewPeopleAdmin" layoutX="21.0" layoutY="118.0" mnemonicParsing="false" onMousePressed="#onPressedButtonThemMoiNhanKhauHoGiaDinh" prefHeight="38.0" prefWidth="130.0" text="Thêm mới" textFill="#fcfcfc">
+            <Button fx:id="buttonThemMoiNhanKhauHoGiaDinh" layoutX="21.0" layoutY="118.0" mnemonicParsing="false" onMousePressed="#onPressedButtonThemMoiNhanKhauHoGiaDinh" prefHeight="38.0" prefWidth="130.0" text="Thêm mới" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="buttonTemporaryRegistrationPeoppleAdmin" layoutX="21.0" layoutY="176.0" mnemonicParsing="false" onMousePressed="#onPressedButtonTamVangNhanKhauHoGiaDinh" prefHeight="38.0" prefWidth="130.0" text="Tạm vắng" textFill="#fcfcfc">
+            <Button fx:id="buttonTamVangNhanKhauHoGiaDinh" layoutX="21.0" layoutY="176.0" mnemonicParsing="false" onMousePressed="#onPressedButtonTamVangNhanKhauHoGiaDinh" prefHeight="38.0" prefWidth="130.0" text="Tạm vắng" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="buttonAbsentRegistrationAdmin" layoutX="20.0" layoutY="237.0" mnemonicParsing="false" onMousePressed="#onPressedButtonTamTruNhanKhauHoGiaDinh" prefHeight="38.0" prefWidth="130.0" text="Tạm trú" textFill="#fcfcfc">
+            <Button fx:id="buttonTamTruNhanKhauHoGiaDinh" layoutX="20.0" layoutY="237.0" mnemonicParsing="false" onMousePressed="#onPressedButtonTamTruNhanKhauHoGiaDinh" prefHeight="38.0" prefWidth="130.0" text="Tạm trú" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="buttonRemovePeopleAdmin" layoutX="21.0" layoutY="298.0" mnemonicParsing="false" onMousePressed="#onPressedButtonKhaiTuNhanKhauHoGiaDinh" prefHeight="38.0" prefWidth="130.0" text="Khai tử" textFill="#fcfcfc">
+            <Button fx:id="buttonXoaNhanKhauHoGiaDinh" layoutX="21.0" layoutY="298.0" mnemonicParsing="false" onMousePressed="#onPressedButtonKhaiTuNhanKhauHoGiaDinh" prefHeight="38.0" prefWidth="130.0" text="Khai tử" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

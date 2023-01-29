@@ -71,13 +71,39 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
             sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(), "TamTruHoGiaDinhView.fxml");
         }
     }
-    public void onPressedButtonKhaiTuNhanKhauHoGiaDinh(){
-
+    public void onPressedButtonKhaiTuNhanKhauHoGiaDinh(MouseEvent e) throws IOException{
+        if(e.isPrimaryButtonDown()){
+            xoaNhanKhauHoGiaDinh();
+        }
     }
     public void displayAllNhanKhauCoTrongHoGiaDinh(){
         ObservableList<NhanKhauModel> nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauTrongHoKhau(maHoKhauDangNhap);
         tableViewNhanKhauHoGiaDinh.setItems(nhanKhauModelObservableList);
         System.out.println(nhanKhauModelObservableList);
         System.out.println(maHoKhauDangNhap);
+    }
+    public void xoaNhanKhauHoGiaDinh(){
+        NhanKhauModel nhanKhauModel = tableViewNhanKhauHoGiaDinh.getSelectionModel().getSelectedItem();
+        if (nhanKhauModel == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Vui lòng chọn nhân khẩu muốn xóa");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Bạn chắc chắn muốn xóa người này!");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                Alert info = new Alert(Alert.AlertType.INFORMATION);
+                info.setTitle("Thông báo");
+                if (nhanKhauService.deleteNhanKhau(nhanKhauModel)) {
+                    info.setHeaderText("Xóa thành công!");
+                } else {
+                    info.setHeaderText("Xóa không thành công!");
+                }
+                info.showAndWait();
+                displayAllNhanKhauCoTrongHoGiaDinh();
+            }
+        }
     }
 }

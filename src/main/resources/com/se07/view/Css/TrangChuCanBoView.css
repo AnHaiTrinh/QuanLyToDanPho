@@ -30,9 +30,6 @@
     -fx-background-color: rgba(4, 57, 244, 0.95);
 }
 
-#anchorPaneChinhCanBo {
-    -fx-background-color: linear-gradient(#7758D1 2%, #F7CBFD 40%);
-}
 
 #buttonDangXuatCanBo {
     -fx-background-color: black
@@ -40,4 +37,7 @@
 
 #buttonDangXuatCanBo:hover {
     -fx-background-color: #BF3FBF;
+}
+#anchorPaneChinhCanBo {
+    -fx-background-color: linear-gradient(#7758D1 2%, #F7CBFD 40%);
 }
