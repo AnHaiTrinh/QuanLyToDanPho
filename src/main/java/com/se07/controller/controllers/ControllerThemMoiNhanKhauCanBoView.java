@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,6 +26,8 @@ import java.util.ResourceBundle;
  * Lớp controller điều khiển màn hình thêm mới nhân khẩu của tổ trưởng
  */
 public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
+    @FXML
+    GridPane gridPaneThemMoiNhanKhauCanBo;
     @FXML
     TextField textFieldMaNhanKhauThemMoiNhanKhauCanBo, textFieldHoTenThemMoiNhanKhauCanBo,
             textFieldTonGiaoThemMoiNhanKhauCanBo, textFieldBietDanhThemMoiNhanKhauCanBo;
@@ -44,7 +47,7 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
         comboBoxMaHoKhauThemMoiNhanKhauCanBo.getSelectionModel().selectFirst();
         datePickerNgaySinhThemMoiNhanKhauCanBo.setValue(today);
 
-        anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {
+        gridPaneThemMoiNhanKhauCanBo.setOnKeyPressed((keyEvent) -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
                 themMoiNhanKhauCanBo();
             } else if (keyEvent.getCode() == KeyCode.Q) {
