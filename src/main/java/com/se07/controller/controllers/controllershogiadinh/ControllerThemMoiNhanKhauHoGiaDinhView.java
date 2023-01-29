@@ -1,4 +1,4 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllershogiadinh;
 
 import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.NhanKhauService;

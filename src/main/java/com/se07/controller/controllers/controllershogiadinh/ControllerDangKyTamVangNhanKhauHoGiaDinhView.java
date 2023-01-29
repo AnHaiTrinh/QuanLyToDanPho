@@ -1,4 +1,4 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllershogiadinh;
 import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.NhanKhauService;
 import com.se07.controller.services.TamVangService;
@@ -7,8 +7,10 @@ import com.se07.model.models.TamVangModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,12 +22,12 @@ import java.util.ResourceBundle;
 public class ControllerDangKyTamVangNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView implements Initializable {
     LocalDate today  = LocalDate.now();
     @FXML
-    TextField textFieldHoTenDangKyTamVangHoGiaDinh, textFieldNoiTamVangDangKyTamVangHoGiaDinh, textFieldLyDoDangKyTamVangHoGiaDinh, textFieldMaTamVangDangKyTamVangHoGiaDinh;
+    TextField textFieldHoTenDangKyTamVangHoGiaDinh, textFieldNoiTamVangDangKyTamVangHoGiaDinh, textFieldLyDoDangKyTamVangHoGiaDinh;
     @FXML
     DatePicker  datePickerTuNgayDangKyTamVangHoGiaDinh, datePickerDenNgayDangKyTamVangHoGiaDinh;
     @FXML
     ComboBox    comBoBoxMaNhanKhauDangKyTamVangHoGiaDinh;
-    private final String tinhTrang ="chưa xác nhận";
+    private final String tinhTrang ="Chờ xác nhận";
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         datePickerTuNgayDangKyTamVangHoGiaDinh.setValue(today);
@@ -39,8 +41,10 @@ public class ControllerDangKyTamVangNhanKhauHoGiaDinhView extends ControllerHoGi
             xacNhanDangKyTamVangHoGiaDinh();
         }
     }
-    public void onPressedButtonHuyDangKyTamVangNhanKhauHoGiaDinh(){
-
+    public void onPressedButtonHuyDangKyTamVangNhanKhauHoGiaDinh(MouseEvent e) throws IOException{
+        if(e.isPrimaryButtonDown()){
+            huyDangKyTamVangHoGiaDinh(e);
+        }
     }
     public void onSelectionComBoBoxMaNhanKhauDangKyTamVangHoGiaDinh(ActionEvent e){
         String maNhanKhau = String.valueOf(comBoBoxMaNhanKhauDangKyTamVangHoGiaDinh.getValue());
@@ -62,7 +66,6 @@ public class ControllerDangKyTamVangNhanKhauHoGiaDinhView extends ControllerHoGi
         Date tuNgay = new Date(datePickerTuNgayDangKyTamVangHoGiaDinh.getValue().toEpochDay());
         Date denNgay = new Date(datePickerDenNgayDangKyTamVangHoGiaDinh.getValue().toEpochDay());
         String lyDo = textFieldLyDoDangKyTamVangHoGiaDinh.getText();
-        int maTamVang = Integer.valueOf(textFieldMaTamVangDangKyTamVangHoGiaDinh.getText());
         TamVangModel tamVangModel = new TamVangModel(maNhanKhau, noiTamVang, tuNgay, denNgay, lyDo, tinhTrang, id);
         if (tamVangService.addTamVang(tamVangModel)) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -80,5 +83,14 @@ public class ControllerDangKyTamVangNhanKhauHoGiaDinhView extends ControllerHoGi
         alert.setHeaderText("");
         alert.setContentText("Đăng ký tạm vắng thất bại!");
         alert.showAndWait();
+    }
+    public void huyDangKyTamVangHoGiaDinh(MouseEvent e) throws IOException{
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText("");
+        alert.setContentText("Bạn muốn thoát khỏi màn hình đăng ký tạm vắng!");
+        if(alert.showAndWait().get()==ButtonType.OK){
+            sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(), "TamVangHoGiaDinhView.fxml");
+        }
     }
 }

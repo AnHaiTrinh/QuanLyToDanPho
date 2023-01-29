@@ -1,4 +1,4 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllerslogin;
 
 import com.se07.util.ConnectionDatabase;
 import com.se07.view.*;

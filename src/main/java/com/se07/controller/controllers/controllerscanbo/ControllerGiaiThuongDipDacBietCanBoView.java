@@ -1,4 +1,4 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllerscanbo;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;

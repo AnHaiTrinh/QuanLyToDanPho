@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/TrangChuCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerTamVangHoGiaDinhView">
+<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/TrangChuCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllershogiadinh.ControllerTamVangHoGiaDinhView">
    <children>
       <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -77,15 +77,16 @@
                      <content>
                         <AnchorPane>
                            <children>
-                              <TableView fx:id="tableViewNhanKhauAdmin" editable="true" prefHeight="528.0" prefWidth="800.0">
+                              <TableView fx:id="tableViewTamVangHoGiaDinh" editable="true" prefHeight="528.0" prefWidth="800.0">
                                  <columns>
-                                    <TableColumn fx:id="tableComlumIDNhanKhauCanBo" prefWidth="89.0" text="ID" />
-                                    <TableColumn fx:id="tableComlumIDHoKhauNhanKhauCanBo" prefWidth="92.0" text="ID Hộ Khẩu" />
-                                    <TableColumn fx:id="tableComlumHoTenNhanKhauCanBo" prefWidth="130.0" text="Họ Tên" />
-                                    <TableColumn fx:id="tableComlumBietDanhNhanKhauCanBo" prefWidth="82.0" text="Biệt Danh" />
-                                    <TableColumn fx:id="tableComlumNgaySinhNhanKhauCanBo" prefWidth="160.0" text="Ngày sinh" />
-                                    <TableColumn fx:id="tableComlumGioiTinhNhanKhauCanBo" prefWidth="75.0" text="Giới tính" />
-                                    <TableColumn fx:id="tableComlumTonGiaoNhanKhauCanBo" prefWidth="75.0" text="Tôn giáo" />
+                                    <TableColumn fx:id="tableComlumMaTamVangNhanKhauHoGiaDinh" prefWidth="92.0" text="Mã tạm vắng" />
+                                    <TableColumn fx:id="tableComlumMaNhanKhauNhanKhauHoGiaDinh" prefWidth="130.0" text="Mã nhân khẩu" />
+                                    <TableColumn fx:id="tableComlumHoTenNhanKhauHoGiaDinh" prefWidth="82.0" text="Họ tên" />
+                                    <TableColumn fx:id="tableComlumNoiTamVangNhanKhauHoGiaDinh" prefWidth="160.0" text="Nơi tạm vắng" />
+                                    <TableColumn fx:id="tableComlumTuNgayNhanKhauHoGiaDinh" prefWidth="75.0" text="Từ ngày" />
+                                    <TableColumn fx:id="tableComlumDenNgayNhanKhauHoGiaDinh" prefWidth="75.0" text="Đến ngày" />
+                                    <TableColumn fx:id="tableComlumLyDoNhanKhauHoGiaDinh" prefWidth="89.0" text="Lý do" />
+                                    <TableColumn fx:id="tableComlumTinhTrangNhanKhauHoGiaDinh" prefWidth="75.0" text="Tình trạng" />
                                  </columns>
                               </TableView>
                            </children>

@@ -1,25 +1,23 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllershogiadinh;
 
 import com.se07.controller.services.NhanKhauService;
+import com.se07.model.models.HoKhauModel;
 import com.se07.model.models.NhanKhauModel;
-import com.se07.util.SceneLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.net.URL;
+import java.time.ZoneId;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView implements Initializable {
@@ -31,9 +29,16 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
             tableComlumTonGiaoNhanKhauHoGiaDinh, tableComlumTinhTrangNhanKhauHoGiaDinh;
     @FXML
     TableColumn<NhanKhauModel, Date> tableComlumNgaySinhNhanKhauHoGiaDinh;
+    @FXML
+    ComboBox comboBoxTimKiemHoGiaDinh;
+    @FXML
+    TextField textFieldLocThongTinHoGiaDinh;
     final NhanKhauService nhanKhauService = new NhanKhauService();
+    private ObservableList<String> listTimKiem = FXCollections.observableArrayList(
+            "Tên chủ hộ", "Mã hộ khẩu", "Địa chỉ", "Ngày lập");
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        comboBoxTimKiemHoGiaDinh.getItems().addAll(listTimKiem);
         tableViewNhanKhauHoGiaDinh.setEditable(true);
         tableComlumIDNhanKhauHoGiaDinh.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("maNhanKhau"));
         tableComlumIDHoKhauNhanKhauHoGiaDinh.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("maHoKhau"));
@@ -42,7 +47,7 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
         tableComlumNgaySinhNhanKhauHoGiaDinh.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, Date>("ngaySinh"));
         tableComlumGioiTinhNhanKhauHoGiaDinh.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("gioiTinh"));
         tableComlumTonGiaoNhanKhauHoGiaDinh.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("tonGiao"));
-        //tableComlumTinhTrangNhanKhauHoGiaDinh.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("tinhTrang"));
+        tableComlumTinhTrangNhanKhauHoGiaDinh.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("tinhTrang"));
         displayAllNhanKhauCoTrongHoGiaDinh();
     }
     public void onPressedButtonLocThongTinHoGiaDinh(){

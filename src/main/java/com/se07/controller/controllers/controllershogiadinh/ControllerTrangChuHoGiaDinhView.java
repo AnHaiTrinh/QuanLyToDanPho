@@ -1,8 +1,5 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllershogiadinh;
 
-import com.se07.controller.services.NhanKhauService;
-import com.se07.controller.services.TamTruService;
-import com.se07.controller.services.TamVangService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 

@@ -2,6 +2,8 @@ package com.se07.controller.services;
 
 import com.se07.model.models.TamTruDisplayModel;
 import com.se07.model.models.TamTruModel;
+import com.se07.model.models.TamTruDisplayModel;
+import com.se07.model.models.TamTruDisplayModel;
 import com.se07.util.ConnectionDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -431,13 +433,50 @@ public class TamTruService {
             return -1;
         }
     }
+    public ObservableList<TamTruDisplayModel> getTamTruByMaChuHo(String maChuHo) {
+        ObservableList<TamTruDisplayModel> tamTruDisplayModels = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.maTamTru, t.maHoKhau, hoTen, n.diachi, tuNgay, denNgay, lyDo, t.tinhTrang " +
+                "from tam_tru t join ho_khau n on t.maHoKhau = n.maHoKhau " +
+                "where n.maHoKhau ='"+ maChuHo + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                TamTruDisplayModel tmp = new TamTruDisplayModel(rs.getInt("maTamTru"),
+                        rs.getString("maHoKhau"), rs.getNString("hoTen"),
+                        rs.getNString("diaChi"), rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"), rs.getNString("lyDo"),
+                        rs.getNString("tinhTrang"));
+                tamTruDisplayModels.add(tmp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(tamTruDisplayModels);
+        return tamTruDisplayModels;
+    }
+    public boolean deleteTamTru(TamTruDisplayModel tamTruDisplayModel) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "delete from tam_Tru where maTamTru = '" + tamTruDisplayModel.getMaTamtru() + "'";
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+            statement.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
-        public TamTruModel convertDisplayModelToModel (TamTruDisplayModel tamTruDisplayModel){
-            TamTruModel tamTruModel = getTamTruByMaTamTru(tamTruDisplayModel.getMaTamtru()).get();
+    public TamTruModel convertDisplayModelToModel (TamTruDisplayModel tamTruDisplayModel){
+        TamTruModel tamTruModel = getTamTruByMaTamTru(tamTruDisplayModel.getMaTamtru()).get();
 
-            return new TamTruModel(tamTruDisplayModel.getMaTamtru(),tamTruModel.getMaHoKhau(), tamTruDisplayModel.getCCCD(),
-                    tamTruDisplayModel.getHoTen(),tamTruDisplayModel.getTuNgay(), tamTruDisplayModel.getDenNgay(),
-                    tamTruDisplayModel.getLyDo(),tamTruDisplayModel.getTinhTrang(), tamTruModel.getIdNguoiThucHien());
+        return new TamTruModel(tamTruDisplayModel.getMaTamtru(),tamTruModel.getMaHoKhau(), tamTruDisplayModel.getCCCD(),
+                tamTruDisplayModel.getHoTen(),tamTruDisplayModel.getTuNgay(), tamTruDisplayModel.getDenNgay(),
+                tamTruDisplayModel.getLyDo(),tamTruDisplayModel.getTinhTrang(), tamTruModel.getIdNguoiThucHien());
 
         }
 

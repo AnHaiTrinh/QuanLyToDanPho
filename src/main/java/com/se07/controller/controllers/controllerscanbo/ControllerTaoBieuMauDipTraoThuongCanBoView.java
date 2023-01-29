@@ -1,6 +1,7 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllerscanbo;
 
 
+import com.se07.controller.controllers.controllerscanbo.ControllerCanBoView;
 import com.se07.controller.services.DipTraoThuongService;
 import com.se07.model.models.DipTraoThuongModel;
 import com.se07.util.MyIntegerStringConverter;
@@ -11,9 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;

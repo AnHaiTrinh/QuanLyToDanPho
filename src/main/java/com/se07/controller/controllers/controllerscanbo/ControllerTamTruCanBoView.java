@@ -1,9 +1,6 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllerscanbo;
 
-import com.se07.view.TrangChuCanBoView;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;

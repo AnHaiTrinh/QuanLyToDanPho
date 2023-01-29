@@ -15,7 +15,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerDangKyTamVangNhanKhauHoGiaDinhView">
+<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllershogiadinh.ControllerDangKyTamVangNhanKhauHoGiaDinhView">
    <children>
       <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -53,7 +53,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="buttonHuyThemMoiNhanKhau" layoutX="-2.0" layoutY="546.0" mnemonicParsing="false" onMousePressed="#onPressedButtonHuyDangKyTamVangNhanKhauHoGiaDinh" prefHeight="31.0" prefWidth="91.0" text="Hủy">
+            <Button fx:id="buttonHuyThemMoiNhanKhau" layoutX="-2.0" layoutY="546.0" mnemonicParsing="false" onMousePressed="#onPressedButtonHuyDangKyTamVangNhanKhauHoGiaDinh" prefHeight="31.0" prefWidth="91.0" text="Thoát">
                <textFill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -152,12 +152,6 @@
             <DatePicker fx:id="datePickerTuNgayDangKyTamVangHoGiaDinh" prefHeight="31.0" prefWidth="213.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
             <TextField fx:id="textFieldNoiTamVangDangKyTamVangHoGiaDinh" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField fx:id="textFieldHoTenDangKyTamVangHoGiaDinh" GridPane.columnIndex="5" />
-            <Label text="Mã tạm vắng" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="textFieldMaTamVangDangKyTamVangHoGiaDinh" promptText="Bắt buộc" GridPane.columnIndex="2" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>

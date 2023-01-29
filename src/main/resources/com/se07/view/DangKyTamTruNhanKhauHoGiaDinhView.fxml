@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerDangKyTamTruNhanKhauHoGiaDinhView">
+<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllershogiadinh.ControllerDangKyTamTruNhanKhauHoGiaDinhView">
    <children>
       <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -145,12 +146,12 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldHoTenThemMoiNhanKhauCanBo" promptText="Bắt buộc" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <DatePicker fx:id="datePickerNgaySinhThemMoiNhanKhauCanBo" prefHeight="31.0" prefWidth="213.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <DatePicker GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="5" />
-            <TextField GridPane.columnIndex="2" />
+            <DatePicker fx:id="datePickerDenNgayDangKyTamTruHoGiaDinh" prefHeight="31.0" prefWidth="213.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <DatePicker fx:id="datePickerTuNgayDangKyTamTruHoGiaDinh" prefHeight="31.0" prefWidth="213.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <TextField fx:id="textFieldHoTenDangKyTamTruHoGiaDinh" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="textFieldLyDoDangKyTamTruHoGiaDinh" GridPane.columnIndex="5" />
+            <TextField fx:id="textFieldCCCDDangKyTamTruHoGiaDinh" GridPane.columnIndex="2" />
+            <ComboBox fx:id="comboBoxNoiTamTruDangKyTamTruHoGiaDinh" prefHeight="31.0" prefWidth="203.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>

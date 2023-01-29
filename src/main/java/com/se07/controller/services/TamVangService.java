@@ -407,4 +407,28 @@ public class TamVangService {
                 tamVangDisplayModel.getNoiTamVang(), tamVangDisplayModel.getTuNgay(), tamVangDisplayModel.getDenNgay(),
                 tamVangDisplayModel.getLyDo(), tamVangDisplayModel.getTinhTrang(), tamVangModel.getIdNguoiThucHien());
     }
+    public ObservableList<TamVangDisplayModel> getTamVangByMaChuHo(String maChuHo) {
+        ObservableList<TamVangDisplayModel> tamVangDisplayModels = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
+                "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "where n.maHoKhau ='"+ maChuHo + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                TamVangDisplayModel tmp = new TamVangDisplayModel(rs.getInt("maTamVang"),
+                        rs.getString("maNhanKhau"), rs.getNString("hoTen"),
+                        rs.getNString("noiTamVang"), rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"), rs.getNString("lyDo"),
+                        rs.getNString("tinhTrang"));
+                tamVangDisplayModels.add(tmp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(tamVangDisplayModels);
+        return tamVangDisplayModels;
+    }
 }

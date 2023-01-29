@@ -1,5 +1,6 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllerscanbo;
 
+import com.se07.controller.controllers.controllerscanbo.ControllerCanBoView;
 import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.NhanKhauService;
 import com.se07.model.models.NhanKhauModel;

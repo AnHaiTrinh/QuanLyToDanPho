@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="paneSplitUserCanBo" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/TachHoKhauCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerTachHoKhauCanBoView">
+<AnchorPane fx:id="paneSplitUserCanBo" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/TachHoKhauCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllerscanbo.ControllerTachHoKhauCanBoView">
    <children>
       <GridPane layoutX="14.0" prefHeight="603.0" prefWidth="902.0">
          <columnConstraints>

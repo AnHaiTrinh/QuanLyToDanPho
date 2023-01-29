@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/TrangChuCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerNhanKhauHoGiaDinhView">
+<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/TrangChuCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllershogiadinh.ControllerNhanKhauHoGiaDinhView">
    <children>
       <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -86,6 +86,7 @@
                                     <TableColumn fx:id="tableComlumNgaySinhNhanKhauHoGiaDinh" prefWidth="160.0" text="Ngày sinh" />
                                     <TableColumn fx:id="tableComlumGioiTinhNhanKhauHoGiaDinh" prefWidth="75.0" text="Giới tính" />
                                     <TableColumn fx:id="tableComlumTonGiaoNhanKhauHoGiaDinh" prefWidth="75.0" text="Tôn giáo" />
+                                    <TableColumn fx:id="tableComlumTinhTrangNhanKhauHoGiaDinh" prefWidth="75.0" text="Tình trạng" />
                                  </columns>
                               </TableView>
                            </children>
@@ -97,8 +98,8 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <ComboBox fx:id="comboBoxTimKiemHoKhauCanBo" layoutX="226.0" layoutY="18.0" prefHeight="31.0" prefWidth="100.0" />
-                  <TextField fx:id="textFieldLocThongTinNhanKhauCanBo" layoutX="2.0" layoutY="18.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
+                  <ComboBox fx:id="comboBoxTimKiemHoGiaDinh" layoutX="226.0" layoutY="18.0" prefHeight="31.0" prefWidth="100.0" />
+                  <TextField fx:id="textFieldLocThongTinHoGiaDinh" layoutX="2.0" layoutY="18.0" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
                      <font>
                         <Font name="System Italic" size="15.0" />
                      </font>
