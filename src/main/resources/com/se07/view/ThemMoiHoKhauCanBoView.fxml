@@ -81,15 +81,15 @@
                   <Font name="System Bold" size="20.0" />
               </font>
           </Label>
-        <GridPane layoutX="220.0" layoutY="163.0" prefHeight="386.0" prefWidth="696.0">
+        <GridPane fx:id="gridPaneThemMoiHoKhauCanBo" layoutX="220.0" layoutY="163.0" prefHeight="386.0" prefWidth="696.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="35.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.0" minWidth="10.0" prefWidth="113.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="0.0" prefWidth="196.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.0" minWidth="10.0" prefWidth="33.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.0" minWidth="10.0" prefWidth="20.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.0" minWidth="10.0" prefWidth="116.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.0" minWidth="10.0" prefWidth="182.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="24.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="303.0" minWidth="10.0" prefWidth="198.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="0.0" prefWidth="24.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -122,7 +122,7 @@
                         <Font name="System Italic" size="15.0" />
                     </font>
                 </TextField>
-                <DatePicker fx:id="datePickerNgayThanhLapThemMoiHoKhauCanBo" GridPane.columnIndex="5" />
+                <DatePicker fx:id="datePickerNgayThanhLapThemMoiHoKhauCanBo" prefHeight="31.0" prefWidth="277.0" GridPane.columnIndex="5" />
                 <TextField fx:id="textFieldMaChuHoThemMoiHoKhauCanBo" promptText="Bắt buộc" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <font>
                         <Font name="System Italic" size="15.0" />

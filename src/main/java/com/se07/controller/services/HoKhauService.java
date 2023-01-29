@@ -270,4 +270,20 @@ public class HoKhauService {
         }
         return hoKhauModelObservableList;
     }
+
+    public ObservableList<String> getAllDiaChi() {
+        ObservableList<String> listDiaChi = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select diaChi from ho_khau";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listDiaChi.add(rs.getNString("diaChi"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listDiaChi;
+    }
 }

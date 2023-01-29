@@ -52,7 +52,7 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
     final private NhanKhauService nhanKhauService = new NhanKhauService();
     final ObservableList<String> listMaNhanKhau = nhanKhauService.getAllMaNhanKhau();
 
-    final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
+    private final MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -122,6 +122,12 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
         }
     }
 
+    public void onEnterPressedTrongOTimKiemTamTruCanBo(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            locThongTinTamVangCanBo();
+        }
+    }
+
     public void onPressedButtonThoatTamVangCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -135,22 +141,18 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
     }
 
     public void onSelectionComboBoxTimKiemTamVangCanBo(ActionEvent e) {
+        ComponentVisibility.change(textFieldLocThongTinTamVangCanBo, false);
+        ComponentVisibility.change(comboBoxTinhTrangTamVangCanBo, false);
+        ComponentVisibility.change(datePickerTu, false);
+        ComponentVisibility.change(datePickerDen, false);
         String truongTimKiem = String.valueOf(comboBoxTimKiemTamVangCanBo.getValue());
         if (truongTimKiem.equals("Ngày")) {
-            ComponentVisibility.change(textFieldLocThongTinTamVangCanBo, false);
-            ComponentVisibility.change(comboBoxTinhTrangTamVangCanBo, false);
             ComponentVisibility.change(datePickerTu, true);
             ComponentVisibility.change(datePickerDen, true);
         } else if (truongTimKiem.equals("Tình trạng")) {
-            ComponentVisibility.change(textFieldLocThongTinTamVangCanBo, false);
             ComponentVisibility.change(comboBoxTinhTrangTamVangCanBo, true);
-            ComponentVisibility.change(datePickerTu, false);
-            ComponentVisibility.change(datePickerDen, false);
         } else {
             ComponentVisibility.change(textFieldLocThongTinTamVangCanBo, true);
-            ComponentVisibility.change(comboBoxTinhTrangTamVangCanBo, false);
-            ComponentVisibility.change(datePickerTu, false);
-            ComponentVisibility.change(datePickerDen, false);
         }
     }
 
@@ -199,7 +201,7 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
-            alert.setHeaderText("Bạn chắc chắn muốn từ chối nhân khẩu này?");
+            alert.setHeaderText("Bạn chắc chắn muốn từ chối trường hợp này?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 tamVangDisplayModel.setTinhTrang("Đã từ chối");
                 TamVangModel tamVangModel = tamVangService.convertDisplayModelToModel(tamVangDisplayModel);
@@ -287,7 +289,7 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Thông báo");
-                    alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
+                    alert.setHeaderText("Vui lòng nhập ngày hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     displayAlltamVangCanBo();
                     return;
@@ -300,7 +302,7 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Thông báo");
-                    alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
+                    alert.setHeaderText("Vui lòng nhập ngày hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     displayAlltamVangCanBo();
                     return;

@@ -284,7 +284,7 @@ public class TamVangService {
     public Optional<TamVangModel> getTamVangByMaTamVang(int maTamVang) {
         Optional<TamVangModel> tamVangModel = Optional.empty();
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from tam_vang where maTamVang = '" + maTamVang + "'";
+        String query = "select * from tam_vang where maTamVang = " + maTamVang;
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);

@@ -52,7 +52,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
 
     final private ObservableList<String> listTinhTrang =
             FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
-    final NhanKhauService nhanKhauService = new NhanKhauService();
+    final private NhanKhauService nhanKhauService = new NhanKhauService();
 
     final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
 
@@ -99,31 +99,21 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
      * @param e Sự kiện hành động bắt được
      */
     public void onSelectionComboBoxTimKiemTamVangCanBo(ActionEvent e) {
+        ComponentVisibility.change(textFieldLocThongTinNhanKhauCanBo, false);
+        ComponentVisibility.change(comboBoxTinhTrangNhanKhauCanBo, false);
+        ComponentVisibility.change(comboBoxGioiTinhNhanKhauCanBo, false);
+        ComponentVisibility.change(datePickerTu, false);
+        ComponentVisibility.change(datePickerDen, false);
         String truongTimKiem = String.valueOf(comboBoxTimKiemNhanKhauCanBo.getValue());
         if (truongTimKiem.equals("Ngày sinh")) {
-            ComponentVisibility.change(textFieldLocThongTinNhanKhauCanBo, false);
-            ComponentVisibility.change(comboBoxTinhTrangNhanKhauCanBo, false);
-            ComponentVisibility.change(comboBoxGioiTinhNhanKhauCanBo, false);
             ComponentVisibility.change(datePickerTu, true);
             ComponentVisibility.change(datePickerDen, true);
         } else if (truongTimKiem.equals("Giới tính")) {
-            ComponentVisibility.change(textFieldLocThongTinNhanKhauCanBo, false);
-            ComponentVisibility.change(comboBoxTinhTrangNhanKhauCanBo, false);
             ComponentVisibility.change(comboBoxGioiTinhNhanKhauCanBo, true);
-            ComponentVisibility.change(datePickerTu, false);
-            ComponentVisibility.change(datePickerDen, false);
         } else if (truongTimKiem.equals("Tình trạng")) {
-            ComponentVisibility.change(textFieldLocThongTinNhanKhauCanBo, false);
             ComponentVisibility.change(comboBoxTinhTrangNhanKhauCanBo, true);
-            ComponentVisibility.change(comboBoxGioiTinhNhanKhauCanBo, false);
-            ComponentVisibility.change(datePickerTu, false);
-            ComponentVisibility.change(datePickerDen, false);
         } else {
             ComponentVisibility.change(textFieldLocThongTinNhanKhauCanBo, true);
-            ComponentVisibility.change(comboBoxTinhTrangNhanKhauCanBo, false);
-            ComponentVisibility.change(comboBoxGioiTinhNhanKhauCanBo, false);
-            ComponentVisibility.change(datePickerTu, false);
-            ComponentVisibility.change(datePickerDen, false);
         }
     }
 
