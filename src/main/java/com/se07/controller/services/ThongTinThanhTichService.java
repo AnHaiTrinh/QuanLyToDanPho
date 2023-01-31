@@ -13,6 +13,13 @@ import java.sql.*;
 import java.util.Optional;
 
 public class ThongTinThanhTichService {
+
+
+    /**
+     *
+     * @param thongTinThanhTichModel
+     * @return thêm một bản ghi thông tin thành tích
+     */
     public boolean addThongTinThanhTich(ThongTinThanhTichModel thongTinThanhTichModel) {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "insert into thong_tin_thanh_tich(idDip, maNhanKhau, lop, truong, capThanhTich, kieuThanhTich, " +
@@ -37,6 +44,11 @@ public class ThongTinThanhTichService {
         }
     }
 
+    /**
+     *
+     * @param thongTinThanhTichModel
+     * @return cập nhật một bản ghi thông tin thành tích
+     */
     public boolean updateThongTinThanhTich(ThongTinThanhTichModel thongTinThanhTichModel) {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "update thong_tin_thanh_tich " +
@@ -69,6 +81,12 @@ public class ThongTinThanhTichService {
         }
     }
 
+    /**
+     *
+     * @param thongTinThanhTichDisplayModel
+     * @return chuyển từ dạng ThongTinThanhTichDisplayModel sang ThongTinThanhTichModel
+     */
+
     public ThongTinThanhTichModel convertDisplayModelToModel(ThongTinThanhTichDisplayModel thongTinThanhTichDisplayModel) {
         ThongTinThanhTichModel thongTinThanhTichModel = getThongTinThanhTichByIdNhap(thongTinThanhTichDisplayModel.getIdNhap()).get();
         return new ThongTinThanhTichModel(thongTinThanhTichDisplayModel.getIdNhap(), thongTinThanhTichModel.getIdDip(),
@@ -77,6 +95,12 @@ public class ThongTinThanhTichService {
                 thongTinThanhTichDisplayModel.getKieuThanhTich(), thongTinThanhTichDisplayModel.getMinhChung(),
                 thongTinThanhTichDisplayModel.getTinhTrang(), thongTinThanhTichModel.getIdNguoiThucHien());
     }
+
+    /**
+     *
+     * @param ìdNhap
+     * @return bản ghi thông tin thành tích theo id nhập
+     */
 
     public Optional<ThongTinThanhTichModel> getThongTinThanhTichByIdNhap(int ìdNhap) {
         Optional<ThongTinThanhTichModel> thongTinThanhTichModel = Optional.empty();
@@ -108,6 +132,12 @@ public class ThongTinThanhTichService {
         return thongTinThanhTichModel;
     }
 
+    /**
+     *
+     * @param thongTinThanhTichDisplayModel
+     * @return xóa một bản ghi thông tin thành tích
+     */
+
     public boolean deleteThongTinThanhTich(ThongTinThanhTichDisplayModel thongTinThanhTichDisplayModel) {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "delete from thong_tin_thanh_tich where idNhap = " + thongTinThanhTichDisplayModel.getIdNhap();
@@ -121,6 +151,11 @@ public class ThongTinThanhTichService {
             return false;
         }
     }
+
+    /**
+     *
+     * @return tất cả bản ghi thông tin thành tích
+     */
 
     public ObservableList<ThongTinThanhTichDisplayModel> getAllThongTinThanhTich() {
         ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTichDisplayModel = FXCollections.observableArrayList();
@@ -163,4 +198,447 @@ public class ThongTinThanhTichService {
         }
         return listThongTinThanhTichDisplayModel;
     }
+
+    /**
+     *
+     * @param maNhanKhau
+     * @return các bản ghi thông tin thành tích theo mã nhân khẩu
+     */
+    public ObservableList<ThongTinThanhTichDisplayModel> getThongTinThanhTichByMaNhanKhau(String maNhanKhau) {
+        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTichDisplayModel = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select idNhap, t.idDip, t.maNhanKhau, hoTen, tenDip, nam, lop, truong, capThanhTich, kieuThanhTich, " +
+                "minhChung, t.tinhTrang " +
+                "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "join dip_trao_thuong d on t.idDip = d.id" +
+                "where t.maNhanKhau = '"+maNhanKhau+"' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                int idNhap = rs.getInt("idNhap");
+                int idDip = rs.getInt("idDip");
+
+                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                if (!file.exists()) {
+                    file.createNewFile();
+                    FileOutputStream fos = new FileOutputStream(file);
+                    Blob blob = rs.getBlob("minhChung");
+                    byte[] data = blob.getBytes(1, (int) blob.length());
+                    fos.write(data);
+                }
+                ThongTinThanhTichDisplayModel temp = new ThongTinThanhTichDisplayModel(
+                        idNhap,
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getInt("lop"),
+                        rs.getNString("truong"),
+                        rs.getNString("capThanhTich"),
+                        rs.getNString("kieuThanhTich"),
+                        file,
+                        rs.getNString("tinhTrang"));
+                listThongTinThanhTichDisplayModel.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listThongTinThanhTichDisplayModel;
+    }
+
+    /**
+     *
+     * @param hoTen
+     * @return các bản ghi thông tin thành tích theo họ tên
+     */
+    public ObservableList<ThongTinThanhTichDisplayModel> getThongTinThanhTichByHoTen(String hoTen) {
+        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTichDisplayModel = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select idNhap, t.idDip, t.maNhanKhau, hoTen, tenDip, nam, lop, truong, capThanhTich, kieuThanhTich, " +
+                "minhChung, t.tinhTrang " +
+                "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "join dip_trao_thuong d on t.idDip = d.id" +
+                "where hoTen like N'%"+hoTen+"%' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                int idNhap = rs.getInt("idNhap");
+                int idDip = rs.getInt("idDip");
+
+                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                if (!file.exists()) {
+                    file.createNewFile();
+                    FileOutputStream fos = new FileOutputStream(file);
+                    Blob blob = rs.getBlob("minhChung");
+                    byte[] data = blob.getBytes(1, (int) blob.length());
+                    fos.write(data);
+                }
+                ThongTinThanhTichDisplayModel temp = new ThongTinThanhTichDisplayModel(
+                        idNhap,
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getInt("lop"),
+                        rs.getNString("truong"),
+                        rs.getNString("capThanhTich"),
+                        rs.getNString("kieuThanhTich"),
+                        file,
+                        rs.getNString("tinhTrang"));
+                listThongTinThanhTichDisplayModel.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listThongTinThanhTichDisplayModel;
+    }
+
+    /**
+     *
+     * @param tenDip
+     * @return các bản ghi thông tin thành tích theo tên dịp
+     */
+    public ObservableList<ThongTinThanhTichDisplayModel> getThongTinThanhTichByTenDip(String tenDip) {
+        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTichDisplayModel = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select idNhap, t.idDip, t.maNhanKhau, hoTen, tenDip, nam, lop, truong, capThanhTich, kieuThanhTich, " +
+                "minhChung, t.tinhTrang " +
+                "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "join dip_trao_thuong d on t.idDip = d.id" +
+                "where tenDip like N'%"+tenDip+"%' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                int idNhap = rs.getInt("idNhap");
+                int idDip = rs.getInt("idDip");
+
+                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                if (!file.exists()) {
+                    file.createNewFile();
+                    FileOutputStream fos = new FileOutputStream(file);
+                    Blob blob = rs.getBlob("minhChung");
+                    byte[] data = blob.getBytes(1, (int) blob.length());
+                    fos.write(data);
+                }
+                ThongTinThanhTichDisplayModel temp = new ThongTinThanhTichDisplayModel(
+                        idNhap,
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getInt("lop"),
+                        rs.getNString("truong"),
+                        rs.getNString("capThanhTich"),
+                        rs.getNString("kieuThanhTich"),
+                        file,
+                        rs.getNString("tinhTrang"));
+                listThongTinThanhTichDisplayModel.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listThongTinThanhTichDisplayModel;
+    }
+
+    /**
+     *
+     * @param nam
+     * @return các bản ghi thông tin thành tích theo năm
+     */
+
+    public ObservableList<ThongTinThanhTichDisplayModel> getThongTinThanhTichByNam(int nam) {
+        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTichDisplayModel = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select idNhap, t.idDip, t.maNhanKhau, hoTen, tenDip, nam, lop, truong, capThanhTich, kieuThanhTich, " +
+                "minhChung, t.tinhTrang " +
+                "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "join dip_trao_thuong d on t.idDip = d.id" +
+                "where nam =  '"+nam+"' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                int idNhap = rs.getInt("idNhap");
+                int idDip = rs.getInt("idDip");
+
+                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                if (!file.exists()) {
+                    file.createNewFile();
+                    FileOutputStream fos = new FileOutputStream(file);
+                    Blob blob = rs.getBlob("minhChung");
+                    byte[] data = blob.getBytes(1, (int) blob.length());
+                    fos.write(data);
+                }
+                ThongTinThanhTichDisplayModel temp = new ThongTinThanhTichDisplayModel(
+                        idNhap,
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getInt("lop"),
+                        rs.getNString("truong"),
+                        rs.getNString("capThanhTich"),
+                        rs.getNString("kieuThanhTich"),
+                        file,
+                        rs.getNString("tinhTrang"));
+                listThongTinThanhTichDisplayModel.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listThongTinThanhTichDisplayModel;
+    }
+
+    /**
+     *
+     * @param lop
+     * @return các bản ghi thông tin thành tích theo lớp
+     */
+
+    public ObservableList<ThongTinThanhTichDisplayModel> getThongTinThanhTichByLop(int lop) {
+        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTichDisplayModel = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select idNhap, t.idDip, t.maNhanKhau, hoTen, tenDip, nam, lop, truong, capThanhTich, kieuThanhTich, " +
+                "minhChung, t.tinhTrang " +
+                "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "join dip_trao_thuong d on t.idDip = d.id" +
+                "where lop =  '"+lop+"' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                int idNhap = rs.getInt("idNhap");
+                int idDip = rs.getInt("idDip");
+
+                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                if (!file.exists()) {
+                    file.createNewFile();
+                    FileOutputStream fos = new FileOutputStream(file);
+                    Blob blob = rs.getBlob("minhChung");
+                    byte[] data = blob.getBytes(1, (int) blob.length());
+                    fos.write(data);
+                }
+                ThongTinThanhTichDisplayModel temp = new ThongTinThanhTichDisplayModel(
+                        idNhap,
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getInt("lop"),
+                        rs.getNString("truong"),
+                        rs.getNString("capThanhTich"),
+                        rs.getNString("kieuThanhTich"),
+                        file,
+                        rs.getNString("tinhTrang"));
+                listThongTinThanhTichDisplayModel.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listThongTinThanhTichDisplayModel;
+    }
+
+    /**
+     *
+     * @param truong
+     * @return các bản ghi thông tin thành tích theo trường
+     */
+    public ObservableList<ThongTinThanhTichDisplayModel> getThongTinThanhTichByTruong(String truong) {
+        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTichDisplayModel = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select idNhap, t.idDip, t.maNhanKhau, hoTen, tenDip, nam, lop, truong, capThanhTich, kieuThanhTich, " +
+                "minhChung, t.tinhTrang " +
+                "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "join dip_trao_thuong d on t.idDip = d.id" +
+                "where truong like  N'%"+truong+"%' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                int idNhap = rs.getInt("idNhap");
+                int idDip = rs.getInt("idDip");
+
+                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                if (!file.exists()) {
+                    file.createNewFile();
+                    FileOutputStream fos = new FileOutputStream(file);
+                    Blob blob = rs.getBlob("minhChung");
+                    byte[] data = blob.getBytes(1, (int) blob.length());
+                    fos.write(data);
+                }
+                ThongTinThanhTichDisplayModel temp = new ThongTinThanhTichDisplayModel(
+                        idNhap,
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getInt("lop"),
+                        rs.getNString("truong"),
+                        rs.getNString("capThanhTich"),
+                        rs.getNString("kieuThanhTich"),
+                        file,
+                        rs.getNString("tinhTrang"));
+                listThongTinThanhTichDisplayModel.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listThongTinThanhTichDisplayModel;
+    }
+
+    /**
+     *
+     * @param capThanhTich
+     * @return bản ghi thông tin thành tích theo cấp thành tích
+     */
+    public ObservableList<ThongTinThanhTichDisplayModel> getThongTinThanhTichByCapThanhTich(String capThanhTich) {
+        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTichDisplayModel = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select idNhap, t.idDip, t.maNhanKhau, hoTen, tenDip, nam, lop, truong, capThanhTich, kieuThanhTich, " +
+                "minhChung, t.tinhTrang " +
+                "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "join dip_trao_thuong d on t.idDip = d.id" +
+                "where capThanhTich like  N'%"+capThanhTich+"%' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                int idNhap = rs.getInt("idNhap");
+                int idDip = rs.getInt("idDip");
+
+                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                if (!file.exists()) {
+                    file.createNewFile();
+                    FileOutputStream fos = new FileOutputStream(file);
+                    Blob blob = rs.getBlob("minhChung");
+                    byte[] data = blob.getBytes(1, (int) blob.length());
+                    fos.write(data);
+                }
+                ThongTinThanhTichDisplayModel temp = new ThongTinThanhTichDisplayModel(
+                        idNhap,
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getInt("lop"),
+                        rs.getNString("truong"),
+                        rs.getNString("capThanhTich"),
+                        rs.getNString("kieuThanhTich"),
+                        file,
+                        rs.getNString("tinhTrang"));
+                listThongTinThanhTichDisplayModel.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listThongTinThanhTichDisplayModel;
+    }
+
+
+    /**
+     *
+     * @param kieuThanhTich
+     * @return các bản ghi thông tin thành tích theo kiểu thành tích
+     */
+    public ObservableList<ThongTinThanhTichDisplayModel> getThongTinThanhTichByKieuThanhTich(String kieuThanhTich) {
+        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTichDisplayModel = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select idNhap, t.idDip, t.maNhanKhau, hoTen, tenDip, nam, lop, truong, capThanhTich, kieuThanhTich, " +
+                "minhChung, t.tinhTrang " +
+                "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "join dip_trao_thuong d on t.idDip = d.id" +
+                "where kieuThanhTich like  N'%"+kieuThanhTich+"%' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                int idNhap = rs.getInt("idNhap");
+                int idDip = rs.getInt("idDip");
+
+                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                if (!file.exists()) {
+                    file.createNewFile();
+                    FileOutputStream fos = new FileOutputStream(file);
+                    Blob blob = rs.getBlob("minhChung");
+                    byte[] data = blob.getBytes(1, (int) blob.length());
+                    fos.write(data);
+                }
+                ThongTinThanhTichDisplayModel temp = new ThongTinThanhTichDisplayModel(
+                        idNhap,
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getInt("lop"),
+                        rs.getNString("truong"),
+                        rs.getNString("capThanhTich"),
+                        rs.getNString("kieuThanhTich"),
+                        file,
+                        rs.getNString("tinhTrang"));
+                listThongTinThanhTichDisplayModel.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listThongTinThanhTichDisplayModel;
+    }
+
+    public ObservableList<ThongTinThanhTichDisplayModel> getThongTinThanhTichByTinhTrang(String tinhTrang) {
+        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTichDisplayModel = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select idNhap, t.idDip, t.maNhanKhau, hoTen, tenDip, nam, lop, truong, capThanhTich, kieuThanhTich, " +
+                "minhChung, t.tinhTrang " +
+                "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "join dip_trao_thuong d on t.idDip = d.id" +
+                "where kieuThanhTich =  N'"+tinhTrang+"' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                int idNhap = rs.getInt("idNhap");
+                int idDip = rs.getInt("idDip");
+
+                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                if (!file.exists()) {
+                    file.createNewFile();
+                    FileOutputStream fos = new FileOutputStream(file);
+                    Blob blob = rs.getBlob("minhChung");
+                    byte[] data = blob.getBytes(1, (int) blob.length());
+                    fos.write(data);
+                }
+                ThongTinThanhTichDisplayModel temp = new ThongTinThanhTichDisplayModel(
+                        idNhap,
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getInt("lop"),
+                        rs.getNString("truong"),
+                        rs.getNString("capThanhTich"),
+                        rs.getNString("kieuThanhTich"),
+                        file,
+                        rs.getNString("tinhTrang"));
+                listThongTinThanhTichDisplayModel.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listThongTinThanhTichDisplayModel;
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
