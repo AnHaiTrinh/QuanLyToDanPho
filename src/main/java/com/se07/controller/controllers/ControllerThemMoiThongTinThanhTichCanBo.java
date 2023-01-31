@@ -109,7 +109,7 @@ public class ControllerThemMoiThongTinThanhTichCanBo extends ControllerCanBoView
 
     private void themMinhChungThanhTichCanBo(Stage stage) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("File ảnh", "*.jpg", "*.png"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("File ảnh", "*.png", "*.jpg"));
         minhChung = fileChooser.showOpenDialog(stage);
         if (minhChung != null) {
             buttonThemMinhChungThanhTichCanBo.setText(minhChung.getName());

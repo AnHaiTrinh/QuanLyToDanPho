@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
@@ -22,6 +23,17 @@ public class HelloApplication extends Application {
     public void stop() throws Exception {
         File userInfo = new File("src/main/resources/UserData.txt");
         userInfo.delete();
+        File dir = new File("src/main/resources");
+        File[] files = dir.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith(".jpg");
+            }
+        });
+
+        for (File file : files) {
+            file.delete();
+        }
         super.stop();
     }
 

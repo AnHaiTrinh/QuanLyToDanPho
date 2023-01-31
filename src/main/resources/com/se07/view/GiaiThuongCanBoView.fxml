@@ -118,6 +118,7 @@
                   </TextField>
                   <DatePicker fx:id="datePickerTu" disable="true" editable="false" layoutX="28.0" prefHeight="20.0" prefWidth="160.0" promptText="Từ " />
                   <DatePicker fx:id="datePickerDen" disable="true" editable="false" layoutX="28.0" layoutY="42.0" prefHeight="20.0" prefWidth="160.0" promptText="Đến" />
+                  <ComboBox fx:id="comboBoxTenNamGiaiThuongCanBo" disable="true" layoutY="15.0" prefHeight="31.0" prefWidth="213.0" />
                   <ComboBox fx:id="comboBoxKieuGiaiThuongCanBo" disable="true" layoutY="15.0" prefHeight="31.0" prefWidth="213.0" />
                </children>
             </AnchorPane>

@@ -89,3 +89,8 @@
 #buttonThoatThongTinThanhTichCanBo:hover {
     -fx-background-color: #BF3FBF;
 }
+
+.underline-blue-text {
+    -fx-underline: true;
+    -fx-text-fill: blue;
+}
