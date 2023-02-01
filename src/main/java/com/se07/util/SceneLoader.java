@@ -1,6 +1,7 @@
 package com.se07.util;
 
 import com.se07.view.TrangChuCanBoView;
+import com.se07.view.UserView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -24,7 +25,7 @@ public class SceneLoader {
         stage.setScene(scene);
     }
     public void loadFxmlFileHoGiaDinh(Stage stage, String filename) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource(filename));
+        FXMLLoader fxmlLoader = new FXMLLoader(UserView.class.getResource(filename));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
     }

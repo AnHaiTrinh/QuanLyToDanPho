@@ -26,7 +26,7 @@ public class ControllerHoGiaDinhView implements Initializable {
     final String username = UserInfo.getUsername();
     final SceneLoader sceneLoader = new SceneLoader();
     private  HoKhauService hoKhauService = new HoKhauService();
-    final String maHoKhauDangNhap = hoKhauService.getMaHoKhauByIdChuHo(id);
+    final String maHoKhauDangNhap = UserInfo.getMaHoKhau(id);
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

@@ -3,6 +3,7 @@ package com.se07.controller.controllers.controllershogiadinh;
 import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.NhanKhauService;
 import com.se07.model.models.NhanKhauModel;
+import com.se07.util.UserInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -22,11 +23,12 @@ import java.util.ResourceBundle;
 public class ControllerThemMoiNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView implements Initializable {
     @FXML
     TextField textFieldMaNhanKhauThemMoiNhanKhauHoGiaDinh, textFieldHoTenThemMoiNhanKhauHoGiaDinh,
-            textFieldTonGiaoThemMoiNhanKhauHoGiaDinh, textFieldBietDanhThemMoiNhanKhauHoGiaDinh;
+            textFieldTonGiaoThemMoiNhanKhauHoGiaDinh, textFieldBietDanhThemMoiNhanKhauHoGiaDinh, textFieldMaHoKhauThemMoiNhanKhauHoGiaDinh;
+
     @FXML
     DatePicker datePickerNgaySinhThemMoiNhanKhauHoGiaDinh;
     @FXML
-    ComboBox comboBoxGioiTinhThemMoiNhanKhauHoGiaDinh, comboBoxMaHoKhauThemMoiNhanKhauHoGiaDinh;
+    ComboBox comboBoxGioiTinhThemMoiNhanKhauHoGiaDinh;
     
     final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ","Khác");
     final HoKhauService hoKhauService = new HoKhauService();
@@ -36,8 +38,7 @@ public class ControllerThemMoiNhanKhauHoGiaDinhView extends ControllerHoGiaDinhV
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBoxGioiTinhThemMoiNhanKhauHoGiaDinh.getItems().addAll(listGioiTinh);
         comboBoxGioiTinhThemMoiNhanKhauHoGiaDinh.getSelectionModel().selectFirst();
-        comboBoxMaHoKhauThemMoiNhanKhauHoGiaDinh.getItems().addAll(hoKhauService.getAllMaHoKhau());
-        comboBoxMaHoKhauThemMoiNhanKhauHoGiaDinh.getSelectionModel().selectFirst();
+        textFieldMaHoKhauThemMoiNhanKhauHoGiaDinh.setText(maHoKhauDangNhap);
         datePickerNgaySinhThemMoiNhanKhauHoGiaDinh.setValue(today);
     }
     public void onPressedButtonThemMoiNhanKhauHoGiaDinh(MouseEvent e) throws IOException {
@@ -61,7 +62,7 @@ public class ControllerThemMoiNhanKhauHoGiaDinhView extends ControllerHoGiaDinhV
         }
         String maNhanKhau = textFieldMaNhanKhauThemMoiNhanKhauHoGiaDinh.getText();
         String gioiTinh = String.valueOf(comboBoxGioiTinhThemMoiNhanKhauHoGiaDinh.getValue());
-        String maHoKhau = String.valueOf(comboBoxMaHoKhauThemMoiNhanKhauHoGiaDinh.getValue());
+        String maHoKhau = textFieldMaHoKhauThemMoiNhanKhauHoGiaDinh.getText();
         String hoTen = textFieldHoTenThemMoiNhanKhauHoGiaDinh.getText();
         String tonGiao = textFieldTonGiaoThemMoiNhanKhauHoGiaDinh.getText();
         String bietDanh = textFieldBietDanhThemMoiNhanKhauHoGiaDinh.getText();

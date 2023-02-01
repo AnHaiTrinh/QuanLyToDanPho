@@ -153,11 +153,11 @@
                </font>
             </Label>
             <ComboBox fx:id="comboBoxGioiTinhThemMoiNhanKhauHoGiaDinh" prefHeight="31.0" prefWidth="209.0" GridPane.columnIndex="5" />
-            <ComboBox fx:id="comboBoxMaHoKhauThemMoiNhanKhauHoGiaDinh" prefHeight="31.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField fx:id="textFieldHoTenThemMoiNhanKhauHoGiaDinh" promptText="Bắt buộc" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <DatePicker fx:id="datePickerNgaySinhThemMoiNhanKhauHoGiaDinh" prefHeight="31.0" prefWidth="213.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
             <TextField fx:id="textFieldTonGiaoThemMoiNhanKhauHoGiaDinh" promptText="Không bắt buộc" GridPane.columnIndex="5" GridPane.rowIndex="1" />
             <TextField fx:id="textFieldMaNhanKhauThemMoiNhanKhauHoGiaDinh" promptText="Bắt buộc" GridPane.columnIndex="2" />
+            <TextField fx:id="textFieldMaHoKhauThemMoiNhanKhauHoGiaDinh" editable="false" promptText="Bắt buộc" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

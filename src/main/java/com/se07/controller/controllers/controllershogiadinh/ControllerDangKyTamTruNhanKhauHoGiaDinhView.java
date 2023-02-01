@@ -55,7 +55,7 @@ public class ControllerDangKyTamTruNhanKhauHoGiaDinhView extends ControllerHoGia
             return;
         }
         String CCCD = textFieldCCCDDangKyTamTruHoGiaDinh.getText();
-        String maHoKhau = new HoKhauService().getMaHoKhauByIdChuHo(id);
+        String maHoKhau = maHoKhauDangNhap;
         System.out.println(comboBoxNoiTamTruDangKyTamTruHoGiaDinh.getSelectionModel().toString());
         System.out.println(maHoKhau+"  123");
         String hoTen = textFieldHoTenDangKyTamTruHoGiaDinh.getText();

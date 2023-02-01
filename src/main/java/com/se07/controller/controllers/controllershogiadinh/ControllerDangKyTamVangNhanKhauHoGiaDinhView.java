@@ -32,7 +32,7 @@ public class ControllerDangKyTamVangNhanKhauHoGiaDinhView extends ControllerHoGi
     public void initialize(URL url, ResourceBundle resourceBundle) {
         datePickerTuNgayDangKyTamVangHoGiaDinh.setValue(today);
         datePickerDenNgayDangKyTamVangHoGiaDinh.setValue(today.plusDays(7));
-        comBoBoxMaNhanKhauDangKyTamVangHoGiaDinh.getItems().addAll(new NhanKhauService().getAllMaNhanKhauTrongHoKhau(new HoKhauService().getMaHoKhauByIdChuHo(id)));
+        comBoBoxMaNhanKhauDangKyTamVangHoGiaDinh.getItems().addAll(new NhanKhauService().getAllMaNhanKhauTrongHoKhau(maHoKhauDangNhap));
         comBoBoxMaNhanKhauDangKyTamVangHoGiaDinh.getSelectionModel().selectFirst();
         textFieldHoTenDangKyTamVangHoGiaDinh.setEditable(false);
     }

@@ -287,22 +287,6 @@ public class HoKhauService {
         }
         return hoKhauModelObservableList;
     }
-    public String getMaHoKhauByIdChuHo(int id) {
-        Connection connection = ConnectionDatabase.getConnection();
-        String ans = "";
-        String query = "select ho_gia_dinh_user.maHoKhau from ho_gia_dinh_user where ho_gia_dinh_user.id = '" + id + "'";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            if (rs.next()) {
-                ans = rs.getString("maHoKhau");
-            }
-            statement.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ans;
-    }
     public String getMaHoKhauByDiaChiHoGiaDinh(String diaChi) {
         Connection connection = ConnectionDatabase.getConnection();
         String ans="123";
