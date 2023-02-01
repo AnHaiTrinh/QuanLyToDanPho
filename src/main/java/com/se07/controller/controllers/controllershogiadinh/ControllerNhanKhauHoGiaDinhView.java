@@ -5,6 +5,7 @@ import com.se07.model.models.HoKhauModel;
 import com.se07.model.models.NhanKhauModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -50,8 +51,7 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
         tableComlumTinhTrangNhanKhauHoGiaDinh.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("tinhTrang"));
         displayAllNhanKhauCoTrongHoGiaDinh();
     }
-    public void onPressedButtonLocThongTinHoGiaDinh(){
-
+    public void onPressedButtonLocThongTinHoGiaDinh(ActionEvent e) throws IOException{
     }
     public void onPressedButtonDangXuatHoGiaDinh(){
 
@@ -105,5 +105,44 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
                 displayAllNhanKhauCoTrongHoGiaDinh();
             }
         }
+    }
+    public void timKiemThongTinNhanKhauTheoCacTruong(){
+        String cauHoi = textFieldLocThongTinHoGiaDinh.getText();
+        String truongTimKiem = String.valueOf(comboBoxTimKiemHoGiaDinh.getValue());
+        ObservableList<NhanKhauModel> nhanKhauModelObservableList = FXCollections.observableArrayList();
+        switch (truongTimKiem) {
+            case "Mã nhân khẩu":
+                Optional<NhanKhauModel> nhanKhauModel = nhanKhauService.getNhanKhauByMaNhanKhauAndMaHoKhau(cauHoi, maHoKhauDangNhap);
+                if (nhanKhauModel.isPresent()) {
+                    nhanKhauModelObservableList.add(nhanKhauModel.get());
+                }
+                break;
+            case "Họ tên":
+                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByTenAndMaHoKhau(cauHoi, maHoKhauDangNhap);
+                break;
+            case "Biệt danh":
+                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByBietDanhAndMaHoKhau(cauHoi, maHoKhauDangNhap);
+                break;
+            case "Tôn giáo":
+                nhanKhauModelObservableList = nhanKhauService.getNhanKhauByTonGiaoAndMaHoKhau(cauHoi, maHoKhauDangNhap);
+                break;
+            case "Tình trạng":
+                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByTinhTrangAndMaHoKhau(cauHoi, maHoKhauDangNhap);
+                break;
+            case "Nơi tạm vắng":
+                nhanKhauModelObservableList = nhanKhauService.getNhanKhauByNoiTamVangAndMaHoKhau(cauHoi, maHoKhauDangNhap);
+                break;
+            case "Lý do":
+                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByLyDoAndMaHoKhau(cauHoi, maHoKhauDangNhap);
+                break;
+            case "Ngày sinh":
+                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByNgaySinhAndMaHoKhau(cauHoi, maHoKhauDangNhap);
+                break;
+            case "Giới tính":
+                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByGioiTinhAndMaHoKhau(cauHoi, maHoKhauDangNhap);
+                break;
+
+        }
+        tableViewNhanKhauHoGiaDinh.setItems(nhanKhauModelObservableList);
     }
 }
