@@ -142,8 +142,12 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     FXMLLoader loader = new FXMLLoader(TrangChuCanBoView.class.getResource("GiaiThuongDipDacBietCanBoView.fxml"));
                     Parent root = loader.load();
                     ControllerGiaiThuongDipDacBietCanBoView controller = loader.getController();
-                    controller.textFieldLocThongTinDipDacBietCanBo.setText(String.valueOf(dipTraoThuongModel.getId()));
-                    controller.comboBoxTimKiemDipDacBietCanBo.getSelectionModel().select("Tên - Năm");
+                    ComboBox comboBoxTenNamDipDacBietCanBo = controller.comboBoxTenNamDipDacBietCanBo,
+                            comboBoxTimKiemDipDacBietCanBo = controller.comboBoxTimKiemDipDacBietCanBo;
+                    comboBoxTenNamDipDacBietCanBo.getSelectionModel().select(dipTraoThuongModel.getTenDip() + " - " + dipTraoThuongModel.getNam());
+                    comboBoxTimKiemDipDacBietCanBo.getSelectionModel().select("Tên - Năm");
+                    ComponentVisibility.change(controller.textFieldLocThongTinDipDacBietCanBo, false);
+                    ComponentVisibility.change(comboBoxTenNamDipDacBietCanBo, true);
                     controller.locThongTinDipDacBietCanBo();
                     Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root);
@@ -152,8 +156,12 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     FXMLLoader loader = new FXMLLoader(TrangChuCanBoView.class.getResource("GiaiThuongThanhTichCanBoView.fxml"));
                     Parent root = loader.load();
                     ControllerGiaiThuongThanhTichCanBoView controller = loader.getController();
-                    controller.textFieldLocThongTinThanhTichCanBo.setText(String.valueOf(dipTraoThuongModel.getId()));
-                    controller.comboBoxTimKiemThanhTichCanBo.getSelectionModel().select("Tên - Năm");
+                    ComboBox comboBoxTenNamThanhTichCanBo = controller.comboBoxTenNamThanhTichCanBo,
+                            comboBoxTiTimKiemThanhTichCanBo = controller.comboBoxTimKiemThanhTichCanBo;
+                    comboBoxTenNamThanhTichCanBo.getSelectionModel().select(dipTraoThuongModel.getTenDip() + " - " + dipTraoThuongModel.getNam());
+                    comboBoxTiTimKiemThanhTichCanBo.getSelectionModel().select("Tên - Năm");
+                    ComponentVisibility.change(controller.textFieldLocThongTinThanhTichCanBo, false);
+                    ComponentVisibility.change(comboBoxTenNamThanhTichCanBo, true);
                     controller.locThongTinThanhTichCanBo();
                     Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root);

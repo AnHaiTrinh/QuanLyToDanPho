@@ -34,6 +34,9 @@ public class MinhChungController {
         if (minhChung != null) {
             fileMinhChung = minhChung;
             buttonThayDoiFile.setText(minhChung.getName());
+            imageViewMinhChung.setPreserveRatio(true);
+            imageViewMinhChung.setFitHeight(imageViewMinhChung.getFitWidth());
+            imageViewMinhChung.setFitWidth(imageViewMinhChung.getFitHeight());
             imageViewMinhChung.setImage(new Image(minhChung.getPath()));
         }
     }

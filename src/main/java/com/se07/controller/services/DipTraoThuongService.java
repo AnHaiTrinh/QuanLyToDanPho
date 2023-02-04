@@ -405,4 +405,42 @@ public class DipTraoThuongService {
         }
         return listTenNamDipTraoThuong;
     }
+
+    public ObservableList<String> getAllTenNamDipTraoThuongThanhTich() {
+        ObservableList<String> listTenNamDipTraoThuong = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select tenDip, nam from dip_trao_thuong " +
+                "where kieu = N'Thành tích' " +
+                "order by nam desc";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                String temp = rs.getNString("tenDip") + " - " + rs.getInt("nam");
+                listTenNamDipTraoThuong.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listTenNamDipTraoThuong;
+    }
+
+    public ObservableList<String> getAllTenNamDipDacBiet() {
+        ObservableList<String> listTenNamDipTraoThuong = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select tenDip, nam from dip_trao_thuong " +
+                "where kieu = N'Dịp đặc biệt' " +
+                "order by nam desc";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                String temp = rs.getNString("tenDip") + " - " + rs.getInt("nam");
+                listTenNamDipTraoThuong.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listTenNamDipTraoThuong;
+    }
 }

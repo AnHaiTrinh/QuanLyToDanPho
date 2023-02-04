@@ -57,7 +57,7 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
 
     final ObservableList<String> listMaNhanKhau = new NhanKhauService().getAllMaNhanKhau();
 
-    final ObservableList<String> listTenNamDipTraoThuong = dipTraoThuongService.getAllTenNamDipTraoThuong();
+    final ObservableList<String> listTenNamDipTraoThuong = dipTraoThuongService.getAllTenNamDipTraoThuongThanhTich();
 
     final ObservableList<String> listTimKiem = FXCollections.observableArrayList("Mã nhân khẩu", "Họ tên",
             "Tên dịp", "Năm", "Tên - Năm", "Cấp thành tích", "Kiểu thành tích", "Tình trạng");
@@ -281,10 +281,10 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
                 Parent root = fxmlLoader.load();
                 MinhChungController controller = fxmlLoader.getController();
                 Image image = new Image(minhChungCu.toURI().toString());
-                controller.imageViewMinhChung.setImage(image);
                 controller.imageViewMinhChung.setPreserveRatio(true);
-                controller.imageViewMinhChung.setFitHeight(482);
-                controller.imageViewMinhChung.setFitWidth(600);
+                controller.imageViewMinhChung.setFitHeight(controller.imageViewMinhChung.getFitHeight());
+                controller.imageViewMinhChung.setFitWidth(controller.imageViewMinhChung.getFitWidth());
+                controller.imageViewMinhChung.setImage(image);
                 Stage stage = new Stage();
                 stage.initOwner(((Node) e.getSource()).getScene().getWindow());
                 stage.setTitle("Minh chứng");
@@ -374,37 +374,26 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
 
     public void handleOnEditCancel(TableColumn.CellEditEvent<ThongTinThanhTichDisplayModel, ?> event) {
         ThongTinThanhTichDisplayModel thongTinThanhTichDisplayModel = event.getRowValue();
-        DipTraoThuongModel dipTraoThuongModel = dipTraoThuongService.getDipTraoThuongByTenAndNam(
-                thongTinThanhTichDisplayModel.getTenDip(),
-                thongTinThanhTichDisplayModel.getNam()).get();
-        Date today = new Date();
-        if (today.after(dipTraoThuongModel.getNgayTao()) && today.equals(dipTraoThuongModel.getNgayKetThuc())) {
-            int column = event.getTablePosition().getColumn();
-            switch (column) {
-                case 0:
-                    thongTinThanhTichDisplayModel.setMaNhanKhau((String) event.getOldValue());
-                    break;
-                case 4:
-                    thongTinThanhTichDisplayModel.setTruong((String) event.getOldValue());
-                    break;
-                case 5:
-                    thongTinThanhTichDisplayModel.setLop((int) event.getOldValue());
-                    break;
-                case 6:
-                    thongTinThanhTichDisplayModel.setCapThanhTich((String) event.getOldValue());
-                    break;
-                case 7:
-                    thongTinThanhTichDisplayModel.setKieuThanhTich((String) event.getOldValue());
-                    break;
-                case 9:
-                    thongTinThanhTichDisplayModel.setTinhTrang((String) event.getOldValue());
-                    break;
-            }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thông báo!");
-            alert.setHeaderText("Dịp thành tích chưa bắt đầu hoặc đã kết thúc!");
-            alert.showAndWait();
+        int column = event.getTablePosition().getColumn();
+        switch (column) {
+            case 0:
+                thongTinThanhTichDisplayModel.setMaNhanKhau((String) event.getOldValue());
+                break;
+            case 4:
+                thongTinThanhTichDisplayModel.setTruong((String) event.getOldValue());
+                break;
+            case 5:
+                thongTinThanhTichDisplayModel.setLop((int) event.getOldValue());
+                break;
+            case 6:
+                thongTinThanhTichDisplayModel.setCapThanhTich((String) event.getOldValue());
+                break;
+            case 7:
+                thongTinThanhTichDisplayModel.setKieuThanhTich((String) event.getOldValue());
+                break;
+            case 9:
+                thongTinThanhTichDisplayModel.setTinhTrang((String) event.getOldValue());
+                break;
         }
     }
 
@@ -424,56 +413,54 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
     }
 
     public void locThongTinThanhTichCanBo() {
+        String dieuKienKiemTra = String.valueOf(comboBoxTimKiemThanhTichCanBo.getValue());
+        String cauHoi = textFieldLocThongTinThanhTichCanBo.getText();
+        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTich = FXCollections.observableArrayList();
+        switch (dieuKienKiemTra) {
+            case "Mã nhân khẩu":
+                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByMaNhanKhau(
+                        String.valueOf(comboBoxMaNhanKhauThanhTichCanBo.getValue())
+                );
+                break;
+            case "Họ tên":
+                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByHoTen(cauHoi);
+                break;
+            case "Tên dịp":
+                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByTenDip(cauHoi);
+                break;
+            case "Năm":
+                int nam = integerStringConverter.fromString(textFieldLocThongTinThanhTichCanBo.getText());
+                if (nam == -1) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText("Vui lòng nhập năm hợp lệ");
+                    alert.showAndWait();
+                    displayAllThongTinThanhTichCanBo();
+                    textFieldLocThongTinThanhTichCanBo.requestFocus();
+                    return;
+                }
+                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByNam(nam);
+            case "Tên - Năm":
+                String tenNam = String.valueOf(comboBoxTenNamThanhTichCanBo.getValue());
+                int index = tenNam.indexOf(" - ");
+                String tenDip = tenNam.substring(0, index);
+                int namDip = Integer.parseInt(tenNam.substring(index + 3));
+                int id = dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, namDip).get().getId();
+                listThongTinThanhTich = thongTinThanhTichService.getThongTinThanhTichByIdDip(id);
+                break;
+            case "Cấp thành tích":
+                String capThanhTich = String.valueOf(comboBoxCapThanhTichCanBo.getValue());
+                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByCapThanhTich(capThanhTich);
+                break;
+            case "Kiểu thành tích":
+                String kieuThanhTich = String.valueOf(comboBoxKieuThanhTichCanBo.getValue());
+                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByKieuThanhTich(kieuThanhTich);
+                break;
+            case "Tình trạng":
+                String tinhTrang = String.valueOf(comboBoxTinhTrangThanhTichCanBo.getValue());
+                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByTinhTrang(tinhTrang);
+                break;
+        }
+        tableViewGiaiThuongThanhTichCanBo.setItems(listThongTinThanhTich);
     }
-//        String dieuKienKiemTra = String.valueOf(comboBoxTimKiemThanhTichCanBo.getValue());
-//        String cauHoi = textFieldLocThongTinThanhTichCanBo.getText();
-//        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTich = FXCollections.observableArrayList();
-//        switch (dieuKienKiemTra) {
-//            case "Mã nhân khẩu":
-//                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByMaNhanKhau(
-//                        String.valueOf(comboBoxMaNhanKhauThanhTichCanBo.getValue())
-//                );
-//                break;
-//            case "Họ tên":
-//                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByHoten(cauHoi);
-//                break;
-//            case "Tên dịp":
-//                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByTenDip(cauHoi);
-//                break;
-//            case "Năm":
-//                int nam = integerStringConverter.fromString(textFieldLocThongTinThanhTichCanBo.getText());
-//                if (nam == -1) {
-//                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//                    alert.setTitle("Thông báo");
-//                    alert.setHeaderText("Vui lòng nhập năm hợp lệ");
-//                    alert.showAndWait();
-//                    displayAllThongTinThanhTichCanBo();
-//                    textFieldLocThongTinThanhTichCanBo.requestFocus();
-//                    return;
-//                } else {
-//                    listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByNam(nam);
-//                }
-//            case "Tên - Năm":
-//                String tenNam = String.valueOf(comboBoxTenNamThanhTichCanBo.getValue());
-//                int index = tenNam.indexOf(" - ");
-//                String tenDip = tenNam.substring(0, index);
-//                int namDip = Integer.parseInt(tenNam.substring(index + 3));
-//                int id = dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, namDip).get().getId();
-//                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByIdDip(id).get();
-//                break;
-//            case "Cấp thành tích":
-//                String capThanhTich = String.valueOf(comboBoxCapThanhTichCanBo.getValue());
-//                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByCapThanhTich(capThanhTich);
-//                break;
-//            case "Kiểu thành tích":
-//                String kieuThanhTich = String.valueOf(comboBoxKieuThanhTichCanBo.getValue());
-//                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByKieuThanhTich(kieuThanhTich);
-//                break;
-//            case "Tình trạng":
-//                String tinhTrang = String.valueOf(comboBoxTinhTrangThanhTichCanBo.getValue());
-//                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByTinhTrang(tinhTrang);
-//                break;
-//        }
-//        tableViewGiaiThuongThanhTichCanBo.setItems(listThongTinThanhTich);
-//    }
 }
