@@ -115,6 +115,36 @@ public class TamTruService {
         return list;
     }
 
+    public ObservableList<TamTruDisplayModel> getDisplayTamTruByCCCDandHoKhau(String CCCD, String maHoKhau){
+        ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query= "select maTamTru ,CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
+                "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and CCCD LIKE '%"+ CCCD + "%'" +
+                "and ho_khau.maHoKhau = '"+maHoKhau+"'";
+        try {
+            Statement statement =connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                TamTruDisplayModel temp = new TamTruDisplayModel(
+                        rs.getInt("maTamTru"),
+                        rs.getString("CCCD"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("noiTamTru"),
+                        rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"),
+                        rs.getNString("lydo"),
+                        rs.getNString("tinhTrang"));
+
+                list.add(temp);
+            }
+            statement.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     /**
      *
      * @param hoTen
@@ -125,6 +155,36 @@ public class TamTruService {
         Connection connection = ConnectionDatabase.getConnection();
         String query= "select maTamTru,CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
                 "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and hoTen LIKE N'%"+ hoTen + "%'";
+        try {
+            Statement statement =connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                TamTruDisplayModel temp = new TamTruDisplayModel(
+                        rs.getInt("maTamTru"),
+                        rs.getString("CCCD"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("noiTamTru"),
+                        rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"),
+                        rs.getNString("lydo"),
+                        rs.getNString("tinhTrang"));
+
+                list.add(temp);
+            }
+            statement.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public ObservableList<TamTruDisplayModel> getDisplayTamTruByHoTenAndMaHoKhau(String hoTen, String maHoKhau){
+        ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query= "select maTamTru,CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
+                "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and hoTen LIKE N'%"+ hoTen + "%'" +
+                "and ho_khau.maHoKhau = '"+maHoKhau+"'";
         try {
             Statement statement =connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -186,6 +246,8 @@ public class TamTruService {
 
 
 
+
+
     /**
      *
      * @param tinhTrang
@@ -196,6 +258,36 @@ public class TamTruService {
         Connection connection = ConnectionDatabase.getConnection();
         String query= "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
                 "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and tinhTrang = N'"+ tinhTrang + "'";
+        try {
+            Statement statement =connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                TamTruDisplayModel temp = new TamTruDisplayModel(
+                        rs.getInt("maTamTru"),
+                        rs.getString("CCCD"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("noiTamTru"),
+                        rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"),
+                        rs.getNString("lydo"),
+                        rs.getNString("tinhTrang"));
+
+                list.add(temp);
+            }
+            statement.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public ObservableList<TamTruDisplayModel> getDisplayTamTruByTinhTrangAndMaHoKhau(String tinhTrang, String maHoKhau){
+        ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query= "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
+                "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and tinhTrang = N'"+ tinhTrang + "'" +
+                "and ho_khau.maHoKhau ='"+maHoKhau+"'" ;
         try {
             Statement statement =connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -260,11 +352,47 @@ public class TamTruService {
         return list;
     }
 
+    public ObservableList<TamTruDisplayModel> getTamTruByNgayBetweenAndHoKhau(Date tu, Date den, String maHoKhau) {
+        ObservableList<TamTruDisplayModel> list = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
+                "from tam_tru t, ho_khau" +
+                "where (tam_tru.maHoKhau= ho_khau.maHoKhau) and (t.tuNgay <= ?) and (t.denNgay => ?)" +
+                "and ho_khau.maHoKhau = '"+maHoKhau+"'";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setDate(1, new java.sql.Date(den.getTime()));
+            statement.setDate(2, new java.sql.Date(tu.getTime()));
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                TamTruDisplayModel temp = new TamTruDisplayModel(
+                        rs.getInt("maTamTru"),
+                        rs.getString("CCCD"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("noiTamTru"),
+                        rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"),
+                        rs.getNString("lydo"),
+                        rs.getNString("tinhTrang"));
+
+                list.add(temp);
+
+
+
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     /**
      *
      * @param id
      * @return thông tin tạm trú theo id người thực hiện
      */
+
+
     public ObservableList<TamTruDisplayModel> getDisplayTamTruByIDNguoiThucHien(int id){
         ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
