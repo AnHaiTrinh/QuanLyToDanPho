@@ -22,6 +22,7 @@ public class ControllerHoGiaDinhView implements Initializable {
     AnchorPane  anchorPaneChinhHoGiaDinh;
 
     final int id = UserInfo.getUserId();
+    final String tinhTrang = "Chờ xác nhận";
 
     final String username = UserInfo.getUsername();
     final SceneLoader sceneLoader = new SceneLoader();
@@ -44,7 +45,9 @@ public class ControllerHoGiaDinhView implements Initializable {
         System.out.println(2);
     }
     public void onPressedButtonGiaiThuongHoGiaDinh(MouseEvent e) throws IOException{
-        System.out.println(3);
+        if(e.isPrimaryButtonDown()){
+            sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(), "GiaiThuongHoGiaDinhView.fxml");
+        }
     }
     public void onPressedButtonDangXuatHoGiaDinh(MouseEvent e) throws IOException{
         if(e.isPrimaryButtonDown()){
@@ -61,6 +64,5 @@ public class ControllerHoGiaDinhView implements Initializable {
             loginView.openWindow();
         }
     }
-
-
+    
 }
