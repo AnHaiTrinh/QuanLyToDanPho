@@ -195,30 +195,31 @@ public class ControllerGiaiThuongDipDacBietCanBoView extends ControllerCanBoView
     }
 
     private void xoaThongTinDipDacBietCanBo() {
-        ThongTinDipDacBietDisplayModel thongTinDipDacBietDisplayModel =
-                tableViewDipDacBietCanBo.getSelectionModel().getSelectedItem();
-        if (thongTinDipDacBietDisplayModel == null) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText("Vui lòng chọn trường hợp muốn xóa");
-            alert.showAndWait();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText("Bạn chắc chắn muốn xóa trường hợp này!");
-            if (alert.showAndWait().get() == ButtonType.OK) {
-                Alert info = new Alert(Alert.AlertType.INFORMATION);
-                info.setTitle("Thông báo");
-                if (thongTinDipDacBietService.deleteThongTinDipDacBiet(thongTinDipDacBietDisplayModel)) {
-                    info.setHeaderText("Xóa thành công!");
-                } else {
-                    info.setHeaderText("Xóa không thành công!");
-                }
-                info.showAndWait();
-                displayAllThongTinDipDacBietCanBo();
-            }
-        }
     }
+//        ThongTinDipDacBietDisplayModel thongTinDipDacBietDisplayModel =
+//                tableViewDipDacBietCanBo.getSelectionModel().getSelectedItem();
+//        if (thongTinDipDacBietDisplayModel == null) {
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Thông báo");
+//            alert.setHeaderText("Vui lòng chọn trường hợp muốn xóa");
+//            alert.showAndWait();
+//        } else {
+//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//            alert.setTitle("Thông báo");
+//            alert.setHeaderText("Bạn chắc chắn muốn xóa trường hợp này!");
+//            if (alert.showAndWait().get() == ButtonType.OK) {
+//                Alert info = new Alert(Alert.AlertType.INFORMATION);
+//                info.setTitle("Thông báo");
+//                if (thongTinDipDacBietService.deleteThongTinDipDacBiet(thongTinDipDacBietDisplayModel)) {
+//                    info.setHeaderText("Xóa thành công!");
+//                } else {
+//                    info.setHeaderText("Xóa không thành công!");
+//                }
+//                info.showAndWait();
+//                displayAllThongTinDipDacBietCanBo();
+//            }
+//        }
+//    }
 
     public void onPressedButtonThoatThongTinDipDacBietCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
@@ -233,71 +234,76 @@ public class ControllerGiaiThuongDipDacBietCanBoView extends ControllerCanBoView
     }
 
     public void locThongTinDipDacBietCanBo() {
-        String dieuKienKiemTra = String.valueOf(comboBoxTimKiemDipDacBietCanBo.getValue());
-        String cauHoi = textFieldLocThongTinDipDacBietCanBo.getText();
-        ObservableList<ThongTinDipDacBietDisplayModel> listThongTinDipDacBiet = FXCollections.observableArrayList();
-        switch (dieuKienKiemTra) {
-            case "Mã nhân khẩu":
-                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByMaNhanKhau(
-                        String.valueOf(comboBoxMaNhanKhauDipDacBietCanBo.getValue())
-                );
-                break;
-            case "Họ tên":
-                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByHoTen(cauHoi);
-                break;
-            case "Tên dịp":
-                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByTenDip(cauHoi);
-                break;
-            case "Năm":
-                int nam = integerStringConverter.fromString(cauHoi);
-                if (nam == -1) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Thông báo");
-                    alert.setHeaderText("Vui lòng nhập năm hợp lệ");
-                    alert.showAndWait();
-                    displayAllThongTinDipDacBietCanBo();
-                    textFieldLocThongTinDipDacBietCanBo.requestFocus();
-                    return;
-                }
-                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByNam(nam);
-                break;
-            case "Tên - năm":
-                String tenNam = String.valueOf(comboBoxTenNamDipDacBietCanBo.getValue());
-                int index = tenNam.indexOf(" - ");
-                String tenDip = tenNam.substring(0, index);
-                int namDip = Integer.parseInt(tenNam.substring(index + 3));
-                int id = dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, namDip).get().getId();
-                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietById(id);
-                break;
-            case "Tình trạng":
-                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByTinhTrang(
-                        String.valueOf(comboBoxTinhTrangDipDacBietCanBo.getValue())
-                );
-                break;
-        }
-        tableViewDipDacBietCanBo.setItems(listThongTinDipDacBiet);
     }
 
+    //        String dieuKienKiemTra = String.valueOf(comboBoxTimKiemDipDacBietCanBo.getValue());
+//        String cauHoi = textFieldLocThongTinDipDacBietCanBo.getText();
+//        ObservableList<ThongTinDipDacBietDisplayModel> listThongTinDipDacBiet = FXCollections.observableArrayList();
+//        switch (dieuKienKiemTra) {
+//            case "Mã nhân khẩu":
+//                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByMaNhanKhau(
+//                        String.valueOf(comboBoxMaNhanKhauDipDacBietCanBo.getValue())
+//                );
+//                break;
+//            case "Họ tên":
+//                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByHoTen(cauHoi);
+//                break;
+//            case "Tên dịp":
+//                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByTenDip(cauHoi);
+//                break;
+//            case "Năm":
+//                int nam = integerStringConverter.fromString(cauHoi);
+//                if (nam == -1) {
+//                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                    alert.setTitle("Thông báo");
+//                    alert.setHeaderText("Vui lòng nhập năm hợp lệ");
+//                    alert.showAndWait();
+//                    displayAllThongTinDipDacBietCanBo();
+//                    textFieldLocThongTinDipDacBietCanBo.requestFocus();
+//                    return;
+//                }
+//                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByNam(nam);
+//                break;
+//            case "Tên - năm":
+//                String tenNam = String.valueOf(comboBoxTenNamDipDacBietCanBo.getValue());
+//                int index = tenNam.indexOf(" - ");
+//                String tenDip = tenNam.substring(0, index);
+//                int namDip = Integer.parseInt(tenNam.substring(index + 3));
+//                int id = dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, namDip).get().getId();
+//                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietById(id);
+//                break;
+//            case "Tình trạng":
+//                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByTinhTrang(
+//                        String.valueOf(comboBoxTinhTrangDipDacBietCanBo.getValue())
+//                );
+//                break;
+//        }
+//        tableViewDipDacBietCanBo.setItems(listThongTinDipDacBiet);
+//    }
+//
     private void displayAllThongTinDipDacBietCanBo() {
-        ObservableList<ThongTinDipDacBietDisplayModel> thongTinDipDacBietDisplayModels =
-                thongTinDipDacBietService.getAllThongTinDipDacBiet();
-        tableViewDipDacBietCanBo.setItems(thongTinDipDacBietDisplayModels);
     }
 
+    //        ObservableList<ThongTinDipDacBietDisplayModel> thongTinDipDacBietDisplayModels =
+//                thongTinDipDacBietService.getAllThongTinDipDacBiet();
+//        tableViewDipDacBietCanBo.setItems(thongTinDipDacBietDisplayModels);
+//    }
+//
     private void updateThongTinDipDacBietCanBo(ThongTinDipDacBietDisplayModel thongTinDipDacBietDisplayModel) {
-        ThongTinDipDacBietModel thongTinDipDacBietModel =
-                thongTinDipDacBietService.convertDisplayModelToModel(thongTinDipDacBietDisplayModel);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thông báo!");
-        if (thongTinDipDacBietService.updateThongTinDipDacBiet(thongTinDipDacBietModel)) {
-            alert.setHeaderText("Sửa thông tin thành công");
-        } else {
-            alert.setHeaderText("Sửa thông tin không thành công");
-        }
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllThongTinDipDacBietCanBo();
-        }
     }
+//        ThongTinDipDacBietModel thongTinDipDacBietModel =
+//                thongTinDipDacBietService.convertDisplayModelToModel(thongTinDipDacBietDisplayModel);
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("Thông báo!");
+//        if (thongTinDipDacBietService.updateThongTinDipDacBiet(thongTinDipDacBietModel)) {
+//            alert.setHeaderText("Sửa thông tin thành công");
+//        } else {
+//            alert.setHeaderText("Sửa thông tin không thành công");
+//        }
+//        if (alert.showAndWait().get() == ButtonType.OK) {
+//            displayAllThongTinDipDacBietCanBo();
+//        }
+//    }
 
     public void handleOnEditCommit(TableColumn.CellEditEvent<ThongTinDipDacBietDisplayModel, ?> event) {
         ThongTinDipDacBietDisplayModel thongTinDipDacBietDisplayModel = event.getRowValue();

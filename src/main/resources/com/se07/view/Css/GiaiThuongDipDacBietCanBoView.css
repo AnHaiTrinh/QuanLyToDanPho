@@ -1,5 +1,5 @@
 #buttonTrangChuCanBo {
-    -fx-background-color: rgb(40, 132, 217);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
 
 #buttonTrangChuCanBo:hover {
@@ -7,7 +7,7 @@
 }
 
 #buttonNhanKhauCanBo {
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
 
 #buttonNhanKhauCanBo:hover {
@@ -15,7 +15,7 @@
 }
 
 #buttonHoKhauCanBo {
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
 
 #buttonHoKhauCanBo:hover {
@@ -23,7 +23,7 @@
 }
 
 #buttonGiaiThuongCanBo {
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
 
 #buttonGiaiThuongCanBo:hover {
@@ -31,61 +31,61 @@
 }
 
 #anchorPaneChinhCanBo {
-    -fx-background-color: linear-gradient(#7758D1 2%, #F7CBFD 40%);
+    -fx-background-color: #DBBFBD;
 }
 
 #buttonDangXuatCanBo {
-    -fx-background-color: black
+    -fx-background-color: #441151
 }
 
 #buttonDangXuatCanBo:hover {
-    -fx-background-color: #BF3FBF;
+    -fx-background-color: #CA61C3;
 }
 
 #buttonLocThongTinDipDacBietCanBo {
-    -fx-background-color: black;
+    -fx-background-color: #441151;
 }
 
 #buttonLocThongTinDipDacBietCanBo:hover {
-    -fx-background-color: #177306;
+    -fx-background-color: #CA61C3;
 }
 
 #buttonTuChoiThongTinDipDacBietCanBo {
-    -fx-background-color: black;
+    -fx-background-color: #441151;
 }
 
 #buttonTuChoiThongTinDipDacBietCanBo:hover {
-    -fx-background-color: #BF3FBF;
+    -fx-background-color: #CA61C3;
 }
 
 #buttonThemMoiThongTinDipDacBietCanBo {
-    -fx-background-color: black;
+    -fx-background-color: #441151;
 }
 
 #buttonThemMoiThongTinDipDacBietCanBo:hover {
-    -fx-background-color: #BF3FBF;
+    -fx-background-color: #CA61C3;
 }
 
 #buttonPheDuyetThongTinDipDacBietCanBo {
-    -fx-background-color: black;
+    -fx-background-color: #441151;
 }
 
 #buttonPheDuyetThongTinDipDacBietCanBo:hover {
-    -fx-background-color: #BF3FBF;
+    -fx-background-color: #CA61C3;
 }
 
 #buttonXoaThongTinDipDacBietCanBo {
-    -fx-background-color: black;
+    -fx-background-color: #441151;
 }
 
 #buttonXoaThongTinDipDacBietCanBo:hover {
-    -fx-background-color: #BF3FBF;
+    -fx-background-color: #CA61C3;
 }
 
 #buttonThoatThongTinDipDacBietCanBo {
-    -fx-background-color: black;
+    -fx-background-color: #441151;
 }
 
 #buttonThoatThongTinDipDacBietCanBo:hover {
-    -fx-background-color: #BF3FBF;
+    -fx-background-color: #CA61C3;
 }

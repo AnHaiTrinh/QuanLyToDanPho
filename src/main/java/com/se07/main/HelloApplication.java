@@ -21,9 +21,9 @@ public class HelloApplication extends Application {
 
     @Override
     public void stop() throws Exception {
-        File userInfo = new File("src/main/resources/UserData.txt");
+        File userInfo = new File("UserData.txt");
         userInfo.delete();
-        File dir = new File("src/main/resources");
+        File dir = new File("./");
         File[] files = dir.listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {

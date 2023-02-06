@@ -132,7 +132,7 @@ public class ThongTinThanhTichService {
                         rs.getNString("truong"),
                         rs.getNString("capThanhTich"),
                         rs.getNString("kieuThanhTich"),
-                        new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg"),
+                        new File(idDip + "_" + idNhap + ".jpg"),
                         rs.getNString("tinhTrang"),
                         rs.getInt("idNguoiThucHien")
                 );
@@ -181,7 +181,7 @@ public class ThongTinThanhTichService {
                 int idNhap = rs.getInt("idNhap");
                 int idDip = rs.getInt("idDip");
 
-                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                File file = new File(idDip + "_" + idNhap + ".jpg");
                 if (!file.exists()) {
                     file.createNewFile();
                     FileOutputStream fos = new FileOutputStream(file);
@@ -229,7 +229,7 @@ public class ThongTinThanhTichService {
                 int idNhap = rs.getInt("idNhap");
                 int idDip = rs.getInt("idDip");
 
-                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                File file = new File(idDip + "_" + idNhap + ".jpg");
                 if (!file.exists()) {
                     file.createNewFile();
                     FileOutputStream fos = new FileOutputStream(file);
@@ -277,7 +277,7 @@ public class ThongTinThanhTichService {
                 int idNhap = rs.getInt("idNhap");
                 int idDip = rs.getInt("idDip");
 
-                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                File file = new File(idDip + "_" + idNhap + ".jpg");
                 if (!file.exists()) {
                     file.createNewFile();
                     FileOutputStream fos = new FileOutputStream(file);
@@ -325,7 +325,7 @@ public class ThongTinThanhTichService {
                 int idNhap = rs.getInt("idNhap");
                 int idDip = rs.getInt("idDip");
 
-                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                File file = new File(idDip + "_" + idNhap + ".jpg");
                 if (!file.exists()) {
                     file.createNewFile();
                     FileOutputStream fos = new FileOutputStream(file);
@@ -374,7 +374,7 @@ public class ThongTinThanhTichService {
                 int idNhap = rs.getInt("idNhap");
                 int idDip = rs.getInt("idDip");
 
-                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                File file = new File(idDip + "_" + idNhap + ".jpg");
                 if (!file.exists()) {
                     file.createNewFile();
                     FileOutputStream fos = new FileOutputStream(file);
@@ -427,7 +427,7 @@ public class ThongTinThanhTichService {
                 int idNhap = rs.getInt("idNhap");
                 int idDip = rs.getInt("idDip");
 
-                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                File file = new File(idDip + "_" + idNhap + ".jpg");
                 if (!file.exists()) {
                     file.createNewFile();
                     FileOutputStream fos = new FileOutputStream(file);
@@ -476,7 +476,7 @@ public class ThongTinThanhTichService {
                 int idNhap = rs.getInt("idNhap");
                 int idDip = rs.getInt("idDip");
 
-                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                File file = new File(idDip + "_" + idNhap + ".jpg");
                 if (!file.exists()) {
                     file.createNewFile();
                     FileOutputStream fos = new FileOutputStream(file);
@@ -520,7 +520,7 @@ public class ThongTinThanhTichService {
                 int idNhap = rs.getInt("idNhap");
                 int idDip = rs.getInt("idDip");
 
-                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                File file = new File(idDip + "_" + idNhap + ".jpg");
                 if (!file.exists()) {
                     file.createNewFile();
                     FileOutputStream fos = new FileOutputStream(file);
@@ -563,7 +563,7 @@ public class ThongTinThanhTichService {
             while (rs.next()) {
                 int idNhap = rs.getInt("idNhap");
                 int idDip = rs.getInt("idDip");
-                File file = new File("src/main/resources/" + idDip + "_" + idNhap + ".jpg");
+                File file = new File(idDip + "_" + idNhap + ".jpg");
                 if (!file.exists()) {
                     file.createNewFile();
                     FileOutputStream fos = new FileOutputStream(file);
