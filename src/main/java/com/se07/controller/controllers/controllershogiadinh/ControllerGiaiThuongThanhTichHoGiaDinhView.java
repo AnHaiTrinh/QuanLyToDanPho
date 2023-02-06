@@ -16,7 +16,7 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
     @FXML
     TextField textFieldLocThongTinThanhTichHoGiaDinh;
     @FXML
-    ComboBox comboBoxTimKiemThanhTichHoGiaDinh;
+    ComboBox comboBoxTimKiemThanhTichHoGiaDinh, comboBoxTenNamThanhTichHoGiaDinh;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -55,5 +55,23 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
     }
 
     public void locThongTinThanhTichHoGiaDinh() {
+    }
+    public void onDeletePressedTrongBangThongTinThanhTichHoGiaDinh(){
+
+    }
+    public void onSelectionComboBoxTimKiemThanhTichHoGiaDinh(){
+
+    }
+    public void handleOnEditCancel(){
+
+    }
+    public void onEnterPressedTrongOTimKiemThanhTichHoGiaDinh(){
+
+    }
+    public void onPressedTrongCotMinhChungThanhTichHoGiaDinh(){
+
+    }
+    public void handleOnEditCommit(){
+
     }
 }

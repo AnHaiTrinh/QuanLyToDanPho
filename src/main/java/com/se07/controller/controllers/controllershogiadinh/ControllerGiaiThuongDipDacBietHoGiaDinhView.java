@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 
 public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGiaDinhView {
     @FXML
-    ComboBox comboBoxTimKiemDipDacBietHoGiaDinh;
+    ComboBox comboBoxTimKiemDipDacBietHoGiaDinh, comboBoxTenNamDipDacBietHoGiaDinh;
     @FXML
     TextField textFieldLocThongTinDipDacBietHoGiaDinh;
 
@@ -56,6 +56,21 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
     }
 
     public void locThongTinDipDacBietHoGiaDinh() {
+
+    }
+    public void onDeletePressedTrongBangThongTinDipDacBietHoGiaDinh(){
+
+    }
+    public void handleOnEditCancel(){
+
+    }
+    public void handleOnEditCommit(){
+
+    }
+    public void onEnterPressedTrongOTimKiemDipDacBietHoGiaDinh(){
+
+    }
+    public void onSelectionComboBoxTimKiemDipDacBietHoGiaDinh(){
 
     }
 }
