@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
 
 public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
     @FXML
-    ComboBox comboBoxTimKiemGiaiThuongCanBo, comboBoxKieuGiaiThuongCanBo;
+    ComboBox comboBoxTimKiemGiaiThuongCanBo, comboBoxKieuGiaiThuongCanBo, comboBoxTenNamGiaiThuongCanBo;
     @FXML
     TableView<DipTraoThuongModel> tableViewGiaiThuongCanBo;
     @FXML
@@ -47,11 +47,13 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
     DatePicker datePickerTu, datePickerDen;
 
     final ObservableList<String> listTimKiem = FXCollections.observableArrayList(
-            "Tên", "Kiểu", "Năm", "Ngày tạo", "Ngày kết thúc");
+            "Tên dịp", "Năm", "Tên - Năm", "Kiểu", "Ngày tạo", "Ngày kết thúc");
 
     final ObservableList<String> listKieuGiaiThuong = FXCollections.observableArrayList("Dịp đặc biệt", "Thành tích");
 
     final private DipTraoThuongService dipTraoThuongService = new DipTraoThuongService();
+
+    final ObservableList<String> listTenNamDipTraoThuong = dipTraoThuongService.getAllTenNamDipTraoThuong();
 
     final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
     final private MyIntegerStringConverter integerStringConverter = new MyIntegerStringConverter();
@@ -72,6 +74,9 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
         comboBoxTimKiemGiaiThuongCanBo.getSelectionModel().selectFirst();
         comboBoxKieuGiaiThuongCanBo.getItems().addAll(listKieuGiaiThuong);
         comboBoxKieuGiaiThuongCanBo.getSelectionModel().selectFirst();
+        comboBoxTenNamGiaiThuongCanBo.getItems().addAll(listTenNamDipTraoThuong);
+        comboBoxTenNamGiaiThuongCanBo.getSelectionModel().selectFirst();
+        ComponentVisibility.change(comboBoxTenNamGiaiThuongCanBo, false);
         ComponentVisibility.change(comboBoxKieuGiaiThuongCanBo, false);
         ComponentVisibility.change(datePickerTu, false);
         ComponentVisibility.change(datePickerDen, false);
@@ -137,20 +142,29 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     FXMLLoader loader = new FXMLLoader(TrangChuCanBoView.class.getResource("GiaiThuongDipDacBietCanBoView.fxml"));
                     Parent root = loader.load();
                     ControllerGiaiThuongDipDacBietCanBoView controller = loader.getController();
-                    controller.textFieldLocThongTinDipDacBietCanBo.setText(String.valueOf(dipTraoThuongModel.getId()));
-                    controller.comboBoxTimKiemDipDacBietCanBo.getSelectionModel().select("ID");
+                    ComboBox comboBoxTenNamDipDacBietCanBo = controller.comboBoxTenNamDipDacBietCanBo,
+                            comboBoxTimKiemDipDacBietCanBo = controller.comboBoxTimKiemDipDacBietCanBo;
+                    comboBoxTenNamDipDacBietCanBo.getSelectionModel().select(dipTraoThuongModel.getTenDip() + " - " + dipTraoThuongModel.getNam());
+                    comboBoxTimKiemDipDacBietCanBo.getSelectionModel().select("Tên - Năm");
+                    ComponentVisibility.change(controller.textFieldLocThongTinDipDacBietCanBo, false);
+                    ComponentVisibility.change(comboBoxTenNamDipDacBietCanBo, true);
                     controller.locThongTinDipDacBietCanBo();
                     Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
                 } else {
                     FXMLLoader loader = new FXMLLoader(TrangChuCanBoView.class.getResource("GiaiThuongThanhTichCanBoView.fxml"));
+                    Parent root = loader.load();
                     ControllerGiaiThuongThanhTichCanBoView controller = loader.getController();
-                    controller.textFieldLocThongTinThanhTichCanBo.setText(String.valueOf(dipTraoThuongModel.getId()));
-                    controller.comboBoxTimKiemThanhTichCanBo.getSelectionModel().select("ID");
+                    ComboBox comboBoxTenNamThanhTichCanBo = controller.comboBoxTenNamThanhTichCanBo,
+                            comboBoxTiTimKiemThanhTichCanBo = controller.comboBoxTimKiemThanhTichCanBo;
+                    comboBoxTenNamThanhTichCanBo.getSelectionModel().select(dipTraoThuongModel.getTenDip() + " - " + dipTraoThuongModel.getNam());
+                    comboBoxTiTimKiemThanhTichCanBo.getSelectionModel().select("Tên - Năm");
+                    ComponentVisibility.change(controller.textFieldLocThongTinThanhTichCanBo, false);
+                    ComponentVisibility.change(comboBoxTenNamThanhTichCanBo, true);
                     controller.locThongTinThanhTichCanBo();
                     Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(loader.load());
+                    Scene scene = new Scene(root);
                     stage.setScene(scene);
                 }
             }
@@ -164,22 +178,21 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
     }
 
     public void onSelectionComboBoxTimKiemGiaiThuongCanBo(ActionEvent e) {
+        ComponentVisibility.change(textFieldLocThongTinGiaiThuongCanBo, false);
+        ComponentVisibility.change(comboBoxKieuGiaiThuongCanBo, false);
+        ComponentVisibility.change(comboBoxTenNamGiaiThuongCanBo, false);
+        ComponentVisibility.change(datePickerTu, false);
+        ComponentVisibility.change(datePickerDen, false);
         String truongTimKiem = String.valueOf(comboBoxTimKiemGiaiThuongCanBo.getValue());
         if (truongTimKiem.equals("Kiểu")) {
-            ComponentVisibility.change(textFieldLocThongTinGiaiThuongCanBo, false);
             ComponentVisibility.change(comboBoxKieuGiaiThuongCanBo, true);
-            ComponentVisibility.change(datePickerTu, false);
-            ComponentVisibility.change(datePickerDen, false);
         } else if (truongTimKiem.equals("Ngày tạo") || truongTimKiem.equals("Ngày kết thúc")) {
-            ComponentVisibility.change(textFieldLocThongTinGiaiThuongCanBo, false);
-            ComponentVisibility.change(comboBoxKieuGiaiThuongCanBo, false);
             ComponentVisibility.change(datePickerTu, true);
             ComponentVisibility.change(datePickerDen, true);
+        } else if (truongTimKiem.equals("Tên - Năm")) {
+            ComponentVisibility.change(comboBoxTenNamGiaiThuongCanBo, true);
         } else {
             ComponentVisibility.change(textFieldLocThongTinGiaiThuongCanBo, true);
-            ComponentVisibility.change(comboBoxKieuGiaiThuongCanBo, false);
-            ComponentVisibility.change(datePickerTu, false);
-            ComponentVisibility.change(datePickerDen, false);
         }
     }
 
@@ -291,7 +304,7 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
         String cauHoi = textFieldLocThongTinGiaiThuongCanBo.getText();
         ObservableList<DipTraoThuongModel> dipTraoThuongModelObservableList = FXCollections.observableArrayList();
         switch (dieuKienKiemTra) {
-            case "Tên":
+            case "Tên dịp":
                 dipTraoThuongModelObservableList = dipTraoThuongService.getDipTraoThuongByTen(cauHoi);
                 break;
             case "Kiểu":
@@ -307,9 +320,17 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     alert.showAndWait();
                     displayAllDipTraoThuongCanBo();
                     textFieldLocThongTinGiaiThuongCanBo.requestFocus();
+                    return;
                 } else {
                     dipTraoThuongModelObservableList = dipTraoThuongService.getAllDipTraoThuongByNam(nam);
                 }
+                break;
+            case "Tên - Năm":
+                String tenNam = String.valueOf(comboBoxTenNamGiaiThuongCanBo.getValue());
+                int index = tenNam.indexOf(" - ");
+                String tenDip = tenNam.substring(0, index);
+                int namDip = Integer.parseInt(tenNam.substring(index + 3));
+                dipTraoThuongModelObservableList.add(dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, namDip).get());
                 break;
             case "Ngày tạo":
                 if (datePickerTu.getValue() != null && datePickerDen.getValue() != null) {

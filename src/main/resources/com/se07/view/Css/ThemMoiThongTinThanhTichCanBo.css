@@ -1,59 +1,59 @@
 #buttonTrangChuCanBo {
-    -fx-background-color: rgb(40, 132, 217);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
 
 #buttonTrangChuCanBo:hover {
-    -fx-background-color: rgba(4, 57, 244, 0.95)
+    -fx-background-color: #20a4f3
 }
 
 #buttonNhanKhauCanBo {
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
 
 #buttonNhanKhauCanBo:hover {
-    -fx-background-color: rgba(4, 57, 244, 0.95)
+    -fx-background-color: #20a4f3
 }
 
 #buttonHoKhauCanBo {
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
 
 #buttonHoKhauCanBo:hover {
-    -fx-background-color: rgba(4, 57, 244, 0.95)
+    -fx-background-color: #20a4f3
 }
 
 #buttonGiaiThuongCanBo {
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
 
 #buttonGiaiThuongCanBo:hover {
-    -fx-background-color: rgba(4, 57, 244, 0.95)
+    -fx-background-color: #20a4f3
 }
 
 #anchorPaneChinhCanBo {
-    -fx-background-color: linear-gradient(#7758D1 2%, #F7CBFD 40%);
+    -fx-background-color: #DBBFBD;
 }
 
 #buttonDangXuatCanBo {
-    -fx-background-color: black;
+    -fx-background-color: #441151;
 }
 
 #buttonDangXuatCanBo:hover {
-    -fx-background-color: #BF3FBF;
+    -fx-background-color: #CA61C3;
 }
 
 #buttonHoanThanhThongTinThanhTichCanBo {
-    -fx-background-color: black;
+    -fx-background-color: #441151;
 }
 
 #buttonHuyThongTinThanhTichCanBo {
-    -fx-background-color: black;
+    -fx-background-color: #441151;
 }
 
 #buttonHoanThanhThongTinThanhTichCanBo:hover {
-    -fx-background-color: #177306;
+    -fx-background-color: #34e017;
 }
 
 #buttonHuyThongTinThanhTichCanBo:hover {
-    -fx-background-color: #910c0c;
+    -fx-background-color: #c92727;
 }

@@ -81,7 +81,7 @@
                   <Font name="System Bold" size="20.0" />
               </font>
           </Label>
-        <GridPane layoutX="220.0" layoutY="163.0" prefHeight="386.0" prefWidth="696.0">
+        <GridPane fx:id="gridPaneThemMoiThongTinThanhTichCanBo" layoutX="220.0" layoutY="163.0" prefHeight="386.0" prefWidth="696.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="35.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.0" minWidth="10.0" prefWidth="113.0" />
