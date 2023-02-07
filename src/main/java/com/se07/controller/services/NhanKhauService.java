@@ -576,6 +576,22 @@ public class NhanKhauService {
         return listNhanKhau;
     }
 
+    public int countNhanKhauByMaHoKhau(String maHoKhau) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select count(*) from nhan_khau where nhan_khau.maHoKhau ='"+maHoKhau+"'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            rs.next();
+            int count = rs.getInt(1);
+            statement.close();
+            return count;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
 
 
 

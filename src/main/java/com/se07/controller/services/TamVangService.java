@@ -585,5 +585,23 @@ public class TamVangService {
         return tamVangDisplayModels;
     }
 
+    public int countTamVangByMaHoKhau(String maHoKhau) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select count(*) from tam_vang t, nhan_khau n where t.maNhanKhau = n.maNhanKhau" +
+                "and n.maHoKhau ='"+maHoKhau+"' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            rs.next();
+            int count = rs.getInt(1);
+            statement.close();
+            return count;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+
 
 }

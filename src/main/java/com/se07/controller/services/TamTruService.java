@@ -608,6 +608,22 @@ public class TamTruService {
 
         }
 
+    public int countTamTruByMaHoKhau(String maHoKhau) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select count(*) from tam_tru where tam_tru.maHoKhau = '" + maHoKhau + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            rs.next();
+            return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
+}
+
+
+
 
 
