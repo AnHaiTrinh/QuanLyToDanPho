@@ -1,4 +1,4 @@
-package com.se07.controller.controllers.controllerscanbo;
+package com.se07.controller.controllers.controllershogiadinh;
 
 import com.se07.controller.services.DipTraoThuongService;
 import com.se07.controller.services.NhanKhauService;
@@ -16,20 +16,18 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerThemMoiThongTinDipDacBietCanBo extends ControllerCanBoView {
+public class ControllerThemMoiThongTinDacBietHoGiaDinhView extends ControllerHoGiaDinhView{
+
     @FXML
-    GridPane gridPaneThemMoiThongTinDipDacBietCanBo;
+    ComboBox comboBoxTenDipDacBietHoGiaDinh, comboBoxNamDipDacBietHoGiaDinh, comboBoxMaNhanKhauDipDacBietHoGiaDinh;
     @FXML
-    ComboBox comboBoxTenDipDacBietCanBo, comboBoxNamDipDacBietCanBo, comboBoxMaNhanKhauDipDacBietCanBo;
-    @FXML
-    TextField textFieldHoTenDipDacBietCanBo;
+    TextField textFieldHoTenDipDacBietHoGiaDinh;
 
     final private NhanKhauService nhanKhauService = new NhanKhauService();
     final private DipTraoThuongService dipTraoThuongService = new DipTraoThuongService();
@@ -40,62 +38,50 @@ public class ControllerThemMoiThongTinDipDacBietCanBo extends ControllerCanBoVie
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
 
-        gridPaneThemMoiThongTinDipDacBietCanBo.setOnKeyPressed((keyEvent) -> {
-            if (keyEvent.getCode() == KeyCode.ENTER) {
-                themMoiThongTinDipDacBietCanBo();
-            } else if (keyEvent.getCode() == KeyCode.Q) {
-                try {
-                    huyThemMoiThongTinDipDacBietCanBo(keyEvent);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-
-        comboBoxMaNhanKhauDipDacBietCanBo.getItems().addAll(nhanKhauService.getAllMaNhanKhau());
-        comboBoxTenDipDacBietCanBo.getItems().addAll(dipTraoThuongService.getAllTenTraoThuongDipDacBiet());
-        comboBoxNamDipDacBietCanBo.getItems().addAll(dipTraoThuongService.getAllNamTraoThuongDipDacBiet());
+        comboBoxMaNhanKhauDipDacBietHoGiaDinh.getItems().addAll(nhanKhauService.getAllMaNhanKhau());
+        comboBoxTenDipDacBietHoGiaDinh.getItems().addAll(dipTraoThuongService.getAllTenTraoThuongDipDacBiet());
+        comboBoxNamDipDacBietHoGiaDinh.getItems().addAll(dipTraoThuongService.getAllNamTraoThuongDipDacBiet());
     }
 
-    public void onSelectionComboBoxTenDipDacBietCanBo(ActionEvent e) {
-        String tenDip = String.valueOf(comboBoxTenDipDacBietCanBo.getValue());
+    public void onSelectionComboBoxTenDipDacBietHoGiaDinh(ActionEvent e) {
+        String tenDip = String.valueOf(comboBoxTenDipDacBietHoGiaDinh.getValue());
         ObservableList<Integer> listNam = dipTraoThuongService.getNamByTenDipDacBiet(tenDip);
-        comboBoxNamDipDacBietCanBo.getItems().clear();
-        comboBoxNamDipDacBietCanBo.getItems().addAll(listNam);
-        comboBoxNamDipDacBietCanBo.getSelectionModel().selectFirst();
+        comboBoxNamDipDacBietHoGiaDinh.getItems().clear();
+        comboBoxNamDipDacBietHoGiaDinh.getItems().addAll(listNam);
+        comboBoxNamDipDacBietHoGiaDinh.getSelectionModel().selectFirst();
     }
 
-    public void onSelectionComboBoxMaNhanKhauDipDacBietCanBo(ActionEvent e) {
-        String maNhanKhau = String.valueOf(comboBoxMaNhanKhauDipDacBietCanBo.getValue());
+    public void onSelectionComboBoxMaNhanKhauDipDacBietHoGiaDinh(ActionEvent e) {
+        String maNhanKhau = String.valueOf(comboBoxMaNhanKhauDipDacBietHoGiaDinh.getValue());
         NhanKhauModel nhanKhauModel = nhanKhauService.getNhanKhauByMaNhanKhau(maNhanKhau).get();
-        textFieldHoTenDipDacBietCanBo.setText(nhanKhauModel.getHoTen());
+        textFieldHoTenDipDacBietHoGiaDinh.setText(nhanKhauModel.getHoTen());
     }
 
 
-    public void onPressedButtonHoanThanhThongTinDipDacBietCanBo(MouseEvent e) {
+    public void onPressedButtonHoanThanhThongTinDipDacBietHoGiaDinh(MouseEvent e) {
         if (e.isPrimaryButtonDown()) {
-            themMoiThongTinDipDacBietCanBo();
+            themMoiThongTinDipDacBietHoGiaDinh();
         }
     }
 
-    public void onPressedButtonHuyThongTinDipDacBietCanBo(MouseEvent e) throws IOException {
+    public void onPressedButtonHuyThongTinDipDacBietHoGiaDinh(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
-            huyThemMoiThongTinDipDacBietCanBo(e);
+            huyThemMoiThongTinDipDacBietHoGiaDinh(e);
         }
     }
 
-    private void themMoiThongTinDipDacBietCanBo() {
-        if (comboBoxTenDipDacBietCanBo.getValue() == null || comboBoxNamDipDacBietCanBo.getValue() == null ||
-                comboBoxMaNhanKhauDipDacBietCanBo.getValue() == null) {
+    private void themMoiThongTinDipDacBietHoGiaDinh() {
+        if (comboBoxTenDipDacBietHoGiaDinh.getValue() == null || comboBoxNamDipDacBietHoGiaDinh.getValue() == null ||
+                comboBoxMaNhanKhauDipDacBietHoGiaDinh.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Vui lòng nhập đầy đủ các trường");
             alert.showAndWait();
             return;
         }
-        String tenDip = String.valueOf(comboBoxTenDipDacBietCanBo.getValue());
-        int nam = Integer.parseInt(String.valueOf(comboBoxNamDipDacBietCanBo.getValue()));
-        String maNhanKhau = String.valueOf(comboBoxMaNhanKhauDipDacBietCanBo.getValue());
+        String tenDip = String.valueOf(comboBoxTenDipDacBietHoGiaDinh.getValue());
+        int nam = Integer.parseInt(String.valueOf(comboBoxNamDipDacBietHoGiaDinh.getValue()));
+        String maNhanKhau = String.valueOf(comboBoxMaNhanKhauDipDacBietHoGiaDinh.getValue());
         int idDip = dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, nam).get().getId();
         ThongTinDipDacBietModel thongTinDipDacBietModel = new ThongTinDipDacBietModel(idDip, maNhanKhau, tinhTrang, id);
         if (thongTinDipDacBietService.addThongTinDipDacBiet(thongTinDipDacBietModel)) {
@@ -113,13 +99,14 @@ public class ControllerThemMoiThongTinDipDacBietCanBo extends ControllerCanBoVie
         alert.showAndWait();
     }
 
-    private void huyThemMoiThongTinDipDacBietCanBo(Event e) throws IOException {
+    private void huyThemMoiThongTinDipDacBietHoGiaDinh(Event e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo");
         alert.setContentText("Bạn chắc chắn muốn thoát?");
         if (alert.showAndWait().get() == ButtonType.OK) {
-            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(),
-                    "GiaiThuongDipDacBietCanBoView.fxml");
+            sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(),
+                    "GiaiThuongDipDacBietHoGiaDinhView.fxml");
         }
     }
+    
 }

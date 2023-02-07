@@ -1,16 +1,16 @@
-package com.se07.controller.controllers.controllerscanbo;
-
+package com.se07.controller.controllers.controllershogiadinh;
 import com.se07.controller.services.DipTraoThuongService;
 import com.se07.model.models.DipTraoThuongModel;
 import com.se07.util.ComponentVisibility;
 import com.se07.util.MyDateStringConverter;
 import com.se07.util.MyIntegerStringConverter;
-import com.se07.view.TrangChuCanBoView;
+import com.se07.view.UserView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,32 +28,30 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
+public class ControllerGiaThuongHoGiaDinh extends ControllerHoGiaDinhView implements Initializable {
     @FXML
-    ComboBox comboBoxTimKiemGiaiThuongCanBo, comboBoxKieuGiaiThuongCanBo, comboBoxTenNamGiaiThuongCanBo;
+    ComboBox comboBoxTimKiemGiaiThuongHoGiaDinh, comboBoxKieuGiaiThuongHoGiaDinh;
     @FXML
-    TableView<DipTraoThuongModel> tableViewGiaiThuongCanBo;
+    TableView<DipTraoThuongModel> tableViewGiaiThuongHoGiaDinh;
     @FXML
-    TableColumn<DipTraoThuongModel, Integer> tableColumnIDGiaiThuongCanBo, tableColumnNamGiaiThuongCanBo;
+    TableColumn<DipTraoThuongModel, Integer> tableColumnIDGiaiThuongHoGiaDinh, tableColumnNamGiaiThuongHoGiaDinh;
     @FXML
-    TableColumn<DipTraoThuongModel, String> tableColumnTenDipGiaiThuongCanBo, tableColumnKieuGiaiThuongCanBo,
-            tableColumnGhiChuGiaiThuongCanBo;
+    TableColumn<DipTraoThuongModel, String> tableColumnTenDipGiaiThuongHoGiaDinh, tableColumnKieuGiaiThuongHoGiaDinh,
+            tableColumnGhiChuGiaiThuongHoGiaDinh;
     @FXML
-    TableColumn<DipTraoThuongModel, Date> tableColumnNgayTaoGiaiThuongCanBo, tableColumnNgayKetThucGiaiThuongCanBo;
+    TableColumn<DipTraoThuongModel, Date> tableColumnNgayTaoGiaiThuongHoGiaDinh, tableColumnNgayKetThucGiaiThuongHoGiaDinh;
     @FXML
-    TextField textFieldLocThongTinGiaiThuongCanBo;
+    TextField textFieldLocThongTinGiaiThuongHoGiaDinh;
 
     @FXML
     DatePicker datePickerTu, datePickerDen;
 
     final ObservableList<String> listTimKiem = FXCollections.observableArrayList(
-            "Tên dịp", "Năm", "Tên - Năm", "Kiểu", "Ngày tạo", "Ngày kết thúc");
+            "Tên", "Kiểu", "Năm", "Ngày tạo", "Ngày kết thúc");
 
     final ObservableList<String> listKieuGiaiThuong = FXCollections.observableArrayList("Dịp đặc biệt", "Thành tích");
 
     final private DipTraoThuongService dipTraoThuongService = new DipTraoThuongService();
-
-    final ObservableList<String> listTenNamDipTraoThuong = dipTraoThuongService.getAllTenNamDipTraoThuong();
 
     final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
     final private MyIntegerStringConverter integerStringConverter = new MyIntegerStringConverter();
@@ -62,107 +60,97 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
 
-        tableColumnIDGiaiThuongCanBo.setCellValueFactory(new PropertyValueFactory<DipTraoThuongModel, Integer>("id"));
-        tableColumnTenDipGiaiThuongCanBo.setCellValueFactory(new PropertyValueFactory<DipTraoThuongModel, String>("tenDip"));
-        tableColumnKieuGiaiThuongCanBo.setCellValueFactory(new PropertyValueFactory<DipTraoThuongModel, String>("kieu"));
-        tableColumnNamGiaiThuongCanBo.setCellValueFactory(new PropertyValueFactory<DipTraoThuongModel, Integer>("nam"));
-        tableColumnNgayTaoGiaiThuongCanBo.setCellValueFactory(new PropertyValueFactory<DipTraoThuongModel, Date>("ngayTao"));
-        tableColumnNgayKetThucGiaiThuongCanBo.setCellValueFactory(new PropertyValueFactory<DipTraoThuongModel, Date>("ngayKetThuc"));
-        tableColumnGhiChuGiaiThuongCanBo.setCellValueFactory(new PropertyValueFactory<DipTraoThuongModel, String>("ghiChu"));
+        tableColumnIDGiaiThuongHoGiaDinh.setCellValueFactory(new PropertyValueFactory<DipTraoThuongModel, Integer>("id"));
+        tableColumnTenDipGiaiThuongHoGiaDinh.setCellValueFactory(new PropertyValueFactory<DipTraoThuongModel, String>("tenDip"));
+        tableColumnKieuGiaiThuongHoGiaDinh.setCellValueFactory(new PropertyValueFactory<DipTraoThuongModel, String>("kieu"));
+        tableColumnNamGiaiThuongHoGiaDinh.setCellValueFactory(new PropertyValueFactory<DipTraoThuongModel, Integer>("nam"));
+        tableColumnNgayTaoGiaiThuongHoGiaDinh.setCellValueFactory(new PropertyValueFactory<DipTraoThuongModel, Date>("ngayTao"));
+        tableColumnNgayKetThucGiaiThuongHoGiaDinh.setCellValueFactory(new PropertyValueFactory<DipTraoThuongModel, Date>("ngayKetThuc"));
+        tableColumnGhiChuGiaiThuongHoGiaDinh.setCellValueFactory(new PropertyValueFactory<DipTraoThuongModel, String>("ghiChu"));
 
-        comboBoxTimKiemGiaiThuongCanBo.getItems().addAll(listTimKiem);
-        comboBoxTimKiemGiaiThuongCanBo.getSelectionModel().selectFirst();
-        comboBoxKieuGiaiThuongCanBo.getItems().addAll(listKieuGiaiThuong);
-        comboBoxKieuGiaiThuongCanBo.getSelectionModel().selectFirst();
-        comboBoxTenNamGiaiThuongCanBo.getItems().addAll(listTenNamDipTraoThuong);
-        comboBoxTenNamGiaiThuongCanBo.getSelectionModel().selectFirst();
-        ComponentVisibility.change(comboBoxTenNamGiaiThuongCanBo, false);
-        ComponentVisibility.change(comboBoxKieuGiaiThuongCanBo, false);
+        comboBoxTimKiemGiaiThuongHoGiaDinh.getItems().addAll(listTimKiem);
+        comboBoxTimKiemGiaiThuongHoGiaDinh.getSelectionModel().selectFirst();
+        comboBoxKieuGiaiThuongHoGiaDinh.getItems().addAll(listKieuGiaiThuong);
+        comboBoxKieuGiaiThuongHoGiaDinh.getSelectionModel().selectFirst();
+        ComponentVisibility.change(comboBoxKieuGiaiThuongHoGiaDinh, false);
         ComponentVisibility.change(datePickerTu, false);
         ComponentVisibility.change(datePickerDen, false);
 
-        tableViewGiaiThuongCanBo.setEditable(true);
-        tableColumnTenDipGiaiThuongCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
-        tableColumnNamGiaiThuongCanBo.setCellFactory(TextFieldTableCell.forTableColumn(integerStringConverter));
-        tableColumnNgayKetThucGiaiThuongCanBo.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
-        tableColumnGhiChuGiaiThuongCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
+        tableViewGiaiThuongHoGiaDinh.setEditable(true);
+        tableColumnTenDipGiaiThuongHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
+        tableColumnNamGiaiThuongHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(integerStringConverter));
+        tableColumnNgayKetThucGiaiThuongHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
+        tableColumnGhiChuGiaiThuongHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        displayAllDipTraoThuongCanBo();
+        displayAllDipTraoThuongHoGiaDinh();
     }
 
     @Override
-    public void onPressedButtonGiaiThuongCanBo(MouseEvent e) {
+    public void onPressedButtonGiaiThuongHoGiaDinh(MouseEvent e) {
     }
 
-    public void onPressedButtonTaoBieuMauCanBo(MouseEvent e) throws IOException {
+    public void onPressedButtonGiaiThuongDipDacBietHoGiaDinh(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
-            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(),
-                    "TaoBieuMauDipTraoThuongCanBo.fxml");
+            sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(),
+                    "GiaiThuongDipDacBietHoGiaDinhView.fxml");
         }
     }
 
-    public void onPressedButtonGiaiThuongDipDacBietCanBo(MouseEvent e) throws IOException {
+    public void onPressedButtonGiaiThuongThanhTichHoGiaDinh(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
-            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(),
-                    "GiaiThuongDipDacBietCanBoView.fxml");
+            sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(),
+                    "GiaiThuongThanhTichHoGiaDinhView.fxml");
         }
     }
 
-    public void onPressedButtonGiaiThuongThanhTichCanBo(MouseEvent e) throws IOException {
+    public void onPressedButtonXoaDipTraoThuongHoGiaDinh(MouseEvent e) {
         if (e.isPrimaryButtonDown()) {
-            sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(),
-                    "GiaiThuongThanhTichCanBoView.fxml");
+            xoaDipTraoThuongHoGiaDinh();
         }
     }
 
-    public void onPressedButtonXoaDipTraoThuongCanBo(MouseEvent e) {
+    public void onPressedButtonLocThongTinDipTraoThuongHoGiaDinh(MouseEvent e) {
         if (e.isPrimaryButtonDown()) {
-            xoaDipTraoThuongCanBo();
+            locThongTinDipTraoThuongHoGiaDinh();
         }
     }
 
-    public void onPressedButtonLocThongTinDipTraoThuongCanBo(MouseEvent e) {
-        if (e.isPrimaryButtonDown()) {
-            locThongTinDipTraoThuongCanBo();
-        }
-    }
-
-    public void onDeletePressedTrongBangDipTraoThuongCanBo(KeyEvent e) {
+    public void onDeletePressedTrongBangDipTraoThuongHoGiaDinh(KeyEvent e) {
         if (e.getCode() == KeyCode.DELETE) {
-            xoaDipTraoThuongCanBo();
+            xoaDipTraoThuongHoGiaDinh();
         }
     }
 
-    public void onPressedTrongCotIdGiaiThuongCanBo(MouseEvent e) throws IOException {
+    public void onPressedTrongCotIdGiaiThuongHoGiaDinh(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
             String id = ((Node) e.getTarget()).getId();
-            if (id != null && id.equals("tableColumnIDGiaiThuongCanBo")) {
-                DipTraoThuongModel dipTraoThuongModel = tableViewGiaiThuongCanBo.getSelectionModel().getSelectedItem();
+            if (id != null && id.equals("tableColumnIDGiaiThuongHoGiaDinh")) {
+                DipTraoThuongModel dipTraoThuongModel = tableViewGiaiThuongHoGiaDinh.getSelectionModel().getSelectedItem();
                 if (dipTraoThuongModel.getKieu().equals("Dịp đặc biệt")) {
-                    FXMLLoader loader = new FXMLLoader(TrangChuCanBoView.class.getResource("GiaiThuongDipDacBietCanBoView.fxml"));
+                    FXMLLoader loader = new FXMLLoader(UserView.class.getResource("GiaiThuongDipDacBietHoGiaDinhView.fxml"));
                     Parent root = loader.load();
-                    ControllerGiaiThuongDipDacBietCanBoView controller = loader.getController();
-                    ComboBox comboBoxTenNamDipDacBietCanBo = controller.comboBoxTenNamDipDacBietCanBo,
-                            comboBoxTimKiemDipDacBietCanBo = controller.comboBoxTimKiemDipDacBietCanBo;
-                    comboBoxTenNamDipDacBietCanBo.getSelectionModel().select(dipTraoThuongModel.getTenDip() + " - " + dipTraoThuongModel.getNam());
-                    comboBoxTimKiemDipDacBietCanBo.getSelectionModel().select("Tên - Năm");
-                    ComponentVisibility.change(controller.textFieldLocThongTinDipDacBietCanBo, false);
-                    ComponentVisibility.change(comboBoxTenNamDipDacBietCanBo, true);
-                    controller.locThongTinDipDacBietCanBo();
+                    ControllerGiaiThuongDipDacBietHoGiaDinhView controller = loader.getController();
+                    ComboBox comboBoxTenNamDipDacBietHoGiaDinh = controller.comboBoxTenNamDipDacBietHoGiaDinh,
+                            comboBoxTimKiemDipDacBietHoGiaDinh = controller.comboBoxTimKiemDipDacBietHoGiaDinh;
+                    comboBoxTenNamDipDacBietHoGiaDinh.getSelectionModel().select(dipTraoThuongModel.getTenDip() + " - " + dipTraoThuongModel.getNam());
+                    comboBoxTimKiemDipDacBietHoGiaDinh.getSelectionModel().select("Tên - Năm");
+                    ComponentVisibility.change(controller.textFieldLocThongTinDipDacBietHoGiaDinh, false);
+                    ComponentVisibility.change(comboBoxTenNamDipDacBietHoGiaDinh, true);
+                    controller.locThongTinDipDacBietHoGiaDinh();
                     Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
                 } else {
-                    FXMLLoader loader = new FXMLLoader(TrangChuCanBoView.class.getResource("GiaiThuongThanhTichCanBoView.fxml"));
+                    FXMLLoader loader = new FXMLLoader(UserView.class.getResource("GiaiThuongThanhTichHoGiaDinhView.fxml"));
                     Parent root = loader.load();
-                    ControllerGiaiThuongThanhTichCanBoView controller = loader.getController();
-                    ComboBox comboBoxTenNamThanhTichCanBo = controller.comboBoxTenNamThanhTichCanBo,
-                            comboBoxTiTimKiemThanhTichCanBo = controller.comboBoxTimKiemThanhTichCanBo;
-                    comboBoxTenNamThanhTichCanBo.getSelectionModel().select(dipTraoThuongModel.getTenDip() + " - " + dipTraoThuongModel.getNam());
-                    comboBoxTiTimKiemThanhTichCanBo.getSelectionModel().select("Tên - Năm");
-                    ComponentVisibility.change(controller.textFieldLocThongTinThanhTichCanBo, false);
-                    ComponentVisibility.change(comboBoxTenNamThanhTichCanBo, true);
-                    controller.locThongTinThanhTichCanBo();
+                    ControllerGiaiThuongThanhTichHoGiaDinhView controller = loader.getController();
+                    ComboBox comboBoxTenNamThanhTichHoGiaDinh = controller.comboBoxTenNamThanhTichHoGiaDinh,
+                            comboBoxTiTimKiemThanhTichHoGiaDinh = controller.comboBoxTimKiemThanhTichHoGiaDinh;
+                    comboBoxTenNamThanhTichHoGiaDinh.getSelectionModel().select(dipTraoThuongModel.getTenDip() + " - " + dipTraoThuongModel.getNam());
+                    comboBoxTiTimKiemThanhTichHoGiaDinh.getSelectionModel().select("Tên - Năm");
+                    ComponentVisibility.change(controller.textFieldLocThongTinThanhTichHoGiaDinh, false);
+                    ComponentVisibility.change(comboBoxTenNamThanhTichHoGiaDinh, true);
+                    controller.locThongTinThanhTichHoGiaDinh();
                     Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
@@ -171,28 +159,29 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
         }
     }
 
-    public void onEnterPressedTrongOTimKiemGiaiThuongCanBo(KeyEvent keyEvent) {
+    public void onEnterPressedTrongOTimKiemGiaiThuongHoGiaDinh(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
-            locThongTinDipTraoThuongCanBo();
+            locThongTinDipTraoThuongHoGiaDinh();
         }
     }
 
-    public void onSelectionComboBoxTimKiemGiaiThuongCanBo(ActionEvent e) {
-        ComponentVisibility.change(textFieldLocThongTinGiaiThuongCanBo, false);
-        ComponentVisibility.change(comboBoxKieuGiaiThuongCanBo, false);
-        ComponentVisibility.change(comboBoxTenNamGiaiThuongCanBo, false);
-        ComponentVisibility.change(datePickerTu, false);
-        ComponentVisibility.change(datePickerDen, false);
-        String truongTimKiem = String.valueOf(comboBoxTimKiemGiaiThuongCanBo.getValue());
+    public void onSelectionComboBoxTimKiemGiaiThuongHoGiaDinh(ActionEvent e) {
+        String truongTimKiem = String.valueOf(comboBoxTimKiemGiaiThuongHoGiaDinh.getValue());
         if (truongTimKiem.equals("Kiểu")) {
-            ComponentVisibility.change(comboBoxKieuGiaiThuongCanBo, true);
+            ComponentVisibility.change(textFieldLocThongTinGiaiThuongHoGiaDinh, false);
+            ComponentVisibility.change(comboBoxKieuGiaiThuongHoGiaDinh, true);
+            ComponentVisibility.change(datePickerTu, false);
+            ComponentVisibility.change(datePickerDen, false);
         } else if (truongTimKiem.equals("Ngày tạo") || truongTimKiem.equals("Ngày kết thúc")) {
+            ComponentVisibility.change(textFieldLocThongTinGiaiThuongHoGiaDinh, false);
+            ComponentVisibility.change(comboBoxKieuGiaiThuongHoGiaDinh, false);
             ComponentVisibility.change(datePickerTu, true);
             ComponentVisibility.change(datePickerDen, true);
-        } else if (truongTimKiem.equals("Tên - Năm")) {
-            ComponentVisibility.change(comboBoxTenNamGiaiThuongCanBo, true);
         } else {
-            ComponentVisibility.change(textFieldLocThongTinGiaiThuongCanBo, true);
+            ComponentVisibility.change(textFieldLocThongTinGiaiThuongHoGiaDinh, true);
+            ComponentVisibility.change(comboBoxKieuGiaiThuongHoGiaDinh, false);
+            ComponentVisibility.change(datePickerTu, false);
+            ComponentVisibility.change(datePickerDen, false);
         }
     }
 
@@ -212,7 +201,7 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập năm hợp lệ");
                     alert.showAndWait();
-                    displayAllDipTraoThuongCanBo();
+                    displayAllDipTraoThuongHoGiaDinh();
                     return;
                 }
                 break;
@@ -225,7 +214,7 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAllDipTraoThuongCanBo();
+                    displayAllDipTraoThuongHoGiaDinh();
                     return;
                 }
                 break;
@@ -233,7 +222,7 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                 dipTraoThuongModel.setGhiChu((String) event.getNewValue());
                 break;
         }
-        updateDipTraoThuongCanBo(dipTraoThuongModel);
+        updateDipTraoThuongHoGiaDinh(dipTraoThuongModel);
     }
 
     public void handleOnEditCancel(TableColumn.CellEditEvent<DipTraoThuongModel, ?> event) {
@@ -255,7 +244,7 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
         }
     }
 
-    private void updateDipTraoThuongCanBo(DipTraoThuongModel dipTraoThuongModel) {
+    private void updateDipTraoThuongHoGiaDinh(DipTraoThuongModel dipTraoThuongModel) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo!");
         if (dipTraoThuongService.updateDipTraoThuong(dipTraoThuongModel)) {
@@ -264,18 +253,18 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
             alert.setHeaderText("Sửa dịp trao thưởng không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllDipTraoThuongCanBo();
+            displayAllDipTraoThuongHoGiaDinh();
         }
     }
 
 
-    private void displayAllDipTraoThuongCanBo() {
+    private void displayAllDipTraoThuongHoGiaDinh() {
         ObservableList<DipTraoThuongModel> dipTraoThuongList = dipTraoThuongService.getAllDipTraoThuong();
-        tableViewGiaiThuongCanBo.setItems(dipTraoThuongList);
+        tableViewGiaiThuongHoGiaDinh.setItems(dipTraoThuongList);
     }
 
-    private void xoaDipTraoThuongCanBo() {
-        DipTraoThuongModel dipTraoThuongModel = tableViewGiaiThuongCanBo.getSelectionModel().getSelectedItem();
+    private void xoaDipTraoThuongHoGiaDinh() {
+        DipTraoThuongModel dipTraoThuongModel = tableViewGiaiThuongHoGiaDinh.getSelectionModel().getSelectedItem();
         if (dipTraoThuongModel == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
@@ -294,43 +283,35 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     info.setHeaderText("Xóa không thành công!");
                 }
                 info.showAndWait();
-                displayAllDipTraoThuongCanBo();
+                displayAllDipTraoThuongHoGiaDinh();
             }
         }
     }
 
-    private void locThongTinDipTraoThuongCanBo() {
-        String dieuKienKiemTra = String.valueOf(comboBoxTimKiemGiaiThuongCanBo.getValue());
-        String cauHoi = textFieldLocThongTinGiaiThuongCanBo.getText();
+    private void locThongTinDipTraoThuongHoGiaDinh() {
+        String dieuKienKiemTra = String.valueOf(comboBoxTimKiemGiaiThuongHoGiaDinh.getValue());
+        String cauHoi = textFieldLocThongTinGiaiThuongHoGiaDinh.getText();
         ObservableList<DipTraoThuongModel> dipTraoThuongModelObservableList = FXCollections.observableArrayList();
         switch (dieuKienKiemTra) {
-            case "Tên dịp":
+            case "Tên":
                 dipTraoThuongModelObservableList = dipTraoThuongService.getDipTraoThuongByTen(cauHoi);
                 break;
             case "Kiểu":
                 dipTraoThuongModelObservableList = dipTraoThuongService.getAllDipTraoThuongByKieu(
-                        String.valueOf(comboBoxKieuGiaiThuongCanBo.getValue()));
+                        String.valueOf(comboBoxKieuGiaiThuongHoGiaDinh.getValue()));
                 break;
             case "Năm":
-                int nam = integerStringConverter.fromString(textFieldLocThongTinGiaiThuongCanBo.getText());
+                int nam = integerStringConverter.fromString(textFieldLocThongTinGiaiThuongHoGiaDinh.getText());
                 if (nam == -1) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập năm hợp lệ");
                     alert.showAndWait();
-                    displayAllDipTraoThuongCanBo();
-                    textFieldLocThongTinGiaiThuongCanBo.requestFocus();
-                    return;
+                    displayAllDipTraoThuongHoGiaDinh();
+                    textFieldLocThongTinGiaiThuongHoGiaDinh.requestFocus();
                 } else {
                     dipTraoThuongModelObservableList = dipTraoThuongService.getAllDipTraoThuongByNam(nam);
                 }
-                break;
-            case "Tên - Năm":
-                String tenNam = String.valueOf(comboBoxTenNamGiaiThuongCanBo.getValue());
-                int index = tenNam.indexOf(" - ");
-                String tenDip = tenNam.substring(0, index);
-                int namDip = Integer.parseInt(tenNam.substring(index + 3));
-                dipTraoThuongModelObservableList.add(dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, namDip).get());
                 break;
             case "Ngày tạo":
                 if (datePickerTu.getValue() != null && datePickerDen.getValue() != null) {
@@ -342,7 +323,7 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập đầy đủ thông tin!");
                     alert.showAndWait();
-                    displayAllDipTraoThuongCanBo();
+                    displayAllDipTraoThuongHoGiaDinh();
                     return;
                 }
                 break;
@@ -356,11 +337,12 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập đầy đủ thông tin!");
                     alert.showAndWait();
-                    displayAllDipTraoThuongCanBo();
+                    displayAllDipTraoThuongHoGiaDinh();
                     return;
                 }
                 break;
         }
-        tableViewGiaiThuongCanBo.setItems(dipTraoThuongModelObservableList);
+        tableViewGiaiThuongHoGiaDinh.setItems(dipTraoThuongModelObservableList);
     }
+
 }
