@@ -15,10 +15,11 @@ public class MinhChungController {
     @FXML
     BorderPane borderPaneMinhChung;
     @FXML
+    public
     ImageView imageViewMinhChung;
     @FXML
     Button buttonThayDoiFile;
-    File fileMinhChung;
+    public File fileMinhChung;
 
 
     public void onPressedButtonThayDoiTep(MouseEvent e) {

@@ -271,46 +271,46 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
     }
 
     public void onPressedTrongCotMinhChungThanhTichCanBo(MouseEvent e) throws IOException {
-//        if (e.isPrimaryButtonDown()) {
-//            String id = ((Node) e.getTarget()).getId();
-//            if (id != null && id.equals("tableColumnMinhChungThanhTichCanBo")) {
-//                ThongTinThanhTichDisplayModel thongTinThanhTichDisplayModel =
-//                        tableViewGiaiThuongThanhTichCanBo.getSelectionModel().getSelectedItem();
-//                File minhChungCu = thongTinThanhTichDisplayModel.getMinhChung();
-//                FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("MinhChung.fxml"));
-//                Parent root = fxmlLoader.load();
-//                MinhChungController controller = fxmlLoader.getController();
-//                Image image = new Image(minhChungCu.toURI().toString());
-//                controller.imageViewMinhChung.setPreserveRatio(true);
-//                controller.imageViewMinhChung.setFitHeight(controller.imageViewMinhChung.getFitHeight());
-//                controller.imageViewMinhChung.setFitWidth(controller.imageViewMinhChung.getFitWidth());
-//                controller.imageViewMinhChung.setImage(image);
-//                Stage stage = new Stage();
-//                stage.initOwner(((Node) e.getSource()).getScene().getWindow());
-//                stage.setTitle("Minh chứng");
-//                stage.setScene(new Scene(root));
-//                stage.setOnCloseRequest(event -> {
-//                    File minhChungMoi = controller.fileMinhChung;
-//                    if (minhChungMoi != null) {
-//                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//                        alert.setTitle("Thông báo");
-//                        alert.setContentText("Bạn muốn lưu thay đổi ?");
-//                        if (alert.showAndWait().get() == ButtonType.OK) {
-//                            thongTinThanhTichDisplayModel.setMinhChung(minhChungMoi);
-//                            Path source = minhChungMoi.toPath();
-//                            Path dest = minhChungCu.toPath();
-//                            try {
-//                                Files.copy(source, dest, StandardCopyOption.REPLACE_EXISTING);
-//                            } catch (IOException ex) {
-//                                throw new RuntimeException(ex);
-//                            }
-//                            updateThongTinThanhTichCanBo(thongTinThanhTichDisplayModel);
-//                        }
-//                    }
-//                });
-//                stage.show();
-//            }
-//        }
+        if (e.isPrimaryButtonDown()) {
+            String id = ((Node) e.getTarget()).getId();
+            if (id != null && id.equals("tableColumnMinhChungThanhTichCanBo")) {
+                ThongTinThanhTichDisplayModel thongTinThanhTichDisplayModel =
+                        tableViewGiaiThuongThanhTichCanBo.getSelectionModel().getSelectedItem();
+                File minhChungCu = thongTinThanhTichDisplayModel.getMinhChung();
+                FXMLLoader fxmlLoader = new FXMLLoader(TrangChuCanBoView.class.getResource("MinhChung.fxml"));
+                Parent root = fxmlLoader.load();
+                MinhChungController controller = fxmlLoader.getController();
+                Image image = new Image(minhChungCu.toURI().toString());
+                controller.imageViewMinhChung.setPreserveRatio(true);
+                controller.imageViewMinhChung.setFitHeight(controller.imageViewMinhChung.getFitHeight());
+                controller.imageViewMinhChung.setFitWidth(controller.imageViewMinhChung.getFitWidth());
+                controller.imageViewMinhChung.setImage(image);
+                Stage stage = new Stage();
+                stage.initOwner(((Node) e.getSource()).getScene().getWindow());
+                stage.setTitle("Minh chứng");
+                stage.setScene(new Scene(root));
+                stage.setOnCloseRequest(event -> {
+                    File minhChungMoi = controller.fileMinhChung;
+                    if (minhChungMoi != null) {
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("Thông báo");
+                        alert.setContentText("Bạn muốn lưu thay đổi ?");
+                        if (alert.showAndWait().get() == ButtonType.OK) {
+                            thongTinThanhTichDisplayModel.setMinhChung(minhChungMoi);
+                            Path source = minhChungMoi.toPath();
+                            Path dest = minhChungCu.toPath();
+                            try {
+                                Files.copy(source, dest, StandardCopyOption.REPLACE_EXISTING);
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                            updateThongTinThanhTichCanBo(thongTinThanhTichDisplayModel);
+                        }
+                    }
+                });
+                stage.show();
+            }
+        }
     }
 
     public void onPressedButtonThoatThongTinThanhTichCanBo(MouseEvent e) throws IOException {
