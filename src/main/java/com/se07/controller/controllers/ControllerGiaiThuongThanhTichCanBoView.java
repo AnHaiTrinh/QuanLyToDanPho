@@ -59,7 +59,7 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
 
     final ObservableList<String> listTenNamDipTraoThuong = dipTraoThuongService.getAllTenNamDipTraoThuongThanhTich();
 
-    final ObservableList<String> listTimKiem = FXCollections.observableArrayList("Mã nhân khẩu", "Họ tên",
+    final ObservableList<String> listTimKiem = FXCollections.observableArrayList("Họ tên", "Mã nhân khẩu",
             "Tên dịp", "Năm", "Tên - Năm", "Cấp thành tích", "Kiểu thành tích", "Tình trạng");
     final ObservableList<String> listCapThanhTich = FXCollections.observableArrayList(
             "Trường", "Quận/Huyện", "Tỉnh/Thành phố", "Quốc gia", "Quốc tế");
@@ -440,6 +440,7 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
                     return;
                 }
                 listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByNam(nam);
+                break;
             case "Tên - Năm":
                 String tenNam = String.valueOf(comboBoxTenNamThanhTichCanBo.getValue());
                 int index = tenNam.indexOf(" - ");
