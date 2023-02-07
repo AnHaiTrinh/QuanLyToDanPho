@@ -56,7 +56,7 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
     final private DipTraoThuongService dipTraoThuongService = new DipTraoThuongService();
     final private MyIntegerStringConverter integerStringConverter = new MyIntegerStringConverter();
 
-    final ObservableList<String> listMaNhanKhau = new NhanKhauService().getAllMaNhanKhau();
+    final ObservableList<String> listMaNhanKhau = new NhanKhauService().getAllMaNhanKhauTrongHoKhau(maHoKhauDangNhap);
 
     final ObservableList<String> listTenNamDipTraoThuong = dipTraoThuongService.getAllTenNamDipTraoThuongThanhTich();
 
@@ -111,7 +111,6 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
         tableColumnTruongThanhTichHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnCapThanhTichHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listCapThanhTich));
         tableColumnKieuThanhTichHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listKieuThanhTich));
-        tableColumnTinhTrangThanhTichHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listTinhTrang));
 
         displayAllThongTinThanhTichHoGiaDinh();
     }
@@ -165,72 +164,10 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
         }
     }
 
-    public void onPressedButtonPheDuyetThongTinThanhTichHoGiaDinh(MouseEvent e) {
-        if (e.isPrimaryButtonDown()) {
-            xacNhanThongTinThanhTichHoGiaDinh();
-        }
-    }
-
-    private void xacNhanThongTinThanhTichHoGiaDinh() {
-        ThongTinThanhTichDisplayModel thongTinThanhTichDisplayModel =
-                tableViewGiaiThuongThanhTichHoGiaDinh.getSelectionModel().getSelectedItem();
-        if (thongTinThanhTichDisplayModel == null) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText("Vui lòng chọn trường hợp muốn xác nhận");
-            alert.showAndWait();
-        } else if (thongTinThanhTichDisplayModel.getTinhTrang() == "Đã xác nhận") {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText("Trường hợp đã được xác nhận");
-            alert.showAndWait();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText("Bạn chắc chắn muốn xác nhận trường hợp này?");
-            if (alert.showAndWait().get() == ButtonType.OK) {
-                thongTinThanhTichDisplayModel.setTinhTrang("Đã xác nhận");
-                updateThongTinThanhTichHoGiaDinh(thongTinThanhTichDisplayModel);
-                displayAllThongTinThanhTichHoGiaDinh();
-            }
-        }
-    }
-
     private void displayAllThongTinThanhTichHoGiaDinh() {
         ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTich =
-                thongTinThanhTichService.getAllThongTinThanhTich();
+                thongTinThanhTichService.getAllThongTinThanhTichAndHoKhau(maHoKhauDangNhap);
         tableViewGiaiThuongThanhTichHoGiaDinh.setItems(listThongTinThanhTich);
-    }
-
-    public void onPressedButtonTuChoiThongTinThanhTichHoGiaDinh(MouseEvent e) {
-        if (e.isPrimaryButtonDown()) {
-            tuChoiThongTinThanhTichHoGiaDinh();
-        }
-    }
-
-    private void tuChoiThongTinThanhTichHoGiaDinh() {
-        ThongTinThanhTichDisplayModel thongTinThanhTichDisplayModel =
-                tableViewGiaiThuongThanhTichHoGiaDinh.getSelectionModel().getSelectedItem();
-        if (thongTinThanhTichDisplayModel == null) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText("Vui lòng chọn trường hợp muốn xác nhận");
-            alert.showAndWait();
-        } else if (thongTinThanhTichDisplayModel.getTinhTrang() == "Đã từ chối") {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText("Trường hợp đã bị từ chối");
-            alert.showAndWait();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText("Bạn chắc chắn muốn từ chối trường hợp này?");
-            if (alert.showAndWait().get() == ButtonType.OK) {
-                thongTinThanhTichDisplayModel.setTinhTrang("Đã từ chối");
-                updateThongTinThanhTichHoGiaDinh(thongTinThanhTichDisplayModel);
-                displayAllThongTinThanhTichHoGiaDinh();
-            }
-        }
     }
 
     public void onPressedButtonXoaThongTinThanhTichHoGiaDinh(MouseEvent e) {

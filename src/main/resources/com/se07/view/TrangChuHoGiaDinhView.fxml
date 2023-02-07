@@ -50,7 +50,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <Button fx:id="buttonGiaiThuongHoGiaDinh" layoutY="220.0" mnemonicParsing="false" onMousePressed="#onPressedButtonGiaiThuongHoGiaDinh" prefHeight="58.0" prefWidth="222.0" text="Phần thưởng" textFill="WHITE">
+      <Button fx:id="buttonGiaiThuongHoGiaDinh" layoutY="211.0" mnemonicParsing="false" onMousePressed="#onPressedButtonGiaiThuongHoGiaDinh" prefHeight="58.0" prefWidth="222.0" text="Phần thưởng" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>

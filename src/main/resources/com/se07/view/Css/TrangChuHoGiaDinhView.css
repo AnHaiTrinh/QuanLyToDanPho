@@ -1,27 +1,43 @@
-#buttonTrangChuHoGiaDinh{
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+#buttonTrangChuHoGiaDinh {
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
-#buttonTrangChuHoGiaDinh :hover{
-    -fx-background-color: rgba(4, 57, 244, 0.95)
+
+#buttonTrangChuHoGiaDinh:hover {
+    -fx-background-color: #20a4f3
 }
+
 #buttonNhanKhauHoGiaDinh {
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
-#buttonNhanKhauHoGiaDinh:hover{
-    -fx-background-color: rgba(4, 57, 244, 0.95)
+
+#buttonNhanKhauHoGiaDinh:hover {
+    -fx-background-color: #20a4f3
 }
-#buttonGiaiThuongHoGiaDinh{
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+
+#buttonHoKhauHoGiaDinh {
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
-#buttonGiaiThuongHoGiaDinh:hover{
-    -fx-background-color: rgba(4, 57, 244, 0.95)
+
+#buttonHoKhauHoGiaDinh:hover {
+    -fx-background-color: #20a4f3
 }
-#buttonDangXuatHoGiaDinh{
-    -fx-background-color: black
+
+#buttonGiaiThuongHoGiaDinh {
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
-#buttonDangXuatHoGiaDinh:hover{
-    -fx-background-color: #BF3FBF;
+
+#buttonGiaiThuongHoGiaDinh:hover {
+    -fx-background-color: #20a4f3;
 }
-#anchorPaneChinhHoGiaDinh{
-    -fx-background-color: linear-gradient(#7758D1 2%, #F7CBFD 40%);
+
+#anchorPaneChinhHoGiaDinh {
+    -fx-background-color: #DBBFBD;
+}
+
+#buttonDangXuatHoGiaDinh {
+    -fx-background-color: #441151
+}
+
+#buttonDangXuatHoGiaDinh:hover {
+    -fx-background-color: #CA61C3;
 }
