@@ -51,7 +51,7 @@ public class ThongTinDipDacBietService {
                 list.add(temp);
             }
             statement.close();
-            connection.close();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,7 +79,7 @@ public class ThongTinDipDacBietService {
                 list.add(temp);
             }
             statement.close();
-            connection.close();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -107,7 +107,7 @@ public class ThongTinDipDacBietService {
                 list.add(temp);
             }
             statement.close();
-            connection.close();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -135,7 +135,7 @@ public class ThongTinDipDacBietService {
                 list.add(temp);
             }
             statement.close();
-            connection.close();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -163,7 +163,7 @@ public class ThongTinDipDacBietService {
                 list.add(temp);
             }
             statement.close();
-            connection.close();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -191,7 +191,7 @@ public class ThongTinDipDacBietService {
                 list.add(temp);
             }
             statement.close();
-            connection.close();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -235,7 +235,7 @@ public class ThongTinDipDacBietService {
 //            statement.setInt(5, thongTinDipDacBietModel.getIdNguoiThucHien());
 //            statement.executeUpdate();
 //            statement.close();
-//            connection.close();
+//            
 //            return true;
 //        } catch (Exception e) {
 //            e.printStackTrace();
@@ -256,7 +256,7 @@ public class ThongTinDipDacBietService {
             statement.setInt(5, thongTinDipDacBietModel.getIdNhap());
             statement.executeUpdate();
             statement.close();
-            connection.close();
+            
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -272,12 +272,40 @@ public class ThongTinDipDacBietService {
             statement.setInt(1, thongTinDipDacBietModel.getIdNhap());
             statement.executeUpdate();
             statement.close();
-            connection.close();
+            
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+    }
+    public ObservableList<ThongTinDipDacBietDisplayModel> getAllThongTinDipDacBietByMaHoKhau(String maHoKhau) {
+        ObservableList<ThongTinDipDacBietDisplayModel> list = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.idNhap, t.maNhanKhau, n.hoTen, d.tenDip, d.nam, t.tinhTrang" +
+                " from thong_tin_dip_dac_biet t, nhan_khau n, dip_trao_thuong d " +
+                "where t.maNhanKhau = n.maNhanKhau and t.idDip = d.id " +
+                "and n.maHoKhau = '"+maHoKhau+"'";
+        System.out.println(query);
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                ThongTinDipDacBietDisplayModel temp = new ThongTinDipDacBietDisplayModel(
+                        rs.getInt("idNhap"),
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getNString("tinhTrang"));
+                list.add(temp);
+            }
+            statement.close();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 public ThongTinDipDacBietModel convertDisplayModelToModel (ThongTinDipDacBietDisplayModel displayModel){
     ThongTinDipDacBietModel temp = getThongTinDipDacBietById(displayModel.getIdNhap()).get();
