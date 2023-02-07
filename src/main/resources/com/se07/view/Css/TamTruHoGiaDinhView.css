@@ -1,58 +1,91 @@
-#buttonTrangChuHoGiaDinh{
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+#buttonTrangChuHoGiaDinh {
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
-#buttonTrangChuHoGiaDinh :hover{
-    -fx-background-color: rgba(4, 57, 244, 0.95)
+
+#buttonTrangChuHoGiaDinh:hover {
+    -fx-background-color: #20a4f3
 }
+
 #buttonNhanKhauHoGiaDinh {
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
-#buttonNhanKhauHoGiaDinh:hover{
-    -fx-background-color: rgba(4, 57, 244, 0.95)
-}
-#buttonGiaiThuongHoGiaDinh{
-    -fx-background-color: rgba(0, 53, 240, 0.7);
-}
-#buttonGiaiThuongHoGiaDinh:hover{
-    -fx-background-color: rgba(4, 57, 244, 0.95)
-}
-#buttonDangXuatHoGiaDinh{
-    -fx-background-color: black
-}
-#buttonDangXuatHoGiaDinh:hover{
-    -fx-background-color: #BF3FBF;
-}
-#buttonThemMoiTamTruHoGiaDinh{
-    -fx-background-color: black
 
+#buttonNhanKhauHoGiaDinh:hover {
+    -fx-background-color: #20a4f3
 }
-#buttonXoaTamTruHoGiaDinh{
-    -fx-background-color: black
 
+#buttonHoKhauHoGiaDinh {
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
-#buttonThoatTamTruHoGiaDinh{
-    -fx-background-color: black
 
+#buttonHoKhauHoGiaDinh:hover {
+    -fx-background-color: #20a4f3
 }
-#buttonTimKiemTamTruHoGiaDinh{
-    -fx-background-color: black
 
+#buttonGiaiThuongHoGiaDinh {
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
-#buttonThemMoiTamTruHoGiaDinh:hover{
-    -fx-background-color: #BF3FBF;
 
+#buttonGiaiThuongHoGiaDinh:hover {
+    -fx-background-color: #20a4f3;
 }
-#buttonXoaTamTruHoGiaDinh:hover{
-    -fx-background-color: #BF3FBF;
 
+#anchorPaneChinhHoGiaDinh {
+    -fx-background-color: #DBBFBD;
 }
-#buttonThoatTamTruHoGiaDinh:hover{
-    -fx-background-color: #910c0c;
-}
-#buttonTimKiemTamTruHoGiaDinh:hover{
-    -fx-background-color: #177306;
-}
-#anchorPaneChinhTamTruHoGiaDinh{
-    -fx-background-color: linear-gradient(#7758D1 2%, #F7CBFD 40%);
 
+#buttonDangXuatHoGiaDinh {
+    -fx-background-color: #441151
+}
+
+#buttonDangXuatHoGiaDinh:hover {
+    -fx-background-color: #CA61C3;
+}
+
+#buttonLocThongTinTamTruHoGiaDinh {
+    -fx-background-color: #441151;
+}
+
+#buttonLocThongTinTamTruHoGiaDinh:hover {
+    -fx-background-color: #CA61C3;
+}
+
+#buttonThemMoiTamTruHoGiaDinh {
+    -fx-background-color: #441151
+}
+
+#buttonThemMoiTamTruHoGiaDinh:hover {
+    -fx-background-color: #CA61C3;
+}
+
+#buttonXacNhanTamTruHoGiaDinh {
+    -fx-background-color: #441151
+}
+
+#buttonXacNhanTamTruHoGiaDinh:hover {
+    -fx-background-color: #CA61C3;
+}
+
+#buttonTuChoiTamTruHoGiaDinh {
+    -fx-background-color: #441151;
+}
+
+#buttonTuChoiTamTruHoGiaDinh:hover {
+    -fx-background-color: #CA61C3;
+}
+
+#buttonXoaTamTruHoGiaDinh {
+    -fx-background-color: #441151
+}
+
+#buttonXoaTamTruHoGiaDinh:hover {
+    -fx-background-color: #CA61C3;
+}
+
+#buttonThoatTamTruHoGiaDinh {
+    -fx-background-color: #441151
+}
+
+#buttonThoatTamTruHoGiaDinh:hover {
+    -fx-background-color: #CA61C3;
 }

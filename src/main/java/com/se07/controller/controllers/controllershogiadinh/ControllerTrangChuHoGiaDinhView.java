@@ -1,6 +1,8 @@
 package com.se07.controller.controllers.controllershogiadinh;
 
 import com.se07.controller.services.NhanKhauService;
+import com.se07.controller.services.TamTruService;
+import com.se07.controller.services.TamVangService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -15,9 +17,13 @@ public class ControllerTrangChuHoGiaDinhView extends ControllerHoGiaDinhView{
         super.initialize(url, resourceBundle);
         lableTenNguoiDangNhapHoGiaDinh.setText("Xin chào, " + username);
         NhanKhauService nhanKhauService = new NhanKhauService();
-        //int soNhanKhauTrongGiaDinh = nhanKhauService.get
-        lableNhanKhauTamTruHoGiaDinh.setText("1");
-        lableSoNhanKhauHoGiaDinh.setText("2");
-        lableNhanKhauTamVangHoGiaDinh.setText("3");
+        TamVangService tamVangService = new TamVangService();
+        TamTruService tamTruService = new TamTruService();
+        int soNhanKhau = nhanKhauService.countNhanKhauByMaHoKhau(maHoKhauDangNhap);
+        int soNhanKhauTamVang = tamVangService.countTamVangByMaHoKhau(maHoKhauDangNhap);
+        int soNhanKhauTamTru = tamTruService.countTamTruByMaHoKhau(maHoKhauDangNhap);
+        lableNhanKhauTamTruHoGiaDinh.setText(String.valueOf(soNhanKhauTamTru));
+        lableSoNhanKhauHoGiaDinh.setText(String.valueOf(soNhanKhau));
+        lableNhanKhauTamVangHoGiaDinh.setText(String.valueOf(soNhanKhauTamVang));
     }
 }

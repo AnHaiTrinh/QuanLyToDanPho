@@ -234,6 +234,22 @@ public class HoKhauService {
         }
         return listDiaChiHoKhau;
     }
+    public ObservableList<String> getAllDiaChiHoKhau(String maHoKhau){
+        ObservableList<String> listDiaChiHoKhau = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select diaChi from ho_khau where maHoKhau = '" + maHoKhau + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listDiaChiHoKhau.add(rs.getString(1));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listDiaChiHoKhau;
+    }
 
     /**
      * Phương thức trả về mã hộ khẩu dựa vào địa chỉ

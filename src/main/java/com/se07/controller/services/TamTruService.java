@@ -182,7 +182,7 @@ public class TamTruService {
     public ObservableList<TamTruDisplayModel> getDisplayTamTruByHoTenAndMaHoKhau(String hoTen, String maHoKhau){
         ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query= "select maTamTru,CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
+        String query= "select maTamTru,CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang " +
                 "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and hoTen LIKE N'%"+ hoTen + "%'" +
                 "and ho_khau.maHoKhau = '"+maHoKhau+"'";
         try {
@@ -285,7 +285,7 @@ public class TamTruService {
     public ObservableList<TamTruDisplayModel> getDisplayTamTruByTinhTrangAndMaHoKhau(String tinhTrang, String maHoKhau){
         ObservableList<TamTruDisplayModel> list= FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query= "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang" +
+        String query= "select maTamTru, CCCD, tam_tru.hoTen, ho_khau.diaChi as noiTamTru, tuNgay, denNgay, lydo, tam_tru.tinhTrang " +
                 "from tam_tru, ho_khau where tam_tru.maHoKhau= ho_khau.maHoKhau and tinhTrang = N'"+ tinhTrang + "'" +
                 "and ho_khau.maHoKhau ='"+maHoKhau+"'" ;
         try {

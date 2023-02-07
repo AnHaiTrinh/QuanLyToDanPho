@@ -30,7 +30,7 @@ public class ControllerDangKyTamTruNhanKhauHoGiaDinhView extends ControllerHoGia
     private String tinhTrang ="Chờ xác nhận";
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        comboBoxNoiTamTruDangKyTamTruHoGiaDinh.getItems().addAll(hoKhauService.getAllDiaChiHoKhau());
+        comboBoxNoiTamTruDangKyTamTruHoGiaDinh.getItems().addAll(hoKhauService.getAllDiaChiHoKhau(maHoKhauDangNhap));
         comboBoxNoiTamTruDangKyTamTruHoGiaDinh.getSelectionModel().selectFirst();
         datePickerTuNgayDangKyTamTruHoGiaDinh.setValue(today);
         datePickerDenNgayDangKyTamTruHoGiaDinh.setValue(today.plusDays(7));

@@ -65,7 +65,7 @@ public class TamVangService {
         ObservableList<TamVangDisplayModel> tamVangDisplayModels = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
-                "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau" +
+                "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "and n.maHoKhau ='"+maHoKhau+"' ";
         try {
             Statement statement = connection.createStatement();
@@ -113,9 +113,10 @@ public class TamVangService {
         ObservableList<TamVangDisplayModel> tamVangDisplayModels = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
-                "from (tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau)" +
-                "inner join ho_khau on ho_khau.maNhanKhau = n.maNhanKhau " +
-                "where n.maNhanKhau = '" + maNhanKhau + "' and ho_khau.maNhanKhau = '"+maHoKhau+"' ";
+                "from (tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau) " +
+                "inner join ho_khau on ho_khau.maHoKhau = n.maHoKhau " +
+                "where n.maNhanKhau = '" + maNhanKhau + "' and ho_khau.maHoKhau = '"+maHoKhau+"' ";
+        System.out.println(query);
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -162,10 +163,10 @@ public class TamVangService {
         ObservableList<TamVangDisplayModel> tamVangDisplayModels = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
-                "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau" +
-                "inner join ho_khau h on h.maHoKhau = n.maHoKhau" +
-                "where n.hoTen like N'%" + hoTen + "%'" +
-                "and n.maHoKhau = '"+maHoKhau+"'";
+                "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "inner join ho_khau h on h.maHoKhau = n.maHoKhau " +
+                "where n.hoTen like N'% " + hoTen + "%'" +
+                "and n.maHoKhau = '" +maHoKhau+"'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -587,7 +588,7 @@ public class TamVangService {
 
     public int countTamVangByMaHoKhau(String maHoKhau) {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select count(*) from tam_vang t, nhan_khau n where t.maNhanKhau = n.maNhanKhau" +
+        String query = "select count(*) from tam_vang t, nhan_khau n where t.maNhanKhau = n.maNhanKhau " +
                 "and n.maHoKhau ='"+maHoKhau+"' ";
         try {
             Statement statement = connection.createStatement();

@@ -1,42 +1,59 @@
-#buttonTrangChuHoGiaDinh{
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+#buttonTrangChuHoGiaDinh {
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
-#buttonTrangChuHoGiaDinh :hover{
-    -fx-background-color: rgba(4, 57, 244, 0.95)
+
+#buttonTrangChuHoGiaDinh:hover {
+    -fx-background-color: #20a4f3
 }
+
 #buttonNhanKhauHoGiaDinh {
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
-#buttonNhanKhauHoGiaDinh:hover{
-    -fx-background-color: rgba(4, 57, 244, 0.95);
-}
-#buttonGiaiThuongHoGiaDinh{
-    -fx-background-color: rgba(0, 53, 240, 0.7);
-}
-#buttonGiaiThuongHoGiaDinh:hover{
-    -fx-background-color: rgba(4, 57, 244, 0.95);
-}
-#buttonDangXuatHoGiaDinh{
-    -fx-background-color: black
-}
-#buttonDangXuatHoGiaDinh:hover{
-    -fx-background-color: #BF3FBF;
-}
-#buttonXacNhanThemMoiTamTruHoGiaDinh{
-    -fx-background-color: black
 
+#buttonNhanKhauHoGiaDinh:hover {
+    -fx-background-color: #20a4f3
 }
-#buttonHuyThemMoiTamTruHoGiaDinh{
-    -fx-background-color: black
 
+#buttonHoKhauHoGiaDinh {
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
-#buttonXacNhanThemMoiTamTruHoGiaDinh:hover{
-    -fx-background-color: #177306;
-}
-#buttonHuyThemMoiTamTruHoGiaDinh:hover{
-    -fx-background-color: #910c0c;
-}
-#anchorPaneChinhDangKyTamTruHoGiaDinh{
-    -fx-background-color: linear-gradient(#7758D1 2%, #F7CBFD 40%);
 
+#buttonHoKhauHoGiaDinh:hover {
+    -fx-background-color: #20a4f3
+}
+
+#buttonGiaiThuongHoGiaDinh {
+    -fx-background-color: rgba(8, 101, 155, 0.75);
+}
+
+#buttonGiaiThuongHoGiaDinh:hover {
+    -fx-background-color: #20a4f3
+}
+
+#buttonDangXuatHoGiaDinh {
+    -fx-background-color: #441151
+}
+
+#buttonDangXuatHoGiaDinh:hover {
+    -fx-background-color: #CA61C3;
+}
+
+#buttonXacNhanDangKyTamTruHoGiaDinh {
+    -fx-background-color: #441151
+}
+
+#buttonXacNhanDangKyTamTruHoGiaDinh:hover {
+    -fx-background-color: #34e017;
+}
+
+#buttonHuyXacNhanDangKyTamTruHoGiaDinh {
+    -fx-background-color: #441151
+}
+
+#buttonHuyXacNhanDangKyTamTruHoGiaDinh:hover {
+    -fx-background-color: #c92727;
+}
+
+#anchorPaneChinhHoGiaDinh {
+    -fx-background-color: #DBBFBD;
 }

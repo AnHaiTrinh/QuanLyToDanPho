@@ -1,8 +1,9 @@
 package com.se07.controller.controllers.controllershogiadinh;
-
+import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.NhanKhauService;
-import com.se07.model.models.HoKhauModel;
 import com.se07.model.models.NhanKhauModel;
+import com.se07.util.ComponentVisibility;
+import com.se07.util.MyDateStringConverter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -31,16 +36,25 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
     @FXML
     TableColumn<NhanKhauModel, Date> tableComlumNgaySinhNhanKhauHoGiaDinh;
     @FXML
-    ComboBox comboBoxTimKiemHoGiaDinh;
+    ComboBox comboBoxTimKiemNhanKhauHoGiaDinh, comboBoxGioiTinhNhanKhauHoGiaDinh, comboBoxTinhTrangNhanKhauHoGiaDinh;
     @FXML
-    TextField textFieldLocThongTinHoGiaDinh;
+    TextField textFieldLocThongTinNhanKhauHoGiaDinh;
+    final private ObservableList<String> listTimKiem = FXCollections.observableArrayList(
+            "Mã nhân khẩu", "Họ tên", "Biệt danh", "Giới tính", "Tôn giáo", "Tình trạng");
+
+    private final ObservableList<String> listMaHoKhau = new HoKhauService().getAllMaHoKhau();
+    final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ");
+
+    final private ObservableList<String> listTinhTrang =
+            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
     final NhanKhauService nhanKhauService = new NhanKhauService();
-    private ObservableList<String> listTimKiem = FXCollections.observableArrayList(
-            "Tên chủ hộ", "Mã hộ khẩu", "Địa chỉ", "Ngày lập");
+
+    final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        comboBoxTimKiemHoGiaDinh.getItems().addAll(listTimKiem);
-        tableViewNhanKhauHoGiaDinh.setEditable(true);
+        super.initialize(url, resourceBundle);
+
         tableComlumIDNhanKhauHoGiaDinh.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("maNhanKhau"));
         tableComlumIDHoKhauNhanKhauHoGiaDinh.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("maHoKhau"));
         tableComlumHoTenNhanKhauHoGiaDinh.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("hoTen"));
@@ -49,40 +63,160 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
         tableComlumGioiTinhNhanKhauHoGiaDinh.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("gioiTinh"));
         tableComlumTonGiaoNhanKhauHoGiaDinh.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("tonGiao"));
         tableComlumTinhTrangNhanKhauHoGiaDinh.setCellValueFactory(new PropertyValueFactory<NhanKhauModel, String>("tinhTrang"));
-        displayAllNhanKhauCoTrongHoGiaDinh();
-    }
-    public void onPressedButtonLocThongTinHoGiaDinh(ActionEvent e) throws IOException{
-    }
-    public void onPressedButtonDangXuatHoGiaDinh(){
 
+        comboBoxTimKiemNhanKhauHoGiaDinh.getItems().addAll(listTimKiem);
+        comboBoxTimKiemNhanKhauHoGiaDinh.getSelectionModel().selectFirst();
+        comboBoxGioiTinhNhanKhauHoGiaDinh.getItems().addAll(listGioiTinh);
+        comboBoxGioiTinhNhanKhauHoGiaDinh.getSelectionModel().selectFirst();
+        comboBoxTinhTrangNhanKhauHoGiaDinh.getItems().addAll(listTinhTrang);
+        comboBoxTinhTrangNhanKhauHoGiaDinh.getSelectionModel().selectFirst();
+        ComponentVisibility.change(comboBoxGioiTinhNhanKhauHoGiaDinh, false);
+        ComponentVisibility.change(comboBoxTinhTrangNhanKhauHoGiaDinh, false);
+
+        tableViewNhanKhauHoGiaDinh.setEditable(true);
+        tableComlumIDHoKhauNhanKhauHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell(listMaHoKhau));
+        tableComlumHoTenNhanKhauHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
+        tableComlumBietDanhNhanKhauHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
+        tableComlumNgaySinhNhanKhauHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
+        tableComlumGioiTinhNhanKhauHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listGioiTinh));
+        displayAllNhanKhauHoGiaDinh();
     }
+
+    /**
+     * Phương thức được gọi khi lựa chọn trường tìm kiếm
+     * Tùy vào trường được chọn sẽ hiển thị giao diện lựa chọn phù hợp
+     *
+     * @param e Sự kiện hành động bắt được
+     */
+    public void onSelectionComboBoxTimKiemTamVangHoGiaDinh(ActionEvent e) {
+        String truongTimKiem = String.valueOf(comboBoxTimKiemNhanKhauHoGiaDinh.getValue());
+        if (truongTimKiem.equals("Ngày sinh")) {
+            ComponentVisibility.change(textFieldLocThongTinNhanKhauHoGiaDinh, false);
+            ComponentVisibility.change(comboBoxTinhTrangNhanKhauHoGiaDinh, false);
+            ComponentVisibility.change(comboBoxGioiTinhNhanKhauHoGiaDinh, false);
+
+        } else if (truongTimKiem.equals("Giới tính")) {
+            ComponentVisibility.change(textFieldLocThongTinNhanKhauHoGiaDinh, false);
+            ComponentVisibility.change(comboBoxTinhTrangNhanKhauHoGiaDinh, false);
+            ComponentVisibility.change(comboBoxGioiTinhNhanKhauHoGiaDinh, true);
+
+        } else if (truongTimKiem.equals("Tình trạng")) {
+            ComponentVisibility.change(textFieldLocThongTinNhanKhauHoGiaDinh, false);
+            ComponentVisibility.change(comboBoxTinhTrangNhanKhauHoGiaDinh, true);
+            ComponentVisibility.change(comboBoxGioiTinhNhanKhauHoGiaDinh, false);
+
+        } else {
+            ComponentVisibility.change(textFieldLocThongTinNhanKhauHoGiaDinh, true);
+            ComponentVisibility.change(comboBoxTinhTrangNhanKhauHoGiaDinh, false);
+            ComponentVisibility.change(comboBoxGioiTinhNhanKhauHoGiaDinh, false);
+
+        }
+    }
+
+    @Override
+    public void onPressedButtonNhanKhauHoGiaDinh(MouseEvent e) {
+    }
+
+    /**
+     * Phương thức được gọi khi nhấn phím trong ô tìm kiếm
+     * Nếu phím ENTER được nhấn sẽ thực hiện lọc thông tin theo trường đã chọn
+     *
+     * @param keyEvent Sự kiện phím bắt được
+     */
+    public void onEnterPressedTrongOTimKiemNhanKhauHoGiaDinh(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            locThongTinNhanKhauHoGiaDinh();
+        }
+    }
+
+    /**
+     * Phương thức đươc gọi khi nhấn nút thêm mới
+     * Nếu chuột trái được nhấn sẽ chuyển sang màn hình thêm mới nhân khẩu
+     *
+     * @param e Sự kiện chuột bắt được
+     * @throws IOException
+     */
     public void onPressedButtonThemMoiNhanKhauHoGiaDinh(MouseEvent e) throws IOException {
-        if(e.isPrimaryButtonDown()){
+        if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(), "ThemMoiNhanKhauHoGiaDinhView.fxml");
         }
     }
-    public void onPressedButtonTamVangNhanKhauHoGiaDinh(MouseEvent e) throws IOException{
-        if(e.isPrimaryButtonDown()){
+
+    /**
+     * Phương thức đươc gọi khi nhấn nút Tạm vắng
+     * Nếu chuột trái được nhấn sẽ chuyển sang màn hình quản lý tạm vắng
+     *
+     * @param e Sự kiện chuột bắt được
+     * @throws IOException
+     */
+    public void onPressedButtonTamVangHoGiaDinh(MouseEvent e) throws IOException {
+        if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(), "TamVangHoGiaDinhView.fxml");
         }
     }
-    public void onPressedButtonTamTruNhanKhauHoGiaDinh(MouseEvent e) throws IOException{
-        if(e.isPrimaryButtonDown()){
+
+    /**
+     * Phương thức đươc gọi khi nhấn nút tạm trú
+     * Nếu chuột trái được nhấn sẽ chuyển sang màn hình quản lý tạm trú
+     *
+     * @param e Sự kiện chuột bắt được
+     * @throws IOException
+     */
+    public void onPressedButtonTamTruHoGiaDinh(MouseEvent e) throws IOException {
+        if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(), "TamTruHoGiaDinhView.fxml");
         }
     }
-    public void onPressedButtonKhaiTuNhanKhauHoGiaDinh(MouseEvent e) throws IOException{
-        if(e.isPrimaryButtonDown()){
+
+    /**
+     * Phương thức được gọi khi nhấn phím trong bảng nhân khẩu
+     * Nếu phím DELETE được nhấn sẽ thực hiện xóa nhân khẩu
+     *
+     * @param e Sự kiện phím bắt được
+     */
+    public void onDeletePressedTrongBangNhanKhauHoGiaDinh(KeyEvent e) {
+        if (e.getCode() == KeyCode.DELETE) {
             xoaNhanKhauHoGiaDinh();
         }
     }
-    public void displayAllNhanKhauCoTrongHoGiaDinh(){
+
+    /**
+     * Phương thức được gọi khi nhấn nút xóa
+     * Nếu chuột trái được nhấn sẽ thực hiện xóa nhân khẩu
+     *
+     * @param e Sự kiện chuột bắt được
+     */
+    public void onPressedButtonXoaNhanKhauHoGiaDinh(MouseEvent e) {
+        if (e.isPrimaryButtonDown()) {
+            xoaNhanKhauHoGiaDinh();
+        }
+    }
+
+    /**
+     * Phương thức được gọi khi nhấn nút tìm kiếm
+     * Nếu chuột trái được nhấn sẽ thực hiện lọc thông tin nhân khẩu
+     *
+     * @param e Sự kiện chuột bắt được
+     */
+    public void onPressedButtonLocThongTinNhanKhauHoGiaDinh(MouseEvent e) {
+        if (e.isPrimaryButtonDown()) {
+            locThongTinNhanKhauHoGiaDinh();
+        }
+    }
+
+    /**
+     * Phương thức hiển thị tất cả nhân khẩu
+     */
+    private void displayAllNhanKhauHoGiaDinh() {
         ObservableList<NhanKhauModel> nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauTrongHoKhau(maHoKhauDangNhap);
         tableViewNhanKhauHoGiaDinh.setItems(nhanKhauModelObservableList);
-        System.out.println(nhanKhauModelObservableList);
-        System.out.println(maHoKhauDangNhap);
     }
-    public void xoaNhanKhauHoGiaDinh(){
+
+    /**
+     * Phương thức xóa hộ khẩu được chọn trong bảng hiển thị
+     * Nếu không có hộ khẩu nào được chọn sẽ thông báo cho người dùng
+     */
+    private void xoaNhanKhauHoGiaDinh() {
         NhanKhauModel nhanKhauModel = tableViewNhanKhauHoGiaDinh.getSelectionModel().getSelectedItem();
         if (nhanKhauModel == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -102,47 +236,140 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
                     info.setHeaderText("Xóa không thành công!");
                 }
                 info.showAndWait();
-                displayAllNhanKhauCoTrongHoGiaDinh();
+                displayAllNhanKhauHoGiaDinh();
             }
         }
     }
-//    public void timKiemThongTinNhanKhauTheoCacTruong(){
-//        String cauHoi = textFieldLocThongTinHoGiaDinh.getText();
-//        String truongTimKiem = String.valueOf(comboBoxTimKiemHoGiaDinh.getValue());
-//        ObservableList<NhanKhauModel> nhanKhauModelObservableList = FXCollections.observableArrayList();
-//        switch (truongTimKiem) {
-//            case "Mã nhân khẩu":
-//                Optional<NhanKhauModel> nhanKhauModel = nhanKhauService.getNhanKhauByMaNhanKhauAndMaHoKhau(cauHoi, maHoKhauDangNhap);
-//                if (nhanKhauModel.isPresent()) {
-//                    nhanKhauModelObservableList.add(nhanKhauModel.get());
-//                }
-//                break;
-//            case "Họ tên":
-//                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByTenAndMaHoKhau(cauHoi, maHoKhauDangNhap);
-//                break;
-//            case "Biệt danh":
-//                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByBietDanhAndMaHoKhau(cauHoi, maHoKhauDangNhap);
-//                break;
-//            case "Tôn giáo":
-//                nhanKhauModelObservableList = nhanKhauService.getNhanKhauByTonGiaoAndMaHoKhau(cauHoi, maHoKhauDangNhap);
-//                break;
-//            case "Tình trạng":
-//                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByTinhTrangAndMaHoKhau(cauHoi, maHoKhauDangNhap);
-//                break;
-//            case "Nơi tạm vắng":
-//                nhanKhauModelObservableList = nhanKhauService.getNhanKhauByNoiTamVangAndMaHoKhau(cauHoi, maHoKhauDangNhap);
-//                break;
-//            case "Lý do":
-//                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByLyDoAndMaHoKhau(cauHoi, maHoKhauDangNhap);
-//                break;
-//            case "Ngày sinh":
-//                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByNgaySinhAndMaHoKhau(cauHoi, maHoKhauDangNhap);
-//                break;
-//            case "Giới tính":
-//                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByGioiTinhAndMaHoKhau(cauHoi, maHoKhauDangNhap);
-//                break;
-//
-//        }
-//        tableViewNhanKhauHoGiaDinh.setItems(nhanKhauModelObservableList);
-//    }
+
+    /**
+     * Phương thức tìm kiếm nhân khẩu theo trường tiêu chí đã chọn
+     * Các trường tìm kiếm hợp lệ là Mã nhân khẩu, Mã hộ khẩu, Họ tên, Biệt danh, Ngày sinh, Giới tính, Tôn giáo, Tình trạng
+     */
+    private void locThongTinNhanKhauHoGiaDinh() {
+        String dieuKienKiemTra = String.valueOf(comboBoxTimKiemNhanKhauHoGiaDinh.getValue());
+        String cauHoi = textFieldLocThongTinNhanKhauHoGiaDinh.getText();
+        ObservableList<NhanKhauModel> nhanKhauModelObservableList = FXCollections.observableArrayList();
+        switch (dieuKienKiemTra) {
+            case "Mã nhân khẩu":
+                Optional<NhanKhauModel> nhanKhauModel = nhanKhauService.getNhanKhauByMaNhanKhauAndMaHoKhau(cauHoi, maHoKhauDangNhap);
+                if (nhanKhauModel.isPresent()) {
+                    nhanKhauModelObservableList.add(nhanKhauModel.get());
+                }
+                break;
+            case "Họ tên":
+                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByTenAndMaHoKhau(cauHoi, maHoKhauDangNhap);
+                break;
+            case "Biệt danh":
+                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByBietDanhAndMaHoKhau(cauHoi, maHoKhauDangNhap);
+                break;
+            case "Giới tính":
+                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByGioiTinhAndMaHoKhau(
+                        String.valueOf(comboBoxGioiTinhNhanKhauHoGiaDinh.getValue()), maHoKhauDangNhap
+                );
+                break;
+            case "Tôn giáo":
+                nhanKhauModelObservableList = nhanKhauService.getNhanKhauByTonGiaoAndMaHoKhau(cauHoi, maHoKhauDangNhap);
+                break;
+            case "Tình trạng":
+                nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByTinhTrangAndMaHoKhau(
+                        String.valueOf(comboBoxTinhTrangNhanKhauHoGiaDinh.getValue()), maHoKhauDangNhap);
+                break;
+        }
+        tableViewNhanKhauHoGiaDinh.setItems(nhanKhauModelObservableList);
+    }
+
+    /**
+     * Phương thức xử lý sự kiện khi một ô trong bảng được thay đổi
+     *
+     * @param event Sự kiện ô được thay đổi trong bảng
+     */
+    public void handleOnEditCommit(TableColumn.CellEditEvent<NhanKhauModel, ?> event) {
+        int column = event.getTablePosition().getColumn();
+        NhanKhauModel nhanKhauModel = event.getRowValue();
+        switch (column) {
+            case 1:
+                nhanKhauModel.setMaHoKhau((String) event.getNewValue());
+                break;
+            case 2:
+                nhanKhauModel.setHoTen((String) event.getNewValue());
+                break;
+            case 3:
+                nhanKhauModel.setBietDanh((String) event.getNewValue());
+                break;
+            case 4:
+                Date ngaySinhMoi = (Date) event.getNewValue();
+                if (ngaySinhMoi != null) {
+                    nhanKhauModel.setNgaySinh(ngaySinhMoi);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
+                    alert.showAndWait();
+                    displayAllNhanKhauHoGiaDinh();
+                    return;
+                }
+                break;
+            case 5:
+                nhanKhauModel.setGioiTinh((String) event.getNewValue());
+                break;
+            case 6:
+                nhanKhauModel.setTonGiao((String) event.getNewValue());
+                break;
+            case 7:
+                nhanKhauModel.setTinhTrang((String) event.getNewValue());
+                break;
+        }
+        updateNhanKhauHoGiaDinh(nhanKhauModel);
+    }
+
+    /**
+     * Phương thức xử lý sự kiện khi một ô trong bảng được thay đổi
+     *
+     * @param event Sự kiện ô được thay đổi trong bảng
+     */
+    public void handleOnEditCancel(TableColumn.CellEditEvent<NhanKhauModel, ?> event) {
+        int column = event.getTablePosition().getColumn();
+        NhanKhauModel nhanKhauModel = event.getRowValue();
+        switch (column) {
+            case 1:
+                nhanKhauModel.setMaHoKhau((String) event.getOldValue());
+                break;
+            case 2:
+                nhanKhauModel.setHoTen((String) event.getOldValue());
+                break;
+            case 3:
+                nhanKhauModel.setBietDanh((String) event.getOldValue());
+                break;
+            case 4:
+                nhanKhauModel.setNgaySinh((Date) event.getOldValue());
+                break;
+            case 5:
+                nhanKhauModel.setGioiTinh((String) event.getOldValue());
+                break;
+            case 6:
+                nhanKhauModel.setTonGiao((String) event.getOldValue());
+                break;
+            case 7:
+                nhanKhauModel.setTinhTrang((String) event.getOldValue());
+                break;
+        }
+    }
+
+    /**
+     * Phương thức cập nhật thông tin nhân khẩu
+     *
+     * @param nhanKhauModel Lớp chứa thông tin của nhân khẩu muốn thay đổi
+     */
+    private void updateNhanKhauHoGiaDinh(NhanKhauModel nhanKhauModel) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo!");
+        if (nhanKhauService.updateNhanKhau(nhanKhauModel)) {
+            alert.setHeaderText("Sửa hộ khẩu thành công");
+        } else {
+            alert.setHeaderText("Sửa hộ khẩu không thành công");
+        }
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            displayAllNhanKhauHoGiaDinh();
+        }
+    }
 }
