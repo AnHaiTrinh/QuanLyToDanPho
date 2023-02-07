@@ -37,6 +37,8 @@ public class ControllerDangKyTamVangCanBoView extends ControllerCanBoView {
     @FXML
     ComboBox comBoBoxMaNhanKhauTamVangCanBo;
 
+    final private NhanKhauService nhanKhauService = new NhanKhauService();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
@@ -71,7 +73,6 @@ public class ControllerDangKyTamVangCanBoView extends ControllerCanBoView {
 
     public void onSelectionComBoBoxMaNhanKhauTamVangCanBo(ActionEvent e) {
         String maNhanKhau = String.valueOf(comBoBoxMaNhanKhauTamVangCanBo.getValue());
-        NhanKhauService nhanKhauService = new NhanKhauService();
         Optional<NhanKhauModel> hoKhauModel = nhanKhauService.getNhanKhauByMaNhanKhau(maNhanKhau);
         textFieldHoTenTamVangCanBo.setText(hoKhauModel.get().getHoTen());
     }

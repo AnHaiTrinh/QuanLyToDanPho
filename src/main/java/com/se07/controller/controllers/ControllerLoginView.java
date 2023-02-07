@@ -99,7 +99,7 @@ public class ControllerLoginView {
                         if (rs.getRow() == 1) {
                             LabelAlertLogin.setText("");
                             if (role == 1 && checkBoxAdmin.isSelected() == true && checkBoxUser.isSelected() == false && checkBoxTreasurer.isSelected() == false) {
-                                FileWriter fileWriter = new FileWriter("src/main/resources/UserData.txt");
+                                FileWriter fileWriter = new FileWriter("UserData.txt");
                                 fileWriter.write(rs.getInt("ID") + "\n" + rs.getString("username") + "\n"
                                         + rs.getString("password"));
                                 fileWriter.close();
@@ -108,7 +108,7 @@ public class ControllerLoginView {
                                 stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
                                 stage.close();
                             } else if (role == 2 && checkBoxAdmin.isSelected() == false && checkBoxUser.isSelected() == true && checkBoxTreasurer.isSelected() == false) {
-                                FileWriter fileWriter = new FileWriter("src/main/resources/UserData.txt");
+                                FileWriter fileWriter = new FileWriter("UserData.txt");
                                 fileWriter.write(rs.getInt("ID") + "\n" + rs.getString("username") + "\n"
                                         + rs.getString("password"));
                                 fileWriter.close();
@@ -117,7 +117,7 @@ public class ControllerLoginView {
                                 stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
                                 stage.close();
                             } else if (role == 0 && checkBoxAdmin.isSelected() == false && checkBoxUser.isSelected() == false && checkBoxTreasurer.isSelected() == true) {
-                                FileWriter fileWriter = new FileWriter("src/main/resources/UserData.txt");
+                                FileWriter fileWriter = new FileWriter("UserData.txt");
                                 fileWriter.write(rs.getInt("ID") + "\n" + rs.getString("username") + "\n"
                                         + rs.getString("password"));
                                 fileWriter.close();

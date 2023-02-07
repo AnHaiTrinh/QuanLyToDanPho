@@ -1,99 +1,99 @@
 #buttonTrangChuCanBo {
-    -fx-background-color: rgb(40, 132, 217);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
 
 #buttonTrangChuCanBo:hover {
-    -fx-background-color: rgba(4, 57, 244, 0.95)
+    -fx-background-color: #20a4f3
 }
 
 #buttonNhanKhauCanBo {
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
 
 #buttonNhanKhauCanBo:hover {
-    -fx-background-color: rgba(4, 57, 244, 0.95)
+    -fx-background-color: #20a4f3
 }
 
 #buttonHoKhauCanBo {
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
 
 #buttonHoKhauCanBo:hover {
-    -fx-background-color: rgba(4, 57, 244, 0.95)
+    -fx-background-color: #20a4f3
 }
 
 #buttonGiaiThuongCanBo {
-    -fx-background-color: rgba(0, 53, 240, 0.7);
+    -fx-background-color: rgba(8, 101, 155, 0.75);
 }
 
 #buttonGiaiThuongCanBo:hover {
-    -fx-background-color: rgba(4, 57, 244, 0.95)
+    -fx-background-color: #20a4f3
 }
 
 #anchorPaneChinhCanBo {
-    -fx-background-color: linear-gradient(#7758D1 2%, #F7CBFD 40%);
+    -fx-background-color: #DBBFBD;
 }
 
 #buttonLocThongTinHoKhauCanBo {
-    -fx-background-color: black;
+    -fx-background-color: #441151;
 }
 
 #buttonLocThongTinHoKhauCanBo:hover {
-    -fx-background-color: #177306;
+    -fx-background-color: #CA61C3;
 }
 
 #buttonDangXuatCanBo {
-    -fx-background-color: black;
+    -fx-background-color: #441151;
 }
 
 #buttonDangXuatCanBo:hover {
-    -fx-background-color: #BF3FBF;
+    -fx-background-color: #CA61C3;
 }
 
 #buttonThemNhanKhauCanBo {
-    -fx-background-color: black;
+    -fx-background-color: #441151;
 }
 
 #buttonThemNhanKhauCanBo:hover {
-    -fx-background-color: #BF3FBF;
+    -fx-background-color: #CA61C3;
 }
 
 #buttonTamVangCanBo {
-    -fx-background-color: black;
+    -fx-background-color: #441151;
 }
 
 #buttonTamVangCanBo:hover {
-    -fx-background-color: #BF3FBF;
+    -fx-background-color: #CA61C3;
 }
 
 #buttonTamTruCanBo {
-    -fx-background-color: black;
+    -fx-background-color: #441151;
 }
 
 #buttonTamTruCanBo:hover {
-    -fx-background-color: #BF3FBF;
+    -fx-background-color: #CA61C3;
 }
 
 #buttonXacNhanNhanKhauCanBo {
-    -fx-background-color: #000000;
+    -fx-background-color: #441151;
 }
 
 #buttonXacNhanNhanKhauCanBo:hover {
-    -fx-background-color: #BF3FBF;
+    -fx-background-color: #CA61C3;
 }
 
 #buttonTuChoiNhanKhauCanBo {
-    -fx-background-color: #000000;
+    -fx-background-color: #441151;
 }
 
 #buttonTuChoiNhanKhauCanBo:hover {
-    -fx-background-color: #BF3FBF;
+    -fx-background-color: #CA61C3;
 }
 
 #buttonXoaNhanKhauCanBo {
-    -fx-background-color: #000000;
+    -fx-background-color: #441151;
 }
 
 #buttonXoaNhanKhauCanBo:hover {
-    -fx-background-color: #BF3FBF;
+    -fx-background-color: #CA61C3;
 }

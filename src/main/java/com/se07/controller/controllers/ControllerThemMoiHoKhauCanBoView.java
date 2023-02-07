@@ -100,6 +100,7 @@ public class ControllerThemMoiHoKhauCanBoView extends ControllerCanBoView {
             alert.setTitle("Thông báo");
             alert.setHeaderText("Mã hộ khẩu đã tồn tại");
             alert.showAndWait();
+            textFieldMaHoKhauThemMoiHoKhauCanBo.requestFocus();
         } else {
             if (hoKhauService.addHoKhau(hoKhauModel)) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

@@ -12,7 +12,7 @@ public class UserInfo {
      */
     public static int getUserId() {
         try {
-            FileReader fileReader = new FileReader("src/main/resources/UserData.txt");
+            FileReader fileReader = new FileReader("UserData.txt");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             int index = Integer.valueOf(bufferedReader.readLine());
             return index;
@@ -26,7 +26,7 @@ public class UserInfo {
      */
     public static String getUsername() {
         try {
-            FileReader fileReader = new FileReader("src/main/resources/UserData.txt");
+            FileReader fileReader = new FileReader("UserData.txt");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             bufferedReader.readLine();
             String username = bufferedReader.readLine();

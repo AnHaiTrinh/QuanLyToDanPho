@@ -112,6 +112,7 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
             alert.setTitle("Thông báo");
             alert.setHeaderText("Mã nhân khẩu đã tồn tại");
             alert.showAndWait();
+            textFieldMaNhanKhauThemMoiNhanKhauCanBo.requestFocus();
         } else {
             if (nhanKhauService.addNhanKhau(nhanKhauModel)) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

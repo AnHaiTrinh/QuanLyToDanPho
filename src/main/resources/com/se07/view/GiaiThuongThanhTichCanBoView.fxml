@@ -11,160 +11,136 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="695.0"
-            stylesheets="@Css/GiaiThuongThanhTichCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.se07.controller.controllers.ControllerGiaiThuongThanhTichCanBoView">
+<AnchorPane fx:id="anchorPaneChinhCanBo" prefHeight="603.0" prefWidth="695.0" stylesheets="@Css/GiaiThuongThanhTichCanBoView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.ControllerGiaiThuongThanhTichCanBoView">
     <children>
-        <AnchorPane prefHeight="603.0" prefWidth="915.0">
-            <children>
-                <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true"
-                           preserveRatio="true">
-                    <image>
-                        <Image url="@Icon/imageAdmin.jpg"/>
-                    </image>
-                </ImageView>
-                <Button fx:id="buttonTrangChuCanBo" mnemonicParsing="false"
-                        onMousePressed="#onPressedButtonTrangChuCanBo" prefHeight="66.0" prefWidth="222.0"
-                        text="Trang chủ" textFill="WHITE">
-                    <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@Icon/IconAadminHome.png"/>
-                            </image>
-                        </ImageView>
-                    </graphic>
+          <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@Icon/imageAdmin.jpg" />
+              </image>
+          </ImageView>
+          <Button fx:id="buttonTrangChuCanBo" mnemonicParsing="false" onMousePressed="#onPressedButtonTrangChuCanBo" prefHeight="66.0" prefWidth="222.0" text="Trang chủ" textFill="WHITE">
+              <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@Icon/IconAadminHome.png" />
+                      </image>
+                  </ImageView>
+              </graphic>
+              <font>
+                  <Font name="System Bold" size="20.0" />
+              </font>
+          </Button>
+          <Button fx:id="buttonNhanKhauCanBo" layoutY="121.0" mnemonicParsing="false" onMousePressed="#onPressedButtonNhanKhauCanBo" prefHeight="58.0" prefWidth="222.0" text="Nhân khẩu" textFill="#f2f2f2">
+              <graphic>
+                  <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@Icon/IconAdminPeople.png" />
+                      </image>
+                  </ImageView>
+              </graphic>
+              <font>
+                  <Font name="System Bold" size="18.0" />
+              </font>
+          </Button>
+          <Button fx:id="buttonHoKhauCanBo" layoutY="211.0" mnemonicParsing="false" onMousePressed="#onPressedButtonHoKhauCanBo" prefHeight="58.0" prefWidth="222.0" text="Hộ khẩu" textFill="#f2f2f2">
+              <graphic>
+                  <ImageView fitHeight="46.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@Icon/IconAdminUser.png" />
+                      </image>
+                  </ImageView>
+              </graphic>
+              <font>
+                  <Font name="System Bold" size="18.0" />
+              </font>
+          </Button>
+          <AnchorPane fx:id="anchorPaneTinhNangNhanKhauCanBo" layoutX="758.0" prefHeight="603.0" prefWidth="157.0">
+              <children>
+                  <Button fx:id="buttonDangXuatCanBo" layoutX="21.0" layoutY="7.0" mnemonicParsing="false" onMousePressed="#onPressedButtonDangXuatCanBo" prefHeight="38.0" prefWidth="130.0" text="Đăng xuất" textFill="WHITE">
+                      <font>
+                          <Font name="System Bold" size="15.0" />
+                      </font>
+                  </Button>
+                  <Button fx:id="buttonPheDuyetThongTinThanhTichCanBo" layoutX="21.0" layoutY="238.0" mnemonicParsing="false" onMousePressed="#onPressedButtonPheDuyetThongTinThanhTichCanBo" prefHeight="38.0" prefWidth="130.0" text="Phê duyệt" textFill="WHITE">
+                      <font>
+                          <Font name="System Bold" size="15.0" />
+                      </font>
+                  </Button>
+                  <Button fx:id="buttonTuChoiThongTinThanhTichCanBo" layoutX="21.0" layoutY="308.0" mnemonicParsing="false" onMousePressed="#onPressedButtonTuChoiThongTinThanhTichCanBo" prefHeight="38.0" prefWidth="130.0" text="Từ chối" textFill="WHITE">
+                      <font>
+                          <Font name="System Bold" size="15.0" />
+                      </font>
+                  </Button>
+                  <Button fx:id="buttonThemMoiThongTinThanhTichCanBo" layoutX="21.0" layoutY="168.0" mnemonicParsing="false" onMousePressed="#onPressedButtonThemMoiThongTinThanhTichCanBo" prefHeight="38.0" prefWidth="130.0" text="Thêm mới" textFill="WHITE">
+                      <font>
+                          <Font name="System Bold" size="15.0" />
+                      </font>
+                  </Button>
+                  <Button fx:id="buttonXoaThongTinThanhTichCanBo" layoutX="21.0" layoutY="378.0" mnemonicParsing="false" onMousePressed="#onPressedButtonXoaThongTinThanhTichCanBo" prefHeight="38.0" prefWidth="130.0" text="Xóa" textFill="WHITE">
+                      <font>
+                          <Font name="System Bold" size="15.0" />
+                      </font>
+                  </Button>
+                  <Button fx:id="buttonThoatThongTinThanhTichCanBo" layoutX="21.0" layoutY="448.0" mnemonicParsing="false" onMousePressed="#onPressedButtonThoatThongTinThanhTichCanBo" prefHeight="38.0" prefWidth="130.0" text="Thoát" textFill="WHITE">
+                      <font>
+                          <Font name="System Bold" size="15.0" />
+                      </font>
+                  </Button>
+              </children>
+          </AnchorPane>
+          <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false" onMousePressed="#onPressedButtonGiaiThuongCanBo" prefHeight="58.0" prefWidth="222.0" text="Giải Thưởng" textFill="WHITE">
+              <graphic>
+                  <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@Icon/IconAdminAward.png" />
+                      </image>
+                  </ImageView>
+              </graphic>
+              <font>
+                  <Font name="System Bold" size="18.0" />
+              </font>
+          </Button>
+          <ScrollPane layoutX="222.0" layoutY="80.0" prefHeight="526.0" prefWidth="554.0">
+              <content>
+                  <AnchorPane>
+                      <children>
+                          <TableView fx:id="tableViewGiaiThuongThanhTichCanBo" onKeyPressed="#onDeletePressedTrongBangThongTinThanhTichCanBo" onMousePressed="#onPressedTrongCotMinhChungThanhTichCanBo" prefHeight="526.0" prefWidth="1000.0">
+                              <columns>
+                                  <TableColumn fx:id="tableColumnMaNhanKhauThanhTichCanBo" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="112.0" text="Mã nhân khẩu" />
+                                  <TableColumn fx:id="tableColumnHoTenThanhTichCanBo" prefWidth="137.0" text="Họ tên" />
+                                  <TableColumn fx:id="tableColumnTenDipThanhTichCanBo" prefWidth="98.0" text="Tên dịp" />
+                                  <TableColumn fx:id="tableColumnNamThanhTichCanBo" prefWidth="70.0" text="Năm" />
+                                  <TableColumn fx:id="tableColumnTruongThanhTichCanBo" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="127.0" text="Trường" />
+                                  <TableColumn fx:id="tableColumnLopThanhTichCanBo" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="54.0" text="Lớp" />
+                                  <TableColumn fx:id="tableColumnCapThanhTichCanBo" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="82.0" text="Cấp" />
+                                  <TableColumn fx:id="tableColumnKieuThanhTichCanBo" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="82.0" text="Kiểu" />
+                                  <TableColumn fx:id="tableColumnMinhChungThanhTichCanBo" prefWidth="120.0" styleClass="underline-blue-text" text="Minh chứng" />
+                                  <TableColumn fx:id="tableColumnTinhTrangThanhTichCanBo" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="120.0" text="Tình Trạng" />
+                              </columns>
+                          </TableView>
+                      </children>
+                  </AnchorPane>
+              </content>
+          </ScrollPane>
+      <AnchorPane layoutX="222.0" layoutY="18.0" onKeyPressed="#onEnterPressedTrongOTimKiemThanhTichCanBo">
+         <children>
+                <TextField fx:id="textFieldLocThongTinThanhTichCanBo" prefHeight="31.0" prefWidth="213.0" promptText="Tìm kiếm theo tên">
                     <font>
-                        <Font name="System Bold" size="20.0"/>
-                    </font>
-                </Button>
-                <Button fx:id="buttonNhanKhauCanBo" layoutY="121.0" mnemonicParsing="false"
-                        onMousePressed="#onPressedButtonNhanKhauCanBo" prefHeight="58.0" prefWidth="222.0"
-                        text="Nhân khẩu" textFill="#f2f2f2">
-                    <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@Icon/IconAdminPeople.png"/>
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font name="System Bold" size="18.0"/>
-                    </font>
-                </Button>
-                <Button fx:id="buttonHoKhauCanBo" layoutY="211.0" mnemonicParsing="false"
-                        onMousePressed="#onPressedButtonHoKhauCanBo" prefHeight="58.0" prefWidth="222.0" text="Hộ khẩu"
-                        textFill="#f2f2f2">
-                    <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@Icon/IconAdminUser.png"/>
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font name="System Bold" size="18.0"/>
-                    </font>
-                </Button>
-                <AnchorPane fx:id="anchorPaneTinhNangNhanKhauCanBo" layoutX="758.0" prefHeight="603.0"
-                            prefWidth="157.0">
-                    <children>
-                        <Button fx:id="buttonDangXuatCanBo" layoutX="21.0" layoutY="7.0" mnemonicParsing="false"
-                                onMousePressed="#onPressedButtonDangXuatCanBo" prefHeight="38.0" prefWidth="130.0"
-                                text="Đăng xuất" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="15.0"/>
-                            </font>
-                        </Button>
-                        <Button fx:id="buttonPheDuyetThongTinThanhTichCanBo" layoutX="21.0" layoutY="238.0"
-                                mnemonicParsing="false" onMousePressed="#onPressedButtonPheDuyetThongTinThanhTichCanBo"
-                                prefHeight="38.0" prefWidth="130.0" text="Phê duyệt" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="15.0"/>
-                            </font>
-                        </Button>
-                        <Button fx:id="buttonTuChoiThongTinThanhTichCanBo" layoutX="21.0" layoutY="308.0"
-                                mnemonicParsing="false" onMousePressed="#onPressedButtonTuChoiThongTinThanhTichCanBo"
-                                prefHeight="38.0" prefWidth="130.0" text="Từ chối" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="15.0"/>
-                            </font>
-                        </Button>
-                        <Button fx:id="buttonThemMoiThongTinThanhTichCanBo" layoutX="21.0" layoutY="168.0"
-                                mnemonicParsing="false" onMousePressed="#onPressedButtonThemMoiThongTinThanhTichCanBo"
-                                prefHeight="38.0" prefWidth="130.0" text="Thêm mới" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="15.0"/>
-                            </font>
-                        </Button>
-                        <Button fx:id="buttonXoaThongTinThanhTichCanBo" layoutX="21.0" layoutY="378.0"
-                                mnemonicParsing="false" onMousePressed="#onPressedButtonXoaThongTinThanhTichCanBo"
-                                prefHeight="38.0" prefWidth="130.0" text="Xóa" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="15.0"/>
-                            </font>
-                        </Button>
-                        <Button fx:id="buttonThoatThongTinThanhTichCanBo" layoutX="21.0" layoutY="448.0"
-                                mnemonicParsing="false" onMousePressed="#onPressedButtonThoatThongTinThanhTichCanBo"
-                                prefHeight="38.0" prefWidth="130.0" text="Thoát" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="15.0"/>
-                            </font>
-                        </Button>
-                    </children>
-                </AnchorPane>
-                <Button fx:id="buttonGiaiThuongCanBo" layoutY="301.0" mnemonicParsing="false"
-                        onMousePressed="#onPressedButtonGiaiThuongCanBo" prefHeight="58.0" prefWidth="222.0"
-                        text="Giải Thưởng" textFill="WHITE">
-                    <graphic>
-                        <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@Icon/IconAdminAward.png"/>
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font name="System Bold" size="18.0"/>
-                    </font>
-                </Button>
-                <ScrollPane layoutX="222.0" layoutY="80.0" prefHeight="526.0" prefWidth="554.0">
-                    <content>
-                        <AnchorPane>
-                            <children>
-                                <TableView prefHeight="526.0" prefWidth="1000.0">
-                                    <columns>
-                                        <TableColumn prefWidth="112.0" text="Mã nhân khẩu"/>
-                                        <TableColumn prefWidth="137.0" text="Họ tên"/>
-                                        <TableColumn prefWidth="98.0" text="Tên dịp"/>
-                                        <TableColumn prefWidth="70.0" text="Năm"/>
-                                        <TableColumn prefWidth="127.0" text="Trường"/>
-                                        <TableColumn prefWidth="54.0" text="Lớp"/>
-                                        <TableColumn prefWidth="82.0" text="Cấp"/>
-                                        <TableColumn prefWidth="82.0" text="Kiểu"/>
-                                        <TableColumn prefWidth="120.0" text="Minh chứng"/>
-                                        <TableColumn prefWidth="120.0" text="Tình Trạng"/>
-                                    </columns>
-                                </TableView>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </ScrollPane>
-                <TextField fx:id="textFieldLocThongTinHoKhauCanBo1" layoutX="222.0" layoutY="18.0" prefHeight="31.0"
-                           prefWidth="213.0" promptText="Tìm kiếm theo tên">
-                    <font>
-                        <Font name="System Italic" size="15.0"/>
+                        <Font name="System Italic" size="15.0" />
                     </font>
                 </TextField>
-                <ComboBox fx:id="comboBoxTimKiemHoKhauCanBo" layoutX="446.0" layoutY="18.0" prefHeight="31.0"
-                          prefWidth="100.0"/>
-                <Button fx:id="buttonLocThongTinThanhTichCanBo" layoutX="557.0" layoutY="18.0" mnemonicParsing="false"
-                        onMousePressed="#onPressedButtonLocThongTinThanhTichCanBo" prefHeight="31.0" prefWidth="100.0"
-                        text="Tìm kiếm" textFill="WHITE">
+                <ComboBox fx:id="comboBoxTimKiemThanhTichCanBo" layoutX="224.0" onAction="#onSelectionComboBoxTimKiemThanhTichCanBo" prefHeight="31.0" prefWidth="100.0" />
+                <Button fx:id="buttonLocThongTinThanhTichCanBo" layoutX="335.0" mnemonicParsing="false" onMousePressed="#onPressedButtonLocThongTinThanhTichCanBo" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
                     <font>
-                        <Font name="System Bold" size="15.0"/>
+                        <Font name="System Bold" size="15.0" />
                     </font>
                 </Button>
-            </children>
-        </AnchorPane>
+            <ComboBox fx:id="comboBoxMaNhanKhauThanhTichCanBo" disable="true" prefHeight="31.0" prefWidth="213.0" />
+            <ComboBox fx:id="comboBoxTenNamThanhTichCanBo" disable="true" prefHeight="31.0" prefWidth="213.0" />
+            <ComboBox fx:id="comboBoxCapThanhTichCanBo" disable="true" prefHeight="31.0" prefWidth="213.0" />
+            <ComboBox fx:id="comboBoxKieuThanhTichCanBo" disable="true" prefHeight="31.0" prefWidth="213.0" />
+            <ComboBox fx:id="comboBoxTinhTrangThanhTichCanBo" disable="true" prefHeight="31.0" prefWidth="213.0" />
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

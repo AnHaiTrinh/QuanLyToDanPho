@@ -56,7 +56,6 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
 
     final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
@@ -374,8 +373,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
                 break;
             case "Tình trạng":
                 nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauByTinhTrang(
-                        String.valueOf(comboBoxTinhTrangNhanKhauCanBo.getValue())
-                );
+                        String.valueOf(comboBoxTinhTrangNhanKhauCanBo.getValue()));
                 break;
         }
         tableViewNhanKhauCanBo.setItems(nhanKhauModelObservableList);
