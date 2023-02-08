@@ -2,6 +2,7 @@ package com.se07.controller.services;
 
 import com.se07.model.models.ThongTinDipDacBietModel;
 import com.se07.model.models.ThongTinDipDacBietDisplayModel;
+import com.se07.model.models.ThongTinThanhTichDisplayModel;
 import com.se07.util.ConnectionDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -330,7 +331,6 @@ public class ThongTinDipDacBietService {
                 " from thong_tin_dip_dac_biet t, nhan_khau n, dip_trao_thuong d " +
                 "where t.maNhanKhau = n.maNhanKhau and t.idDip = d.id " +
                 "and n.maHoKhau = '"+maHoKhau+"'";
-        System.out.println(query);
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -346,6 +346,169 @@ public class ThongTinDipDacBietService {
             }
             statement.close();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public ObservableList<ThongTinDipDacBietDisplayModel> getAllThongTinDipDacBietByTinhTrangAndMaHoKhau(String valueOf, String maHoKhauDangNhap) {
+        ObservableList<ThongTinDipDacBietDisplayModel> list = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.idNhap, t.maNhanKhau, n.hoTen, d.tenDip, d.nam, t.tinhTrang" +
+                " from thong_tin_dip_dac_biet t, nhan_khau n, dip_trao_thuong d " +
+                "where t.maNhanKhau = n.maNhanKhau and t.idDip = d.id " +
+                "and n.maHoKhau = '"+maHoKhauDangNhap+ "' and t.tinhTrang = '"+valueOf+"'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                ThongTinDipDacBietDisplayModel temp = new ThongTinDipDacBietDisplayModel(
+                        rs.getInt("idNhap"),
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getNString("tinhTrang"));
+                list.add(temp);
+            }
+            statement.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public ObservableList<ThongTinDipDacBietDisplayModel> getAllThongTinDipDacBietByIdAndMaHoKhau(int id, String maHoKhauDangNhap) {
+        ObservableList<ThongTinDipDacBietDisplayModel> thongTinDipDacBietModel = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.idNhap, t.maNhanKhau, n.hoTen, d.tenDip, d.nam, t.tinhTrang " +
+                "from thong_tin_dip_dac_biet t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "join dip_trao_thuong d on t.idDip = d.id" +
+                " where idDip = " + id +" and n.maHoKhau = '"+maHoKhauDangNhap+"'";
+        System.out.println(query);
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                ThongTinDipDacBietDisplayModel temp = new ThongTinDipDacBietDisplayModel(
+                        rs.getInt("idNhap"),
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getNString("tinhTrang"));
+                thongTinDipDacBietModel.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return thongTinDipDacBietModel;
+    }
+
+    public ObservableList<ThongTinDipDacBietDisplayModel> getAllThongTinDipDacBietByNamAndByMaHoKhau(int nam, String maHoKhauDangNhap) {
+        ObservableList<ThongTinDipDacBietDisplayModel> list = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.idNhap, t.maNhanKhau, n.hoTen, d.tenDip, d.nam, t.tinhTrang" +
+                " from thong_tin_dip_dac_biet t, nhan_khau n, dip_trao_thuong d " +
+                "where t.maNhanKhau = n.maNhanKhau and t.idDip = d.id " +
+                "and d.nam = '" + nam + "' and n.maHoKhau ='"+maHoKhauDangNhap+"'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                ThongTinDipDacBietDisplayModel temp = new ThongTinDipDacBietDisplayModel(
+                        rs.getInt("idNhap"),
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getNString("tinhTrang"));
+                list.add(temp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public ObservableList<ThongTinDipDacBietDisplayModel> getAllThongTinDipDacBietByTenDipAndMaHoKhau(String cauHoi, String maHoKhauDangNhap) {
+        ObservableList<ThongTinDipDacBietDisplayModel> list = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.idNhap, t.maNhanKhau, n.hoTen, d.tenDip, d.nam, t.tinhTrang" +
+                " from thong_tin_dip_dac_biet t, nhan_khau n, dip_trao_thuong d " +
+                "where t.maNhanKhau = n.maNhanKhau and t.idDip = d.id " +
+                "and d.tenDip like N'%" + cauHoi + "%' and n.maHoKhau ='"+maHoKhauDangNhap+"'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                ThongTinDipDacBietDisplayModel temp = new ThongTinDipDacBietDisplayModel(
+                        rs.getInt("idNhap"),
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getNString("tinhTrang"));
+                list.add(temp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public ObservableList<ThongTinDipDacBietDisplayModel> getAllThongTinDipDacBietByHoTenAndMaHoKhau(String cauHoi, String maHoKhauDangNhap) {
+        ObservableList<ThongTinDipDacBietDisplayModel> list = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.idNhap, t.maNhanKhau, n.hoTen, d.tenDip, d.nam, t.tinhTrang" +
+                " from thong_tin_dip_dac_biet t, nhan_khau n, dip_trao_thuong d " +
+                "where t.maNhanKhau = n.maNhanKhau and t.idDip = d.id " +
+                "and n.hoTen like N'%" + cauHoi + "%' and n.maHoKhau ='"+maHoKhauDangNhap+"'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                ThongTinDipDacBietDisplayModel temp = new ThongTinDipDacBietDisplayModel(
+                        rs.getInt("idNhap"),
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getNString("tinhTrang"));
+                list.add(temp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public ObservableList<ThongTinDipDacBietDisplayModel> getAllThongTinDipDacBietByMaNhanKhauAndMaHoKhau(String valueOf, String maHoKhauDangNhap) {
+        ObservableList<ThongTinDipDacBietDisplayModel> list = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.idNhap, t.maNhanKhau, n.hoTen, d.tenDip, d.nam, t.tinhTrang" +
+                " from thong_tin_dip_dac_biet t, nhan_khau n, dip_trao_thuong d " +
+                "where t.maNhanKhau = n.maNhanKhau and t.idDip = d.id " +
+                "and t.maNhanKhau like '%" + valueOf + "%' and n.maHoKhau ='"+maHoKhauDangNhap+"'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                ThongTinDipDacBietDisplayModel temp = new ThongTinDipDacBietDisplayModel(
+                        rs.getInt("idNhap"),
+                        rs.getString("maNhanKhau"),
+                        rs.getNString("hoTen"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getNString("tinhTrang"));
+                list.add(temp);
+            }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

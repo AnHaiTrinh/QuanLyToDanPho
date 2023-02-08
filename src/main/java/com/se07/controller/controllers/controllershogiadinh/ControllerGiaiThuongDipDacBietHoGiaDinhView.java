@@ -161,15 +161,15 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
         ObservableList<ThongTinDipDacBietDisplayModel> listThongTinDipDacBiet = FXCollections.observableArrayList();
         switch (dieuKienKiemTra) {
             case "Mã nhân khẩu":
-                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByMaNhanKhau(
-                        String.valueOf(comboBoxMaNhanKhauDipDacBietHoGiaDinh.getValue())
+                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByMaNhanKhauAndMaHoKhau(
+                        String.valueOf(comboBoxMaNhanKhauDipDacBietHoGiaDinh.getValue()), maHoKhauDangNhap
                 );
                 break;
             case "Họ tên":
-                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByHoTen(cauHoi);
+                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByHoTenAndMaHoKhau(cauHoi, maHoKhauDangNhap);
                 break;
             case "Tên dịp":
-                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByTenDip(cauHoi);
+                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByTenDipAndMaHoKhau(cauHoi, maHoKhauDangNhap);
                 break;
             case "Năm":
                 int nam = integerStringConverter.fromString(cauHoi);
@@ -182,19 +182,20 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
                     textFieldLocThongTinDipDacBietHoGiaDinh.requestFocus();
                     return;
                 }
-                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByNam(nam);
+                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByNamAndByMaHoKhau(nam, maHoKhauDangNhap);
                 break;
-            case "Tên - năm":
+            case "Tên - Năm":
+                System.out.println(1111);
                 String tenNam = String.valueOf(comboBoxTenNamDipDacBietHoGiaDinh.getValue());
                 int index = tenNam.indexOf(" - ");
                 String tenDip = tenNam.substring(0, index);
                 int namDip = Integer.parseInt(tenNam.substring(index + 3));
                 int id = dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, namDip).get().getId();
-                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietById(id);
+                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByIdAndMaHoKhau(id, maHoKhauDangNhap);
                 break;
             case "Tình trạng":
-                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByTinhTrang(
-                        String.valueOf(comboBoxTinhTrangDipDacBietHoGiaDinh.getValue())
+                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByTinhTrangAndMaHoKhau(
+                        String.valueOf(comboBoxTinhTrangDipDacBietHoGiaDinh.getValue()), maHoKhauDangNhap
                 );
                 break;
         }

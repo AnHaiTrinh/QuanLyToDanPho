@@ -383,26 +383,28 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
                     textFieldLocThongTinThanhTichHoGiaDinh.requestFocus();
                     return;
                 }
-                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByNam(nam);
+                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByNamAndHoKhau(nam, maHoKhauDangNhap);
+                break;
             case "Tên - Năm":
                 String tenNam = String.valueOf(comboBoxTenNamThanhTichHoGiaDinh.getValue());
                 int index = tenNam.indexOf(" - ");
                 String tenDip = tenNam.substring(0, index);
                 int namDip = Integer.parseInt(tenNam.substring(index + 3));
                 int id = dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, namDip).get().getId();
-                listThongTinThanhTich = thongTinThanhTichService.getThongTinThanhTichByIdDip(id);
+                listThongTinThanhTich = thongTinThanhTichService.getThongTinThanhTichByIdDipAndMaHoKhau(id, maHoKhauDangNhap);
                 break;
             case "Cấp thành tích":
                 String capThanhTich = String.valueOf(comboBoxCapThanhTichHoGiaDinh.getValue());
-                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByCapThanhTich(capThanhTich);
+                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByCapThanhTichAndMaHoKhau
+                        (capThanhTich, maHoKhauDangNhap);
                 break;
             case "Kiểu thành tích":
                 String kieuThanhTich = String.valueOf(comboBoxKieuThanhTichHoGiaDinh.getValue());
-                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByKieuThanhTich(kieuThanhTich);
+                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByKieuThanhTichAndMaHoKhau(kieuThanhTich, maHoKhauDangNhap);
                 break;
             case "Tình trạng":
                 String tinhTrang = String.valueOf(comboBoxTinhTrangThanhTichHoGiaDinh.getValue());
-                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByTinhTrang(tinhTrang);
+                listThongTinThanhTich = thongTinThanhTichService.getAllThongTinThanhTichByTinhTrangAndHoKhau(tinhTrang, maHoKhauDangNhap);
                 break;
         }
         tableViewGiaiThuongThanhTichHoGiaDinh.setItems(listThongTinThanhTich);

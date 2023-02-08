@@ -294,11 +294,11 @@ public class ControllerGiaThuongHoGiaDinh extends ControllerHoGiaDinhView implem
         ObservableList<DipTraoThuongModel> dipTraoThuongModelObservableList = FXCollections.observableArrayList();
         switch (dieuKienKiemTra) {
             case "Tên":
-                dipTraoThuongModelObservableList = dipTraoThuongService.getDipTraoThuongByTen(cauHoi);
+                dipTraoThuongModelObservableList = dipTraoThuongService.getDipTraoThuongByTenAndMaHoKhau(cauHoi, maHoKhauDangNhap);
                 break;
             case "Kiểu":
-                dipTraoThuongModelObservableList = dipTraoThuongService.getAllDipTraoThuongByKieu(
-                        String.valueOf(comboBoxKieuGiaiThuongHoGiaDinh.getValue()));
+                dipTraoThuongModelObservableList = dipTraoThuongService.getAllDipTraoThuongByKieuAndMaHoKhau(
+                        String.valueOf(comboBoxKieuGiaiThuongHoGiaDinh.getValue()),maHoKhauDangNhap);
                 break;
             case "Năm":
                 int nam = integerStringConverter.fromString(textFieldLocThongTinGiaiThuongHoGiaDinh.getText());
@@ -310,14 +310,14 @@ public class ControllerGiaThuongHoGiaDinh extends ControllerHoGiaDinhView implem
                     displayAllDipTraoThuongHoGiaDinh();
                     textFieldLocThongTinGiaiThuongHoGiaDinh.requestFocus();
                 } else {
-                    dipTraoThuongModelObservableList = dipTraoThuongService.getAllDipTraoThuongByNam(nam);
+                    dipTraoThuongModelObservableList = dipTraoThuongService.getAllDipTraoThuongByNamAndMaHoKhau(nam, maHoKhauDangNhap);
                 }
                 break;
             case "Ngày tạo":
                 if (datePickerTu.getValue() != null && datePickerDen.getValue() != null) {
-                    dipTraoThuongModelObservableList = dipTraoThuongService.getAllDipTraoThuongNgayTaoBetween(
+                    dipTraoThuongModelObservableList = dipTraoThuongService.getAllDipTraoThuongNgayTaoBetweenAndMaHoKhau(
                             Date.from(datePickerTu.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
-                            Date.from(datePickerDen.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                            Date.from(datePickerDen.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), maHoKhauDangNhap);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Thông báo");
@@ -329,9 +329,9 @@ public class ControllerGiaThuongHoGiaDinh extends ControllerHoGiaDinhView implem
                 break;
             case "Ngày kết thúc":
                 if (datePickerTu.getValue() != null && datePickerDen.getValue() != null) {
-                    dipTraoThuongModelObservableList = dipTraoThuongService.getAllDipTraoThuongNgayKetThucBetween(
+                    dipTraoThuongModelObservableList = dipTraoThuongService.getAllDipTraoThuongNgayKetThucBetweenAndMaHoKhau(
                             Date.from(datePickerTu.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
-                            Date.from(datePickerDen.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                            Date.from(datePickerDen.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), maHoKhauDangNhap);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Thông báo");
