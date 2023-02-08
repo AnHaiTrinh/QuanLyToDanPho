@@ -15,8 +15,7 @@ public class MinhChungController {
     @FXML
     BorderPane borderPaneMinhChung;
     @FXML
-    public
-    ImageView imageViewMinhChung;
+    public ImageView imageViewMinhChung;
     @FXML
     Button buttonThayDoiFile;
     public File fileMinhChung;
