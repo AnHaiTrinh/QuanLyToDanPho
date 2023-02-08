@@ -21,7 +21,7 @@
                         <Image url="@Icon/imageAdmin.jpg" />
                     </image>
                 </ImageView>
-                <Button fx:id="buttonTrangChuCanBo" mnemonicParsing="false" prefHeight="66.0" prefWidth="222.0" text="Trang chủ" textFill="WHITE">
+                <Button fx:id="buttonTrangChuCanBo" mnemonicParsing="false" onMousePressed="#onPressedButtonTrangChuCanBo" prefHeight="66.0" prefWidth="222.0" text="Trang chủ" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                             <image>
