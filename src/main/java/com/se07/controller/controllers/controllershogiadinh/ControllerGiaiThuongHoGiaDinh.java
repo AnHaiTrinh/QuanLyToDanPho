@@ -28,7 +28,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class ControllerGiaThuongHoGiaDinh extends ControllerHoGiaDinhView implements Initializable {
+public class ControllerGiaiThuongHoGiaDinh extends ControllerHoGiaDinhView implements Initializable {
     @FXML
     ComboBox comboBoxTimKiemGiaiThuongHoGiaDinh, comboBoxKieuGiaiThuongHoGiaDinh;
     @FXML

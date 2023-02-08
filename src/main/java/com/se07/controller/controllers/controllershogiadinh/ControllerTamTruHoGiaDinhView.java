@@ -46,7 +46,7 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
     TextField textFieldLocThongTinTamTruHoGiaDinh;
 
     final ObservableList<String> listTimKiem = FXCollections.observableArrayList(
-            "Mã nhân khẩu", "Họ tên", "Nơi tạm vắng", "Tình trạng");
+            "Họ tên","Mã nhân khẩu", "Tình trạng");
     final private ObservableList<String> listTinhTrang =
             FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
     final private TamTruService tamTruService = new TamTruService();

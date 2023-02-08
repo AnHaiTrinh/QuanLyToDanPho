@@ -387,7 +387,6 @@ public class ThongTinDipDacBietService {
                 "from thong_tin_dip_dac_biet t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id" +
                 " where idDip = " + id +" and n.maHoKhau = '"+maHoKhauDangNhap+"'";
-        System.out.println(query);
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);

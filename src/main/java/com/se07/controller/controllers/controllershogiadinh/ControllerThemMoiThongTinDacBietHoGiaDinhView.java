@@ -39,7 +39,6 @@ public class ControllerThemMoiThongTinDacBietHoGiaDinhView extends ControllerHoG
         super.initialize(url, resourceBundle);
 
         comboBoxMaNhanKhauDipDacBietHoGiaDinh.getItems().addAll(nhanKhauService.getAllMaNhanKhauTrongHoKhau(maHoKhauDangNhap));
-        comboBoxMaNhanKhauDipDacBietHoGiaDinh.getSelectionModel().selectFirst();
         comboBoxTenDipDacBietHoGiaDinh.getItems().addAll(dipTraoThuongService.getAllTenTraoThuongDipDacBiet());
         comboBoxNamDipDacBietHoGiaDinh.getItems().addAll(dipTraoThuongService.getAllNamTraoThuongDipDacBiet());
         comboBoxTenDipDacBietHoGiaDinh.getSelectionModel().selectFirst();

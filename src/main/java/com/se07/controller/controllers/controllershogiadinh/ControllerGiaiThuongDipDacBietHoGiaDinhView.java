@@ -43,7 +43,7 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
     private final ThongTinDipDacBietService thongTinDipDacBietService = new ThongTinDipDacBietService();
     final private MyIntegerStringConverter integerStringConverter = new MyIntegerStringConverter();
     final ObservableList<String> listTimKiem = FXCollections.observableArrayList(
-            "Mã nhân khẩu", "Họ tên", "Tên dịp", "Năm", "Tên - Năm", "Tình trạng");
+             "Họ tên","Mã nhân khẩu", "Tên dịp", "Năm", "Tên - Năm", "Tình trạng");
     final ObservableList<String> listTenNamDipTraoThuong = dipTraoThuongService.getAllTenNamDipDacBiet();
     final ObservableList<String> listMaNhanKhau = new NhanKhauService().getAllMaNhanKhauTrongHoKhau(maHoKhauDangNhap);
     final ObservableList<String> listTinhTrang =

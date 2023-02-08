@@ -116,7 +116,6 @@ public class TamVangService {
                 "from (tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau) " +
                 "inner join ho_khau on ho_khau.maHoKhau = n.maHoKhau " +
                 "where n.maNhanKhau = '" + maNhanKhau + "' and ho_khau.maHoKhau = '"+maHoKhau+"' ";
-        System.out.println(query);
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -582,7 +581,6 @@ public class TamVangService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(tamVangDisplayModels);
         return tamVangDisplayModels;
     }
 

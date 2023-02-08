@@ -582,7 +582,6 @@ public class TamTruService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(tamTruDisplayModels);
         return tamTruDisplayModels;
     }
     public boolean deleteTamTru(TamTruDisplayModel tamTruDisplayModel) {
@@ -637,7 +636,6 @@ public class TamTruService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(tamTruDisplayModels);
         return tamTruDisplayModels;
     }
 }

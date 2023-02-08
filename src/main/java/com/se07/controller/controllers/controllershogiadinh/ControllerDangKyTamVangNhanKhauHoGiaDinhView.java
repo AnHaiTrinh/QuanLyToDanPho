@@ -33,7 +33,6 @@ public class ControllerDangKyTamVangNhanKhauHoGiaDinhView extends ControllerHoGi
         datePickerTuNgayDangKyTamVangHoGiaDinh.setValue(today);
         datePickerDenNgayDangKyTamVangHoGiaDinh.setValue(today.plusDays(7));
         comBoBoxMaNhanKhauDangKyTamVangHoGiaDinh.getItems().addAll(new NhanKhauService().getAllMaNhanKhauTrongHoKhau(maHoKhauDangNhap));
-        comBoBoxMaNhanKhauDangKyTamVangHoGiaDinh.getSelectionModel().selectFirst();
         textFieldHoTenDangKyTamVangHoGiaDinh.setEditable(false);
     }
     public void onPressedButtonDangKyTamVangNhanKhauHoGiaDinh(MouseEvent e) throws IOException {
