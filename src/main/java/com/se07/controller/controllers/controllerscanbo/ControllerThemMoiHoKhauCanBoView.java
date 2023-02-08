@@ -1,4 +1,4 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllerscanbo;
 
 import com.se07.controller.services.HoKhauService;
 import com.se07.model.models.HoKhauModel;

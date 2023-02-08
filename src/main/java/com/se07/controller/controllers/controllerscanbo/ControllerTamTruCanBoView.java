@@ -1,11 +1,9 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllerscanbo;
 
 import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.TamTruService;
 import com.se07.model.models.TamTruDisplayModel;
 import com.se07.model.models.TamTruModel;
-import com.se07.model.models.TamVangDisplayModel;
-import com.se07.model.models.TamVangModel;
 import com.se07.util.ComponentVisibility;
 import com.se07.util.MyDateStringConverter;
 import javafx.collections.FXCollections;

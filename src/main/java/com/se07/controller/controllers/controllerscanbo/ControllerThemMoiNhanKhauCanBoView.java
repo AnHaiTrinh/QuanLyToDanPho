@@ -1,4 +1,4 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllerscanbo;
 
 import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.NhanKhauService;
@@ -19,7 +19,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
 /**

@@ -1,5 +1,6 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllerscanbo;
 
+import com.se07.controller.controllers.MinhChungController;
 import com.se07.controller.services.DipTraoThuongService;
 import com.se07.controller.services.NhanKhauService;
 import com.se07.controller.services.ThongTinThanhTichService;

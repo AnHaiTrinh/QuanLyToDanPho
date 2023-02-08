@@ -1,9 +1,8 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllerscanbo;
 
 import com.se07.controller.services.DipTraoThuongService;
 import com.se07.controller.services.NhanKhauService;
 import com.se07.controller.services.ThongTinDipDacBietService;
-import com.se07.model.models.DipTraoThuongModel;
 import com.se07.model.models.NhanKhauModel;
 import com.se07.model.models.ThongTinDipDacBietModel;
 import javafx.collections.ObservableList;
