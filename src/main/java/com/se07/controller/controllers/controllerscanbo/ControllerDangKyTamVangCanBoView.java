@@ -1,4 +1,4 @@
-package com.se07.controller.controllers;
+package com.se07.controller.controllers.controllerscanbo;
 
 import com.se07.controller.services.NhanKhauService;
 import com.se07.controller.services.TamVangService;
@@ -14,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
