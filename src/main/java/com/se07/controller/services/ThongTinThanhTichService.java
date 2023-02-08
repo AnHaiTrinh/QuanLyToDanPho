@@ -218,6 +218,7 @@ public class ThongTinThanhTichService {
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
                 "and n.maHoKhau='"+maHoKhau+"' ";
+        System.out.println(query);
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);

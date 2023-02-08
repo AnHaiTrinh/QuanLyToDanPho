@@ -40,11 +40,10 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
 
     private final DipTraoThuongService dipTraoThuongService = new DipTraoThuongService();
     private final ThongTinDipDacBietService thongTinDipDacBietService = new ThongTinDipDacBietService();
-    final private MyIntegerStringConverter integerStringConverter = new MyIntegerStringConverter();
     final ObservableList<String> listTimKiem = FXCollections.observableArrayList(
             "Mã nhân khẩu", "Họ tên", "Tên dịp", "Năm", "Tên - Năm", "Tình trạng");
     final ObservableList<String> listTenNamDipTraoThuong = dipTraoThuongService.getAllTenNamDipDacBiet();
-    final ObservableList<String> listMaNhanKhau = new NhanKhauService().getAllMaNhanKhau();
+    final ObservableList<String> listMaNhanKhau = new NhanKhauService().getAllMaNhanKhauTrongHoKhau(maHoKhauDangNhap);
     final ObservableList<String> listTinhTrang =
             FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
 
@@ -130,31 +129,30 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
     }
 
     private void xoaThongTinDipDacBietHoGiaDinh() {
+        ThongTinDipDacBietDisplayModel thongTinDipDacBietDisplayModel =
+                tableViewDipDacBietHoGiaDinh.getSelectionModel().getSelectedItem();
+        if (thongTinDipDacBietDisplayModel == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Vui lòng chọn trường hợp muốn xóa");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Bạn chắc chắn muốn xóa trường hợp này!");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                Alert info = new Alert(Alert.AlertType.INFORMATION);
+                info.setTitle("Thông báo");
+                if (thongTinDipDacBietService.deleteThongTinDipDacBiet(thongTinDipDacBietDisplayModel)) {
+                    info.setHeaderText("Xóa thành công!");
+                } else {
+                    info.setHeaderText("Xóa không thành công!");
+                }
+                info.showAndWait();
+                displayAllThongTinDipDacBietHoGiaDinh();
+            }
+        }
     }
-//        ThongTinDipDacBietDisplayModel thongTinDipDacBietDisplayModel =
-//                tableViewDipDacBietHoGiaDinh.getSelectionModel().getSelectedItem();
-//        if (thongTinDipDacBietDisplayModel == null) {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("Thông báo");
-//            alert.setHeaderText("Vui lòng chọn trường hợp muốn xóa");
-//            alert.showAndWait();
-//        } else {
-//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//            alert.setTitle("Thông báo");
-//            alert.setHeaderText("Bạn chắc chắn muốn xóa trường hợp này!");
-//            if (alert.showAndWait().get() == ButtonType.OK) {
-//                Alert info = new Alert(Alert.AlertType.INFORMATION);
-//                info.setTitle("Thông báo");
-//                if (thongTinDipDacBietService.deleteThongTinDipDacBiet(thongTinDipDacBietDisplayModel)) {
-//                    info.setHeaderText("Xóa thành công!");
-//                } else {
-//                    info.setHeaderText("Xóa không thành công!");
-//                }
-//                info.showAndWait();
-//                displayAllThongTinDipDacBietHoGiaDinh();
-//            }
-//        }
-//    }
     public void locThongTinDipDacBietHoGiaDinh() {
     }
 

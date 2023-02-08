@@ -61,7 +61,7 @@ public class ControllerThemMoiThongTinThanhTichHoGiaDinh extends ControllerHoGia
             }
         });
 
-        comboBoxMaNhanKhauThanhTichHoGiaDinh.getItems().addAll(nhanKhauService.getAllMaNhanKhau());
+        comboBoxMaNhanKhauThanhTichHoGiaDinh.getItems().addAll(nhanKhauService.getAllMaNhanKhauTrongHoKhau(maHoKhauDangNhap));
         comboBoxTenDipThanhTichHoGiaDinh.getItems().addAll(dipTraoThuongService.getAllTenTraoThuongThanhTich());
         comboBoxNamThanhTichHoGiaDinh.getItems().addAll(dipTraoThuongService.getAllNamTraoThuongThanhTich());
         comboBoxCapThanhTichHoGiaDinh.getItems().addAll(listCapThanhTich);

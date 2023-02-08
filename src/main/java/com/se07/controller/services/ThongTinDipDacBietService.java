@@ -221,7 +221,7 @@ public class ThongTinDipDacBietService {
     }
 
 
-//
+
 //    public boolean addThongTinDipDacBiet(ThongTinDipDacBietModel thongTinDipDacBietModel) {
 //        Connection connection = ConnectionDatabase.getConnection();
 //        String query = "insert into thong_tin_dip_dac_biet (maNhanKhau, dipDacBiet, nam, tinhTrang, idNguoiThucHien) " +
@@ -235,7 +235,7 @@ public class ThongTinDipDacBietService {
 //            statement.setInt(5, thongTinDipDacBietModel.getIdNguoiThucHien());
 //            statement.executeUpdate();
 //            statement.close();
-//            
+//
 //            return true;
 //        } catch (Exception e) {
 //            e.printStackTrace();

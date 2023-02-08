@@ -105,6 +105,10 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
         ComponentVisibility.change(comboBoxKieuThanhTichHoGiaDinh, false);
         ComponentVisibility.change(comboBoxTinhTrangThanhTichHoGiaDinh, false);
 
+        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTich =
+                thongTinThanhTichService.getAllThongTinThanhTichAndHoKhau(maHoKhauDangNhap);
+        tableViewGiaiThuongThanhTichHoGiaDinh.setItems(listThongTinThanhTich);
+
         tableViewGiaiThuongThanhTichHoGiaDinh.setEditable(true);
         tableColumnMaNhanKhauThanhTichHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listMaNhanKhau));
         tableColumnLopThanhTichHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(integerStringConverter));
@@ -112,7 +116,8 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
         tableColumnCapThanhTichHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listCapThanhTich));
         tableColumnKieuThanhTichHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listKieuThanhTich));
 
-        displayAllThongTinThanhTichHoGiaDinh();
+
+        //displayAllThongTinThanhTichHoGiaDinh();
     }
 
     public void onSelectionComboBoxTimKiemThanhTichHoGiaDinh(ActionEvent e) {
@@ -168,6 +173,7 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
         ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTich =
                 thongTinThanhTichService.getAllThongTinThanhTichAndHoKhau(maHoKhauDangNhap);
         tableViewGiaiThuongThanhTichHoGiaDinh.setItems(listThongTinThanhTich);
+        System.out.println(listThongTinThanhTich);
     }
 
     public void onPressedButtonXoaThongTinThanhTichHoGiaDinh(MouseEvent e) {
