@@ -1,8 +1,10 @@
 package com.se07.controller.controllers.controllerscanbo;
 
 
+import com.se07.controller.controllers.controllerscanbo.ControllerCanBoView;
 import com.se07.controller.services.DipTraoThuongService;
 import com.se07.model.models.DipTraoThuongModel;
+import com.se07.util.MyIntegerStringConverter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -11,7 +13,6 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,23 +23,22 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ControllerTaoBieuMauDipTraoThuongCanBoView extends ControllerCanBoView {
-    @FXML
-    GridPane gridPaneTaoBieuMauDipTraoThuongCanBo;
+
     @FXML
     TextField textFieldTenDipTraoThuongCanBo, textFieldNamDipTraoThuongCanBo, textFieldGhiChuDipTraoThuongCanBo;
     @FXML
     DatePicker datePickerNgayTaoDipTraoThuongCanBo, datePickerNgayKetThucDipTraoThuongCanBo;
+
     @FXML
     ComboBox comboBoxKieuDipTraoThuongCanBo;
 
     final ObservableList<String> listKieuGiaiThuong = FXCollections.observableArrayList("Dịp đặc biệt", "Thành tích");
-    final LocalDate today = LocalDate.now();
-    private final DipTraoThuongService dipTraoThuongService = new DipTraoThuongService();
+    final private LocalDate today = LocalDate.now();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
-        gridPaneTaoBieuMauDipTraoThuongCanBo.setOnKeyPressed((keyEvent) -> {
+        anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {
             if (keyEvent.getCode().equals(KeyCode.ENTER)) {
                 xacNhanTaoBieuMauDipTraoThuongCanBo();
             } else if (keyEvent.getCode().equals(KeyCode.Q)) {
@@ -49,7 +49,6 @@ public class ControllerTaoBieuMauDipTraoThuongCanBoView extends ControllerCanBoV
                 }
             }
         });
-        textFieldNamDipTraoThuongCanBo.setText(String.valueOf(today.getYear()));
         comboBoxKieuDipTraoThuongCanBo.getItems().addAll(listKieuGiaiThuong);
         comboBoxKieuDipTraoThuongCanBo.getSelectionModel().selectFirst();
         datePickerNgayTaoDipTraoThuongCanBo.setValue(today);
@@ -69,6 +68,7 @@ public class ControllerTaoBieuMauDipTraoThuongCanBoView extends ControllerCanBoV
     }
 
     private void xacNhanTaoBieuMauDipTraoThuongCanBo() {
+        DipTraoThuongService dipTraoThuongService = new DipTraoThuongService();
         if (textFieldTenDipTraoThuongCanBo.getText().isBlank() || textFieldNamDipTraoThuongCanBo.getText().isBlank()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
@@ -76,8 +76,8 @@ public class ControllerTaoBieuMauDipTraoThuongCanBoView extends ControllerCanBoV
             alert.showAndWait();
             return;
         }
-        int nam = Integer.valueOf(textFieldNamDipTraoThuongCanBo.getText());
-        if (nam < 0) {
+        int nam = new MyIntegerStringConverter().fromString(textFieldNamDipTraoThuongCanBo.getText());
+        if (nam == -1) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Vui lòng nhập năm hợp lệ");
@@ -105,7 +105,7 @@ public class ControllerTaoBieuMauDipTraoThuongCanBoView extends ControllerCanBoV
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("");
-            alert.setContentText("Thêm mới nhân khẩu thất bại!");
+            alert.setContentText("Thêm mới dịp trao thưởng thất bại!");
             alert.showAndWait();
         }
     }

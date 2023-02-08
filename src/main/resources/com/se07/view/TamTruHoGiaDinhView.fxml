@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneRightAdmin" prefHeight="604.0" prefWidth="554.0" stylesheets="@Css/TamTruHoGiaDinhView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllershogiadinh.ControllerTamTruHoGiaDinhView">
+   <children>
+      <AnchorPane fx:id="anchorPaneChinhHoGiaDinh" prefHeight="603.0" prefWidth="915.0">
+         <children>
+            <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Icon/imageAdmin.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="buttonTrangChuHoGiaDinh" mnemonicParsing="false" prefHeight="66.0" prefWidth="222.0" text="Trang chủ" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icon/IconAadminHome.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonNhanKhauHoGiaDinh" layoutY="121.0" mnemonicParsing="false" onMousePressed="#onPressedButtonNhanKhauHoGiaDinh" prefHeight="58.0" prefWidth="222.0" text="Nhân khẩu" textFill="#f2f2f2">
+               <graphic>
+                  <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icon/IconAdminPeople.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <AnchorPane fx:id="anchorPaneTinhNangNhanKhauHoGiaDinh" layoutX="758.0" layoutY="5.0" prefHeight="603.0" prefWidth="157.0">
+               <children>
+                  <Button fx:id="buttonDangXuatHoGiaDinh" layoutX="21.0" layoutY="7.0" mnemonicParsing="false" onMousePressed="#onPressedButtonDangXuatHoGiaDinh" prefHeight="38.0" prefWidth="126.0" text="Đăng xuất" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <Button fx:id="buttonGiaiThuongHoGiaDinh" layoutY="211.0" mnemonicParsing="false" onMousePressed="#onPressedButtonGiaiThuongHoGiaDinh" prefHeight="58.0" prefWidth="222.0" text="Giải Thưởng" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icon/IconAdminAward.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="220.0" prefHeight="603.0" prefWidth="538.0">
+         <children>
+            <ScrollPane layoutX="2.0" layoutY="80.0" prefHeight="526.0" prefWidth="554.0">
+               <content>
+                  <AnchorPane>
+                     <children>
+                        <TableView fx:id="tableViewTamTruHoGiaDinh" editable="true" onKeyPressed="#onDeletePressedTrongBangTamTruHoGiaDinh" prefHeight="528.0" prefWidth="890.0">
+                           <columns>
+                              <TableColumn fx:id="tableColumnCCCDTamTruHoGiaDinh" maxWidth="110.0" minWidth="50.0" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="110.0" text="CCCD" />
+                              <TableColumn fx:id="tableColumnHoTenTamTruHoGiaDinh" maxWidth="180.0" minWidth="100.0" prefWidth="153.0" text="Họ tên" />
+                              <TableColumn fx:id="tableColumnNoiTamTruHoGiaDinh" maxWidth="400.0" minWidth="100.0" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="157.0" text="Nơi Tạm Trú" />
+                              <TableColumn fx:id="tableColumnTuNgayTamTruHoGiaDinh" maxWidth="150.0" minWidth="80.0" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" text="Từ Ngày" />
+                              <TableColumn fx:id="tableColumnDenNgayTamTruHoGiaDinh" maxWidth="150.0" minWidth="80.0" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" text="Đến Ngày" />
+                              <TableColumn fx:id="tableColumnLyDoTamTruHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="200.0" text="Lý Do" />
+                              <TableColumn fx:id="tableColumnTinhTrangTamTruHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="110.0" text="Tình trạng" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+            <AnchorPane layoutX="2.0" layoutY="5.0">
+               <children>
+                  <Button fx:id="buttonLocThongTinTamTruHoGiaDinh" layoutX="335.0" layoutY="13.0" mnemonicParsing="false" onMousePressed="#onPressedButtonLocThongTinTamTruHoGiaDinh" prefHeight="31.0" prefWidth="100.0" text="Tìm kiếm" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <ComboBox fx:id="comboBoxTimKiemTamTruHoGiaDinh" layoutX="224.0" layoutY="13.0" onAction="#onSelectionComboBoxTimKiemTamTruHoGiaDinh" prefHeight="31.0" prefWidth="100.0" />
+                  <TextField fx:id="textFieldLocThongTinTamTruHoGiaDinh" layoutY="13.0" prefHeight="31.0" prefWidth="213.0" promptText="Nhập thông tin tìm kiếm">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
+                  </TextField>
+                  <ComboBox fx:id="comboBoxTinhTrangTamTruHoGiaDinh" disable="true" layoutY="13.0" prefHeight="31.0" prefWidth="213.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panePeopleAdmin" layoutX="760.0" layoutY="50.0" prefHeight="553.0" prefWidth="154.0">
+         <children>
+            <Button fx:id="buttonThemMoiTamTruHoGiaDinh" layoutX="21.0" layoutY="128.0" mnemonicParsing="false" onMousePressed="#onPressedButtonThemMoiTamTruHoGiaDinh" prefHeight="38.0" prefWidth="130.0" text="Thêm mới" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonXoaTamTruHoGiaDinh" layoutX="21.0" layoutY="198.0" mnemonicParsing="false" onMousePressed="#onPressedButtonXoaTamTruHoGiaDinh" prefHeight="38.0" prefWidth="130.0" text="Xóa" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonThoatTamTruHoGiaDinh" layoutX="21.0" layoutY="268.0" mnemonicParsing="false" onMousePressed="#onPressedButtonThoatTamTruHoGiaDinh" prefHeight="38.0" prefWidth="130.0" text="Thoát" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

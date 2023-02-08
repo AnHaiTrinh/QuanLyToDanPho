@@ -37,11 +37,36 @@ public class TamVangService {
         return listTamVang;
     }
 
+
     public ObservableList<TamVangDisplayModel> getAllTamVangDisplay() {
         ObservableList<TamVangDisplayModel> tamVangDisplayModels = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
                 "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                TamVangDisplayModel tmp = new TamVangDisplayModel(rs.getInt("maTamVang"),
+                        rs.getString("maNhanKhau"), rs.getNString("hoTen"),
+                        rs.getNString("noiTamVang"), rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"), rs.getNString("lyDo"),
+                        rs.getNString("tinhTrang"));
+                tamVangDisplayModels.add(tmp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tamVangDisplayModels;
+    }
+
+    public ObservableList<TamVangDisplayModel> getAllTamVangDisplayByHoKhau(String maHoKhau) {
+        ObservableList<TamVangDisplayModel> tamVangDisplayModels = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
+                "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "and n.maHoKhau ='" + maHoKhau + "' ";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -84,12 +109,63 @@ public class TamVangService {
         return tamVangDisplayModels;
     }
 
+    public ObservableList<TamVangDisplayModel> getTamVangByMaNhanKhauAndHoKhau(String maNhanKhau, String maHoKhau) {
+        ObservableList<TamVangDisplayModel> tamVangDisplayModels = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
+                "from (tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau) " +
+                "inner join ho_khau on ho_khau.maHoKhau = n.maHoKhau " +
+                "where n.maNhanKhau = '" + maNhanKhau + "' and ho_khau.maHoKhau = '" + maHoKhau + "' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                TamVangDisplayModel tmp = new TamVangDisplayModel(rs.getInt("maTamVang"),
+                        rs.getString("maNhanKhau"), rs.getNString("hoTen"),
+                        rs.getNString("noiTamVang"), rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"), rs.getNString("lyDo"),
+                        rs.getNString("tinhTrang"));
+                tamVangDisplayModels.add(tmp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tamVangDisplayModels;
+    }
+
     public ObservableList<TamVangDisplayModel> getTamVangByHoTen(String hoTen) {
         ObservableList<TamVangDisplayModel> tamVangDisplayModels = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
                 "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "where n.hoTen like N'%" + hoTen + "%'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                TamVangDisplayModel tmp = new TamVangDisplayModel(rs.getInt("maTamVang"),
+                        rs.getString("maNhanKhau"), rs.getNString("hoTen"),
+                        rs.getNString("noiTamVang"), rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"), rs.getNString("lyDo"),
+                        rs.getNString("tinhTrang"));
+                tamVangDisplayModels.add(tmp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tamVangDisplayModels;
+    }
+
+    public ObservableList<TamVangDisplayModel> getTamVangByHoTenAndHoKhau(String hoTen, String maHoKhau) {
+        ObservableList<TamVangDisplayModel> tamVangDisplayModels = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
+                "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "inner join ho_khau h on h.maHoKhau = n.maHoKhau " +
+                "where n.hoTen like N'% " + hoTen + "%'" +
+                "and n.maHoKhau = '" + maHoKhau + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -132,6 +208,31 @@ public class TamVangService {
         return listTamVang;
     }
 
+    public ObservableList<TamVangDisplayModel> getTamVangByNoiTamVangAndHoKhau(String noiTamVang, String maHoKhau) {
+        ObservableList<TamVangDisplayModel> listTamVang = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
+                "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "where t.noiTamVang like N'%" + noiTamVang + "%'" +
+                "and n.maHoKhau = '" + maHoKhau + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                TamVangDisplayModel tmp = new TamVangDisplayModel(rs.getInt("maTamVang"),
+                        rs.getString("maNhanKhau"), rs.getNString("hoTen"),
+                        rs.getNString("noiTamVang"), rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"), rs.getNString("lyDo"),
+                        rs.getNString("tinhTrang"));
+                listTamVang.add(tmp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listTamVang;
+    }
+
     public ObservableList<TamVangDisplayModel> getTamVangBytinhTrang(String tinhTrang) {
         ObservableList<TamVangDisplayModel> listTamVang = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
@@ -156,12 +257,64 @@ public class TamVangService {
         return listTamVang;
     }
 
+    public ObservableList<TamVangDisplayModel> getTamVangBytinhTrangAndHoKhau(String tinhTrang, String maHoKhau) {
+        ObservableList<TamVangDisplayModel> listTamVang = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
+                "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "where t.tinhTrang = N'" + tinhTrang + "'" +
+                "and n.maHoKhau ='" + maHoKhau + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                TamVangDisplayModel tmp = new TamVangDisplayModel(rs.getInt("maTamVang"),
+                        rs.getString("maNhanKhau"), rs.getNString("hoTen"),
+                        rs.getNString("noiTamVang"), rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"), rs.getNString("lyDo"),
+                        rs.getNString("tinhTrang"));
+                listTamVang.add(tmp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listTamVang;
+    }
+
     public ObservableList<TamVangDisplayModel> getTamVangByNgayBetween(Date tu, Date den) {
         ObservableList<TamVangDisplayModel> listTamVang = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
                 "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "where (t.tuNgay <= ?) and (t.denNgay => ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setDate(1, new java.sql.Date(den.getTime()));
+            statement.setDate(2, new java.sql.Date(tu.getTime()));
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                TamVangDisplayModel tmp = new TamVangDisplayModel(rs.getInt("maTamVang"),
+                        rs.getString("maNhanKhau"), rs.getNString("hoTen"),
+                        rs.getNString("noiTamVang"), rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"), rs.getNString("lyDo"),
+                        rs.getNString("tinhTrang"));
+                listTamVang.add(tmp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listTamVang;
+    }
+
+    public ObservableList<TamVangDisplayModel> getTamVangByNgayBetweenAndHoKhau(Date tu, Date den, String maHoKhau) {
+        ObservableList<TamVangDisplayModel> listTamVang = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
+                "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "where (t.tuNgay <= ?) and (t.denNgay => ?)" +
+                "and n.maHoKhau ='" + maHoKhau + "'";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setDate(1, new java.sql.Date(den.getTime()));
@@ -284,7 +437,7 @@ public class TamVangService {
     public Optional<TamVangModel> getTamVangByMaTamVang(int maTamVang) {
         Optional<TamVangModel> tamVangModel = Optional.empty();
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select * from tam_vang where maTamVang = " + maTamVang;
+        String query = "select * from tam_vang where maTamVang = '" + maTamVang + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -407,4 +560,47 @@ public class TamVangService {
                 tamVangDisplayModel.getNoiTamVang(), tamVangDisplayModel.getTuNgay(), tamVangDisplayModel.getDenNgay(),
                 tamVangDisplayModel.getLyDo(), tamVangDisplayModel.getTinhTrang(), tamVangModel.getIdNguoiThucHien());
     }
+
+    public ObservableList<TamVangDisplayModel> getTamVangByMaChuHo(String maChuHo) {
+        ObservableList<TamVangDisplayModel> tamVangDisplayModels = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
+                "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
+                "where n.maHoKhau ='" + maChuHo + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                TamVangDisplayModel tmp = new TamVangDisplayModel(rs.getInt("maTamVang"),
+                        rs.getString("maNhanKhau"), rs.getNString("hoTen"),
+                        rs.getNString("noiTamVang"), rs.getDate("tuNgay"),
+                        rs.getDate("denNgay"), rs.getNString("lyDo"),
+                        rs.getNString("tinhTrang"));
+                tamVangDisplayModels.add(tmp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tamVangDisplayModels;
+    }
+
+    public int countTamVangByMaHoKhau(String maHoKhau) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select count(*) from tam_vang t, nhan_khau n where t.maNhanKhau = n.maNhanKhau " +
+                "and n.maHoKhau ='" + maHoKhau + "' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            rs.next();
+            int count = rs.getInt(1);
+            statement.close();
+            return count;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+
 }

@@ -12,87 +12,64 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPaneMainAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" onKeyPressed="#onEscPressedLogin" prefHeight="400.0" prefWidth="600.0"
-            stylesheets="@Css/Login.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.se07.controller.controllers.controllerslogin.ControllerLoginView">
-    <left>
-        <AnchorPane prefHeight="366.0" prefWidth="278.0" style="-fx-background-color: #FAFAFA;"
-                    BorderPane.alignment="CENTER">
-            <children>
-                <ImageView fitHeight="365.0" fitWidth="432.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@Icon/LogoLogin.jpg"/>
-                    </image>
-                </ImageView>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutY="365.0" prefHeight="36.0" prefWidth="277.0"
-                       style="-fx-background-color: #396DD4;" text="Quản lý nhân khẩu SE07" textFill="#f5f5f5"/>
-            </children>
-        </AnchorPane>
-    </left>
-    <right>
-        <AnchorPane prefHeight="400.0" prefWidth="289.0" BorderPane.alignment="CENTER">
-            <children>
-                <Label alignment="CENTER" layoutY="49.0" prefHeight="21.0" prefWidth="320.0"
-                       text="ĐĂNG NHẬP QUẢN LÝ NHÂN KHẨU">
-                    <font>
-                        <Font name="System Bold" size="15.0"/>
-                    </font>
-                </Label>
-                <Button fx:id="buttonCancelLogin" layoutX="29.0" layoutY="309.0" mnemonicParsing="false"
-                        onMousePressed="#onPressedButtonCancelLogin" prefHeight="31.0" prefWidth="270.0" text="Cancel"
-                        textFill="#eeecec">
-                    <opaqueInsets>
-                        <Insets/>
-                    </opaqueInsets>
-                    <font>
-                        <Font name="System Bold" size="15.0"/>
-                    </font>
-                </Button>
-                <Button fx:id="buttonLogin" layoutX="29.0" layoutY="257.0" mnemonicParsing="false"
-                        onMousePressed="#onPressedButtonLogin" prefHeight="31.0" prefWidth="270.0" text="Login"
-                        textFill="#ebe1e1">
-                    <opaqueInsets>
-                        <Insets/>
-                    </opaqueInsets>
-                    <font>
-                        <Font name="System Bold" size="15.0"/>
-                    </font>
-                </Button>
-                <TextField fx:id="TextFieldUserName" layoutX="73.0" layoutY="91.0" onKeyPressed="#onEnterPressedLogin"
-                           prefHeight="31.0" prefWidth="215.0" promptText="Username" style="-fx-background-radius: 15;">
-                    <font>
-                        <Font name="System Italic" size="15.0"/>
-                    </font>
-                </TextField>
-                <Label fx:id="LabelAlertLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="218.0"
-                       prefHeight="21.0" prefWidth="322.0" textFill="#dd1515"/>
-                <PasswordField fx:id="PasswordFieldPassword" layoutX="73.0" layoutY="142.0"
-                               onKeyPressed="#onEnterPressedLogin" prefHeight="31.0" prefWidth="215.0"
-                               promptText="Password" style="-fx-background-radius: 15;">
-                    <font>
-                        <Font name="System Italic" size="15.0"/>
-                    </font>
-                </PasswordField>
-                <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="46.0" layoutY="96.0" pickOnBounds="true"
-                           preserveRatio="true">
-                    <image>
-                        <Image url="@Icon/IconLoginUser.png"/>
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="46.0" layoutY="146.0" pickOnBounds="true"
-                           preserveRatio="true">
-                    <image>
-                        <Image url="@Icon/IconLoginPassword.png"/>
-                    </image>
-                </ImageView>
-                <CheckBox fx:id="checkBoxAdmin" layoutX="11.0" layoutY="185.0" mnemonicParsing="false"
-                          onKeyPressed="#onEnterPressedLogin" text="Tổ trưởng"/>
-                <CheckBox fx:id="checkBoxUser" layoutX="115.0" layoutY="185.0" mnemonicParsing="false"
-                          onKeyPressed="#onEnterPressedLogin" text="Hộ gia đình"/>
-                <CheckBox fx:id="checkBoxTreasurer" layoutX="228.0" layoutY="185.0" mnemonicParsing="false"
-                          onKeyPressed="#onEnterPressedLogin" text="Thủ quỹ"/>
-            </children>
-        </AnchorPane>
-    </right>
+<BorderPane fx:id="borderPaneMainAdmin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onEscPressedLogin" prefHeight="400.0" prefWidth="600.0" stylesheets="@Css/Login.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllerslogin.ControllerLoginView">
+   <left>
+      <AnchorPane prefHeight="366.0" prefWidth="278.0" style="-fx-background-color: #FAFAFA;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="365.0" fitWidth="432.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Icon/LogoLogin.jpg" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="365.0" prefHeight="36.0" prefWidth="277.0" style="-fx-background-color: #396DD4;" text="Quản lý nhân khẩu SE07" textFill="#f5f5f5" />
+         </children></AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="289.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutY="49.0" prefHeight="21.0" prefWidth="320.0" text="ĐĂNG NHẬP QUẢN LÝ NHÂN KHẨU">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
+            <Button fx:id="buttonCancelLogin" layoutX="29.0" layoutY="309.0" mnemonicParsing="false" onMousePressed="#onPressedButtonCancelLogin" prefHeight="31.0" prefWidth="270.0" text="Cancel" textFill="#eeecec">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonLogin" layoutX="29.0" layoutY="257.0" mnemonicParsing="false" onMousePressed="#onPressedButtonLogin" prefHeight="31.0" prefWidth="270.0" text="Login" textFill="#ebe1e1">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <TextField fx:id="TextFieldUserName" layoutX="73.0" layoutY="91.0" onKeyPressed="#onEnterPressedLogin" prefHeight="31.0" prefWidth="215.0" promptText="Username" style="-fx-background-radius: 15;">
+               <font>
+                  <Font name="System Italic" size="15.0" />
+               </font></TextField>
+            <Label fx:id="LabelAlertLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="218.0" prefHeight="21.0" prefWidth="322.0" textFill="#dd1515" />
+            <PasswordField fx:id="PasswordFieldPassword" layoutX="73.0" layoutY="142.0" onKeyPressed="#onEnterPressedLogin" prefHeight="31.0" prefWidth="215.0" promptText="Password" style="-fx-background-radius: 15;">
+               <font>
+                  <Font name="System Italic" size="15.0" />
+               </font></PasswordField>
+            <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="46.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Icon/IconLoginUser.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="46.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Icon/IconLoginPassword.png" />
+               </image>
+            </ImageView>
+            <CheckBox fx:id="checkBoxAdmin" layoutX="11.0" layoutY="185.0" mnemonicParsing="false" onKeyPressed="#onEnterPressedLogin" text="Tổ trưởng" />
+            <CheckBox fx:id="checkBoxUser" layoutX="115.0" layoutY="185.0" mnemonicParsing="false" onKeyPressed="#onEnterPressedLogin" text="Hộ gia đình" />
+            <CheckBox fx:id="checkBoxTreasurer" layoutX="228.0" layoutY="185.0" mnemonicParsing="false" onKeyPressed="#onEnterPressedLogin" text="Thủ quỹ" />
+         </children>
+      </AnchorPane>
+   </right>
 </BorderPane>

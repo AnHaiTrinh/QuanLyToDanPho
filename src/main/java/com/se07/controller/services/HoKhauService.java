@@ -107,6 +107,7 @@ public class HoKhauService {
         return listHoKhau;
     }
 
+
     /**
      * Phương thức thêm mới hộ khẩu vào cơ sở dữ liệu
      *
@@ -217,6 +218,38 @@ public class HoKhauService {
         }
         return listMaHoKhau;
     }
+    public ObservableList<String> getAllDiaChi(){
+        ObservableList<String> listDiaChiHoKhau = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select diaChi from ho_khau";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listDiaChiHoKhau.add(rs.getString(1));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listDiaChiHoKhau;
+    }
+    public ObservableList<String> getAllDiaChiHoKhau(String maHoKhau){
+        ObservableList<String> listDiaChiHoKhau = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select diaChi from ho_khau where maHoKhau = '" + maHoKhau + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                listDiaChiHoKhau.add(rs.getString(1));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listDiaChiHoKhau;
+    }
 
     /**
      * Phương thức trả về mã hộ khẩu dựa vào địa chỉ
@@ -270,20 +303,22 @@ public class HoKhauService {
         }
         return hoKhauModelObservableList;
     }
-
-    public ObservableList<String> getAllDiaChi() {
-        ObservableList<String> listDiaChi = FXCollections.observableArrayList();
+    public String getMaHoKhauByDiaChiHoGiaDinh(String diaChi) {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select diaChi from ho_khau";
+        String ans="123";
+        String query = "select maHoKhau from ho_khau where diaChi = '" + diaChi + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
-                listDiaChi.add(rs.getNString("diaChi"));
+                ans = rs.getString("maHoKhau");
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listDiaChi;
+        System.out.println(ans);
+        return ans;
     }
+
 }

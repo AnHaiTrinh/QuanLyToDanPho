@@ -443,4 +443,44 @@ public class DipTraoThuongService {
         }
         return listTenNamDipTraoThuong;
     }
+
+    public ObservableList<DipTraoThuongModel> getAllDipTraoThuongNgayKetThucBetweenAndMaHoKhau(Date from, Date from1, String maHoKhauDangNhap) {
+        return null;
+    }
+
+    public ObservableList<DipTraoThuongModel> getAllDipTraoThuongNgayTaoBetweenAndMaHoKhau(Date from, Date from1, String maHoKhauDangNhap) {
+        return null;
+    }
+
+    public ObservableList<DipTraoThuongModel> getAllDipTraoThuongByNamAndMaHoKhau(int nam, String maHoKhauDangNhap) {
+        return null;
+    }
+
+    public ObservableList<DipTraoThuongModel> getDipTraoThuongByTenAndMaHoKhau(String cauHoi, String maHoKhauDangNhap) {
+        return null;
+    }
+
+    public ObservableList<DipTraoThuongModel> getAllDipTraoThuongByKieuAndMaHoKhau(String valueOf, String maHoKhauDangNhap) {
+        ObservableList<DipTraoThuongModel> listDipTraoThuong = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select * from dip_trao_thuong where kieu = N'" + valueOf + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                DipTraoThuongModel temp = new DipTraoThuongModel(rs.getInt("id"),
+                        rs.getNString("tenDip"),
+                        rs.getInt("nam"),
+                        rs.getDate("ngayTao"),
+                        rs.getDate("ngayKetThuc"),
+                        rs.getNString("kieu"),
+                        rs.getNString("ghiChu"));
+                listDipTraoThuong.add(temp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listDipTraoThuong;
+    }
 }

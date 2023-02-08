@@ -23,6 +23,8 @@ module com.se07.main {
     opens com.se07.model.models to javafx.base;
     exports com.se07.controller.controllers.controllerscanbo;
     opens com.se07.controller.controllers.controllerscanbo to javafx.fxml;
+    exports com.se07.controller.controllers.controllershogiadinh;
+    opens com.se07.controller.controllers.controllershogiadinh to javafx.fxml;
     exports com.se07.controller.controllers.controllerslogin;
     opens com.se07.controller.controllers.controllerslogin to javafx.fxml;
 

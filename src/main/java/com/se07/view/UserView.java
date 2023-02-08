@@ -10,10 +10,8 @@ public class UserView {
     public Stage openWindow() {
         try{
             Stage stage = new Stage();
-            FXMLLoader fxmlLoader = new FXMLLoader(LoginView.class.getResource("user.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(UserView.class.getResource("TrangChuHoGiaDinhView.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 915, 603);
-            Image image = new Image(LoginView.class.getResource("IconLogin.png").toString());
-            stage.getIcons().add(image);
             stage.setTitle("QUẢN LÝ NHÂN KHẨU");
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(scene);
