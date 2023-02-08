@@ -66,7 +66,7 @@ public class TamVangService {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
                 "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
-                "and n.maHoKhau ='"+maHoKhau+"' ";
+                "and n.maHoKhau ='" + maHoKhau + "' ";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -115,7 +115,7 @@ public class TamVangService {
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
                 "from (tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau) " +
                 "inner join ho_khau on ho_khau.maHoKhau = n.maHoKhau " +
-                "where n.maNhanKhau = '" + maNhanKhau + "' and ho_khau.maHoKhau = '"+maHoKhau+"' ";
+                "where n.maNhanKhau = '" + maNhanKhau + "' and ho_khau.maHoKhau = '" + maHoKhau + "' ";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -138,7 +138,7 @@ public class TamVangService {
         ObservableList<TamVangDisplayModel> tamVangDisplayModels = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
-                "from tam_vang t join nhan_khau n on t.maHoKhau = n.maHoKhau " +
+                "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "where n.hoTen like N'%" + hoTen + "%'";
         try {
             Statement statement = connection.createStatement();
@@ -165,7 +165,7 @@ public class TamVangService {
                 "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "inner join ho_khau h on h.maHoKhau = n.maHoKhau " +
                 "where n.hoTen like N'% " + hoTen + "%'" +
-                "and n.maHoKhau = '" +maHoKhau+"'";
+                "and n.maHoKhau = '" + maHoKhau + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -208,13 +208,13 @@ public class TamVangService {
         return listTamVang;
     }
 
-    public ObservableList<TamVangDisplayModel> getTamVangByNoiTamVangAndHoKhau(String noiTamVang, String maHoKhau ) {
+    public ObservableList<TamVangDisplayModel> getTamVangByNoiTamVangAndHoKhau(String noiTamVang, String maHoKhau) {
         ObservableList<TamVangDisplayModel> listTamVang = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
                 "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "where t.noiTamVang like N'%" + noiTamVang + "%'" +
-                "and n.maHoKhau = '"+maHoKhau+"'";
+                "and n.maHoKhau = '" + maHoKhau + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -263,7 +263,7 @@ public class TamVangService {
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
                 "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "where t.tinhTrang = N'" + tinhTrang + "'" +
-                "and n.maHoKhau ='"+maHoKhau+"'";
+                "and n.maHoKhau ='" + maHoKhau + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -314,7 +314,7 @@ public class TamVangService {
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
                 "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "where (t.tuNgay <= ?) and (t.denNgay => ?)" +
-                "and n.maHoKhau ='"+maHoKhau+"'";
+                "and n.maHoKhau ='" + maHoKhau + "'";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setDate(1, new java.sql.Date(den.getTime()));
@@ -560,12 +560,13 @@ public class TamVangService {
                 tamVangDisplayModel.getNoiTamVang(), tamVangDisplayModel.getTuNgay(), tamVangDisplayModel.getDenNgay(),
                 tamVangDisplayModel.getLyDo(), tamVangDisplayModel.getTinhTrang(), tamVangModel.getIdNguoiThucHien());
     }
+
     public ObservableList<TamVangDisplayModel> getTamVangByMaChuHo(String maChuHo) {
         ObservableList<TamVangDisplayModel> tamVangDisplayModels = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select t.maTamVang, t.maNhanKhau, hoTen, noiTamVang, tuNgay, denNgay, lyDo, t.tinhTrang " +
                 "from tam_vang t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
-                "where n.maHoKhau ='"+ maChuHo + "'";
+                "where n.maHoKhau ='" + maChuHo + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -587,7 +588,7 @@ public class TamVangService {
     public int countTamVangByMaHoKhau(String maHoKhau) {
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select count(*) from tam_vang t, nhan_khau n where t.maNhanKhau = n.maNhanKhau " +
-                "and n.maHoKhau ='"+maHoKhau+"' ";
+                "and n.maHoKhau ='" + maHoKhau + "' ";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -600,7 +601,6 @@ public class TamVangService {
             return -1;
         }
     }
-
 
 
 }

@@ -46,12 +46,11 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
     TextField textFieldLocThongTinTamTruHoGiaDinh;
 
     final ObservableList<String> listTimKiem = FXCollections.observableArrayList(
-            "Họ tên","Mã nhân khẩu", "Tình trạng");
+            "Họ tên", "Mã nhân khẩu", "Tình trạng");
     final private ObservableList<String> listTinhTrang =
             FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
     final private TamTruService tamTruService = new TamTruService();
     final private NhanKhauService nhanKhauService = new NhanKhauService();
-    final ObservableList<String> listMaNhanKhau = nhanKhauService.getAllMaNhanKhau();
     final ObservableList<String> listDiaChi = new HoKhauService().getAllDiaChiHoKhau(maHoKhauDangNhap);
 
     final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
@@ -174,7 +173,7 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
                 TamTruDisplayModelObservableList = tamTruService.getDisplayTamTruByCCCDandHoKhau(cauHoi, maHoKhauDangNhap);
                 break;
             case "Họ tên":
-                TamTruDisplayModelObservableList = tamTruService.getDisplayTamTruByHoTenAndMaHoKhau(cauHoi,maHoKhauDangNhap);
+                TamTruDisplayModelObservableList = tamTruService.getDisplayTamTruByHoTenAndMaHoKhau(cauHoi, maHoKhauDangNhap);
                 break;
 //            case "Nơi tạm vắng":
 //                TamTruDisplayModelObservableList = tamTruService.getDisplayTamTruByNoiTamTruAndMaHoKhau(cauHoi, maHoKhauDangNhap);
@@ -238,7 +237,7 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
         TamTruDisplayModel tamTruDisplayModel = event.getRowValue();
         switch (column) {
             case 0:
-                tamTruDisplayModel.setCCCD ((String) event.getOldValue());
+                tamTruDisplayModel.setCCCD((String) event.getOldValue());
                 break;
             case 2:
                 tamTruDisplayModel.setNoiTamTru((String) event.getOldValue());

@@ -91,6 +91,12 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
         }
     }
 
+    public void onEnterPressedTrongOTImKiemTamVang(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            locThongTinTamVangCanBo();
+        }
+    }
+
     public void onPressedButtonThemMoiTamVangCanBo(MouseEvent e) throws IOException {
         if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileCanBo((Stage) ((Node) e.getSource()).getScene().getWindow(),
@@ -247,6 +253,7 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
                 break;
             case "Nơi tạm vắng":
                 tamVangDisplayModelObservableList = tamVangService.getTamVangByNoiTamVang(cauHoi);
+                break;
             case "Ngày":
                 if (datePickerTu.getValue() != null && datePickerDen.getValue() != null) {
                     tamVangDisplayModelObservableList = tamVangService.getTamVangByNgayBetween(
