@@ -218,7 +218,7 @@ public class HoKhauService {
         }
         return listMaHoKhau;
     }
-    public ObservableList<String> getAllDiaChiHoKhau(){
+    public ObservableList<String> getAllDiaChi(){
         ObservableList<String> listDiaChiHoKhau = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select diaChi from ho_khau";
@@ -320,4 +320,5 @@ public class HoKhauService {
         System.out.println(ans);
         return ans;
     }
+
 }
