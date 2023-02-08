@@ -62,10 +62,15 @@ public class ControllerThemMoiThongTinThanhTichHoGiaDinh extends ControllerHoGia
         });
 
         comboBoxMaNhanKhauThanhTichHoGiaDinh.getItems().addAll(nhanKhauService.getAllMaNhanKhauTrongHoKhau(maHoKhauDangNhap));
+        comboBoxMaNhanKhauThanhTichHoGiaDinh.getSelectionModel().selectFirst();
         comboBoxTenDipThanhTichHoGiaDinh.getItems().addAll(dipTraoThuongService.getAllTenTraoThuongThanhTich());
+        comboBoxTenDipThanhTichHoGiaDinh.getSelectionModel().selectFirst();
         comboBoxNamThanhTichHoGiaDinh.getItems().addAll(dipTraoThuongService.getAllNamTraoThuongThanhTich());
+        comboBoxNamThanhTichHoGiaDinh.getSelectionModel().selectFirst();
         comboBoxCapThanhTichHoGiaDinh.getItems().addAll(listCapThanhTich);
+        comboBoxCapThanhTichHoGiaDinh.getSelectionModel().selectFirst();
         comboBoxKieuThanhTichHoGiaDinh.getItems().addAll(listKieuThanhTich);
+        comboBoxKieuThanhTichHoGiaDinh.getSelectionModel().selectFirst();
     }
 
     public void onPressedButtonThemMinhChungThanhTichHoGiaDinh(MouseEvent e) {

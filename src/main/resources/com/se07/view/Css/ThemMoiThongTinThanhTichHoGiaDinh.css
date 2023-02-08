@@ -22,10 +22,6 @@
     -fx-background-color: #20a4f3
 }
 
-#anchorPaneChinhDangKyTamVangHoGiaDinh {
-    -fx-background-color: #DBBFBD;
-}
-
 #buttonGiaiThuongHoGiaDinh {
     -fx-background-color: rgba(8, 101, 155, 0.75);
 }
@@ -34,27 +30,30 @@
     -fx-background-color: #20a4f3
 }
 
+#anchorPaneChinhHoGiaDinh {
+    -fx-background-color: #DBBFBD;
+}
+
 #buttonDangXuatHoGiaDinh {
-    -fx-background-color: #441151
+    -fx-background-color: #441151;
 }
 
 #buttonDangXuatHoGiaDinh:hover {
     -fx-background-color: #CA61C3;
 }
 
-#buttonXacNhanThemMoiTamVangHoGiaDinh {
-    -fx-background-color: #441151
+#buttonHoanThanhThongTinThanhTichHoGiaDinh {
+    -fx-background-color: #441151;
 }
 
-#buttonXacNhanThemMoiTamVangHoGiaDinh:hover {
+#buttonHuyThongTinThanhTichHoGiaDinh {
+    -fx-background-color: #441151;
+}
+
+#buttonHoanThanhThongTinThanhTichHoGiaDinh:hover {
     -fx-background-color: #34e017;
 }
 
-#buttonHuyThemMoiTamVangHoGiaDinh {
-    -fx-background-color: #441151
-}
-
-#buttonHuyThemMoiTamVangHoGiaDinh:hover {
+#buttonHuyThongTinThanhTichHoGiaDinh:hover {
     -fx-background-color: #c92727;
 }
-

@@ -30,7 +30,7 @@
     -fx-background-color: #20a4f3
 }
 
-#anchorPaneChinhHoGiaDinh {
+#anchorPaneChinhThemNhanKhauMoiHoGiaDinh {
     -fx-background-color: #DBBFBD;
 }
 
@@ -42,18 +42,18 @@
     -fx-background-color: #CA61C3;
 }
 
-#buttonXacNhanThemMoiNhanKhau {
+#buttonXacNhanThemMoiNhanKhauHoGiaDinh {
     -fx-background-color: #441151;
 }
 
-#buttonHuyThemMoiNhanKhau {
+#buttonHuyThemMoiNhanKhauHoGiaDinh {
     -fx-background-color: #441151;
 }
 
-#buttonXacNhanThemMoiNhanKhau:hover {
+#buttonXacNhanThemMoiNhanKhauHoGiaDinh:hover {
     -fx-background-color: #34e017;
 }
 
-#buttonHuyThemMoiNhanKhau:hover {
+#buttonHuyThemMoiNhanKhauHoGiaDinh:hover {
     -fx-background-color: #c92727;
 }

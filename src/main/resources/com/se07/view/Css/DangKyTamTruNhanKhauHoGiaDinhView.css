@@ -38,22 +38,22 @@
     -fx-background-color: #CA61C3;
 }
 
-#buttonXacNhanDangKyTamTruHoGiaDinh {
+#buttonXacNhanThemMoiTamTruHoGiaDinh {
     -fx-background-color: #441151
 }
 
-#buttonXacNhanDangKyTamTruHoGiaDinh:hover {
+#buttonXacNhanThemMoiTamTruHoGiaDinh:hover {
     -fx-background-color: #34e017;
 }
 
-#buttonHuyXacNhanDangKyTamTruHoGiaDinh {
+#buttonHuyThemMoiTamTruHoGiaDinh {
     -fx-background-color: #441151
 }
 
-#buttonHuyXacNhanDangKyTamTruHoGiaDinh:hover {
+#buttonHuyThemMoiTamTruHoGiaDinh:hover {
     -fx-background-color: #c92727;
 }
 
-#anchorPaneChinhHoGiaDinh {
+#anchorPaneChinhDangKyTamTruHoGiaDinh {
     -fx-background-color: #DBBFBD;
 }

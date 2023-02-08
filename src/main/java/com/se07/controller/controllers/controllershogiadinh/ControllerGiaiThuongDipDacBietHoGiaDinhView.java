@@ -4,6 +4,7 @@ import com.se07.controller.services.NhanKhauService;
 import com.se07.controller.services.ThongTinDipDacBietService;
 import com.se07.model.models.DipTraoThuongModel;
 import com.se07.model.models.ThongTinDipDacBietDisplayModel;
+import com.se07.model.models.ThongTinDipDacBietModel;
 import com.se07.util.ComponentVisibility;
 import com.se07.util.MyIntegerStringConverter;
 import javafx.collections.FXCollections;
@@ -40,6 +41,7 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
 
     private final DipTraoThuongService dipTraoThuongService = new DipTraoThuongService();
     private final ThongTinDipDacBietService thongTinDipDacBietService = new ThongTinDipDacBietService();
+    final private MyIntegerStringConverter integerStringConverter = new MyIntegerStringConverter();
     final ObservableList<String> listTimKiem = FXCollections.observableArrayList(
             "Mã nhân khẩu", "Họ tên", "Tên dịp", "Năm", "Tên - Năm", "Tình trạng");
     final ObservableList<String> listTenNamDipTraoThuong = dipTraoThuongService.getAllTenNamDipDacBiet();
@@ -154,79 +156,71 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
         }
     }
     public void locThongTinDipDacBietHoGiaDinh() {
+        String dieuKienKiemTra = String.valueOf(comboBoxTimKiemDipDacBietHoGiaDinh.getValue());
+        String cauHoi = textFieldLocThongTinDipDacBietHoGiaDinh.getText();
+        ObservableList<ThongTinDipDacBietDisplayModel> listThongTinDipDacBiet = FXCollections.observableArrayList();
+        switch (dieuKienKiemTra) {
+            case "Mã nhân khẩu":
+                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByMaNhanKhau(
+                        String.valueOf(comboBoxMaNhanKhauDipDacBietHoGiaDinh.getValue())
+                );
+                break;
+            case "Họ tên":
+                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByHoTen(cauHoi);
+                break;
+            case "Tên dịp":
+                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByTenDip(cauHoi);
+                break;
+            case "Năm":
+                int nam = integerStringConverter.fromString(cauHoi);
+                if (nam == -1) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText("Vui lòng nhập năm hợp lệ");
+                    alert.showAndWait();
+                    displayAllThongTinDipDacBietHoGiaDinh();
+                    textFieldLocThongTinDipDacBietHoGiaDinh.requestFocus();
+                    return;
+                }
+                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByNam(nam);
+                break;
+            case "Tên - năm":
+                String tenNam = String.valueOf(comboBoxTenNamDipDacBietHoGiaDinh.getValue());
+                int index = tenNam.indexOf(" - ");
+                String tenDip = tenNam.substring(0, index);
+                int namDip = Integer.parseInt(tenNam.substring(index + 3));
+                int id = dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, namDip).get().getId();
+                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietById(id);
+                break;
+            case "Tình trạng":
+                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByTinhTrang(
+                        String.valueOf(comboBoxTinhTrangDipDacBietHoGiaDinh.getValue())
+                );
+                break;
+        }
+        tableViewDipDacBietHoGiaDinh.setItems(listThongTinDipDacBiet);
     }
 
-    //        String dieuKienKiemTra = String.valueOf(comboBoxTimKiemDipDacBietHoGiaDinh.getValue());
-//        String cauHoi = textFieldLocThongTinDipDacBietHoGiaDinh.getText();
-//        ObservableList<ThongTinDipDacBietDisplayModel> listThongTinDipDacBiet = FXCollections.observableArrayList();
-//        switch (dieuKienKiemTra) {
-//            case "Mã nhân khẩu":
-//                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByMaNhanKhau(
-//                        String.valueOf(comboBoxMaNhanKhauDipDacBietHoGiaDinh.getValue())
-//                );
-//                break;
-//            case "Họ tên":
-//                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByHoTen(cauHoi);
-//                break;
-//            case "Tên dịp":
-//                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByTenDip(cauHoi);
-//                break;
-//            case "Năm":
-//                int nam = integerStringConverter.fromString(cauHoi);
-//                if (nam == -1) {
-//                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//                    alert.setTitle("Thông báo");
-//                    alert.setHeaderText("Vui lòng nhập năm hợp lệ");
-//                    alert.showAndWait();
-//                    displayAllThongTinDipDacBietHoGiaDinh();
-//                    textFieldLocThongTinDipDacBietHoGiaDinh.requestFocus();
-//                    return;
-//                }
-//                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByNam(nam);
-//                break;
-//            case "Tên - năm":
-//                String tenNam = String.valueOf(comboBoxTenNamDipDacBietHoGiaDinh.getValue());
-//                int index = tenNam.indexOf(" - ");
-//                String tenDip = tenNam.substring(0, index);
-//                int namDip = Integer.parseInt(tenNam.substring(index + 3));
-//                int id = dipTraoThuongService.getDipTraoThuongByTenAndNam(tenDip, namDip).get().getId();
-//                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietById(id);
-//                break;
-//            case "Tình trạng":
-//                listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByTinhTrang(
-//                        String.valueOf(comboBoxTinhTrangDipDacBietHoGiaDinh.getValue())
-//                );
-//                break;
-//        }
-//        tableViewDipDacBietHoGiaDinh.setItems(listThongTinDipDacBiet);
-//    }
-//
     private void displayAllThongTinDipDacBietHoGiaDinh() {
         ObservableList<ThongTinDipDacBietDisplayModel> thongTinDipDacBietDisplayModels =
                 thongTinDipDacBietService.getAllThongTinDipDacBietByMaHoKhau(maHoKhauDangNhap);
         tableViewDipDacBietHoGiaDinh.setItems(thongTinDipDacBietDisplayModels);
     }
 
-    //        ObservableList<ThongTinDipDacBietDisplayModel> thongTinDipDacBietDisplayModels =
-//                thongTinDipDacBietService.getAllThongTinDipDacBiet();
-//        tableViewDipDacBietHoGiaDinh.setItems(thongTinDipDacBietDisplayModels);
-//    }
-//
     private void updateThongTinDipDacBietHoGiaDinh(ThongTinDipDacBietDisplayModel thongTinDipDacBietDisplayModel) {
+        ThongTinDipDacBietModel thongTinDipDacBietModel =
+                thongTinDipDacBietService.convertDisplayModelToModel(thongTinDipDacBietDisplayModel);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo!");
+        if (thongTinDipDacBietService.updateThongTinDipDacBiet(thongTinDipDacBietModel)) {
+            alert.setHeaderText("Sửa thông tin thành công");
+        } else {
+            alert.setHeaderText("Sửa thông tin không thành công");
+        }
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            displayAllThongTinDipDacBietHoGiaDinh();
+        }
     }
-//        ThongTinDipDacBietModel thongTinDipDacBietModel =
-//                thongTinDipDacBietService.convertDisplayModelToModel(thongTinDipDacBietDisplayModel);
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Thông báo!");
-//        if (thongTinDipDacBietService.updateThongTinDipDacBiet(thongTinDipDacBietModel)) {
-//            alert.setHeaderText("Sửa thông tin thành công");
-//        } else {
-//            alert.setHeaderText("Sửa thông tin không thành công");
-//        }
-//        if (alert.showAndWait().get() == ButtonType.OK) {
-//            displayAllThongTinDipDacBietHoGiaDinh();
-//        }
-//    }
 
     public void handleOnEditCommit(TableColumn.CellEditEvent<ThongTinDipDacBietDisplayModel, ?> event) {
         ThongTinDipDacBietDisplayModel thongTinDipDacBietDisplayModel = event.getRowValue();
