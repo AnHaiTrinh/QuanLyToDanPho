@@ -564,7 +564,7 @@ public class TamTruService {
     public ObservableList<TamTruDisplayModel> getTamTruByMaChuHo(String maChuHo) {
         ObservableList<TamTruDisplayModel> tamTruDisplayModels = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "select t.maTamTru, t.maHoKhau, hoTen, n.diachi, tuNgay, denNgay, lyDo, t.tinhTrang " +
+        String query = "select * " +
                 "from tam_tru t join ho_khau n on t.maHoKhau = n.maHoKhau " +
                 "where n.maHoKhau ='"+ maChuHo + "'";
         try {
@@ -572,7 +572,7 @@ public class TamTruService {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 TamTruDisplayModel tmp = new TamTruDisplayModel(rs.getInt("maTamTru"),
-                        rs.getString("maHoKhau"), rs.getNString("hoTen"),
+                        rs.getString("CCCD"), rs.getNString("hoTen"),
                         rs.getNString("diaChi"), rs.getDate("tuNgay"),
                         rs.getDate("denNgay"), rs.getNString("lyDo"),
                         rs.getNString("tinhTrang"));
@@ -620,6 +620,25 @@ public class TamTruService {
             e.printStackTrace();
             return -1;
         }
+    }
+    public ObservableList<String> getAllCCCD(){
+        ObservableList<String> tamTruDisplayModels = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select CCCD " +
+                "from tam_tru ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                String tmp =rs.getString("CCCD");
+                tamTruDisplayModels.add(tmp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(tamTruDisplayModels);
+        return tamTruDisplayModels;
     }
 }
 

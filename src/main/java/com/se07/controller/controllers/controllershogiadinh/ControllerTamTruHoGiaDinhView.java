@@ -60,7 +60,7 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
 
-        //tableColumnCCCDTamTruHoGiaDinh.setCellValueFactory(new PropertyValueFactory<TamTruDisplayModel, String>("CCCD"));
+        tableColumnCCCDTamTruHoGiaDinh.setCellValueFactory(new PropertyValueFactory<TamTruDisplayModel, String>("CCCD"));
         tableColumnHoTenTamTruHoGiaDinh.setCellValueFactory(new PropertyValueFactory<TamTruDisplayModel, String>("hoTen"));
         tableColumnNoiTamTruHoGiaDinh.setCellValueFactory(new PropertyValueFactory<TamTruDisplayModel, String>("noiTamTru"));
         tableColumnTuNgayTamTruHoGiaDinh.setCellValueFactory(new PropertyValueFactory<TamTruDisplayModel, Date>("tuNgay"));

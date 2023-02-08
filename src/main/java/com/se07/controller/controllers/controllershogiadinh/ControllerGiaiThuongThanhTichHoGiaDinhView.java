@@ -173,7 +173,6 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
         ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTich =
                 thongTinThanhTichService.getAllThongTinThanhTichAndHoKhau(maHoKhauDangNhap);
         tableViewGiaiThuongThanhTichHoGiaDinh.setItems(listThongTinThanhTich);
-        System.out.println(listThongTinThanhTich);
     }
 
     public void onPressedButtonXoaThongTinThanhTichHoGiaDinh(MouseEvent e) {

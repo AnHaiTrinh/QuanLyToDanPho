@@ -185,7 +185,6 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
                 listThongTinDipDacBiet = thongTinDipDacBietService.getAllThongTinDipDacBietByNamAndByMaHoKhau(nam, maHoKhauDangNhap);
                 break;
             case "Tên - Năm":
-                System.out.println(1111);
                 String tenNam = String.valueOf(comboBoxTenNamDipDacBietHoGiaDinh.getValue());
                 int index = tenNam.indexOf(" - ");
                 String tenDip = tenNam.substring(0, index);

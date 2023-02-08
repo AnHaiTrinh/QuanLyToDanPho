@@ -5,6 +5,7 @@ import com.se07.controller.services.TamTruService;
 import com.se07.controller.services.TamTruService;
 import com.se07.model.models.HoKhauModel;
 import com.se07.model.models.TamTruModel;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -28,6 +29,7 @@ public class ControllerDangKyTamTruNhanKhauHoGiaDinhView extends ControllerHoGia
     HoKhauService hoKhauService = new HoKhauService();
     LocalDate today = LocalDate.now();
     private String tinhTrang ="Chờ xác nhận";
+    final ObservableList<String> listCCCD = new TamTruService().getAllCCCD();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBoxNoiTamTruDangKyTamTruHoGiaDinh.getItems().addAll(hoKhauService.getAllDiaChiHoKhau(maHoKhauDangNhap));
@@ -55,9 +57,17 @@ public class ControllerDangKyTamTruNhanKhauHoGiaDinhView extends ControllerHoGia
             return;
         }
         String CCCD = textFieldCCCDDangKyTamTruHoGiaDinh.getText();
+        for (String tmp:
+             listCCCD) {
+            if(tmp.equals(CCCD)){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Thông báo");
+                alert.setHeaderText("Mã CCCD đã tồn tại");
+                alert.showAndWait();
+                return;
+            }
+        }
         String maHoKhau = maHoKhauDangNhap;
-        System.out.println(comboBoxNoiTamTruDangKyTamTruHoGiaDinh.getSelectionModel().toString());
-        System.out.println(maHoKhau+"  123");
         String hoTen = textFieldHoTenDangKyTamTruHoGiaDinh.getText();
         Date tuNgay = new Date(datePickerTuNgayDangKyTamTruHoGiaDinh.getValue().toEpochDay());
         Date denNgay = new Date(datePickerDenNgayDangKyTamTruHoGiaDinh.getValue().toEpochDay());

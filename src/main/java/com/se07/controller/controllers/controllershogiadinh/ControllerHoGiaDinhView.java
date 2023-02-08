@@ -36,13 +36,11 @@ public class ControllerHoGiaDinhView implements Initializable {
         if(e.isPrimaryButtonDown()){
             sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(), "TrangChuHoGiaDinhView.fxml");
         }
-        System.out.println(1);
     }
     public void onPressedButtonNhanKhauHoGiaDinh(MouseEvent e) throws IOException{
         if(e.isPrimaryButtonDown()){
             sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(), "NhanKhauHoGiaDinhView.fxml");
         }
-        System.out.println(2);
     }
     public void onPressedButtonGiaiThuongHoGiaDinh(MouseEvent e) throws IOException{
         if(e.isPrimaryButtonDown()){
