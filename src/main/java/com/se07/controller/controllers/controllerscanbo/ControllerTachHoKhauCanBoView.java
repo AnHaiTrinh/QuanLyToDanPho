@@ -29,7 +29,9 @@ import java.util.ResourceBundle;
 public class ControllerTachHoKhauCanBoView implements Initializable {
     @FXML
     TextField textFieldMaHoKhau, textFieldChuHo, textFieldDiaChi,
-            textFieldMaHoKhauMoi, textFieldChuHoMoi, textFieldDiaChiMoi;
+            textFieldMaHoKhauMoi, textFieldDiaChiMoi;
+    @FXML
+    ComboBox comboBoxChuHoMoi;
     @FXML
     TableView<NhanKhauModel> tableViewHoKhauCu, tableViewHoKhauMoi;
     @FXML
@@ -84,7 +86,7 @@ public class ControllerTachHoKhauCanBoView implements Initializable {
     }
 
     private void tachHoKhau() {
-        if (textFieldMaHoKhauMoi.getText().isBlank() || textFieldChuHoMoi.getText().isBlank() ||
+        if (textFieldMaHoKhauMoi.getText().isBlank() || comboBoxChuHoMoi.getValue() == null ||
                 textFieldDiaChiMoi.getText().isBlank()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
@@ -96,15 +98,8 @@ public class ControllerTachHoKhauCanBoView implements Initializable {
             alert.setHeaderText("Hộ khẩu không được để trống");
             alert.showAndWait();
         } else {
-            String hoTen = textFieldChuHoMoi.getText();
-            if (!tableViewHoKhauCu.getItems().contains(hoTen)) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setHeaderText("Chủ hộ không có trong danh sách hộ khẩu mới!");
-                alert.showAndWait();
-                return;
-            }
             String maHoKhauMoi = textFieldMaHoKhauMoi.getText();
+            String hoTen = String.valueOf(comboBoxChuHoMoi.getValue());
             if (hoKhauService.getHoKhauByMaHoKhau(maHoKhauMoi).isPresent()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Thông báo");
@@ -147,7 +142,7 @@ public class ControllerTachHoKhauCanBoView implements Initializable {
             alert.setHeaderText("Bạn chắc chắn muốn thoát");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 new SceneLoader().loadFxmlFileCanBo((Stage) ((Node) mouseEvent.getSource()).getScene().getWindow(),
-                        "NhanKhauCanBoView.fxml");
+                        "HoKhauCanBoView.fxml");
             }
         }
     }
@@ -165,7 +160,7 @@ public class ControllerTachHoKhauCanBoView implements Initializable {
             alert.setTitle("Thông báo");
             alert.setHeaderText("Vui lòng chọn nhân khẩu muốn chuyển sang hộ khẩu mới");
             alert.showAndWait();
-        } else if (nhanKhauModel.getHoTen() == textFieldChuHo.getText()) {
+        } else if (nhanKhauModel.getHoTen().equals(textFieldChuHo.getText())) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Không thể chuyển chủ hộ sang hộ mới");
@@ -173,6 +168,7 @@ public class ControllerTachHoKhauCanBoView implements Initializable {
         } else {
             tableViewHoKhauCu.getItems().remove(nhanKhauModel);
             tableViewHoKhauMoi.getItems().add(nhanKhauModel);
+            comboBoxChuHoMoi.getItems().add(nhanKhauModel.getHoTen());
             tableViewHoKhauCu.refresh();
             tableViewHoKhauMoi.refresh();
         }
@@ -194,6 +190,7 @@ public class ControllerTachHoKhauCanBoView implements Initializable {
         } else {
             tableViewHoKhauMoi.getItems().remove(nhanKhauModel);
             tableViewHoKhauCu.getItems().add(nhanKhauModel);
+            comboBoxChuHoMoi.getItems().remove(nhanKhauModel.getHoTen());
             tableViewHoKhauCu.refresh();
             tableViewHoKhauMoi.refresh();
         }
