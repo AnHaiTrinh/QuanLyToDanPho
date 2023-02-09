@@ -142,7 +142,7 @@ public class ControllerTachHoKhauCanBoView implements Initializable {
 
     public void onPressedButtonKhongChapNhanTachHoKhauCanBo(MouseEvent mouseEvent) throws IOException {
         if (mouseEvent.isPrimaryButtonDown()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Bạn chắc chắn muốn thoát");
             if (alert.showAndWait().get() == ButtonType.OK) {
