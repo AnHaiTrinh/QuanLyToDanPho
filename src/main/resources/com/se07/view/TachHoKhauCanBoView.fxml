@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -59,8 +60,8 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="textFieldChuHo" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <TextField fx:id="textFieldDiaChi" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <TextField fx:id="textFieldChuHo" editable="false" prefHeight="31.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <TextField fx:id="textFieldDiaChi" editable="false" prefHeight="31.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                   <TextField fx:id="textFieldMaHoKhau" onKeyPressed="#onEnterPressedTrongOTimKiemMaHoKhau" prefHeight="31.0" prefWidth="192.0" GridPane.columnIndex="3" />
                </children>
             </GridPane>
@@ -199,14 +200,14 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="textFieldMaHoKhauMoi" GridPane.columnIndex="4" />
-                  <TextField fx:id="textFieldChuHoMoi" prefHeight="31.0" prefWidth="222.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                  <TextField fx:id="textFieldDiaChiMoi" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                  <TextField fx:id="textFieldMaHoKhauMoi" prefHeight="31.0" GridPane.columnIndex="4" />
+                  <TextField fx:id="textFieldDiaChiMoi" prefHeight="31.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
                   <Button fx:id="buttonOKTachHoKhauCanBo" mnemonicParsing="false" onMousePressed="#onPressedButtonOKMaHoKhau" prefHeight="40.0" prefWidth="101.0" text="OK" textFill="WHITE" GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
+                  <ComboBox fx:id="comboBoxChuHoMoi" prefHeight="31.0" prefWidth="250.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <GridPane>
