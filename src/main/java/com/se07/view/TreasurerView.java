@@ -7,22 +7,22 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class TreasurerView {
-    private Stage stage;
-    public Stage openWindow() {
-        try{
+    public Stage stage;
+
+    /**
+     * Phương thức hiển thị màn hình trang chủ của tổ trưởng
+     */
+    public void openWindow() {
+        try {
             stage = new Stage();
-            FXMLLoader fxmlLoader = new FXMLLoader(LoginView.class.getResource("treasurer.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginView.class.getResource("TrangChuThuQuyView.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 915, 603);
-            Image image = new Image(LoginView.class.getResource("IconLogin.png").toString());
-            stage.getIcons().add(image);
             stage.setTitle("QUẢN LÝ NHÂN KHẨU");
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(scene);
             stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        return null;//
     }
 }

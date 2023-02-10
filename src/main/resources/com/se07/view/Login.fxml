@@ -47,12 +47,12 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <TextField fx:id="TextFieldUserName" layoutX="73.0" layoutY="91.0" onKeyPressed="#onEnterPressedLogin" prefHeight="31.0" prefWidth="215.0" promptText="Username" style="-fx-background-radius: 15;">
+            <TextField fx:id="TextFieldUserName" layoutX="73.0" layoutY="91.0" onKeyPressed="#onEnterPressedLogin" prefHeight="31.0" prefWidth="215.0" promptText="Username" style="-fx-background-radius: 15;" text="hogiadinh4">
                <font>
                   <Font name="System Italic" size="15.0" />
                </font></TextField>
             <Label fx:id="LabelAlertLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="218.0" prefHeight="21.0" prefWidth="322.0" textFill="#dd1515" />
-            <PasswordField fx:id="PasswordFieldPassword" layoutX="73.0" layoutY="142.0" onKeyPressed="#onEnterPressedLogin" prefHeight="31.0" prefWidth="215.0" promptText="Password" style="-fx-background-radius: 15;">
+            <PasswordField fx:id="PasswordFieldPassword" layoutX="73.0" layoutY="142.0" onKeyPressed="#onEnterPressedLogin" prefHeight="31.0" prefWidth="215.0" promptText="Password" style="-fx-background-radius: 15;" text="psswd">
                <font>
                   <Font name="System Italic" size="15.0" />
                </font></PasswordField>
@@ -67,7 +67,7 @@
                </image>
             </ImageView>
             <CheckBox fx:id="checkBoxAdmin" layoutX="11.0" layoutY="185.0" mnemonicParsing="false" onKeyPressed="#onEnterPressedLogin" text="Tổ trưởng" />
-            <CheckBox fx:id="checkBoxUser" layoutX="115.0" layoutY="185.0" mnemonicParsing="false" onKeyPressed="#onEnterPressedLogin" text="Hộ gia đình" />
+            <CheckBox fx:id="checkBoxUser" layoutX="115.0" layoutY="185.0" mnemonicParsing="false" onKeyPressed="#onEnterPressedLogin" selected="true" text="Hộ gia đình" />
             <CheckBox fx:id="checkBoxTreasurer" layoutX="228.0" layoutY="185.0" mnemonicParsing="false" onKeyPressed="#onEnterPressedLogin" text="Thủ quỹ" />
          </children>
       </AnchorPane>
