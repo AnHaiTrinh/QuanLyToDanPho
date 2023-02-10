@@ -10,13 +10,12 @@ import java.sql.Statement;
 public class UserService {
     public boolean insertNewUser(UserModel userModel) {
         Connection connection = ConnectionDatabase.getConnection();
-        String query = "insert into user(ID, username, password, role) values (?, ?, ?, ?)";
+        String query = "insert into users(username, password, role) values (?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, userModel.getID());
-            statement.setString(2, userModel.getUsername());
-            statement.setString(3, userModel.getPassword());
-            statement.setInt(4, userModel.getRole());
+            statement.setString(1, userModel.getUsername());
+            statement.setString(2, userModel.getPassword());
+            statement.setInt(3, userModel.getRole());
             statement.executeUpdate();
             statement.close();
             connection.close();
