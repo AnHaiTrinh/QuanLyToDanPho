@@ -27,6 +27,8 @@ module com.se07.main {
     opens com.se07.controller.controllers.controllershogiadinh to javafx.fxml;
     exports com.se07.controller.controllers.controllerslogin;
     opens com.se07.controller.controllers.controllerslogin to javafx.fxml;
+    exports com.se07.controller.controllers.controllersketoan;
+    opens com.se07.controller.controllers.controllersketoan to javafx.fxml;
 
 
 }

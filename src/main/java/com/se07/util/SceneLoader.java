@@ -29,4 +29,9 @@ public class SceneLoader {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
     }
+    public void loadFxmlFileThuQuy(Stage stage, String filename) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(UserView.class.getResource(filename));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+    }
 }
