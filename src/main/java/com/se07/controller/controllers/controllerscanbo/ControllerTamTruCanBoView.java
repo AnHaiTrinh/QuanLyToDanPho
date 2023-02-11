@@ -49,7 +49,7 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
             "CCCD", "Họ tên", "Nơi tạm trú", "Ngày", "Tình trạng");
 
     final ObservableList<String> listTinhTrang =
-            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
+            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối", "Chờ xóa");
 
     final ObservableList<String> listNoiTamTru = new HoKhauService().getAllDiaChi();
 
@@ -297,17 +297,17 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
         } else if (tamTruDisplayModel.getTinhTrang().equals("Đã xác nhận")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
-            alert.setHeaderText("Nhân khẩu đã được xác nhận");
+            alert.setHeaderText("Trường hợp đã được xác nhận");
             alert.showAndWait();
+        } else if (tamTruDisplayModel.getTinhTrang().equals("Chờ xóa")) {
+            xoaTamTruCanBo();
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Bạn chắc chắn muốn xác nhận trường hợp này?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 tamTruDisplayModel.setTinhTrang("Đã xác nhận");
-                TamTruModel tamTruModel = tamTruService.convertDisplayModelToModel(tamTruDisplayModel);
-                tamTruService.updateTamTru(tamTruModel);
-                displayAllTamTruCanBo();
+                updateTamTruCanBo(tamTruDisplayModel);
             }
         }
     }
@@ -324,15 +324,21 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
             alert.setTitle("Thông báo");
             alert.setHeaderText("Nhân khẩu đã bị từ chối");
             alert.showAndWait();
+        } else if (tamTruDisplayModel.getTinhTrang().equals("Chờ xóa")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Bạn chắc chắn muốn khôi phục trường hợp này?");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                tamTruDisplayModel.setTinhTrang("Đã xác nhận");
+                updateTamTruCanBo(tamTruDisplayModel);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Bạn chắc chắn muốn từ chối trường hợp này?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 tamTruDisplayModel.setTinhTrang("Đã từ chối");
-                TamTruModel tamTruModel = tamTruService.convertDisplayModelToModel(tamTruDisplayModel);
-                tamTruService.updateTamTru(tamTruModel);
-                displayAllTamTruCanBo();
+                updateTamTruCanBo(tamTruDisplayModel);
             }
         }
     }
@@ -361,7 +367,6 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
             }
         }
     }
-
 
     private void displayAllTamTruCanBo() {
         ObservableList<TamTruDisplayModel> listTamTru = tamTruService.getDisplayTamTru();

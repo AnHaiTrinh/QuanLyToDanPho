@@ -83,7 +83,7 @@
             <TableColumn fx:id="tableColumnHoTenDipDacBietHoGiaDinh" prefWidth="130.0" text="Họ tên" />
             <TableColumn fx:id="tableColumnTenDipDacBietHoGiaDinh" prefWidth="136.0" text="Tên dịp" />
             <TableColumn fx:id="tableColumnNamDipDacBietHoGiaDinh" prefWidth="54.0" text="Năm" />
-            <TableColumn fx:id="tableColumnTinhTrangDipDacBietHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="126.0" text="Tình Trạng" />
+            <TableColumn fx:id="tableColumnTinhTrangDipDacBietHoGiaDinh" prefWidth="126.0" text="Tình Trạng" />
          </columns>
       </TableView>
       <AnchorPane layoutX="222.0" layoutY="18.0" onKeyPressed="#onEnterPressedTrongOTimKiemDipDacBietHoGiaDinh">

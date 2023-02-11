@@ -93,7 +93,7 @@
                         <TableColumn fx:id="tableColumnCapThanhTichHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="82.0" text="Cấp" />
                         <TableColumn fx:id="tableColumnKieuThanhTichHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="82.0" text="Kiểu" />
                         <TableColumn fx:id="tableColumnMinhChungThanhTichHoGiaDinh" prefWidth="120.0" styleClass="underline-blue-text" text="Minh chứng" />
-                        <TableColumn fx:id="tableColumnTinhTrangThanhTichHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="120.0" text="Tình Trạng" />
+                        <TableColumn fx:id="tableColumnTinhTrangThanhTichHoGiaDinh" prefWidth="120.0" text="Tình Trạng" />
                      </columns>
                   </TableView>
                </children>

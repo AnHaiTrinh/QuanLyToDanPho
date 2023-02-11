@@ -76,12 +76,12 @@
                         <TableView fx:id="tableViewTamTruHoGiaDinh" editable="true" onKeyPressed="#onDeletePressedTrongBangTamTruHoGiaDinh" prefHeight="528.0" prefWidth="890.0">
                            <columns>
                               <TableColumn fx:id="tableColumnCCCDTamTruHoGiaDinh" maxWidth="110.0" minWidth="50.0" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="110.0" text="CCCD" />
-                              <TableColumn fx:id="tableColumnHoTenTamTruHoGiaDinh" maxWidth="180.0" minWidth="100.0" prefWidth="153.0" text="Họ tên" />
-                              <TableColumn fx:id="tableColumnNoiTamTruHoGiaDinh" maxWidth="400.0" minWidth="100.0" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="157.0" text="Nơi Tạm Trú" />
+                              <TableColumn fx:id="tableColumnHoTenTamTruHoGiaDinh" maxWidth="180.0" minWidth="100.0" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="153.0" text="Họ tên" />
+                              <TableColumn fx:id="tableColumnNoiTamTruHoGiaDinh" maxWidth="400.0" minWidth="100.0" prefWidth="157.0" text="Nơi Tạm Trú" />
                               <TableColumn fx:id="tableColumnTuNgayTamTruHoGiaDinh" maxWidth="150.0" minWidth="80.0" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" text="Từ Ngày" />
                               <TableColumn fx:id="tableColumnDenNgayTamTruHoGiaDinh" maxWidth="150.0" minWidth="80.0" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" text="Đến Ngày" />
                               <TableColumn fx:id="tableColumnLyDoTamTruHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="200.0" text="Lý Do" />
-                              <TableColumn fx:id="tableColumnTinhTrangTamTruHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="110.0" text="Tình trạng" />
+                              <TableColumn fx:id="tableColumnTinhTrangTamTruHoGiaDinh" prefWidth="110.0" text="Tình trạng" />
                            </columns>
                         </TableView>
                      </children>

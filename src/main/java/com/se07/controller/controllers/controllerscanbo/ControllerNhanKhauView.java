@@ -52,7 +52,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
     final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ");
 
     final private ObservableList<String> listTinhTrang =
-            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
+            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối", "Chờ xóa");
     final NhanKhauService nhanKhauService = new NhanKhauService();
 
     final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
@@ -267,14 +267,21 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
             alert.setTitle("Thông báo");
             alert.setHeaderText("Nhân khẩu đã bị từ chối");
             alert.showAndWait();
+        } else if (nhanKhauModel.getTinhTrang().equals("Chờ xóa")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Bạn chắc chắn muốn khôi phục nhân khẩu này?");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                nhanKhauModel.setTinhTrang("Đã xác nhận");
+                updateNhanKhauCanBo(nhanKhauModel);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Bạn chắc chắn muốn từ chối nhân khẩu này?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 nhanKhauModel.setTinhTrang("Đã từ chối");
-                nhanKhauService.updateNhanKhau(nhanKhauModel);
-                displayAllNhanKhauCanBo();
+                updateNhanKhauCanBo(nhanKhauModel);
             }
         }
     }
@@ -295,14 +302,15 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
             alert.setTitle("Thông báo");
             alert.setHeaderText("Nhân khẩu đã được xác nhận");
             alert.showAndWait();
+        } else if (nhanKhauModel.getTinhTrang().equals("Chờ xóa")) {
+            xoaNhanKhauCanBo();
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Bạn chắc chắn muốn xác nhận người này?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 nhanKhauModel.setTinhTrang("Đã xác nhận");
-                nhanKhauService.updateNhanKhau(nhanKhauModel);
-                displayAllNhanKhauCanBo();
+                updateNhanKhauCanBo(nhanKhauModel);
             }
         }
     }

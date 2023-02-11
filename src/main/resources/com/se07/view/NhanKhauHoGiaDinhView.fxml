@@ -74,13 +74,13 @@
                   <TableView fx:id="tableViewNhanKhauHoGiaDinh" editable="true" onKeyPressed="#onDeletePressedTrongBangNhanKhauHoGiaDinh" prefHeight="528.0" prefWidth="791.0">
                      <columns>
                         <TableColumn fx:id="tableComlumIDNhanKhauHoGiaDinh" prefWidth="64.0" text="ID" />
-                        <TableColumn fx:id="tableComlumIDHoKhauNhanKhauHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="117.0" text="Mã Hộ Khẩu" />
+                        <TableColumn fx:id="tableComlumIDHoKhauNhanKhauHoGiaDinh" prefWidth="117.0" text="Mã Hộ Khẩu" />
                         <TableColumn fx:id="tableComlumHoTenNhanKhauHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="130.0" text="Họ Tên" />
                         <TableColumn fx:id="tableComlumBietDanhNhanKhauHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="109.0" text="Biệt Danh" />
                         <TableColumn fx:id="tableComlumNgaySinhNhanKhauHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="105.0" text="Ngày sinh" />
                         <TableColumn fx:id="tableComlumGioiTinhNhanKhauHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" text="Giới tính" />
                         <TableColumn fx:id="tableComlumTonGiaoNhanKhauHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="88.0" text="Tôn giáo" />
-                        <TableColumn fx:id="tableComlumTinhTrangNhanKhauHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="106.0" text="Tình trạng" />
+                        <TableColumn fx:id="tableComlumTinhTrangNhanKhauHoGiaDinh" prefWidth="106.0" text="Tình trạng" />
                      </columns>
                   </TableView>
                </content>

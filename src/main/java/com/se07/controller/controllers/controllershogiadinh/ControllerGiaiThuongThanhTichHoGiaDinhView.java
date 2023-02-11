@@ -1,4 +1,5 @@
 package com.se07.controller.controllers.controllershogiadinh;
+
 import com.se07.controller.controllers.MinhChungController;
 import com.se07.controller.services.DipTraoThuongService;
 import com.se07.controller.services.NhanKhauService;
@@ -60,7 +61,7 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
 
     final ObservableList<String> listTenNamDipTraoThuong = dipTraoThuongService.getAllTenNamDipTraoThuongThanhTich();
 
-    final ObservableList<String> listTimKiem = FXCollections.observableArrayList("Họ tên","Mã nhân khẩu",
+    final ObservableList<String> listTimKiem = FXCollections.observableArrayList("Họ tên", "Mã nhân khẩu",
             "Tên dịp", "Năm", "Tên - Năm", "Cấp thành tích", "Kiểu thành tích", "Tình trạng");
     final ObservableList<String> listCapThanhTich = FXCollections.observableArrayList(
             "Trường", "Quận/Huyện", "Tỉnh/Thành phố", "Quốc gia", "Quốc tế");
@@ -71,7 +72,7 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
             "Huy chương Vàng", "Huy chương Bạc", "Huy chương Đồng");
 
     final ObservableList<String> listTinhTrang =
-            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
+            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối", "Chờ xóa");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -105,10 +106,6 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
         ComponentVisibility.change(comboBoxKieuThanhTichHoGiaDinh, false);
         ComponentVisibility.change(comboBoxTinhTrangThanhTichHoGiaDinh, false);
 
-        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTich =
-                thongTinThanhTichService.getAllThongTinThanhTichAndHoKhau(maHoKhauDangNhap);
-        tableViewGiaiThuongThanhTichHoGiaDinh.setItems(listThongTinThanhTich);
-
         tableViewGiaiThuongThanhTichHoGiaDinh.setEditable(true);
         tableColumnMaNhanKhauThanhTichHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listMaNhanKhau));
         tableColumnLopThanhTichHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(integerStringConverter));
@@ -116,8 +113,7 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
         tableColumnCapThanhTichHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listCapThanhTich));
         tableColumnKieuThanhTichHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listKieuThanhTich));
 
-
-        //displayAllThongTinThanhTichHoGiaDinh();
+        displayAllThongTinThanhTichHoGiaDinh();
     }
 
     public void onSelectionComboBoxTimKiemThanhTichHoGiaDinh(ActionEvent e) {
@@ -200,15 +196,8 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
             alert.setTitle("Thông báo");
             alert.setHeaderText("Bạn chắc chắn muốn xóa trường hợp này!");
             if (alert.showAndWait().get() == ButtonType.OK) {
-                Alert info = new Alert(Alert.AlertType.INFORMATION);
-                info.setTitle("Thông báo");
-                if (thongTinThanhTichService.deleteThongTinThanhTich(thongTinThanhTichDisplayModel)) {
-                    info.setHeaderText("Xóa thành công!");
-                } else {
-                    info.setHeaderText("Xóa không thành công!");
-                }
-                info.showAndWait();
-                displayAllThongTinThanhTichHoGiaDinh();
+                thongTinThanhTichDisplayModel.setTinhTrang("Chờ xóa");
+                updateThongTinThanhTichHoGiaDinh(thongTinThanhTichDisplayModel);
             }
         }
     }
@@ -302,10 +291,8 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
                 case 7:
                     thongTinThanhTichDisplayModel.setKieuThanhTich((String) event.getNewValue());
                     break;
-                case 9:
-                    thongTinThanhTichDisplayModel.setTinhTrang((String) event.getNewValue());
-                    break;
             }
+            thongTinThanhTichDisplayModel.setTinhTrang(tinhTrang);
             updateThongTinThanhTichHoGiaDinh(thongTinThanhTichDisplayModel);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -334,9 +321,6 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
             case 7:
                 thongTinThanhTichDisplayModel.setKieuThanhTich((String) event.getOldValue());
                 break;
-            case 9:
-                thongTinThanhTichDisplayModel.setTinhTrang((String) event.getOldValue());
-                break;
         }
     }
 
@@ -346,9 +330,9 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo!");
         if (thongTinThanhTichService.updateThongTinThanhTich(thongTinThanhTichModel)) {
-            alert.setHeaderText("Sửa thông tin thành công");
+            alert.setHeaderText("Gửi yêu cầu thành công");
         } else {
-            alert.setHeaderText("Sửa thông tin không thành công");
+            alert.setHeaderText("Gửi yêu cầu không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
             displayAllThongTinThanhTichHoGiaDinh();

@@ -81,7 +81,7 @@
                               <TableColumn fx:id="tableColumnTuNgayTamVangHoGiaDinh" maxWidth="150.0" minWidth="80.0" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" text="Từ Ngày" />
                               <TableColumn fx:id="tableColumnDenNgayTamVangHoGiaDinh" maxWidth="150.0" minWidth="80.0" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" text="Đến Ngày" />
                               <TableColumn fx:id="tableColumnLyDoTamVangHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="200.0" text="Lý Do" />
-                              <TableColumn fx:id="tableColumnTinhTrangTamVangHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="110.0" text="Tình trạng" />
+                              <TableColumn fx:id="tableColumnTinhTrangTamVangHoGiaDinh" prefWidth="110.0" text="Tình trạng" />
                            </columns>
                         </TableView>
                      </children>

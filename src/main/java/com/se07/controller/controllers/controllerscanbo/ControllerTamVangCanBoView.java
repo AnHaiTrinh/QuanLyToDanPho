@@ -47,7 +47,7 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
     final ObservableList<String> listTimKiem = FXCollections.observableArrayList(
             "Mã nhân khẩu", "Họ tên", "Nơi tạm vắng", "Ngày", "Tình trạng");
     final private ObservableList<String> listTinhTrang =
-            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
+            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối", "Chờ xóa");
     final private TamVangService tamVangService = new TamVangService();
     final private NhanKhauService nhanKhauService = new NhanKhauService();
     final ObservableList<String> listMaNhanKhau = nhanKhauService.getAllMaNhanKhau();
@@ -172,20 +172,20 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
             alert.setTitle("Thông báo");
             alert.setHeaderText("Vui lòng chọn trường hợp muốn xác nhận");
             alert.showAndWait();
-        } else if (tamVangDisplayModel.getTinhTrang() == "Đã xác nhận") {
+        } else if (tamVangDisplayModel.getTinhTrang().equals("Đã xác nhận")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Trường hợp đã được xác nhận");
             alert.showAndWait();
+        } else if (tamVangDisplayModel.getTinhTrang().equals("Chờ xóa")) {
+            xoaTamVangCanBo();
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Bạn chắc chắn muốn xác nhận trường hợp này?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 tamVangDisplayModel.setTinhTrang("Đã xác nhận");
-                TamVangModel tamVangModel = tamVangService.convertDisplayModelToModel(tamVangDisplayModel);
-                tamVangService.updateTamVang(tamVangModel);
-                displayAlltamVangCanBo();
+                updateTamVangCanBo(tamVangDisplayModel);
             }
         }
     }
@@ -200,17 +200,23 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
         } else if (tamVangDisplayModel.getTinhTrang().equals("Đã từ chối")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
-            alert.setHeaderText("Nhân khẩu đã bị từ chối");
+            alert.setHeaderText("Trường hợp đã bị từ chối");
             alert.showAndWait();
+        } else if (tamVangDisplayModel.getTinhTrang().equals("Chờ xóa")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Bạn chắc chắn muốn khôi phục trường hợp này?");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                tamVangDisplayModel.setTinhTrang("Đã xác nhận");
+                updateTamVangCanBo(tamVangDisplayModel);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
-            alert.setHeaderText("Bạn chắc chắn muốn từ chối nhân khẩu này?");
+            alert.setHeaderText("Bạn chắc chắn muốn từ chối trường hợp này?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 tamVangDisplayModel.setTinhTrang("Đã từ chối");
-                TamVangModel tamVangModel = tamVangService.convertDisplayModelToModel(tamVangDisplayModel);
-                tamVangService.updateTamVang(tamVangModel);
-                displayAlltamVangCanBo();
+                updateTamVangCanBo(tamVangDisplayModel);
             }
         }
     }

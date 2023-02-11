@@ -71,7 +71,7 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
             "Huy chương Vàng", "Huy chương Bạc", "Huy chương Đồng");
 
     final ObservableList<String> listTinhTrang =
-            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
+            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối", "Chờ xóa");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -179,11 +179,13 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
             alert.setTitle("Thông báo");
             alert.setHeaderText("Vui lòng chọn trường hợp muốn xác nhận");
             alert.showAndWait();
-        } else if (thongTinThanhTichDisplayModel.getTinhTrang() == "Đã xác nhận") {
+        } else if (thongTinThanhTichDisplayModel.getTinhTrang().equals("Đã xác nhận")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Trường hợp đã được xác nhận");
             alert.showAndWait();
+        } else if (thongTinThanhTichDisplayModel.getTinhTrang().equals("Chờ xóa")) {
+            xoaThongTinThanhTichCanBo();
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
@@ -191,7 +193,6 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
             if (alert.showAndWait().get() == ButtonType.OK) {
                 thongTinThanhTichDisplayModel.setTinhTrang("Đã xác nhận");
                 updateThongTinThanhTichCanBo(thongTinThanhTichDisplayModel);
-                displayAllThongTinThanhTichCanBo();
             }
         }
     }
@@ -216,11 +217,19 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
             alert.setTitle("Thông báo");
             alert.setHeaderText("Vui lòng chọn trường hợp muốn xác nhận");
             alert.showAndWait();
-        } else if (thongTinThanhTichDisplayModel.getTinhTrang() == "Đã từ chối") {
+        } else if (thongTinThanhTichDisplayModel.getTinhTrang().equals("Đã từ chối")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Trường hợp đã bị từ chối");
             alert.showAndWait();
+        } else if (thongTinThanhTichDisplayModel.getTinhTrang().equals("Chờ xóa")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Bạn chắc chắn muốn khôi phục trường hợp này?");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                thongTinThanhTichDisplayModel.setTinhTrang("Đã xác nhận");
+                updateThongTinThanhTichCanBo(thongTinThanhTichDisplayModel);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
@@ -228,7 +237,6 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
             if (alert.showAndWait().get() == ButtonType.OK) {
                 thongTinThanhTichDisplayModel.setTinhTrang("Đã từ chối");
                 updateThongTinThanhTichCanBo(thongTinThanhTichDisplayModel);
-                displayAllThongTinThanhTichCanBo();
             }
         }
     }
