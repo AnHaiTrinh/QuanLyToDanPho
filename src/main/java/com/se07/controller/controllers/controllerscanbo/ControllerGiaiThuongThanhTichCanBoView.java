@@ -113,7 +113,7 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
         tableColumnKieuThanhTichCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listKieuThanhTich));
         tableColumnTinhTrangThanhTichCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listTinhTrang));
 
-        displayAllThongTinThanhTichCanBo();
+        tableViewGiaiThuongThanhTichCanBo.setItems(thongTinThanhTichService.getAllThongTinThanhTich());
     }
 
     public void onSelectionComboBoxTimKiemThanhTichCanBo(ActionEvent e) {
@@ -197,12 +197,6 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
         }
     }
 
-    private void displayAllThongTinThanhTichCanBo() {
-        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTich =
-                thongTinThanhTichService.getAllThongTinThanhTich();
-        tableViewGiaiThuongThanhTichCanBo.setItems(listThongTinThanhTich);
-    }
-
     public void onPressedButtonTuChoiThongTinThanhTichCanBo(MouseEvent e) {
         if (e.isPrimaryButtonDown()) {
             tuChoiThongTinThanhTichCanBo();
@@ -270,11 +264,12 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
                 info.setTitle("Thông báo");
                 if (thongTinThanhTichService.deleteThongTinThanhTich(thongTinThanhTichDisplayModel)) {
                     info.setHeaderText("Xóa thành công!");
+                    tableViewGiaiThuongThanhTichCanBo.getItems().remove(thongTinThanhTichDisplayModel);
                 } else {
                     info.setHeaderText("Xóa không thành công!");
                 }
                 info.showAndWait();
-                displayAllThongTinThanhTichCanBo();
+                tableViewGiaiThuongThanhTichCanBo.refresh();
             }
         }
     }
@@ -358,7 +353,6 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
                         alert.setTitle("Thông báo");
                         alert.setHeaderText("Vui lòng nhập lớp hợp lệ (từ 1 - 12)");
                         alert.showAndWait();
-                        displayAllThongTinThanhTichCanBo();
                         return;
                     }
                     break;
@@ -417,7 +411,7 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
             alert.setHeaderText("Sửa thông tin không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllThongTinThanhTichCanBo();
+            tableViewGiaiThuongThanhTichCanBo.refresh();
         }
     }
 
@@ -444,7 +438,6 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập năm hợp lệ");
                     alert.showAndWait();
-                    displayAllThongTinThanhTichCanBo();
                     textFieldLocThongTinThanhTichCanBo.requestFocus();
                     return;
                 }

@@ -113,7 +113,8 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
         tableColumnCapThanhTichHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listCapThanhTich));
         tableColumnKieuThanhTichHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listKieuThanhTich));
 
-        displayAllThongTinThanhTichHoGiaDinh();
+        tableViewGiaiThuongThanhTichHoGiaDinh.setItems(
+                thongTinThanhTichService.getAllThongTinThanhTichAndHoKhau(maHoKhauDangNhap));
     }
 
     public void onSelectionComboBoxTimKiemThanhTichHoGiaDinh(ActionEvent e) {
@@ -163,12 +164,6 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             locThongTinThanhTichHoGiaDinh();
         }
-    }
-
-    private void displayAllThongTinThanhTichHoGiaDinh() {
-        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTich =
-                thongTinThanhTichService.getAllThongTinThanhTichAndHoKhau(maHoKhauDangNhap);
-        tableViewGiaiThuongThanhTichHoGiaDinh.setItems(listThongTinThanhTich);
     }
 
     public void onPressedButtonXoaThongTinThanhTichHoGiaDinh(MouseEvent e) {
@@ -281,7 +276,7 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
                         alert.setTitle("Thông báo");
                         alert.setHeaderText("Vui lòng nhập lớp hợp lệ (từ 1 - 12)");
                         alert.showAndWait();
-                        displayAllThongTinThanhTichHoGiaDinh();
+                        thongTinThanhTichDisplayModel.setLop((int) event.getOldValue());
                         return;
                     }
                     break;
@@ -335,7 +330,7 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
             alert.setHeaderText("Gửi yêu cầu không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllThongTinThanhTichHoGiaDinh();
+            tableViewGiaiThuongThanhTichHoGiaDinh.refresh();
         }
     }
 
@@ -362,7 +357,6 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập năm hợp lệ");
                     alert.showAndWait();
-                    displayAllThongTinThanhTichHoGiaDinh();
                     textFieldLocThongTinThanhTichHoGiaDinh.requestFocus();
                     return;
                 }

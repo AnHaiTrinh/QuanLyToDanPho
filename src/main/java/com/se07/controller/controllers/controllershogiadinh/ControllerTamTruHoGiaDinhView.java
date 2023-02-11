@@ -71,7 +71,7 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
         tableColumnTuNgayTamTruHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
         tableColumnDenNgayTamTruHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
 
-        displayAllTamTruHoGiaDinh();
+        tableViewTamTruHoGiaDinh.setItems(tamTruService.getTamTruByMaChuHo(maHoKhauDangNhap));
     }
 
     public void onPressedButtonLocThongTinTamTruHoGiaDinh(MouseEvent e) {
@@ -125,11 +125,6 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
             ComponentVisibility.change(textFieldLocThongTinTamTruHoGiaDinh, true);
             ComponentVisibility.change(comboBoxTinhTrangTamTruHoGiaDinh, false);
         }
-    }
-
-    private void displayAllTamTruHoGiaDinh() {
-        ObservableList<TamTruDisplayModel> TamTruDisplayModelObservableList = tamTruService.getTamTruByMaChuHo(maHoKhauDangNhap);
-        tableViewTamTruHoGiaDinh.setItems(TamTruDisplayModelObservableList);
     }
 
     private void xoaTamTruHoGiaDinh() {
@@ -192,7 +187,7 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAllTamTruHoGiaDinh();
+                    tamTruDisplayModel.setTuNgay((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -205,7 +200,7 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAllTamTruHoGiaDinh();
+                    tamTruDisplayModel.setDenNgay((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -249,7 +244,7 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
             alert.setHeaderText("Gửi yêu cầu không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllTamTruHoGiaDinh();
+            tableViewTamTruHoGiaDinh.refresh();
         }
     }
 }

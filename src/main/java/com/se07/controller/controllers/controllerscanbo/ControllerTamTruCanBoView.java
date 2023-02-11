@@ -85,7 +85,7 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
         tableColumnLyDoTamTruCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnTinhTrangTamTruCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listTinhTrang));
 
-        displayAllTamTruCanBo();
+        tableViewTamTruCanBo.setItems(tamTruService.getDisplayTamTru());
     }
 
     public void onSelectionComboBoxTimKiemTamTruCanBo(ActionEvent e) {
@@ -172,7 +172,7 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAllTamTruCanBo();
+                    tamTruDisplayModel.setTuNgay((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -185,7 +185,7 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAllTamTruCanBo();
+                    tamTruDisplayModel.setDenNgay((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -246,7 +246,7 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
             alert.setHeaderText("Sửa trường hợp tạm vắng không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllTamTruCanBo();
+            tableViewTamTruCanBo.refresh();
         }
     }
 
@@ -275,7 +275,6 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập đầy đủ thông tin!");
                     alert.showAndWait();
-                    displayAllTamTruCanBo();
                     return;
                 }
                 break;
@@ -359,17 +358,13 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
                 info.setTitle("Thông báo");
                 if (tamTruService.deleteTamTru(tamTruDisplayModel)) {
                     info.setHeaderText("Xóa thành công!");
+                    tableViewTamTruCanBo.getItems().remove(tamTruDisplayModel);
                 } else {
                     info.setHeaderText("Xóa không thành công!");
                 }
                 info.showAndWait();
-                displayAllTamTruCanBo();
+                tableViewTamTruCanBo.refresh();
             }
         }
-    }
-
-    private void displayAllTamTruCanBo() {
-        ObservableList<TamTruDisplayModel> listTamTru = tamTruService.getDisplayTamTru();
-        tableViewTamTruCanBo.setItems(listTamTru);
     }
 }

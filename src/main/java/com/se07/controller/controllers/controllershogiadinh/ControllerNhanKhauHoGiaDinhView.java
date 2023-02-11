@@ -79,7 +79,7 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
         tableComlumGioiTinhNhanKhauHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listGioiTinh));
         tableComlumTonGiaoNhanKhauHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        displayAllNhanKhauHoGiaDinh();
+        tableViewNhanKhauHoGiaDinh.setItems(nhanKhauService.getAllNhanKhauTrongHoKhau(maHoKhauDangNhap));
     }
 
     /**
@@ -199,14 +199,6 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
     }
 
     /**
-     * Phương thức hiển thị tất cả nhân khẩu
-     */
-    private void displayAllNhanKhauHoGiaDinh() {
-        ObservableList<NhanKhauModel> nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauTrongHoKhau(maHoKhauDangNhap);
-        tableViewNhanKhauHoGiaDinh.setItems(nhanKhauModelObservableList);
-    }
-
-    /**
      * Phương thức xóa hộ khẩu được chọn trong bảng hiển thị
      * Nếu không có hộ khẩu nào được chọn sẽ thông báo cho người dùng
      */
@@ -292,7 +284,7 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAllNhanKhauHoGiaDinh();
+                    nhanKhauModel.setNgaySinh((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -351,7 +343,7 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
             alert.setHeaderText("Gửi yêu cầu không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllNhanKhauHoGiaDinh();
+            tableViewNhanKhauHoGiaDinh.refresh();
         }
     }
 }

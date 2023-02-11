@@ -82,7 +82,7 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
         tableColumnDenNgayTamVangcanBo.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
         tableColumnTinhTrangTamVangCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listTinhTrang));
 
-        displayAlltamVangCanBo();
+        tableViewTamVangCanBo.setItems(tamVangService.getAllTamVangDisplay());
     }
 
     public void onPressedButtonLocThongTinTamVangCanBo(MouseEvent e) {
@@ -160,11 +160,6 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
         }
     }
 
-    private void displayAlltamVangCanBo() {
-        ObservableList<TamVangDisplayModel> tamVangDisplayModelObservableList = tamVangService.getAllTamVangDisplay();
-        tableViewTamVangCanBo.setItems(tamVangDisplayModelObservableList);
-    }
-
     private void xacNhanTamVangCanBo() {
         TamVangDisplayModel tamVangDisplayModel = tableViewTamVangCanBo.getSelectionModel().getSelectedItem();
         if (tamVangDisplayModel == null) {
@@ -237,11 +232,12 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
                 info.setTitle("Thông báo");
                 if (tamVangService.deleteTamVang(tamVangDisplayModel)) {
                     info.setHeaderText("Xóa thành công!");
+                    tableViewTamVangCanBo.getItems().remove(tamVangDisplayModel);
                 } else {
                     info.setHeaderText("Xóa không thành công!");
                 }
                 info.showAndWait();
-                displayAlltamVangCanBo();
+                tableViewTamVangCanBo.refresh();
             }
         }
     }
@@ -270,7 +266,6 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập đầy đủ thông tin!");
                     alert.showAndWait();
-                    displayAlltamVangCanBo();
                     return;
                 }
                 break;
@@ -302,7 +297,7 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAlltamVangCanBo();
+                    tamVangDisplayModel.setTuNgay((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -315,7 +310,7 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAlltamVangCanBo();
+                    tamVangDisplayModel.setDenNgay((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -364,7 +359,7 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
             alert.setHeaderText("Sửa trường hợp tạm vắng không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAlltamVangCanBo();
+            tableViewTamVangCanBo.refresh();
         }
     }
 }

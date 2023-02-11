@@ -79,7 +79,8 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
         tableColumnLyDoTamVangHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnTuNgayTamVangHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
         tableColumnDenNgayTamVangHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
-        displayAlltamVangHoGiaDinh();
+
+        tableViewTamVangHoGiaDinh.setItems(tamVangService.getAllTamVangDisplayByHoKhau(maHoKhauDangNhap));
     }
 
     public void onPressedButtonLocThongTinTamVangHoGiaDinh(MouseEvent e) {
@@ -133,11 +134,6 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
             ComponentVisibility.change(textFieldLocThongTinTamVangHoGiaDinh, true);
             ComponentVisibility.change(comboBoxTinhTrangTamVangHoGiaDinh, false);
         }
-    }
-
-    private void displayAlltamVangHoGiaDinh() {
-        ObservableList<TamVangDisplayModel> tamVangDisplayModelObservableList = tamVangService.getAllTamVangDisplayByHoKhau(maHoKhauDangNhap);
-        tableViewTamVangHoGiaDinh.setItems(tamVangDisplayModelObservableList);
     }
 
     private void xoaTamVangHoGiaDinh() {
@@ -199,7 +195,7 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAlltamVangHoGiaDinh();
+                    tamVangDisplayModel.setTuNgay((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -212,7 +208,7 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAlltamVangHoGiaDinh();
+                    tamVangDisplayModel.setDenNgay((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -256,7 +252,7 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
             alert.setHeaderText("Gửi yêu cầu không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAlltamVangHoGiaDinh();
+            tableViewTamVangHoGiaDinh.refresh();
         }
     }
 }

@@ -65,7 +65,7 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
         tableColumnDiaChiHoKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnNgayLapHoKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
 
-        displayAllHoKhauCanBo();
+        tableViewTatCaHoKhauCanBo.setItems(hoKhauService.getAllHoKhau());
     }
 
     @Override
@@ -166,14 +166,6 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
     }
 
     /**
-     * Phương thức hiển thị tất cả hộ khẩu
-     */
-    private void displayAllHoKhauCanBo() {
-        ObservableList<HoKhauModel> hoKhauModelObservableList = hoKhauService.getAllHoKhau();
-        tableViewTatCaHoKhauCanBo.setItems(hoKhauModelObservableList);
-    }
-
-    /**
      * Phương thức xử lý sự kiện khi một ô trong bảng được thay đổi
      *
      * @param event Sự kiện ô được thay đổi trong bảng
@@ -195,9 +187,9 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Thông báo");
-                    alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
+                    alert.setHeaderText("Vui lòng nhập ngày lập hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAllHoKhauCanBo();
+                    hoKhauModel.setNgayLap((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -240,7 +232,7 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
             alert.setHeaderText("Sửa hộ khẩu không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllHoKhauCanBo();
+            tableViewTatCaHoKhauCanBo.refresh();
         }
     }
 
@@ -264,11 +256,12 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
                 info.setTitle("Thông báo");
                 if (hoKhauService.deleteHoKhau(hoKhauModel)) {
                     info.setHeaderText("Xóa thành công!");
+                    tableViewTatCaHoKhauCanBo.getItems().remove(hoKhauModel);
                 } else {
                     info.setHeaderText("Xóa không thành công!");
                 }
                 info.showAndWait();
-                displayAllHoKhauCanBo();
+                tableViewTatCaHoKhauCanBo.refresh();
             }
         }
     }
@@ -298,7 +291,6 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập đầy đủ thông tin!");
                     alert.showAndWait();
-                    displayAllHoKhauCanBo();
                     return;
                 }
                 break;

@@ -75,7 +75,8 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
         tableViewDipDacBietHoGiaDinh.setEditable(true);
         tableColumnMaNhanKhauDipDacBietHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listMaNhanKhau));
 
-        displayAllThongTinDipDacBietHoGiaDinh();
+        tableViewDipDacBietHoGiaDinh.setItems(
+                thongTinDipDacBietService.getAllThongTinDipDacBietByMaHoKhau(maHoKhauDangNhap));
     }
 
     public void onSelectionComboBoxTimKiemDipDacBietHoGiaDinh(ActionEvent e) {
@@ -173,7 +174,6 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập năm hợp lệ");
                     alert.showAndWait();
-                    displayAllThongTinDipDacBietHoGiaDinh();
                     textFieldLocThongTinDipDacBietHoGiaDinh.requestFocus();
                     return;
                 }
@@ -197,12 +197,6 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
         tableViewDipDacBietHoGiaDinh.setItems(listThongTinDipDacBiet);
     }
 
-    private void displayAllThongTinDipDacBietHoGiaDinh() {
-        ObservableList<ThongTinDipDacBietDisplayModel> thongTinDipDacBietDisplayModels =
-                thongTinDipDacBietService.getAllThongTinDipDacBietByMaHoKhau(maHoKhauDangNhap);
-        tableViewDipDacBietHoGiaDinh.setItems(thongTinDipDacBietDisplayModels);
-    }
-
     private void updateThongTinDipDacBietHoGiaDinh(ThongTinDipDacBietDisplayModel thongTinDipDacBietDisplayModel) {
         ThongTinDipDacBietModel thongTinDipDacBietModel =
                 thongTinDipDacBietService.convertDisplayModelToModel(thongTinDipDacBietDisplayModel);
@@ -214,7 +208,7 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
             alert.setHeaderText("Gửi yêu cầu không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllThongTinDipDacBietHoGiaDinh();
+            tableViewDipDacBietHoGiaDinh.refresh();
         }
     }
 
