@@ -10,7 +10,7 @@ public class ControllerGiaiThuongDipDacBietThuQuyView extends ControllerThuQuyVi
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-    public void onPressedButtonTraoThuongThuQuy(){
+    public void onPressedButtonChonPhanQuaThuQuy(){
 
     }
     public void onEnterPressedTrongOTimKiemGiaiThuongThuQuy(){
@@ -20,6 +20,9 @@ public class ControllerGiaiThuongDipDacBietThuQuyView extends ControllerThuQuyVi
 
     }
     public void onSelectionComboBoxTimKiemGiaiThuongThuQuy(){
+
+    }
+    public void onPressedButtonTraoThuongChoTatCaDipDacBietThuQuy(){
 
     }
 }

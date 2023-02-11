@@ -34,3 +34,28 @@
     -fx-background-color: #20a4f3;
 
 }
+#buttonXacNhanChonQuaDipDacBietThuQuy{
+    -fx-background-color: #441151
+}
+#buttonHuyChonQuaDipDacBietThuQuy{
+    -fx-background-color: #441151
+
+}
+#buttonThemLoaiPhanThuongDipDacBietThuQuy{
+    -fx-background-color: #441151
+
+}
+#buttonXacNhanChonQuaDipDacBietThuQuy:hover{
+    -fx-background-color: #CA61C3;
+
+
+}
+#buttonHuyChonQuaDipDacBietThuQuy:hover{
+    -fx-background-color: #CA61C3;
+
+
+}
+#buttonThemLoaiPhanThuongDipDacBietThuQuy:hover {
+    -fx-background-color: #CA61C3;
+
+}
