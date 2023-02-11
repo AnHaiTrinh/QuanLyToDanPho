@@ -15,9 +15,8 @@ import java.util.ResourceBundle;
 public class ControllerGiaiThuongThanhTichThuQuyView extends ControllerThuQuyView implements Initializable {
     @FXML
     TableColumn <String, ThongTinThanhTichDisplayModel> tableColumnMaNhanKhauGiaiThuongThanhTichThuQuy, tableColumnHoTenGiaiThuongThanhTichThuQuy,
-            tableColumnTenDipGiaiThuongThanhTichThuQuy, tableColumnNamGiaiThuongThanhTichThuQuy,tableColumnTruongGiaiThuongThanhTichThuQuy,
-            tableColumnLopGiaiThuongThanhTichThuQuy, tableColumnCapGiaiThuongThanhTichThuQuy,tableColumnKieuGiaiThuongThanhTichThuQuy,
-            tableColumnMinhChungGiaiThuongThanhTichThuQuy, tableColumnTinhTrangGiaiThuongThanhTichThuQuy;
+            tableColumnTenDipGiaiThuongThanhTichThuQuy, tableColumnNamGiaiThuongThanhTichThuQuy,
+             tableColumnCapGiaiThuongThanhTichThuQuy,tableColumnKieuGiaiThuongThanhTichThuQuy;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -31,10 +30,7 @@ public class ControllerGiaiThuongThanhTichThuQuyView extends ControllerThuQuyVie
     public void onEnterPressedTrongOTimKiemGiaiThuongThuQuy(){
 
     }
-    public void onPressedButtonLocThongTinDipTraoThuongThuQuy(){
-
-    }
-    public void onSelectionComboBoxTimKiemGiaiThuongThuQuy(){
+    public void onPressedButtonTraoThuongChoTatCaThanhTichThuQuy(){
 
     }
 }

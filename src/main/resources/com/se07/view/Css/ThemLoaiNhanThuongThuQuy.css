@@ -34,3 +34,19 @@
     -fx-background-color: #20a4f3;
 
 }
+#buttonHuyChonQuaDipDacBietThuQuy{
+    -fx-background-color: #441151
+
+}
+#buttonXacNhanChonQuaDipDacBietThuQuy{
+    -fx-background-color: #441151
+
+}
+#buttonHuyChonQuaDipDacBietThuQuy:hover{
+    -fx-background-color: #CA61C3;
+
+}
+#buttonXacNhanChonQuaDipDacBietThuQuy:hover{
+    -fx-background-color: #CA61C3;
+
+}

@@ -34,3 +34,19 @@
     -fx-background-color: #20a4f3;
 
 }
+#buttonChonPhanQuaDipDacBietThuQuy{
+    -fx-background-color: #441151
+
+}
+#buttonTraoThuongChoTatCaGiaiThuongThuQuy{
+    -fx-background-color: #441151
+
+}
+#buttonChonPhanQuaDipDacBietThuQuy:hover{
+    -fx-background-color: #CA61C3;
+
+}
+#buttonTraoThuongChoTatCaGiaiThuongThuQuy:hover{
+    -fx-background-color: #CA61C3;
+
+}
