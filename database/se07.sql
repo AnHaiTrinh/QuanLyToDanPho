@@ -130,22 +130,22 @@ CREATE TABLE khai_tu
 -- Dumping structure for table se07.phan_thuong
 CREATE TABLE phan_thuong
 (
-    maPhanThuong  VARCHAR(30)   NOT NULL,
-    tenPhanThuong NVARCHAR(100) NOT NULL,
-    giaTri        REAL          NOT NULL,
+    maPhanThuong  INT IDENTITY (1, 1) NOT NULL,
+    tenPhanThuong NVARCHAR(100)       NOT NULL,
+    giaTri        INT                 NOT NULL,
     PRIMARY KEY (maPhanThuong),
     CONSTRAINT chk_giaTri CHECK (giaTri > 0)
 );
 
 -- Dumping data for table se07.phan_thuong: -1 rows
 /*!40000 ALTER TABLE phan_thuong DISABLE KEYS */;
-INSERT INTO phan_thuong (maPhanThuong, tenPhanThuong, giaTri)
-VALUES ('PT01', N'bim bim', 5000),
-       ('PT02', N'vở ô ly', 20000),
-       ('PT03', N'laptop', 20000000),
-       ('PT04', N'kẹo mút', 2000),
-       ('PT05', N'bánh quy', 50000),
-       ('PT06', N'lì xì', 100000);
+INSERT INTO phan_thuong (tenPhanThuong, giaTri)
+VALUES (N'bim bim', 5000),
+       (N'vở ô ly', 20000),
+       (N'laptop', 20000000),
+       (N'kẹo mút', 2000),
+       (N'bánh quy', 50000),
+       (N'lì xì', 100000);
 /*!40000 ALTER TABLE phan_thuong ENABLE KEYS */;
 
 -- Dumping structure for table se07.tam_tru
@@ -261,9 +261,9 @@ CREATE TABLE thong_tin_thanh_tich
 -- Dumping structure for table se07.trao_thuong_dip_dac_biet
 CREATE TABLE trao_thuong_dip_dac_biet
 (
-    idNhap       INT         NOT NULL,
-    maPhanThuong VARCHAR(30) NOT NULL,
-    soLuong      INT         NOT NULL,
+    idNhap       INT NOT NULL,
+    maPhanThuong INT NOT NULL,
+    soLuong      INT NOT NULL,
 
     PRIMARY KEY (idNhap, maPhanThuong),
     CONSTRAINT trao_thuong_dip_dac_biet_FK1 FOREIGN KEY (idNhap) REFERENCES thong_tin_dip_dac_biet (idNhap),
@@ -274,19 +274,19 @@ CREATE TABLE trao_thuong_dip_dac_biet
 -- Dumping data for table se07.trao_thuong_dip_dac_biet: -1 rows
 /*!40000 ALTER TABLE trao_thuong_dip_dac_biet DISABLE KEYS */;
 INSERT INTO trao_thuong_dip_dac_biet (idNhap, maPhanThuong, soLuong)
-VALUES (1, 'PT01', 2),
-       (1, 'PT04', 5),
-       (2, 'PT01', 2),
-       (2, 'PT04', 5),
-       (4, 'PT06', 1);
+VALUES (1, 1, 2),
+       (1, 4, 5),
+       (2, 1, 2),
+       (2, 4, 5),
+       (4, 6, 1);
 /*!40000 ALTER TABLE trao_thuong_dip_dac_biet ENABLE KEYS */;
 
 -- Dumping structure for table se07.trao_thuong_thanh_tich
 CREATE TABLE trao_thuong_thanh_tich
 (
-    idNhap       INT         NOT NULL,
-    maPhanThuong VARCHAR(30) NOT NULL,
-    soLuong      INT         NOT NULL,
+    idNhap       INT NOT NULL,
+    maPhanThuong INT NOT NULL,
+    soLuong      INT NOT NULL,
 
     PRIMARY KEY (idNhap, maPhanThuong),
     CONSTRAINT trao_thuong_thanh_tich_FK1 FOREIGN KEY (idNhap) REFERENCES thong_tin_thanh_tich (idNhap),

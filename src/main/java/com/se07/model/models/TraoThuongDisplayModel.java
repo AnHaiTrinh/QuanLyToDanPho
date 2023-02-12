@@ -2,46 +2,62 @@ package com.se07.model.models;
 
 public class TraoThuongDisplayModel {
     private int idNhap;
-    private String tenPhanThuong;
-    private double guaTri;
-    private int soLuong;
 
-    public TraoThuongDisplayModel(int idNhap, String tenPhanThuong, double guaTri, int soLuong) {
+    private String maNhanKhau;
+    private String hoTen;
+    private String tenDip;
+    private int nam;
+    private String tenPhanThuong;
+    private int donGia;
+    private int soLuong;
+    private int thanhTien;
+
+    public TraoThuongDisplayModel(int idNhap, String maNhanKhau, String hoTen, String tenDip, int nam,
+                                  String tenPhanThuong, int donGia, int soLuong) {
         this.idNhap = idNhap;
+        this.maNhanKhau = maNhanKhau;
+        this.hoTen = hoTen;
+        this.tenDip = tenDip;
+        this.nam = nam;
         this.tenPhanThuong = tenPhanThuong;
-        this.guaTri = guaTri;
+        this.donGia = donGia;
         this.soLuong = soLuong;
+        this.thanhTien = donGia * soLuong;
     }
 
     public int getIdNhap() {
         return idNhap;
     }
 
-    public void setIdNhap(int idNhap) {
-        this.idNhap = idNhap;
+    public String getMaNhanKhau() {
+        return maNhanKhau;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public String getTenDip() {
+        return tenDip;
+    }
+
+    public int getNam() {
+        return nam;
     }
 
     public String getTenPhanThuong() {
         return tenPhanThuong;
     }
 
-    public void setTenPhanThuong(String tenPhanThuong) {
-        this.tenPhanThuong = tenPhanThuong;
-    }
-
-    public double getGuaTri() {
-        return guaTri;
-    }
-
-    public void setGuaTri(double guaTri) {
-        this.guaTri = guaTri;
+    public int getDonGia() {
+        return donGia;
     }
 
     public int getSoLuong() {
         return soLuong;
     }
 
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
+    public int getThanhTien() {
+        return thanhTien;
     }
 }

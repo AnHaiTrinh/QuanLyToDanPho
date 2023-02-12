@@ -2,10 +2,10 @@ package com.se07.model.models;
 
 public class TraoThuongModel {
     private int idNhap;
-    private String maPhanThuong;
+    private int maPhanThuong;
     private int soLuong;
 
-    public TraoThuongModel(int idNhap, String maPhanThuong, int soLuong) {
+    public TraoThuongModel(int idNhap, int maPhanThuong, int soLuong) {
         this.idNhap = idNhap;
         this.maPhanThuong = maPhanThuong;
         this.soLuong = soLuong;
@@ -19,11 +19,11 @@ public class TraoThuongModel {
         this.idNhap = idNhap;
     }
 
-    public String getMaPhanThuong() {
+    public int getMaPhanThuong() {
         return maPhanThuong;
     }
 
-    public void setMaPhanThuong(String maPhanThuong) {
+    public void setMaPhanThuong(int maPhanThuong) {
         this.maPhanThuong = maPhanThuong;
     }
 

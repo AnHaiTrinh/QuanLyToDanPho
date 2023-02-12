@@ -64,7 +64,7 @@
                     <content>
                         <AnchorPane>
                             <children>
-                                <TableView fx:id="tableViewGiaiThuongThuQuy" editable="true" onKeyPressed="#onDeletePressedTrongBangDipTraoThuongThuQuy" onMousePressed="#onPressedTrongCotIdGiaiThuongThuQuy" prefHeight="528.0" prefWidth="878.0">
+                                <TableView fx:id="tableViewGiaiThuongThuQuy" editable="true" prefHeight="528.0" prefWidth="878.0">
                                     <columns>
                                         <TableColumn fx:id="tableColumnIDGiaiThuongThuQuy" prefWidth="60.0" styleClass="underline-blue-text" text="ID" />
                                         <TableColumn fx:id="tableColumnTenDipGiaiThuongThuQuy" maxWidth="199.0" minWidth="50.0" prefWidth="199.0" text="Tên dịp" />
@@ -79,7 +79,7 @@
                         </AnchorPane>
                     </content>
                 </ScrollPane>
-                <AnchorPane layoutX="2.0" layoutY="3.0" onMousePressed="#onEnterPressedTrongOTimKiemGiaiThuongThuQuy">
+                <AnchorPane layoutX="2.0" layoutY="3.0" onKeyPressed="#onEnterPressedTrongOTimKiemGiaiThuongThuQuy">
                     <children>
                         <Button fx:id="buttonLocThongTinGiaiThuongThuQuy" layoutX="335.0" layoutY="15.0" mnemonicParsing="false" onMousePressed="#onPressedButtonLocThongTinDipTraoThuongThuQuy" prefHeight="31.0" prefWidth="100.0" stylesheets="@Css/GiaiThuongThuQuyView.css" text="Tìm kiếm" textFill="WHITE">
                             <font>
@@ -95,30 +95,31 @@
                         <DatePicker fx:id="datePickerTu" disable="true" editable="false" layoutX="28.0" prefHeight="20.0" prefWidth="160.0" promptText="Từ " />
                         <DatePicker fx:id="datePickerDen" disable="true" editable="false" layoutX="28.0" layoutY="42.0" prefHeight="20.0" prefWidth="160.0" promptText="Đến" />
                         <ComboBox fx:id="comboBoxKieuGiaiThuongThuQuy" disable="true" layoutY="15.0" prefHeight="31.0" prefWidth="213.0" />
+                  <ComboBox fx:id="comboBoxTenNamGiaiThuongThuQuy" disable="true" layoutY="15.0" prefHeight="31.0" prefWidth="213.0" />
                     </children>
                 </AnchorPane>
             </children>
         </AnchorPane>
         <AnchorPane fx:id="panePeopleAdmin" layoutX="760.0" layoutY="50.0" prefHeight="553.0" prefWidth="154.0">
             <children>
-                <Button fx:id="buttonTraoThuongThanhTichThuQuy" layoutX="21.0" layoutY="228.0" mnemonicParsing="false" onMousePressed="#onPressedButtonTraoThuongThuQuy" prefHeight="38.0" prefWidth="130.0" text="Trao thưởng" textFill="#fcfcfc">
+                <Button fx:id="buttonTraoThuongThanhTichThuQuy" layoutX="21.0" layoutY="267.0" mnemonicParsing="false" onMousePressed="#onPressedButtonTraoThuongThuQuy" prefHeight="38.0" prefWidth="130.0" text="Trao thưởng" textFill="#fcfcfc">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
                 </Button>
             </children>
         </AnchorPane>
-      <Button fx:id="buttonThongKeThuQuy" layoutY="221.0" mnemonicParsing="false" onMousePressed="#onPressedButtonThongKeThuQuy" prefHeight="58.0" prefWidth="222.0" text="Thống kê" textFill="WHITE">
-         <graphic>
-            <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Icon/ThongKeThuQuy.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
+        <Button fx:id="buttonThongKeThuQuy" layoutY="221.0" mnemonicParsing="false" onMousePressed="#onPressedButtonThongKeThuQuy" prefHeight="58.0" prefWidth="222.0" text="Thống kê" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Icon/ThongKeThuQuy.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Button>
     </children>
 </AnchorPane>

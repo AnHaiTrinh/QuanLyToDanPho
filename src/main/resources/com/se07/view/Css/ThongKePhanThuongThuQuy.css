@@ -27,10 +27,18 @@
     -fx-background-color: #CA61C3;
 }
 
-#buttonThongKeThuQuy{
+#buttonThongKeThuQuy {
     -fx-background-color: rgba(8, 101, 155, 0.75);
 }
-#buttonThongKeThuQuy:hover{
-    -fx-background-color: #20a4f3;
 
+#buttonThongKeThuQuy:hover {
+    -fx-background-color: #20a4f3;
+}
+
+#buttonThongKeGiaiThuongThuQuy {
+    -fx-background-color: #441151
+}
+
+#buttonThongKeGiaiThuongThuQuy:hover {
+    -fx-background-color: #CA61C3
 }

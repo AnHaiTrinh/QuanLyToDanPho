@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneChinhThuQuy" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/TraoThuongDipDacBietThuQuy.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllersketoan.ControllerTraoThuongDipDacBietThuQuyView">
+<AnchorPane fx:id="anchorPaneChinhThuQuy" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/TraoThuongDipDacBietThuQuy.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllersketoan.ControllerTraoThuongThuQuyView">
     <children>
         <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -57,14 +57,9 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Button>
-        <Label layoutX="473.0" layoutY="70.0" prefHeight="30.0" prefWidth="236.0" text="HÃY CHỌN PHẦN QUÀ" textFill="#0d0d0d">
+        <Label layoutX="475.0" layoutY="60.0" prefHeight="30.0" prefWidth="236.0" text="HÃY CHỌN PHẦN QUÀ" textFill="#0d0d0d">
             <font>
                 <Font name="System Bold" size="20.0" />
-            </font>
-        </Label>
-        <Label fx:id="lableTenNguoiDangNhapThuQuy" layoutX="610.0" layoutY="14.0" prefHeight="38.0" prefWidth="166.0" textFill="WHITE">
-            <font>
-                <Font name="System Bold Italic" size="15.0" />
             </font>
         </Label>
         <Button fx:id="buttonThongKeThuQuy" layoutY="221.0" mnemonicParsing="false" onMousePressed="#onPressedButtonThongKeThuQuy" prefHeight="58.0" prefWidth="222.0" text="Thống kê" textFill="WHITE">
@@ -79,14 +74,15 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Button>
-        <GridPane layoutX="222.0" layoutY="190.0" prefHeight="313.0" prefWidth="676.0">
+        <GridPane fx:id="gridPaneChonQuaThuQuy" layoutX="222.0" layoutY="170.0" prefHeight="313.0" prefWidth="668.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="7.0" prefWidth="28.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="517.0" minWidth="10.0" prefWidth="182.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="128.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="73.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="156.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="168.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="517.0" minWidth="10.0" prefWidth="126.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="107.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="5.0" prefWidth="64.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="124.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="65.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="55.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -96,23 +92,66 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label text="PHẦN THƯỞNG CHÍNH" GridPane.columnIndex="1">
+                <Label text="Chọn tên quà" GridPane.columnIndex="1">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
                 </Label>
-                <Label text="Chọn tên quà" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label text="Chọn số lượng" GridPane.columnIndex="4">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
                 </Label>
-                <Label text="Chọn số lượng" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                    <font>
-                        <Font name="System Bold" size="15.0" />
-                    </font>
-                </Label>
-                <ComboBox fx:id="comboBoxChonTenQuaDipDacBietThuQuy" prefHeight="31.0" prefWidth="181.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                <TextField fx:id="textFieldChonSoLuongDipDacBietThuQuy" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                <ComboBox prefHeight="31.0" prefWidth="121.0" GridPane.columnIndex="2" />
+                <TextField prefHeight="31.0" prefWidth="67.0" GridPane.columnIndex="5" />
+            <Label layoutX="53.0" layoutY="31.0" text="Chọn tên quà" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="31.0" text="Chọn tên quà" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="53.0" layoutY="157.0" text="Chọn tên quà" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="31.0" text="Chọn tên quà" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ComboBox layoutX="193.0" layoutY="26.0" prefHeight="31.0" prefWidth="121.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <ComboBox layoutX="10.0" layoutY="26.0" prefHeight="31.0" prefWidth="121.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ComboBox layoutX="193.0" layoutY="152.0" prefHeight="31.0" prefWidth="121.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <ComboBox layoutX="10.0" layoutY="26.0" prefHeight="31.0" prefWidth="121.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label layoutX="392.0" layoutY="31.0" text="Chọn số lượng" GridPane.columnIndex="4" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="31.0" text="Chọn số lượng" GridPane.columnIndex="4" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="31.0" text="Chọn số lượng" GridPane.columnIndex="4" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="31.0" text="Chọn số lượng" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="530.0" layoutY="26.0" prefHeight="31.0" prefWidth="67.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <TextField layoutX="530.0" layoutY="89.0" prefHeight="31.0" prefWidth="67.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <TextField layoutX="10.0" layoutY="26.0" prefHeight="31.0" prefWidth="67.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <TextField layoutX="530.0" layoutY="215.0" prefHeight="31.0" prefWidth="67.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
             </children>
         </GridPane>
         <Button fx:id="buttonXacNhanChonQuaDipDacBietThuQuy" layoutX="593.0" layoutY="550.0" mnemonicParsing="false" onMousePressed="#onPressedButtonXacNhanChonQuaDipDacBietThuQuy" prefHeight="38.0" prefWidth="126.0" text="Xác nhận" textFill="WHITE">
@@ -125,5 +164,11 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </Button>
+      <Label layoutX="266.0" layoutY="100.0" prefHeight="30.0" prefWidth="284.0" text="Tên dịp - Năm:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="266.0" layoutY="138.0" prefHeight="30.0" prefWidth="284.0" text="Mã nhân khẩu:" />
     </children>
 </AnchorPane>

@@ -10,105 +10,131 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneChinhThuQuy" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/GiaiThuongDacBietThuQuy.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllersketoan.ControllerGiaiThuongDipDacBietThuQuyView">
-   <children>
-      <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Icon/imageAdmin.jpg" />
-         </image>
-      </ImageView>
-      <Button fx:id="buttonTrangChuThuQuy" mnemonicParsing="false" onMousePressed="#onPressedButtonTrangChuThuQuy" prefHeight="66.0" prefWidth="222.0" text="Trang chủ" textFill="WHITE">
-         <graphic>
-            <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Icon/IconAadminHome.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <AnchorPane fx:id="anchorPaneTinhNangNhanKhauThuQuy" layoutX="758.0" layoutY="5.0" prefHeight="603.0" prefWidth="157.0">
-         <children>
-            <Button fx:id="buttonDangXuatThuQuy" layoutX="23.0" layoutY="7.0" mnemonicParsing="false" onMousePressed="#onPressedButtonDangXuatThuQuy" prefHeight="38.0" prefWidth="126.0" text="Đăng xuất" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
-      <Button fx:id="buttonGiaiThuongThuQuy" layoutY="121.0" mnemonicParsing="false" onMousePressed="#onPressedButtonGiaiThuongThuQuy" prefHeight="58.0" prefWidth="222.0" text="Giải Thưởng" textFill="WHITE">
-         <graphic>
-            <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Icon/IconAdminAward.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label fx:id="lableTenNguoiDangNhap" layoutX="610.0" layoutY="14.0" prefHeight="38.0" prefWidth="166.0" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-      </Label>
-      <AnchorPane layoutX="220.0" prefHeight="603.0" prefWidth="538.0">
-         <children>
-            <ScrollPane layoutX="2.0" layoutY="80.0" prefHeight="526.0" prefWidth="554.0">
-               <content>
-                  <AnchorPane>
-                     <children>
-                        <TableView fx:id="tableViewGiaiThuongThuQuy" editable="true" prefHeight="528.0" prefWidth="878.0">
-                           <columns>
-                              <TableColumn fx:id="tableColumnMaNhanKhauGiaiThuongDipDacBietThuQuy" prefWidth="108.0" styleClass="underline-blue-text" text="Mã nhân khẩu" />
-                              <TableColumn fx:id="tableColumnHoTenGiaiThuongDipDacBietThuQuy" maxWidth="199.0" minWidth="50.0" prefWidth="151.0" text="Họ tên" />
-                              <TableColumn fx:id="tableColumnTenDipGiaiThuongDipDacBietThuQuy" maxWidth="180.0" minWidth="100.0" prefWidth="118.0" text="Tên dịp" />
-                              <TableColumn fx:id="tableColumnNamGiaiThuongDipDacBietThuQuy" maxWidth="400.0" minWidth="79.0" prefWidth="79.0" text="Năm" />
-                              <TableColumn fx:id="tableColumnCapGiaiThuongDipDacBietThuQuy" prefWidth="160.0" text="Cấp" />
-                              <TableColumn fx:id="tableColumnKieuGiaiThuongDipDacBietThuQuy" prefWidth="75.0" text="Kiểu" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </ScrollPane>
-            <AnchorPane layoutX="2.0" layoutY="3.0" onMousePressed="#onEnterPressedTrongOTimKiemGiaiThuongThuQuy" />
-            <Label layoutX="185.0" layoutY="32.0" text="BẢNG TRAO THƯỞNG DỊP ĐẶC BIỆT">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="panePeopleAdmin" layoutX="760.0" layoutY="50.0" prefHeight="553.0" prefWidth="154.0">
-         <children>
-            <Button fx:id="buttonChonPhanQuaDipDacBietThuQuy" layoutX="21.0" layoutY="228.0" mnemonicParsing="false" onMousePressed="#onPressedButtonChonPhanQuaThuQuy" prefHeight="38.0" prefWidth="130.0" text="Chọn phần quà" textFill="#fcfcfc">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="buttonTraoThuongChoTatCaGiaiThuongThuQuy" layoutX="21.0" layoutY="303.0" mnemonicParsing="false" onMousePressed="#onPressedButtonTraoThuongChoTatCaDipDacBietThuQuy" prefHeight="38.0" prefWidth="130.0" stylesheets="@Css/GiaiThuongThuQuyView.css" text="Trao thưởng tất cả" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
-      <Button fx:id="buttonThongKeThuQuy" layoutY="221.0" mnemonicParsing="false" onMousePressed="#onPressedButtonThongKeThuQuy" prefHeight="58.0" prefWidth="222.0" text="Thống kê" textFill="WHITE">
-         <graphic>
-            <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Icon/IconAdminAward.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label layoutX="498.0" layoutY="-32.0" text="Label" />
-   </children>
+<AnchorPane fx:id="anchorPaneChinhThuQuy" prefHeight="603.0" prefWidth="915.0"
+            stylesheets="@Css/GiaiThuongDacBietThuQuy.css" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.se07.controller.controllers.controllersketoan.ControllerGiaiThuongDipDacBietThuQuyView">
+    <children>
+        <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@Icon/imageAdmin.jpg"/>
+            </image>
+        </ImageView>
+        <Button fx:id="buttonTrangChuThuQuy" mnemonicParsing="false" onMousePressed="#onPressedButtonTrangChuThuQuy"
+                prefHeight="66.0" prefWidth="222.0" text="Trang chủ" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Icon/IconAadminHome.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+            <font>
+                <Font name="System Bold" size="20.0"/>
+            </font>
+        </Button>
+        <AnchorPane fx:id="anchorPaneTinhNangNhanKhauThuQuy" layoutX="758.0" layoutY="5.0" prefHeight="603.0"
+                    prefWidth="157.0">
+            <children>
+                <Button fx:id="buttonDangXuatThuQuy" layoutX="23.0" layoutY="7.0" mnemonicParsing="false"
+                        onMousePressed="#onPressedButtonDangXuatThuQuy" prefHeight="38.0" prefWidth="126.0"
+                        text="Đăng xuất" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="15.0"/>
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <Button fx:id="buttonGiaiThuongThuQuy" layoutY="121.0" mnemonicParsing="false"
+                onMousePressed="#onPressedButtonGiaiThuongThuQuy" prefHeight="58.0" prefWidth="222.0" text="Giải Thưởng"
+                textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Icon/IconAdminAward.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </Button>
+        <Label fx:id="lableTenNguoiDangNhap" layoutX="610.0" layoutY="14.0" prefHeight="38.0" prefWidth="166.0"
+               textFill="WHITE">
+            <font>
+                <Font name="System Bold Italic" size="15.0"/>
+            </font>
+        </Label>
+        <AnchorPane layoutX="220.0" prefHeight="606.0" prefWidth="524.0">
+            <children>
+                <ScrollPane layoutX="2.0" layoutY="80.0" prefHeight="526.0" prefWidth="520.0">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <TableView fx:id="tableViewGiaiThuongThuQuy" editable="true" prefHeight="528.0"
+                                           prefWidth="878.0">
+                                    <columns>
+                                        <TableColumn fx:id="tableColumnMaNhanKhauGiaiThuongDipDacBietThuQuy"
+                                                     prefWidth="108.0" styleClass="underline-blue-text"
+                                                     text="Mã nhân khẩu"/>
+                                        <TableColumn fx:id="tableColumnHoTenGiaiThuongDipDacBietThuQuy" maxWidth="199.0"
+                                                     minWidth="50.0" prefWidth="151.0" text="Họ tên"/>
+                                        <TableColumn fx:id="tableColumnTenDipGiaiThuongDipDacBietThuQuy"
+                                                     maxWidth="180.0" minWidth="100.0" prefWidth="118.0"
+                                                     text="Tên dịp"/>
+                                        <TableColumn fx:id="tableColumnNamGiaiThuongDipDacBietThuQuy" maxWidth="400.0"
+                                                     minWidth="79.0" prefWidth="79.0" text="Năm"/>
+                                        <TableColumn fx:id="tableColumnCapGiaiThuongDipDacBietThuQuy" prefWidth="160.0"
+                                                     text="Cấp"/>
+                                        <TableColumn fx:id="tableColumnKieuGiaiThuongDipDacBietThuQuy" prefWidth="75.0"
+                                                     text="Kiểu"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </ScrollPane>
+                <AnchorPane layoutX="2.0" layoutY="3.0" onKeyPressed="#onEnterPressedTrongOTimKiemGiaiThuongThuQuy"/>
+                <Label layoutX="157.0" layoutY="17.0" text="BẢNG TRAO THƯỞNG DỊP ĐẶC BIỆT">
+                    <font>
+                        <Font name="System Bold" size="18.0"/>
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="panePeopleAdmin" layoutX="750.0" layoutY="50.0" prefHeight="553.0" prefWidth="157.0">
+            <children>
+                <Button fx:id="buttonChonPhanQuaDipDacBietThuQuy" layoutY="228.0" mnemonicParsing="false"
+                        onMousePressed="#onPressedButtonChonPhanQuaThuQuy" prefHeight="38.0" prefWidth="157.0"
+                        text="Chọn phần quà" textFill="#fcfcfc">
+                    <font>
+                        <Font name="System Bold" size="15.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="buttonTraoThuongChoTatCaGiaiThuongThuQuy" layoutY="303.0" mnemonicParsing="false"
+                        onMousePressed="#onPressedButtonTraoThuongChoTatCaDipDacBietThuQuy" prefHeight="38.0"
+                        prefWidth="157.0" stylesheets="@Css/GiaiThuongThuQuyView.css" text="Trao thưởng tất cả"
+                        textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="15.0"/>
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <Button fx:id="buttonThongKeThuQuy" layoutY="221.0" mnemonicParsing="false"
+                onMousePressed="#onPressedButtonThongKeThuQuy" prefHeight="58.0" prefWidth="222.0" text="Thống kê"
+                textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Icon/IconAdminAward.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </Button>
+        <Label layoutX="498.0" layoutY="-32.0" text="Label"/>
+    </children>
 </AnchorPane>

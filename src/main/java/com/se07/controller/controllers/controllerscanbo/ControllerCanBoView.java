@@ -40,15 +40,7 @@ public class ControllerCanBoView implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {
             if (keyEvent.getCode() == KeyCode.ESCAPE) {
-                Stage stage = (Stage) ((Node) keyEvent.getSource()).getScene().getWindow();
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Thông báo!");
-                alert.setHeaderText("Bạn muốn đăng xuất ?");
-                if (alert.showAndWait().get() == ButtonType.OK) {
-                    stage.close();
-                    LoginView loginView = new LoginView();
-                    loginView.openWindow();
-                }
+                dangXuatCanBoView((Stage) ((Node) keyEvent.getSource()).getScene().getWindow());
             }
         });
     }

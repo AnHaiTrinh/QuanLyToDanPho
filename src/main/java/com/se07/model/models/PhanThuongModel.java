@@ -1,21 +1,26 @@
 package com.se07.model.models;
 
 public class PhanThuongModel {
-    private String maPhanThuong;
+    private int maPhanThuong;
     private String tenPhanThuong;
-    private double giaTri;
+    private int giaTri;
 
-    public PhanThuongModel(String maPhanThuong, String tenPhanThuong, double giaTri) {
+    public PhanThuongModel(int maPhanThuong, String tenPhanThuong, int giaTri) {
         this.maPhanThuong = maPhanThuong;
         this.tenPhanThuong = tenPhanThuong;
         this.giaTri = giaTri;
     }
 
-    public String getMaPhanThuong() {
+    public PhanThuongModel(String tenPhanThuong, int giaTri) {
+        this.tenPhanThuong = tenPhanThuong;
+        this.giaTri = giaTri;
+    }
+
+    public int getMaPhanThuong() {
         return maPhanThuong;
     }
 
-    public void setMaPhanThuong(String maPhanThuong) {
+    public void setMaPhanThuong(int maPhanThuong) {
         this.maPhanThuong = maPhanThuong;
     }
 
@@ -31,7 +36,7 @@ public class PhanThuongModel {
         return giaTri;
     }
 
-    public void setGiaTri(double giaTri) {
+    public void setGiaTri(int giaTri) {
         this.giaTri = giaTri;
     }
 }
