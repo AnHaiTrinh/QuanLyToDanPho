@@ -30,9 +30,9 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <ScrollPane layoutX="222.0" layoutY="80.0" prefHeight="469.0" prefWidth="713.0">
+      <ScrollPane layoutX="222.0" layoutY="80.0" prefHeight="446.0" prefWidth="713.0">
          <content>
-            <TableView fx:id="tableViewThongKeThuQuy" prefHeight="458.0" prefWidth="915.0">
+            <TableView fx:id="tableViewThongKeThuQuy" prefHeight="471.0" prefWidth="915.0">
                <columns>
                   <TableColumn fx:id="tableColumnMaNhanKhauThongKeThuQuy" prefWidth="108.0" styleClass="underline-blue-text" text="Mã nhân khẩu" />
                   <TableColumn fx:id="tableColumnHoTenThongKeThuQuy" maxWidth="199.0" minWidth="50.0" prefWidth="151.0" text="Họ tên" />
