@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -46,15 +48,13 @@ public class ControllerGiaiThuongThuQuyView extends ControllerThuQuyView {
     DatePicker datePickerTu, datePickerDen;
 
     private final ObservableList<String> listTimKiem = FXCollections.observableArrayList(
-            "Tên dịp", "Năm", "Tên - năm", "Kiểu", "Ngày");
+            "Tên dịp", "Năm", "Tên - Năm", "Kiểu", "Ngày tạo", "Ngày kết thúc");
 
     final ObservableList<String> listKieuGiaiThuong = FXCollections.observableArrayList("Dịp đặc biệt", "Thành tích");
 
     final private DipTraoThuongService dipTraoThuongService = new DipTraoThuongService();
 
     final ObservableList<String> listTenNamDipTraoThuong = dipTraoThuongService.getAllTenNamDipTraoThuong();
-
-    final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
     final private MyIntegerStringConverter integerStringConverter = new MyIntegerStringConverter();
 
     @Override
@@ -189,8 +189,17 @@ public class ControllerGiaiThuongThuQuyView extends ControllerThuQuyView {
                 alert.setHeaderText("Vui lòng chọn dịp để trao thưởng");
                 alert.showAndWait();
             } else {
-                if (dipTraoThuongModel.getKieu().equals("Dịp đặc biẹt"))
-                    FXMLLoader loader = new FXMLLoader(TreasurerView.class.getResource(""));
+                if (dipTraoThuongModel.getKieu().equals("Dịp đặc biệt")) {
+                    FXMLLoader loader = new FXMLLoader(TreasurerView.class.getResource("GiaiThuongDipDacBietThuQuyView.fxml"));
+                    Parent root = loader.load();
+                    ControllerGiaiThuongDipDacBietThuQuyView controller = loader.getController();
+                    controller.tenDip = dipTraoThuongModel.getTenDip();
+                    controller.nam = dipTraoThuongModel.getNam();
+                    controller.loadData();
+                    Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                }
             }
         }
     }

@@ -14,23 +14,20 @@ import java.util.ResourceBundle;
 
 public class ControllerGiaiThuongThanhTichThuQuyView extends ControllerThuQuyView implements Initializable {
     @FXML
-    TableColumn <String, ThongTinThanhTichDisplayModel> tableColumnMaNhanKhauGiaiThuongThanhTichThuQuy, tableColumnHoTenGiaiThuongThanhTichThuQuy,
+    TableColumn tableColumnMaNhanKhauGiaiThuongThanhTichThuQuy, tableColumnHoTenGiaiThuongThanhTichThuQuy,
             tableColumnTenDipGiaiThuongThanhTichThuQuy, tableColumnNamGiaiThuongThanhTichThuQuy,
-             tableColumnCapGiaiThuongThanhTichThuQuy,tableColumnKieuGiaiThuongThanhTichThuQuy;
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+            tableColumnCapGiaiThuongThanhTichThuQuy, tableColumnKieuGiaiThuongThanhTichThuQuy;
 
-    }
     public void onPressedButtonChonPhanQuaThuQuy(MouseEvent e) throws IOException {
-        if(e.isPrimaryButtonDown()){
-            sceneLoader.loadFxmlFileThuQuy((Stage) ((Node) e.getSource()).getScene().getWindow(), "TraoThuongThanhTichThuQuyView.fxml");
-
+        if (e.isPrimaryButtonDown()) {
         }
     }
-    public void onEnterPressedTrongOTimKiemGiaiThuongThuQuy(){
+
+    public void onEnterPressedTrongOTimKiemGiaiThuongThuQuy() {
 
     }
-    public void onPressedButtonTraoThuongChoTatCaThanhTichThuQuy(){
+
+    public void onPressedButtonTraoThuongChoTatCaThanhTichThuQuy() {
 
     }
 }
