@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -26,33 +27,43 @@ public class ControllerHoGiaDinhView implements Initializable {
 
     final String username = UserInfo.getUsername();
     final SceneLoader sceneLoader = new SceneLoader();
-    private  HoKhauService hoKhauService = new HoKhauService();
+    private HoKhauService hoKhauService = new HoKhauService();
     final String maHoKhauDangNhap = UserInfo.getMaHoKhau(id);
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        anchorPaneChinhHoGiaDinh.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode().equals(KeyCode.ESCAPE)) {
+                dangXuatHoGiaDinh((Stage) ((Node) keyEvent.getSource()).getScene().getWindow());
+            }
+        });
     }
-    public void onPressedButtonTrangChuHoGiaDinh(MouseEvent e) throws IOException{
-        if(e.isPrimaryButtonDown()){
+
+    public void onPressedButtonTrangChuHoGiaDinh(MouseEvent e) throws IOException {
+        if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(), "TrangChuHoGiaDinhView.fxml");
         }
     }
-    public void onPressedButtonNhanKhauHoGiaDinh(MouseEvent e) throws IOException{
-        if(e.isPrimaryButtonDown()){
+
+    public void onPressedButtonNhanKhauHoGiaDinh(MouseEvent e) throws IOException {
+        if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(), "NhanKhauHoGiaDinhView.fxml");
         }
     }
-    public void onPressedButtonGiaiThuongHoGiaDinh(MouseEvent e) throws IOException{
-        if(e.isPrimaryButtonDown()){
+
+    public void onPressedButtonGiaiThuongHoGiaDinh(MouseEvent e) throws IOException {
+        if (e.isPrimaryButtonDown()) {
             sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(), "GiaiThuongHoGiaDinhView.fxml");
         }
     }
-    public void onPressedButtonDangXuatHoGiaDinh(MouseEvent e) throws IOException{
-        if(e.isPrimaryButtonDown()){
+
+    public void onPressedButtonDangXuatHoGiaDinh(MouseEvent e) throws IOException {
+        if (e.isPrimaryButtonDown()) {
             dangXuatHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow());
         }
     }
-    public void dangXuatHoGiaDinh(Stage stage){
+
+    private void dangXuatHoGiaDinh(Stage stage) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo!");
         alert.setHeaderText("Bạn muốn đăng xuất ?");
@@ -62,5 +73,4 @@ public class ControllerHoGiaDinhView implements Initializable {
             loginView.openWindow();
         }
     }
-    
 }

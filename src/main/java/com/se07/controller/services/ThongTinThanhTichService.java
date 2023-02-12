@@ -2,6 +2,8 @@ package com.se07.controller.services;
 
 import com.se07.model.models.ThongTinThanhTichDisplayModel;
 import com.se07.model.models.ThongTinThanhTichModel;
+import com.se07.model.models.ThongTinTraoThuongThanhTich;
+import com.se07.model.models.ThongTinTraoThuongThanhTich;
 import com.se07.util.ConnectionDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
 
@@ -217,7 +220,7 @@ public class ThongTinThanhTichService {
                 "minhChung, t.tinhTrang " +
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
-                "and n.maHoKhau='"+maHoKhau+"' ";
+                "and n.maHoKhau='" + maHoKhau + "' ";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -310,7 +313,7 @@ public class ThongTinThanhTichService {
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id  " +
                 "where t.maNhanKhau = '" + maNhanKhau + "' " +
-                "where t.maNhanKhau= '"+maHoKhau+"'";
+                "where t.maNhanKhau= '" + maHoKhau + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -403,7 +406,7 @@ public class ThongTinThanhTichService {
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
                 "where hoTen like N'%" + hoTen + "%' " +
-                "and n.maHoKhau ='"+maHoKhau+"'";
+                "and n.maHoKhau ='" + maHoKhau + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -496,7 +499,7 @@ public class ThongTinThanhTichService {
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
                 "where tenDip like N'%" + tenDip + "%'" +
-                "and n.maHoKhau='"+maHoKhau+"' ";
+                "and n.maHoKhau='" + maHoKhau + "' ";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -590,7 +593,7 @@ public class ThongTinThanhTichService {
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
                 "where nam =  '" + nam + "' " +
-                "and n.maHoKhau = '"+maHoKhau+"'";
+                "and n.maHoKhau = '" + maHoKhau + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -781,7 +784,7 @@ public class ThongTinThanhTichService {
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
                 "where kieuThanhTich =  N'" + tinhTrang + "' " +
-                "and n.maHoKhau = '"+maHoKhau+"'";
+                "and n.maHoKhau = '" + maHoKhau + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -868,7 +871,7 @@ public class ThongTinThanhTichService {
                 "minhChung, t.tinhTrang " +
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
-                "where idDip = " + id +" and n.maHoKhau ='"+maHoKhauDangNhap+"'";
+                "where idDip = " + id + " and n.maHoKhau ='" + maHoKhauDangNhap + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -911,7 +914,7 @@ public class ThongTinThanhTichService {
                 "minhChung, t.tinhTrang " +
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
-                "where capThanhTich like  N'%" + capThanhTich + "%' and n.maHoKhau ='"+maHoKhauDangNhap+"'";
+                "where capThanhTich like  N'%" + capThanhTich + "%' and n.maHoKhau ='" + maHoKhauDangNhap + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -955,7 +958,7 @@ public class ThongTinThanhTichService {
                 "minhChung, t.tinhTrang " +
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
-                "where kieuThanhTich like  N'%" + kieuThanhTich + "%' and n.maHoKhau ='"+maHoKhauDangNhap+"'";
+                "where kieuThanhTich like  N'%" + kieuThanhTich + "%' and n.maHoKhau ='" + maHoKhauDangNhap + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -990,5 +993,71 @@ public class ThongTinThanhTichService {
             e.printStackTrace();
         }
         return listThongTinThanhTichDisplayModel;
+    }
+
+    public ArrayList<Integer> getAllIdNhapTheoIdDip(int id) {
+        ArrayList<Integer> res = new ArrayList<>();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select idNhap " +
+                "from thong_tin_thanh_tich " +
+                "where idDip = " + id + " and tinhTrang = N'Đã xác nhận'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                res.add(rs.getInt(1));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public ObservableList<ThongTinTraoThuongThanhTich> getAllThongTinThanhTichAndTraoThuongByIdDip(int idDip) {
+        ObservableList<ThongTinTraoThuongThanhTich> thongTinTraoThuongThanhTichObservableList
+                = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "with t as " +
+                "(select ttddb.idNhap, nk.maNhanKhau, nk.hoTen, ttddb.capThanhTich, ttddb.kieuThanhTich " +
+                "from thong_tin_thanh_tich ttddb join nhan_khau nk on ttddb.maNhanKhau = nk.maNhanKhau " +
+                "where ttddb.idDip = " + idDip + " and ttddb.tinhTrang = N'Đã xác nhận'), " +
+                "tt as " +
+                "(select ttddb2.idNhap, pt.tenPhanThuong, pt.giaTri, ttddb2.soLuong " +
+                "from trao_thuong_thanh_tich ttddb2 join phan_thuong pt on ttddb2.maPhanThuong = pt.maPhanThuong) " +
+                "select t.idNhap, t.maNhanKhau, t.hoTen, t.capThanhTich, t.kieuThanhTich ,tt.tenPhanThuong, tt.giaTri, tt.soLuong " +
+                "from t left join tt on t.idNhap = tt.idNhap";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                ThongTinTraoThuongThanhTich temp;
+                String tenPhanThuong = rs.getNString("tenPhanThuong");
+                if (tenPhanThuong == null) {
+                    temp = new ThongTinTraoThuongThanhTich(
+                            rs.getInt("idNhap"),
+                            rs.getString("maNhanKhau"),
+                            rs.getNString("hoTen"),
+                            rs.getNString("capThanhTich"),
+                            rs.getNString("kieuThanhTich"));
+                } else {
+                    temp = new ThongTinTraoThuongThanhTich(
+                            rs.getInt("idNhap"),
+                            rs.getString("maNhanKhau"),
+                            rs.getNString("hoTen"),
+                            rs.getNString("capThanhTich"),
+                            rs.getNString("kieuThanhTich"),
+                            tenPhanThuong,
+                            Integer.valueOf(rs.getInt("giaTri")),
+                            Integer.valueOf(rs.getInt("soLuong"))
+                    );
+                }
+                thongTinTraoThuongThanhTichObservableList.add(temp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return thongTinTraoThuongThanhTichObservableList;
     }
 }

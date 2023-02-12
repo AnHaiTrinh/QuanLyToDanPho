@@ -3,6 +3,7 @@ package com.se07.controller.services;
 import com.se07.model.models.ThongTinDipDacBietModel;
 import com.se07.model.models.ThongTinDipDacBietDisplayModel;
 import com.se07.model.models.ThongTinThanhTichDisplayModel;
+import com.se07.model.models.ThongTinTraoThuongDipDacBiet;
 import com.se07.util.ConnectionDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class ThongTinDipDacBietService {
@@ -324,13 +326,14 @@ public class ThongTinDipDacBietService {
             return false;
         }
     }
+
     public ObservableList<ThongTinDipDacBietDisplayModel> getAllThongTinDipDacBietByMaHoKhau(String maHoKhau) {
         ObservableList<ThongTinDipDacBietDisplayModel> list = FXCollections.observableArrayList();
         Connection connection = ConnectionDatabase.getConnection();
         String query = "select t.idNhap, t.maNhanKhau, n.hoTen, d.tenDip, d.nam, t.tinhTrang" +
                 " from thong_tin_dip_dac_biet t, nhan_khau n, dip_trao_thuong d " +
                 "where t.maNhanKhau = n.maNhanKhau and t.idDip = d.id " +
-                "and n.maHoKhau = '"+maHoKhau+"'";
+                "and n.maHoKhau = '" + maHoKhau + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -358,7 +361,7 @@ public class ThongTinDipDacBietService {
         String query = "select t.idNhap, t.maNhanKhau, n.hoTen, d.tenDip, d.nam, t.tinhTrang" +
                 " from thong_tin_dip_dac_biet t, nhan_khau n, dip_trao_thuong d " +
                 "where t.maNhanKhau = n.maNhanKhau and t.idDip = d.id " +
-                "and n.maHoKhau = '"+maHoKhauDangNhap+ "' and t.tinhTrang = '"+valueOf+"'";
+                "and n.maHoKhau = '" + maHoKhauDangNhap + "' and t.tinhTrang = '" + valueOf + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -386,7 +389,7 @@ public class ThongTinDipDacBietService {
         String query = "select t.idNhap, t.maNhanKhau, n.hoTen, d.tenDip, d.nam, t.tinhTrang " +
                 "from thong_tin_dip_dac_biet t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id" +
-                " where idDip = " + id +" and n.maHoKhau = '"+maHoKhauDangNhap+"'";
+                " where idDip = " + id + " and n.maHoKhau = '" + maHoKhauDangNhap + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -412,7 +415,7 @@ public class ThongTinDipDacBietService {
         String query = "select t.idNhap, t.maNhanKhau, n.hoTen, d.tenDip, d.nam, t.tinhTrang" +
                 " from thong_tin_dip_dac_biet t, nhan_khau n, dip_trao_thuong d " +
                 "where t.maNhanKhau = n.maNhanKhau and t.idDip = d.id " +
-                "and d.nam = '" + nam + "' and n.maHoKhau ='"+maHoKhauDangNhap+"'";
+                "and d.nam = '" + nam + "' and n.maHoKhau ='" + maHoKhauDangNhap + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -439,7 +442,7 @@ public class ThongTinDipDacBietService {
         String query = "select t.idNhap, t.maNhanKhau, n.hoTen, d.tenDip, d.nam, t.tinhTrang" +
                 " from thong_tin_dip_dac_biet t, nhan_khau n, dip_trao_thuong d " +
                 "where t.maNhanKhau = n.maNhanKhau and t.idDip = d.id " +
-                "and d.tenDip like N'%" + cauHoi + "%' and n.maHoKhau ='"+maHoKhauDangNhap+"'";
+                "and d.tenDip like N'%" + cauHoi + "%' and n.maHoKhau ='" + maHoKhauDangNhap + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -466,7 +469,7 @@ public class ThongTinDipDacBietService {
         String query = "select t.idNhap, t.maNhanKhau, n.hoTen, d.tenDip, d.nam, t.tinhTrang" +
                 " from thong_tin_dip_dac_biet t, nhan_khau n, dip_trao_thuong d " +
                 "where t.maNhanKhau = n.maNhanKhau and t.idDip = d.id " +
-                "and n.hoTen like N'%" + cauHoi + "%' and n.maHoKhau ='"+maHoKhauDangNhap+"'";
+                "and n.hoTen like N'%" + cauHoi + "%' and n.maHoKhau ='" + maHoKhauDangNhap + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -493,7 +496,7 @@ public class ThongTinDipDacBietService {
         String query = "select t.idNhap, t.maNhanKhau, n.hoTen, d.tenDip, d.nam, t.tinhTrang" +
                 " from thong_tin_dip_dac_biet t, nhan_khau n, dip_trao_thuong d " +
                 "where t.maNhanKhau = n.maNhanKhau and t.idDip = d.id " +
-                "and t.maNhanKhau like '%" + valueOf + "%' and n.maHoKhau ='"+maHoKhauDangNhap+"'";
+                "and t.maNhanKhau like '%" + valueOf + "%' and n.maHoKhau ='" + maHoKhauDangNhap + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -512,5 +515,67 @@ public class ThongTinDipDacBietService {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public ObservableList<ThongTinTraoThuongDipDacBiet> getAllThongTinDipDacBietAndTraoThuongByIdDip(int idDip) {
+        ObservableList<ThongTinTraoThuongDipDacBiet> thongTinTraoThuongDipDacBietObservableList
+                = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "with t as " +
+                "(select ttddb.idNhap, nk.maNhanKhau, nk.hoTen " +
+                "from thong_tin_dip_dac_biet ttddb join nhan_khau nk on ttddb.maNhanKhau = nk.maNhanKhau " +
+                "where ttddb.idDip = " + idDip + " and ttddb.tinhTrang = N'Đã xác nhận'), " +
+                "tt as " +
+                "(select ttddb2.idNhap, pt.tenPhanThuong, pt.giaTri, ttddb2.soLuong " +
+                "from trao_thuong_dip_dac_biet ttddb2 join phan_thuong pt on ttddb2.maPhanThuong = pt.maPhanThuong) " +
+                "select t.idNhap, t.maNhanKhau, t.hoTen, tt.tenPhanThuong, tt.giaTri, tt.soLuong " +
+                "from t left join tt on t.idNhap = tt.idNhap";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                ThongTinTraoThuongDipDacBiet temp;
+                String tenPhanThuong = rs.getNString("tenPhanThuong");
+                if (tenPhanThuong == null) {
+                    temp = new ThongTinTraoThuongDipDacBiet(
+                            rs.getInt("idNhap"),
+                            rs.getString("maNhanKhau"),
+                            rs.getNString("hoTen"));
+                } else {
+                    temp = new ThongTinTraoThuongDipDacBiet(
+                            rs.getInt("idNhap"),
+                            rs.getString("maNhanKhau"),
+                            rs.getNString("hoTen"),
+                            tenPhanThuong,
+                            Integer.valueOf(rs.getInt("giaTri")),
+                            Integer.valueOf(rs.getInt("soLuong"))
+                    );
+                }
+                thongTinTraoThuongDipDacBietObservableList.add(temp);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return thongTinTraoThuongDipDacBietObservableList;
+    }
+
+    public ArrayList<Integer> getAllIdNhapTheoIdDip(int id) {
+        ArrayList<Integer> res = new ArrayList<>();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select idNhap " +
+                "from thong_tin_dip_dac_biet " +
+                "where idDip = " + id + " and tinhTrang = N'Đã xác nhận'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                res.add(rs.getInt(1));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 }

@@ -1,0 +1,21 @@
+#anchorPaneChinhThuQuy {
+    -fx-background-color: #DBBFBD;
+}
+
+#buttonHuyChonQuaDipDacBietThuQuy {
+    -fx-background-color: #441151
+
+}
+
+#buttonXacNhanChonQuaDipDacBietThuQuy {
+    -fx-background-color: #441151
+
+}
+
+#buttonHuyChonQuaDipDacBietThuQuy:hover {
+    -fx-background-color: #c92727;
+}
+
+#buttonXacNhanChonQuaDipDacBietThuQuy:hover {
+    -fx-background-color: #34e017;;
+}

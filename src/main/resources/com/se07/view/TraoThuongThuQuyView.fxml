@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPaneChinhThuQuy" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/TraoThuongDipDacBietThuQuy.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllersketoan.ControllerTraoThuongThuQuyView">
+    <children>
+        <ImageView fx:id="imageLeftAdmin" fitHeight="608.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@Icon/imageAdmin.jpg" />
+            </image>
+        </ImageView>
+        <Button fx:id="buttonTrangChuThuQuy" mnemonicParsing="false" onMousePressed="#onPressedButtonTrangChuThuQuy" prefHeight="66.0" prefWidth="222.0" text="Trang chủ" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Icon/IconAadminHome.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Button>
+        <AnchorPane fx:id="anchorPaneTinhNangNhanKhauThuQuy" layoutX="758.0" layoutY="5.0" prefHeight="603.0" prefWidth="157.0">
+            <children>
+                <Button fx:id="buttonDangXuatThuQuy" layoutX="23.0" layoutY="7.0" mnemonicParsing="false" onMousePressed="#onPressedButtonDangXuatThuQuy" prefHeight="38.0" prefWidth="126.0" text="Đăng xuất" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
+                <Button fx:id="buttonHuyChonQuaDipDacBietThuQuy" layoutX="16.0" layoutY="546.0" mnemonicParsing="false" onMousePressed="#onPressedButtonHuyChonQuaThuQuy" prefHeight="38.0" prefWidth="126.0" text="Hủy" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <Button fx:id="buttonGiaiThuongThuQuy" layoutY="121.0" mnemonicParsing="false" onMousePressed="#onPressedButtonGiaiThuongThuQuy" prefHeight="58.0" prefWidth="222.0" text="Phần thưởng" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Icon/IconAdminAward.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Button>
+        <Label layoutX="475.0" layoutY="60.0" prefHeight="30.0" prefWidth="236.0" text="HÃY CHỌN PHẦN QUÀ" textFill="#0d0d0d">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <Button fx:id="buttonThongKeThuQuy" layoutY="221.0" mnemonicParsing="false" onMousePressed="#onPressedButtonThongKeThuQuy" prefHeight="58.0" prefWidth="222.0" text="Thống kê" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Icon/ThongKeThuQuy.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Button>
+        <GridPane fx:id="gridPaneChonQuaThuQuy" layoutX="222.0" layoutY="170.0" prefHeight="313.0" prefWidth="668.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="7.0" prefWidth="28.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="517.0" minWidth="10.0" prefWidth="126.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="107.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="5.0" prefWidth="64.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="124.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="65.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="55.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="Chọn tên quà" GridPane.columnIndex="1">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label text="Chọn số lượng" GridPane.columnIndex="4">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="comboBoxChonQua1" prefHeight="31.0" prefWidth="121.0" GridPane.columnIndex="2" />
+                <TextField fx:id="textFieldChonSoLuong1" prefHeight="31.0" prefWidth="67.0" GridPane.columnIndex="5" />
+                <Label layoutX="53.0" layoutY="31.0" text="Chọn tên quà" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="10.0" layoutY="31.0" text="Chọn tên quà" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="53.0" layoutY="157.0" text="Chọn tên quà" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="10.0" layoutY="31.0" text="Chọn tên quà" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="comboBoxChonQua3" layoutX="193.0" layoutY="26.0" prefHeight="31.0" prefWidth="121.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <ComboBox fx:id="comboBoxChonQua2" layoutX="10.0" layoutY="26.0" prefHeight="31.0" prefWidth="121.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <ComboBox fx:id="comboBoxChonQua5" layoutX="193.0" layoutY="152.0" prefHeight="31.0" prefWidth="121.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <ComboBox fx:id="comboBoxChonQua4" layoutX="10.0" layoutY="26.0" prefHeight="31.0" prefWidth="121.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <Label layoutX="392.0" layoutY="31.0" text="Chọn số lượng" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="10.0" layoutY="31.0" text="Chọn số lượng" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="10.0" layoutY="31.0" text="Chọn số lượng" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="10.0" layoutY="31.0" text="Chọn số lượng" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="textFieldChonSoLuong2" layoutX="530.0" layoutY="26.0" prefHeight="31.0" prefWidth="67.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                <TextField fx:id="textFieldChonSoLuong4" layoutX="530.0" layoutY="89.0" prefHeight="31.0" prefWidth="67.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                <TextField fx:id="textFieldChonSoLuong3" layoutX="10.0" layoutY="26.0" prefHeight="31.0" prefWidth="67.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                <TextField fx:id="textFieldChonSoLuong5" layoutX="530.0" layoutY="215.0" prefHeight="31.0" prefWidth="67.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            </children>
+        </GridPane>
+        <Button fx:id="buttonXacNhanChonQuaDipDacBietThuQuy" layoutX="593.0" layoutY="550.0" mnemonicParsing="false" onMousePressed="#onPressedButtonXacNhanChonQuaThuQuy" prefHeight="38.0" prefWidth="126.0" text="Xác nhận" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="buttonThemLoaiPhanThuongDipDacBietThuQuy" layoutX="350.0" layoutY="550.0" mnemonicParsing="false" onMousePressed="#onPressedButtonThemLoaiPhanThuongThuQuy" prefHeight="38.0" prefWidth="191.0" text="Thêm loại phần thưởng" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Button>
+        <Label fx:id="labelTenNamTraoThuongThuQuy" layoutX="266.0" layoutY="100.0" prefHeight="30.0" prefWidth="284.0" text="Tên dịp - Năm:">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="labelIDNhapTraoThuongThuQuy" layoutX="266.0" layoutY="138.0" prefHeight="30.0" prefWidth="284.0" text="ID Nhập:">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

@@ -20,6 +20,7 @@ public class UserInfo {
             FileReader fileReader = new FileReader("UserData.txt");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             int index = Integer.valueOf(bufferedReader.readLine());
+            fileReader.close();
             return index;
         } catch (Exception e) {
             return -1;
@@ -35,13 +36,14 @@ public class UserInfo {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             bufferedReader.readLine();
             String username = bufferedReader.readLine();
+            fileReader.close();
             return username;
         } catch (Exception e) {
             return "Khách";
         }
     }
-    
-    public static String getMaHoKhau(int id){
+
+    public static String getMaHoKhau(int id) {
         Connection connection = ConnectionDatabase.getConnection();
         String maHoKhau = "";
         String query = "select ho_gia_dinh_user.maHoKhau from ho_gia_dinh_user where ho_gia_dinh_user.id = '" + id + "'";
@@ -57,5 +59,5 @@ public class UserInfo {
         }
         return maHoKhau;
     }
-    
+
 }

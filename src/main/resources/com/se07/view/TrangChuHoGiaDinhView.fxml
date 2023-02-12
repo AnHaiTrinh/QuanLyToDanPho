@@ -167,7 +167,7 @@
             </ImageView>
          </children>
       </GridPane>
-      <Label layoutX="426.0" layoutY="70.0" prefHeight="30.0" prefWidth="236.0" text="QUẢN LÝ NHÂN KHẨU" textFill="WHITE">
+      <Label layoutX="455.0" layoutY="66.0" prefHeight="30.0" prefWidth="222.0" text="QUẢN LÝ NHÂN KHẨU">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
