@@ -5,6 +5,11 @@ public class TraoThuongModel {
     private int maPhanThuong;
     private int soLuong;
 
+    public TraoThuongModel(int maPhanThuong, int soLuong) {
+        this.maPhanThuong = maPhanThuong;
+        this.soLuong = soLuong;
+    }
+
     public TraoThuongModel(int idNhap, int maPhanThuong, int soLuong) {
         this.idNhap = idNhap;
         this.maPhanThuong = maPhanThuong;

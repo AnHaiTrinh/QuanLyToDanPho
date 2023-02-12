@@ -66,16 +66,7 @@ public class ControllerGiaiThuongDipDacBietThuQuyView extends ControllerThuQuyVi
 
     public void onPressedButtonTraoThuongChoTatCaDipDacBietThuQuy(MouseEvent mouseEvent) throws IOException {
         if (mouseEvent.isPrimaryButtonDown()) {
-            ThongTinTraoThuongDipDacBiet thongTinTraoThuongDipDacBiet =
-                    tableViewGiaiThuongThuQuy.getSelectionModel().getSelectedItem();
-            if (thongTinTraoThuongDipDacBiet == null) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setHeaderText("Vui lòng chọn trường hợp muốn trao quà");
-                alert.showAndWait();
-            } else {
-                traoThuongThuQuy(-1);
-            }
+            traoThuongThuQuy(-1);
         }
     }
 

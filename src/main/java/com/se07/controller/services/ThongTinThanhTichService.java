@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
 
@@ -217,7 +218,7 @@ public class ThongTinThanhTichService {
                 "minhChung, t.tinhTrang " +
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
-                "and n.maHoKhau='"+maHoKhau+"' ";
+                "and n.maHoKhau='" + maHoKhau + "' ";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -310,7 +311,7 @@ public class ThongTinThanhTichService {
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id  " +
                 "where t.maNhanKhau = '" + maNhanKhau + "' " +
-                "where t.maNhanKhau= '"+maHoKhau+"'";
+                "where t.maNhanKhau= '" + maHoKhau + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -403,7 +404,7 @@ public class ThongTinThanhTichService {
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
                 "where hoTen like N'%" + hoTen + "%' " +
-                "and n.maHoKhau ='"+maHoKhau+"'";
+                "and n.maHoKhau ='" + maHoKhau + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -496,7 +497,7 @@ public class ThongTinThanhTichService {
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
                 "where tenDip like N'%" + tenDip + "%'" +
-                "and n.maHoKhau='"+maHoKhau+"' ";
+                "and n.maHoKhau='" + maHoKhau + "' ";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -590,7 +591,7 @@ public class ThongTinThanhTichService {
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
                 "where nam =  '" + nam + "' " +
-                "and n.maHoKhau = '"+maHoKhau+"'";
+                "and n.maHoKhau = '" + maHoKhau + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -781,7 +782,7 @@ public class ThongTinThanhTichService {
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
                 "where kieuThanhTich =  N'" + tinhTrang + "' " +
-                "and n.maHoKhau = '"+maHoKhau+"'";
+                "and n.maHoKhau = '" + maHoKhau + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -868,7 +869,7 @@ public class ThongTinThanhTichService {
                 "minhChung, t.tinhTrang " +
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
-                "where idDip = " + id +" and n.maHoKhau ='"+maHoKhauDangNhap+"'";
+                "where idDip = " + id + " and n.maHoKhau ='" + maHoKhauDangNhap + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -911,7 +912,7 @@ public class ThongTinThanhTichService {
                 "minhChung, t.tinhTrang " +
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
-                "where capThanhTich like  N'%" + capThanhTich + "%' and n.maHoKhau ='"+maHoKhauDangNhap+"'";
+                "where capThanhTich like  N'%" + capThanhTich + "%' and n.maHoKhau ='" + maHoKhauDangNhap + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -955,7 +956,7 @@ public class ThongTinThanhTichService {
                 "minhChung, t.tinhTrang " +
                 "from thong_tin_thanh_tich t join nhan_khau n on t.maNhanKhau = n.maNhanKhau " +
                 "join dip_trao_thuong d on t.idDip = d.id " +
-                "where kieuThanhTich like  N'%" + kieuThanhTich + "%' and n.maHoKhau ='"+maHoKhauDangNhap+"'";
+                "where kieuThanhTich like  N'%" + kieuThanhTich + "%' and n.maHoKhau ='" + maHoKhauDangNhap + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -990,5 +991,23 @@ public class ThongTinThanhTichService {
             e.printStackTrace();
         }
         return listThongTinThanhTichDisplayModel;
+    }
+
+    public ArrayList<Integer> getAllIdNhapTheoIdDip(int id) {
+        ArrayList<Integer> res = new ArrayList<>();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select idNhap " +
+                "from thong_tin_thanh_tich " +
+                "where idDip = " + id + " and tinhTrang = N'Đã xác nhận'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                res.add(rs.getInt(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 }

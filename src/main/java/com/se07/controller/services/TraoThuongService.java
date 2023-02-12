@@ -254,6 +254,57 @@ public class TraoThuongService {
         }
         return traoThuongDisplayModelObservableList;
     }
+
+    public boolean addTraoThuongDipDacBiet(TraoThuongModel traoThuongModel) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "insert into trao_thuong_dip_dac_biet(idNhap, maPhanThuong, soLuong) values (?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, traoThuongModel.getIdNhap());
+            statement.setInt(2, traoThuongModel.getMaPhanThuong());
+            statement.setInt(3, traoThuongModel.getSoLuong());
+            statement.executeUpdate();
+            statement.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deleteTraoThuongDipDacBiet(TraoThuongModel traoThuongModel) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "delete from trao_thuong_dip_dac_biet " +
+                "where idNhap = ? and maPhanThuong = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, traoThuongModel.getIdNhap());
+            statement.setInt(2, traoThuongModel.getMaPhanThuong());
+            statement.executeUpdate();
+            statement.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deleteTraoThuongThanhTich(TraoThuongModel traoThuongModel) {
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "delete from trao_thuong_thanh_tich " +
+                "where idNhap = ? and maPhanThuong = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, traoThuongModel.getIdNhap());
+            statement.setInt(2, traoThuongModel.getMaPhanThuong());
+            statement.executeUpdate();
+            statement.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
 
 

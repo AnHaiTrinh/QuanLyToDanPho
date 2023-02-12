@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class ThongTinDipDacBietService {
@@ -556,5 +557,23 @@ public class ThongTinDipDacBietService {
             e.printStackTrace();
         }
         return thongTinTraoThuongDipDacBietObservableList;
+    }
+
+    public ArrayList<Integer> getAllIdNhapTheoIdDip(int id) {
+        ArrayList<Integer> res = new ArrayList<>();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "select idNhap " +
+                "from thong_tin_dip_dac_biet " +
+                "where idDip = " + id + " and tinhTrang = N'Đã xác nhận'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                res.add(rs.getInt(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 }
