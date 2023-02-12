@@ -1,4 +1,5 @@
 package com.se07.controller.controllers.controllershogiadinh;
+
 import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.NhanKhauService;
 import com.se07.model.models.NhanKhauModel;
@@ -41,12 +42,10 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
     TextField textFieldLocThongTinNhanKhauHoGiaDinh;
     final private ObservableList<String> listTimKiem = FXCollections.observableArrayList(
             "Mã nhân khẩu", "Họ tên", "Biệt danh", "Giới tính", "Tôn giáo", "Tình trạng");
-
-    private final ObservableList<String> listMaHoKhau = new HoKhauService().getAllMaHoKhau();
     final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ");
 
     final private ObservableList<String> listTinhTrang =
-            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
+            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối", "Chờ xóa");
     final NhanKhauService nhanKhauService = new NhanKhauService();
 
     final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
@@ -74,12 +73,13 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
         ComponentVisibility.change(comboBoxTinhTrangNhanKhauHoGiaDinh, false);
 
         tableViewNhanKhauHoGiaDinh.setEditable(true);
-        tableComlumIDHoKhauNhanKhauHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell(listMaHoKhau));
         tableComlumHoTenNhanKhauHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
         tableComlumBietDanhNhanKhauHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
         tableComlumNgaySinhNhanKhauHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
         tableComlumGioiTinhNhanKhauHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listGioiTinh));
-        displayAllNhanKhauHoGiaDinh();
+        tableComlumTonGiaoNhanKhauHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        tableViewNhanKhauHoGiaDinh.setItems(nhanKhauService.getAllNhanKhauTrongHoKhau(maHoKhauDangNhap));
     }
 
     /**
@@ -90,12 +90,7 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
      */
     public void onSelectionComboBoxTimKiemTamVangHoGiaDinh(ActionEvent e) {
         String truongTimKiem = String.valueOf(comboBoxTimKiemNhanKhauHoGiaDinh.getValue());
-        if (truongTimKiem.equals("Ngày sinh")) {
-            ComponentVisibility.change(textFieldLocThongTinNhanKhauHoGiaDinh, false);
-            ComponentVisibility.change(comboBoxTinhTrangNhanKhauHoGiaDinh, false);
-            ComponentVisibility.change(comboBoxGioiTinhNhanKhauHoGiaDinh, false);
-
-        } else if (truongTimKiem.equals("Giới tính")) {
+        if (truongTimKiem.equals("Giới tính")) {
             ComponentVisibility.change(textFieldLocThongTinNhanKhauHoGiaDinh, false);
             ComponentVisibility.change(comboBoxTinhTrangNhanKhauHoGiaDinh, false);
             ComponentVisibility.change(comboBoxGioiTinhNhanKhauHoGiaDinh, true);
@@ -109,7 +104,6 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
             ComponentVisibility.change(textFieldLocThongTinNhanKhauHoGiaDinh, true);
             ComponentVisibility.change(comboBoxTinhTrangNhanKhauHoGiaDinh, false);
             ComponentVisibility.change(comboBoxGioiTinhNhanKhauHoGiaDinh, false);
-
         }
     }
 
@@ -205,14 +199,6 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
     }
 
     /**
-     * Phương thức hiển thị tất cả nhân khẩu
-     */
-    private void displayAllNhanKhauHoGiaDinh() {
-        ObservableList<NhanKhauModel> nhanKhauModelObservableList = nhanKhauService.getAllNhanKhauTrongHoKhau(maHoKhauDangNhap);
-        tableViewNhanKhauHoGiaDinh.setItems(nhanKhauModelObservableList);
-    }
-
-    /**
      * Phương thức xóa hộ khẩu được chọn trong bảng hiển thị
      * Nếu không có hộ khẩu nào được chọn sẽ thông báo cho người dùng
      */
@@ -228,15 +214,8 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
             alert.setTitle("Thông báo");
             alert.setHeaderText("Bạn chắc chắn muốn xóa người này!");
             if (alert.showAndWait().get() == ButtonType.OK) {
-                Alert info = new Alert(Alert.AlertType.INFORMATION);
-                info.setTitle("Thông báo");
-                if (nhanKhauService.deleteNhanKhau(nhanKhauModel)) {
-                    info.setHeaderText("Xóa thành công!");
-                } else {
-                    info.setHeaderText("Xóa không thành công!");
-                }
-                info.showAndWait();
-                displayAllNhanKhauHoGiaDinh();
+                nhanKhauModel.setTinhTrang("Chờ xóa");
+                updateNhanKhauHoGiaDinh(nhanKhauModel);
             }
         }
     }
@@ -305,7 +284,7 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAllNhanKhauHoGiaDinh();
+                    nhanKhauModel.setNgaySinh((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -315,10 +294,8 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
             case 6:
                 nhanKhauModel.setTonGiao((String) event.getNewValue());
                 break;
-            case 7:
-                nhanKhauModel.setTinhTrang((String) event.getNewValue());
-                break;
         }
+        nhanKhauModel.setTinhTrang(tinhTrang);
         updateNhanKhauHoGiaDinh(nhanKhauModel);
     }
 
@@ -349,9 +326,6 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
             case 6:
                 nhanKhauModel.setTonGiao((String) event.getOldValue());
                 break;
-            case 7:
-                nhanKhauModel.setTinhTrang((String) event.getOldValue());
-                break;
         }
     }
 
@@ -364,12 +338,12 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo!");
         if (nhanKhauService.updateNhanKhau(nhanKhauModel)) {
-            alert.setHeaderText("Sửa hộ khẩu thành công");
+            alert.setHeaderText("Gửi yêu cầu thành công");
         } else {
-            alert.setHeaderText("Sửa hộ khẩu không thành công");
+            alert.setHeaderText("Gửi yêu cầu không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllNhanKhauHoGiaDinh();
+            tableViewNhanKhauHoGiaDinh.refresh();
         }
     }
 }

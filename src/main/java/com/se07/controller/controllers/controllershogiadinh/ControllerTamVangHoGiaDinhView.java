@@ -47,7 +47,7 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
     final ObservableList<String> listTimKiem = FXCollections.observableArrayList(
             "Mã nhân khẩu", "Họ tên", "Nơi tạm vắng", "Tình trạng");
     final private ObservableList<String> listTinhTrang =
-            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
+            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối", "Chờ xóa");
     final private TamVangService tamVangService = new TamVangService();
     final private NhanKhauService nhanKhauService = new NhanKhauService();
     final ObservableList<String> listMaNhanKhau = nhanKhauService.getAllMaNhanKhau();
@@ -73,12 +73,14 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
         ComponentVisibility.change(comboBoxTinhTrangTamVangHoGiaDinh, false);
 
         tableViewTamVangHoGiaDinh.setEditable(true);
+
         tableColumnMaNhanKhauTamVangHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell(listMaNhanKhau));
         tableColumnNoiTamVangHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnLyDoTamVangHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnTuNgayTamVangHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
         tableColumnDenNgayTamVangHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
-        displayAlltamVangHoGiaDinh();
+
+        tableViewTamVangHoGiaDinh.setItems(tamVangService.getAllTamVangDisplayByHoKhau(maHoKhauDangNhap));
     }
 
     public void onPressedButtonLocThongTinTamVangHoGiaDinh(MouseEvent e) {
@@ -134,11 +136,6 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
         }
     }
 
-    private void displayAlltamVangHoGiaDinh() {
-        ObservableList<TamVangDisplayModel> tamVangDisplayModelObservableList = tamVangService.getAllTamVangDisplayByHoKhau(maHoKhauDangNhap);
-        tableViewTamVangHoGiaDinh.setItems(tamVangDisplayModelObservableList);
-    }
-
     private void xoaTamVangHoGiaDinh() {
         TamVangDisplayModel tamVangDisplayModel = tableViewTamVangHoGiaDinh.getSelectionModel().getSelectedItem();
         if (tamVangDisplayModel == null) {
@@ -151,15 +148,8 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
             alert.setTitle("Thông báo");
             alert.setHeaderText("Bạn chắc chắn muốn xóa trường hợp này!");
             if (alert.showAndWait().get() == ButtonType.OK) {
-                Alert info = new Alert(Alert.AlertType.INFORMATION);
-                info.setTitle("Thông báo");
-                if (tamVangService.deleteTamVang(tamVangDisplayModel)) {
-                    info.setHeaderText("Xóa thành công!");
-                } else {
-                    info.setHeaderText("Xóa không thành công!");
-                }
-                info.showAndWait();
-                displayAlltamVangHoGiaDinh();
+                tamVangDisplayModel.setTinhTrang("Chờ xóa");
+                updateTamVangHoGiaDinh(tamVangDisplayModel);
             }
         }
     }
@@ -173,14 +163,14 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
                 tamVangDisplayModelObservableList = tamVangService.getTamVangByMaNhanKhauAndHoKhau(cauHoi, maHoKhauDangNhap);
                 break;
             case "Họ tên":
-                tamVangDisplayModelObservableList = tamVangService.getTamVangByHoTenAndHoKhau(cauHoi,maHoKhauDangNhap);
+                tamVangDisplayModelObservableList = tamVangService.getTamVangByHoTenAndHoKhau(cauHoi, maHoKhauDangNhap);
                 break;
             case "Nơi tạm vắng":
                 tamVangDisplayModelObservableList = tamVangService.getTamVangByNoiTamVangAndHoKhau(cauHoi, maHoKhauDangNhap);
+                break;
             case "Tình trạng":
                 tamVangDisplayModelObservableList = tamVangService.getTamVangBytinhTrangAndHoKhau(
-                        String.valueOf(comboBoxTinhTrangTamVangHoGiaDinh.getValue()), maHoKhauDangNhap
-                );
+                        String.valueOf(comboBoxTinhTrangTamVangHoGiaDinh.getValue()), maHoKhauDangNhap);
                 break;
         }
         tableViewTamVangHoGiaDinh.setItems(tamVangDisplayModelObservableList);
@@ -205,7 +195,7 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAlltamVangHoGiaDinh();
+                    tamVangDisplayModel.setTuNgay((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -218,17 +208,15 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAlltamVangHoGiaDinh();
+                    tamVangDisplayModel.setDenNgay((Date) event.getOldValue());
                     return;
                 }
                 break;
             case 5:
                 tamVangDisplayModel.setLyDo((String) event.getNewValue());
                 break;
-            case 6:
-                tamVangDisplayModel.setTinhTrang((String) event.getNewValue());
-                break;
         }
+        tamVangDisplayModel.setTinhTrang(tinhTrang);
         updateTamVangHoGiaDinh(tamVangDisplayModel);
     }
 
@@ -251,9 +239,6 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
             case 5:
                 tamVangDisplayModel.setLyDo((String) event.getOldValue());
                 break;
-            case 6:
-                tamVangDisplayModel.setTinhTrang((String) event.getOldValue());
-                break;
         }
     }
 
@@ -262,12 +247,12 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo!");
         if (tamVangService.updateTamVang(tamVangModel)) {
-            alert.setHeaderText("Sửa trường hợp tạm vắng thành công");
+            alert.setHeaderText("Gửi yêu cầu thành công");
         } else {
-            alert.setHeaderText("Sửa trường hợp tạm vắng không thành công");
+            alert.setHeaderText("Gửi yêu cầu không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAlltamVangHoGiaDinh();
+            tableViewTamVangHoGiaDinh.refresh();
         }
     }
 }

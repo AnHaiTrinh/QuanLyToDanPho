@@ -87,7 +87,7 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
         tableColumnNgayKetThucGiaiThuongCanBo.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
         tableColumnGhiChuGiaiThuongCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        displayAllDipTraoThuongCanBo();
+        tableViewGiaiThuongCanBo.setItems(dipTraoThuongService.getAllDipTraoThuong());
     }
 
     @Override
@@ -212,7 +212,7 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập năm hợp lệ");
                     alert.showAndWait();
-                    displayAllDipTraoThuongCanBo();
+                    dipTraoThuongModel.setNam((int) event.getOldValue());
                     return;
                 }
                 break;
@@ -223,9 +223,9 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Thông báo");
-                    alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
+                    alert.setHeaderText("Vui lòng nhập ngày kết thúc hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAllDipTraoThuongCanBo();
+                    dipTraoThuongModel.setNgayKetThuc((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -264,14 +264,8 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
             alert.setHeaderText("Sửa dịp trao thưởng không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllDipTraoThuongCanBo();
+            tableViewGiaiThuongCanBo.refresh();
         }
-    }
-
-
-    private void displayAllDipTraoThuongCanBo() {
-        ObservableList<DipTraoThuongModel> dipTraoThuongList = dipTraoThuongService.getAllDipTraoThuong();
-        tableViewGiaiThuongCanBo.setItems(dipTraoThuongList);
     }
 
     private void xoaDipTraoThuongCanBo() {
@@ -290,11 +284,12 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                 info.setTitle("Thông báo");
                 if (dipTraoThuongService.deleteDipTraoThuong(dipTraoThuongModel)) {
                     info.setHeaderText("Xóa thành công!");
+                    tableViewGiaiThuongCanBo.getItems().remove(dipTraoThuongModel);
                 } else {
                     info.setHeaderText("Xóa không thành công!");
                 }
                 info.showAndWait();
-                displayAllDipTraoThuongCanBo();
+                tableViewGiaiThuongCanBo.refresh();
             }
         }
     }
@@ -318,7 +313,6 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập năm hợp lệ");
                     alert.showAndWait();
-                    displayAllDipTraoThuongCanBo();
                     textFieldLocThongTinGiaiThuongCanBo.requestFocus();
                     return;
                 } else {
@@ -342,7 +336,6 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập đầy đủ thông tin!");
                     alert.showAndWait();
-                    displayAllDipTraoThuongCanBo();
                     return;
                 }
                 break;
@@ -356,7 +349,6 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập đầy đủ thông tin!");
                     alert.showAndWait();
-                    displayAllDipTraoThuongCanBo();
                     return;
                 }
                 break;

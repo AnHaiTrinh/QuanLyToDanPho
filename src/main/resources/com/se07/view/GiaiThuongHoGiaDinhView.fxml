@@ -76,7 +76,7 @@
                <content>
                   <AnchorPane>
                      <children>
-                        <TableView fx:id="tableViewGiaiThuongHoGiaDinh" editable="true" onKeyPressed="#onDeletePressedTrongBangDipTraoThuongHoGiaDinh" onMousePressed="#onPressedTrongCotIdGiaiThuongHoGiaDinh" prefHeight="528.0" prefWidth="878.0">
+                        <TableView fx:id="tableViewGiaiThuongHoGiaDinh" editable="true" onMousePressed="#onPressedTrongCotIdGiaiThuongHoGiaDinh" prefHeight="528.0" prefWidth="878.0">
                            <columns>
                               <TableColumn fx:id="tableColumnIDGiaiThuongHoGiaDinh" prefWidth="60.0" styleClass="underline-blue-text" text="ID" />
                               <TableColumn fx:id="tableColumnTenDipGiaiThuongHoGiaDinh" maxWidth="199.0" minWidth="50.0" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="199.0" text="Tên dịp" />
@@ -113,11 +113,6 @@
       </AnchorPane>
       <AnchorPane fx:id="panePeopleAdmin" layoutX="760.0" layoutY="50.0" prefHeight="553.0" prefWidth="154.0">
          <children>
-            <Button fx:id="buttonXoaDipTraoThuongHoGiaDinh" layoutX="21.0" layoutY="308.0" mnemonicParsing="false" onMousePressed="#onPressedButtonXoaDipTraoThuongHoGiaDinh" prefHeight="38.0" prefWidth="130.0" text="Xóa" textFill="#fcfcfc">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
             <Button fx:id="buttonGiaiThuongDipDacBietHoGiaDinh" layoutX="21.0" layoutY="148.0" mnemonicParsing="false" onMousePressed="#onPressedButtonGiaiThuongDipDacBietHoGiaDinh" prefHeight="38.0" prefWidth="130.0" text="Dịp đặc biệt" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="15.0" />

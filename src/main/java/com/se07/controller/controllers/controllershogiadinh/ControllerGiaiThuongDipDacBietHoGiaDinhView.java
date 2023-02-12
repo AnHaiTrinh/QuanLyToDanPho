@@ -1,4 +1,5 @@
 package com.se07.controller.controllers.controllershogiadinh;
+
 import com.se07.controller.services.DipTraoThuongService;
 import com.se07.controller.services.NhanKhauService;
 import com.se07.controller.services.ThongTinDipDacBietService;
@@ -43,11 +44,11 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
     private final ThongTinDipDacBietService thongTinDipDacBietService = new ThongTinDipDacBietService();
     final private MyIntegerStringConverter integerStringConverter = new MyIntegerStringConverter();
     final ObservableList<String> listTimKiem = FXCollections.observableArrayList(
-             "Họ tên","Mã nhân khẩu", "Tên dịp", "Năm", "Tên - Năm", "Tình trạng");
+            "Họ tên", "Mã nhân khẩu", "Tên dịp", "Năm", "Tên - Năm", "Tình trạng");
     final ObservableList<String> listTenNamDipTraoThuong = dipTraoThuongService.getAllTenNamDipDacBiet();
     final ObservableList<String> listMaNhanKhau = new NhanKhauService().getAllMaNhanKhauTrongHoKhau(maHoKhauDangNhap);
     final ObservableList<String> listTinhTrang =
-            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
+            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối", "Chờ xóa");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -73,9 +74,9 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
 
         tableViewDipDacBietHoGiaDinh.setEditable(true);
         tableColumnMaNhanKhauDipDacBietHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listMaNhanKhau));
-        tableColumnTinhTrangDipDacBietHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listTinhTrang));
 
-        displayAllThongTinDipDacBietHoGiaDinh();
+        tableViewDipDacBietHoGiaDinh.setItems(
+                thongTinDipDacBietService.getAllThongTinDipDacBietByMaHoKhau(maHoKhauDangNhap));
     }
 
     public void onSelectionComboBoxTimKiemDipDacBietHoGiaDinh(ActionEvent e) {
@@ -118,6 +119,7 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
             locThongTinDipDacBietHoGiaDinh();
         }
     }
+
     public void onDeletePressedTrongBangThongTinDipDacBietHoGiaDinh(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.DELETE)) {
             xoaThongTinDipDacBietHoGiaDinh();
@@ -143,18 +145,12 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
             alert.setTitle("Thông báo");
             alert.setHeaderText("Bạn chắc chắn muốn xóa trường hợp này!");
             if (alert.showAndWait().get() == ButtonType.OK) {
-                Alert info = new Alert(Alert.AlertType.INFORMATION);
-                info.setTitle("Thông báo");
-                if (thongTinDipDacBietService.deleteThongTinDipDacBiet(thongTinDipDacBietDisplayModel)) {
-                    info.setHeaderText("Xóa thành công!");
-                } else {
-                    info.setHeaderText("Xóa không thành công!");
-                }
-                info.showAndWait();
-                displayAllThongTinDipDacBietHoGiaDinh();
+                thongTinDipDacBietDisplayModel.setTinhTrang("Chờ xóa");
+                updateThongTinDipDacBietHoGiaDinh(thongTinDipDacBietDisplayModel);
             }
         }
     }
+
     public void locThongTinDipDacBietHoGiaDinh() {
         String dieuKienKiemTra = String.valueOf(comboBoxTimKiemDipDacBietHoGiaDinh.getValue());
         String cauHoi = textFieldLocThongTinDipDacBietHoGiaDinh.getText();
@@ -178,7 +174,6 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập năm hợp lệ");
                     alert.showAndWait();
-                    displayAllThongTinDipDacBietHoGiaDinh();
                     textFieldLocThongTinDipDacBietHoGiaDinh.requestFocus();
                     return;
                 }
@@ -198,13 +193,8 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
                 );
                 break;
         }
-        tableViewDipDacBietHoGiaDinh.setItems(listThongTinDipDacBiet);
-    }
 
-    private void displayAllThongTinDipDacBietHoGiaDinh() {
-        ObservableList<ThongTinDipDacBietDisplayModel> thongTinDipDacBietDisplayModels =
-                thongTinDipDacBietService.getAllThongTinDipDacBietByMaHoKhau(maHoKhauDangNhap);
-        tableViewDipDacBietHoGiaDinh.setItems(thongTinDipDacBietDisplayModels);
+        tableViewDipDacBietHoGiaDinh.setItems(listThongTinDipDacBiet);
     }
 
     private void updateThongTinDipDacBietHoGiaDinh(ThongTinDipDacBietDisplayModel thongTinDipDacBietDisplayModel) {
@@ -213,12 +203,12 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo!");
         if (thongTinDipDacBietService.updateThongTinDipDacBiet(thongTinDipDacBietModel)) {
-            alert.setHeaderText("Sửa thông tin thành công");
+            alert.setHeaderText("Gửi yêu cầu thành công");
         } else {
-            alert.setHeaderText("Sửa thông tin không thành công");
+            alert.setHeaderText("Gửi yêu cầu không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllThongTinDipDacBietHoGiaDinh();
+            tableViewDipDacBietHoGiaDinh.refresh();
         }
     }
 
@@ -234,10 +224,8 @@ public class ControllerGiaiThuongDipDacBietHoGiaDinhView extends ControllerHoGia
                 case 0:
                     thongTinDipDacBietDisplayModel.setMaNhanKhau((String) event.getNewValue());
                     break;
-                case 4:
-                    thongTinDipDacBietDisplayModel.setTinhTrang((String) event.getNewValue());
-                    break;
             }
+            thongTinDipDacBietDisplayModel.setTinhTrang(tinhTrang);
             updateThongTinDipDacBietHoGiaDinh(thongTinDipDacBietDisplayModel);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

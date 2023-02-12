@@ -1,11 +1,7 @@
 package com.se07.controller.controllers.controllershogiadinh;
 
-import com.se07.controller.services.HoKhauService;
-import com.se07.controller.services.NhanKhauService;
-import com.se07.controller.services.TamTruService;
 import com.se07.controller.services.TamTruService;
 import com.se07.model.models.*;
-import com.se07.model.models.TamTruDisplayModel;
 import com.se07.model.models.TamTruDisplayModel;
 import com.se07.util.ComponentVisibility;
 import com.se07.util.MyDateStringConverter;
@@ -16,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
@@ -46,14 +41,11 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
     TextField textFieldLocThongTinTamTruHoGiaDinh;
 
     final ObservableList<String> listTimKiem = FXCollections.observableArrayList(
-            "Họ tên", "Mã nhân khẩu", "Tình trạng");
+            "Họ tên", "CCCD", "Tình trạng");
     final private ObservableList<String> listTinhTrang =
-            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
+            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối", "Chờ xóa");
     final private TamTruService tamTruService = new TamTruService();
-    final private NhanKhauService nhanKhauService = new NhanKhauService();
-    final ObservableList<String> listDiaChi = new HoKhauService().getAllDiaChiHoKhau(maHoKhauDangNhap);
-
-    final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
+    private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -73,12 +65,13 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
         ComponentVisibility.change(comboBoxTinhTrangTamTruHoGiaDinh, false);
 
         tableViewTamTruHoGiaDinh.setEditable(true);
-        tableColumnNoiTamTruHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
+        tableColumnCCCDTamTruHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
+        tableColumnHoTenTamTruHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnLyDoTamTruHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
-        tableColumnNoiTamTruHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listDiaChi));
         tableColumnTuNgayTamTruHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
         tableColumnDenNgayTamTruHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
-        displayAllTamTruHoGiaDinh();
+
+        tableViewTamTruHoGiaDinh.setItems(tamTruService.getTamTruByMaChuHo(maHoKhauDangNhap));
     }
 
     public void onPressedButtonLocThongTinTamTruHoGiaDinh(MouseEvent e) {
@@ -134,14 +127,9 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
         }
     }
 
-    private void displayAllTamTruHoGiaDinh() {
-        ObservableList<TamTruDisplayModel> TamTruDisplayModelObservableList = tamTruService.getTamTruByMaChuHo(maHoKhauDangNhap);
-        tableViewTamTruHoGiaDinh.setItems(TamTruDisplayModelObservableList);
-    }
-
     private void xoaTamTruHoGiaDinh() {
-        TamTruDisplayModel TamTruDisplayModel = tableViewTamTruHoGiaDinh.getSelectionModel().getSelectedItem();
-        if (TamTruDisplayModel == null) {
+        TamTruDisplayModel tamTruDisplayModel = tableViewTamTruHoGiaDinh.getSelectionModel().getSelectedItem();
+        if (tamTruDisplayModel == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Vui lòng chọn trường hợp muốn xóa");
@@ -151,15 +139,8 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
             alert.setTitle("Thông báo");
             alert.setHeaderText("Bạn chắc chắn muốn xóa trường hợp này!");
             if (alert.showAndWait().get() == ButtonType.OK) {
-                Alert info = new Alert(Alert.AlertType.INFORMATION);
-                info.setTitle("Thông báo");
-                if (tamTruService.deleteTamTru(TamTruDisplayModel)) {
-                    info.setHeaderText("Xóa thành công!");
-                } else {
-                    info.setHeaderText("Xóa không thành công!");
-                }
-                info.showAndWait();
-                displayAllTamTruHoGiaDinh();
+                tamTruDisplayModel.setTinhTrang("Chờ xóa");
+                updateTamTruHoGiaDinh(tamTruDisplayModel);
             }
         }
     }
@@ -192,9 +173,10 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
         switch (column) {
             case 0:
                 tamTruDisplayModel.setCCCD((String) event.getNewValue());
+                tamTruDisplayModel.setTinhTrang(tinhTrang);
                 break;
-            case 2:
-                tamTruDisplayModel.setNoiTamTru((String) event.getNewValue());
+            case 1:
+                tamTruDisplayModel.setHoTen((String) event.getNewValue());
                 break;
             case 3:
                 Date tuNgayMoi = (Date) event.getNewValue();
@@ -205,7 +187,7 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAllTamTruHoGiaDinh();
+                    tamTruDisplayModel.setTuNgay((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -218,17 +200,15 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAllTamTruHoGiaDinh();
+                    tamTruDisplayModel.setDenNgay((Date) event.getOldValue());
                     return;
                 }
                 break;
             case 5:
                 tamTruDisplayModel.setLyDo((String) event.getNewValue());
                 break;
-            case 6:
-                tamTruDisplayModel.setTinhTrang((String) event.getNewValue());
-                break;
         }
+        tamTruDisplayModel.setTinhTrang(tinhTrang);
         updateTamTruHoGiaDinh(tamTruDisplayModel);
     }
 
@@ -239,8 +219,8 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
             case 0:
                 tamTruDisplayModel.setCCCD((String) event.getOldValue());
                 break;
-            case 2:
-                tamTruDisplayModel.setNoiTamTru((String) event.getOldValue());
+            case 1:
+                tamTruDisplayModel.setHoTen((String) event.getOldValue());
                 break;
             case 3:
                 tamTruDisplayModel.setTuNgay((Date) event.getOldValue());
@@ -251,9 +231,6 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
             case 5:
                 tamTruDisplayModel.setLyDo((String) event.getOldValue());
                 break;
-            case 6:
-                tamTruDisplayModel.setTinhTrang((String) event.getOldValue());
-                break;
         }
     }
 
@@ -262,12 +239,12 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo!");
         if (tamTruService.updateTamTru(tamTruModel)) {
-            alert.setHeaderText("Sửa trường hợp tạm vắng thành công");
+            alert.setHeaderText("Gửi yêu cầu thành công");
         } else {
-            alert.setHeaderText("Sửa trường hợp tạm vắng không thành công");
+            alert.setHeaderText("Gửi yêu cầu không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllTamTruHoGiaDinh();
+            tableViewTamTruHoGiaDinh.refresh();
         }
     }
 }

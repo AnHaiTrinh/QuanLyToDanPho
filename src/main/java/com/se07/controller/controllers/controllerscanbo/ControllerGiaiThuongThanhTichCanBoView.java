@@ -71,7 +71,7 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
             "Huy chương Vàng", "Huy chương Bạc", "Huy chương Đồng");
 
     final ObservableList<String> listTinhTrang =
-            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
+            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối", "Chờ xóa");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -113,7 +113,7 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
         tableColumnKieuThanhTichCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listKieuThanhTich));
         tableColumnTinhTrangThanhTichCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listTinhTrang));
 
-        displayAllThongTinThanhTichCanBo();
+        tableViewGiaiThuongThanhTichCanBo.setItems(thongTinThanhTichService.getAllThongTinThanhTich());
     }
 
     public void onSelectionComboBoxTimKiemThanhTichCanBo(ActionEvent e) {
@@ -179,11 +179,13 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
             alert.setTitle("Thông báo");
             alert.setHeaderText("Vui lòng chọn trường hợp muốn xác nhận");
             alert.showAndWait();
-        } else if (thongTinThanhTichDisplayModel.getTinhTrang() == "Đã xác nhận") {
+        } else if (thongTinThanhTichDisplayModel.getTinhTrang().equals("Đã xác nhận")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Trường hợp đã được xác nhận");
             alert.showAndWait();
+        } else if (thongTinThanhTichDisplayModel.getTinhTrang().equals("Chờ xóa")) {
+            xoaThongTinThanhTichCanBo();
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
@@ -191,15 +193,8 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
             if (alert.showAndWait().get() == ButtonType.OK) {
                 thongTinThanhTichDisplayModel.setTinhTrang("Đã xác nhận");
                 updateThongTinThanhTichCanBo(thongTinThanhTichDisplayModel);
-                displayAllThongTinThanhTichCanBo();
             }
         }
-    }
-
-    private void displayAllThongTinThanhTichCanBo() {
-        ObservableList<ThongTinThanhTichDisplayModel> listThongTinThanhTich =
-                thongTinThanhTichService.getAllThongTinThanhTich();
-        tableViewGiaiThuongThanhTichCanBo.setItems(listThongTinThanhTich);
     }
 
     public void onPressedButtonTuChoiThongTinThanhTichCanBo(MouseEvent e) {
@@ -216,11 +211,19 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
             alert.setTitle("Thông báo");
             alert.setHeaderText("Vui lòng chọn trường hợp muốn xác nhận");
             alert.showAndWait();
-        } else if (thongTinThanhTichDisplayModel.getTinhTrang() == "Đã từ chối") {
+        } else if (thongTinThanhTichDisplayModel.getTinhTrang().equals("Đã từ chối")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Trường hợp đã bị từ chối");
             alert.showAndWait();
+        } else if (thongTinThanhTichDisplayModel.getTinhTrang().equals("Chờ xóa")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Bạn chắc chắn muốn khôi phục trường hợp này?");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                thongTinThanhTichDisplayModel.setTinhTrang("Đã xác nhận");
+                updateThongTinThanhTichCanBo(thongTinThanhTichDisplayModel);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
@@ -228,7 +231,6 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
             if (alert.showAndWait().get() == ButtonType.OK) {
                 thongTinThanhTichDisplayModel.setTinhTrang("Đã từ chối");
                 updateThongTinThanhTichCanBo(thongTinThanhTichDisplayModel);
-                displayAllThongTinThanhTichCanBo();
             }
         }
     }
@@ -262,11 +264,12 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
                 info.setTitle("Thông báo");
                 if (thongTinThanhTichService.deleteThongTinThanhTich(thongTinThanhTichDisplayModel)) {
                     info.setHeaderText("Xóa thành công!");
+                    tableViewGiaiThuongThanhTichCanBo.getItems().remove(thongTinThanhTichDisplayModel);
                 } else {
                     info.setHeaderText("Xóa không thành công!");
                 }
                 info.showAndWait();
-                displayAllThongTinThanhTichCanBo();
+                tableViewGiaiThuongThanhTichCanBo.refresh();
             }
         }
     }
@@ -350,7 +353,6 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
                         alert.setTitle("Thông báo");
                         alert.setHeaderText("Vui lòng nhập lớp hợp lệ (từ 1 - 12)");
                         alert.showAndWait();
-                        displayAllThongTinThanhTichCanBo();
                         return;
                     }
                     break;
@@ -409,7 +411,7 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
             alert.setHeaderText("Sửa thông tin không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllThongTinThanhTichCanBo();
+            tableViewGiaiThuongThanhTichCanBo.refresh();
         }
     }
 
@@ -436,7 +438,6 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập năm hợp lệ");
                     alert.showAndWait();
-                    displayAllThongTinThanhTichCanBo();
                     textFieldLocThongTinThanhTichCanBo.requestFocus();
                     return;
                 }

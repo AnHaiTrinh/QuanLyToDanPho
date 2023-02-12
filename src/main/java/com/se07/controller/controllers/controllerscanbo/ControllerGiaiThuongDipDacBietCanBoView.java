@@ -48,7 +48,7 @@ public class ControllerGiaiThuongDipDacBietCanBoView extends ControllerCanBoView
     final ObservableList<String> listTenNamDipTraoThuong = dipTraoThuongService.getAllTenNamDipDacBiet();
     final ObservableList<String> listMaNhanKhau = new NhanKhauService().getAllMaNhanKhau();
     final ObservableList<String> listTinhTrang =
-            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
+            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối", "Chờ xóa");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -76,7 +76,7 @@ public class ControllerGiaiThuongDipDacBietCanBoView extends ControllerCanBoView
         tableColumnMaNhanKhauDipDacBietCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listMaNhanKhau));
         tableColumnTinhTrangDipDacBietCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listTinhTrang));
 
-        displayAllThongTinDipDacBietCanBo();
+        tableViewDipDacBietCanBo.setItems(thongTinDipDacBietService.getAllThongTinDipDacBiet());
     }
 
     public void onSelectionComboBoxTimKiemDipDacBietCanBo(ActionEvent e) {
@@ -139,6 +139,8 @@ public class ControllerGiaiThuongDipDacBietCanBoView extends ControllerCanBoView
             alert.setTitle("Thông báo");
             alert.setHeaderText("Trường hợp đã được xác nhận");
             alert.showAndWait();
+        } else if (thongTinDipDacBietDisplayModel.getTinhTrang().equals("Chờ xóa")) {
+            xoaThongTinDipDacBietCanBo();
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
@@ -146,7 +148,6 @@ public class ControllerGiaiThuongDipDacBietCanBoView extends ControllerCanBoView
             if (alert.showAndWait().get() == ButtonType.OK) {
                 thongTinDipDacBietDisplayModel.setTinhTrang("Đã xác nhận");
                 updateThongTinDipDacBietCanBo(thongTinDipDacBietDisplayModel);
-                displayAllThongTinDipDacBietCanBo();
             }
         }
     }
@@ -165,11 +166,19 @@ public class ControllerGiaiThuongDipDacBietCanBoView extends ControllerCanBoView
             alert.setTitle("Thông báo");
             alert.setHeaderText("Vui lòng chọn trường hợp muốn xác nhận");
             alert.showAndWait();
-        } else if (thongTinDipDacBietDisplayModel.getTinhTrang() == "Đã từ chối") {
+        } else if (thongTinDipDacBietDisplayModel.getTinhTrang().equals("Đã từ chối")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Trường hợp đã bị từ chối");
             alert.showAndWait();
+        } else if (thongTinDipDacBietDisplayModel.getTinhTrang().equals("Chờ xóa")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Bạn chắc chắn muốn khôi phục trường hợp này?");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                thongTinDipDacBietDisplayModel.setTinhTrang("Đã xác nhận");
+                updateThongTinDipDacBietCanBo(thongTinDipDacBietDisplayModel);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
@@ -177,7 +186,6 @@ public class ControllerGiaiThuongDipDacBietCanBoView extends ControllerCanBoView
             if (alert.showAndWait().get() == ButtonType.OK) {
                 thongTinDipDacBietDisplayModel.setTinhTrang("Đã từ chối");
                 updateThongTinDipDacBietCanBo(thongTinDipDacBietDisplayModel);
-                displayAllThongTinDipDacBietCanBo();
             }
         }
     }
@@ -211,11 +219,12 @@ public class ControllerGiaiThuongDipDacBietCanBoView extends ControllerCanBoView
                 info.setTitle("Thông báo");
                 if (thongTinDipDacBietService.deleteThongTinDipDacBiet(thongTinDipDacBietDisplayModel)) {
                     info.setHeaderText("Xóa thành công!");
+                    tableViewDipDacBietCanBo.getItems().remove(thongTinDipDacBietDisplayModel);
                 } else {
                     info.setHeaderText("Xóa không thành công!");
                 }
                 info.showAndWait();
-                displayAllThongTinDipDacBietCanBo();
+                tableViewDipDacBietCanBo.refresh();
             }
         }
     }
@@ -233,7 +242,6 @@ public class ControllerGiaiThuongDipDacBietCanBoView extends ControllerCanBoView
     }
 
     public void locThongTinDipDacBietCanBo() {
-
         String dieuKienKiemTra = String.valueOf(comboBoxTimKiemDipDacBietCanBo.getValue());
         String cauHoi = textFieldLocThongTinDipDacBietCanBo.getText();
         ObservableList<ThongTinDipDacBietDisplayModel> listThongTinDipDacBiet = FXCollections.observableArrayList();
@@ -256,7 +264,6 @@ public class ControllerGiaiThuongDipDacBietCanBoView extends ControllerCanBoView
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập năm hợp lệ");
                     alert.showAndWait();
-                    displayAllThongTinDipDacBietCanBo();
                     textFieldLocThongTinDipDacBietCanBo.requestFocus();
                     return;
                 }
@@ -279,12 +286,6 @@ public class ControllerGiaiThuongDipDacBietCanBoView extends ControllerCanBoView
         tableViewDipDacBietCanBo.setItems(listThongTinDipDacBiet);
     }
 
-    private void displayAllThongTinDipDacBietCanBo() {
-        ObservableList<ThongTinDipDacBietDisplayModel> thongTinDipDacBietDisplayModels =
-                thongTinDipDacBietService.getAllThongTinDipDacBiet();
-        tableViewDipDacBietCanBo.setItems(thongTinDipDacBietDisplayModels);
-    }
-
     private void updateThongTinDipDacBietCanBo(ThongTinDipDacBietDisplayModel thongTinDipDacBietDisplayModel) {
         ThongTinDipDacBietModel thongTinDipDacBietModel =
                 thongTinDipDacBietService.convertDisplayModelToModel(thongTinDipDacBietDisplayModel);
@@ -296,7 +297,7 @@ public class ControllerGiaiThuongDipDacBietCanBoView extends ControllerCanBoView
             alert.setHeaderText("Sửa thông tin không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllThongTinDipDacBietCanBo();
+            tableViewDipDacBietCanBo.refresh();
         }
     }
 

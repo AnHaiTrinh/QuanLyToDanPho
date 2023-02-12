@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class ControllerHoGiaDinhView implements Initializable {
     @FXML
-    AnchorPane  anchorPaneChinhHoGiaDinh;
+    AnchorPane anchorPaneChinhHoGiaDinh;
 
     final int id = UserInfo.getUserId();
     final String tinhTrang = "Chờ xác nhận";

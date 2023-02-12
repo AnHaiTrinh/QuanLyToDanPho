@@ -49,7 +49,7 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
             "CCCD", "Họ tên", "Nơi tạm trú", "Ngày", "Tình trạng");
 
     final ObservableList<String> listTinhTrang =
-            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối");
+            FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối", "Chờ xóa");
 
     final ObservableList<String> listNoiTamTru = new HoKhauService().getAllDiaChi();
 
@@ -85,7 +85,7 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
         tableColumnLyDoTamTruCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnTinhTrangTamTruCanBo.setCellFactory(t -> new ComboBoxTableCell<>(listTinhTrang));
 
-        displayAllTamTruCanBo();
+        tableViewTamTruCanBo.setItems(tamTruService.getDisplayTamTru());
     }
 
     public void onSelectionComboBoxTimKiemTamTruCanBo(ActionEvent e) {
@@ -172,7 +172,7 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAllTamTruCanBo();
+                    tamTruDisplayModel.setTuNgay((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -185,7 +185,7 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập ngày hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
-                    displayAllTamTruCanBo();
+                    tamTruDisplayModel.setDenNgay((Date) event.getOldValue());
                     return;
                 }
                 break;
@@ -246,7 +246,7 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
             alert.setHeaderText("Sửa trường hợp tạm vắng không thành công");
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
-            displayAllTamTruCanBo();
+            tableViewTamTruCanBo.refresh();
         }
     }
 
@@ -275,7 +275,6 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
                     alert.setTitle("Thông báo");
                     alert.setHeaderText("Vui lòng nhập đầy đủ thông tin!");
                     alert.showAndWait();
-                    displayAllTamTruCanBo();
                     return;
                 }
                 break;
@@ -297,17 +296,17 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
         } else if (tamTruDisplayModel.getTinhTrang().equals("Đã xác nhận")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thông báo");
-            alert.setHeaderText("Nhân khẩu đã được xác nhận");
+            alert.setHeaderText("Trường hợp đã được xác nhận");
             alert.showAndWait();
+        } else if (tamTruDisplayModel.getTinhTrang().equals("Chờ xóa")) {
+            xoaTamTruCanBo();
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Bạn chắc chắn muốn xác nhận trường hợp này?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 tamTruDisplayModel.setTinhTrang("Đã xác nhận");
-                TamTruModel tamTruModel = tamTruService.convertDisplayModelToModel(tamTruDisplayModel);
-                tamTruService.updateTamTru(tamTruModel);
-                displayAllTamTruCanBo();
+                updateTamTruCanBo(tamTruDisplayModel);
             }
         }
     }
@@ -324,15 +323,21 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
             alert.setTitle("Thông báo");
             alert.setHeaderText("Nhân khẩu đã bị từ chối");
             alert.showAndWait();
+        } else if (tamTruDisplayModel.getTinhTrang().equals("Chờ xóa")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Bạn chắc chắn muốn khôi phục trường hợp này?");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                tamTruDisplayModel.setTinhTrang("Đã xác nhận");
+                updateTamTruCanBo(tamTruDisplayModel);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Thông báo");
             alert.setHeaderText("Bạn chắc chắn muốn từ chối trường hợp này?");
             if (alert.showAndWait().get() == ButtonType.OK) {
                 tamTruDisplayModel.setTinhTrang("Đã từ chối");
-                TamTruModel tamTruModel = tamTruService.convertDisplayModelToModel(tamTruDisplayModel);
-                tamTruService.updateTamTru(tamTruModel);
-                displayAllTamTruCanBo();
+                updateTamTruCanBo(tamTruDisplayModel);
             }
         }
     }
@@ -353,18 +358,13 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
                 info.setTitle("Thông báo");
                 if (tamTruService.deleteTamTru(tamTruDisplayModel)) {
                     info.setHeaderText("Xóa thành công!");
+                    tableViewTamTruCanBo.getItems().remove(tamTruDisplayModel);
                 } else {
                     info.setHeaderText("Xóa không thành công!");
                 }
                 info.showAndWait();
-                displayAllTamTruCanBo();
+                tableViewTamTruCanBo.refresh();
             }
         }
-    }
-
-
-    private void displayAllTamTruCanBo() {
-        ObservableList<TamTruDisplayModel> listTamTru = tamTruService.getDisplayTamTru();
-        tableViewTamTruCanBo.setItems(listTamTru);
     }
 }
