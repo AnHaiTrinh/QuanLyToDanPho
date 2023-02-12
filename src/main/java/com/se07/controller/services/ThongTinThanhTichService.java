@@ -2,6 +2,8 @@ package com.se07.controller.services;
 
 import com.se07.model.models.ThongTinThanhTichDisplayModel;
 import com.se07.model.models.ThongTinThanhTichModel;
+import com.se07.model.models.ThongTinTraoThuongThanhTich;
+import com.se07.model.models.ThongTinTraoThuongThanhTich;
 import com.se07.util.ConnectionDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -990,5 +992,50 @@ public class ThongTinThanhTichService {
             e.printStackTrace();
         }
         return listThongTinThanhTichDisplayModel;
+    }
+    public ObservableList<ThongTinTraoThuongThanhTich> getAllThongTinThanhTichAndTraoThuongByIdDip(int idDip) {
+        ObservableList<ThongTinTraoThuongThanhTich> thongTinTraoThuongThanhTichObservableList
+                = FXCollections.observableArrayList();
+        Connection connection = ConnectionDatabase.getConnection();
+        String query = "with t as " +
+                "(select ttddb.idNhap, nk.maNhanKhau, nk.hoTen " +
+                "from thong_tin_thanh_tich ttddb join nhan_khau nk on ttddb.maNhanKhau = nk.maNhanKhau " +
+                "where ttddb.idDip = " + idDip + " and ttddb.tinhTrang = N'Đã xác nhận'), " +
+                "tt as " +
+                "(select ttddb2.idNhap, pt.tenPhanThuong, pt.giaTri, ttddb2.soLuong " +
+                "from trao_thuong_dip_dac_biet ttddb2 join phan_thuong pt on ttddb2.maPhanThuong = pt.maPhanThuong) " +
+                "select t.idNhap, t.maNhanKhau, t.hoTen,tt.capThanhTich ,tt.kieuThanhTich ,tt.tenPhanThuong, tt.giaTri, tt.soLuong " +
+                "from t left join tt on t.idNhap = tt.idNhap";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                ThongTinTraoThuongThanhTich temp;
+                String tenPhanThuong = rs.getNString("tenPhanThuong");
+                if (tenPhanThuong == null) {
+                    temp = new ThongTinTraoThuongThanhTich(
+                            rs.getInt("idNhap"),
+                            rs.getString("maNhanKhau"),
+                            rs.getNString("hoTen"),
+                            rs.getNString("capThanhTich"),
+                            rs.getNString("kieuThanhTich"));
+                } else {
+                    temp = new ThongTinTraoThuongThanhTich(
+                            rs.getInt("idNhap"),
+                            rs.getString("maNhanKhau"),
+                            rs.getNString("hoTen"),
+                            rs.getNString("capThanhTich"),
+                            rs.getNString("kieuThanhTich"),
+                            tenPhanThuong,
+                            Integer.valueOf(rs.getInt("giaTri")),
+                            Integer.valueOf(rs.getInt("soLuong"))
+                    );
+                }
+                thongTinTraoThuongThanhTichObservableList.add(temp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return thongTinTraoThuongThanhTichObservableList;
     }
 }

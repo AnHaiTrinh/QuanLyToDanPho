@@ -200,6 +200,17 @@ public class ControllerGiaiThuongThuQuyView extends ControllerThuQuyView {
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
                 }
+                if (dipTraoThuongModel.getKieu().equals("Thành tích")) {
+                    FXMLLoader loader = new FXMLLoader(TreasurerView.class.getResource("GiaiThuongThanhTichThuQuyView.fxml"));
+                    Parent root = loader.load();
+                    ControllerGiaiThuongThanhTichThuQuyView controller = loader.getController();
+                    controller.tenDip = dipTraoThuongModel.getTenDip();
+                    controller.nam = dipTraoThuongModel.getNam();
+                    controller.loadData();
+                    Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                }
             }
         }
     }
