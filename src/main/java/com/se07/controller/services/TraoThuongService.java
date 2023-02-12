@@ -8,8 +8,6 @@ import javafx.collections.ObservableList;
 
 import java.sql.Statement;
 import java.sql.*;
-import java.util.Date;
-import java.util.Optional;
 
 public class TraoThuongService {
     public int getSoNhanKhauTraoThuong() {

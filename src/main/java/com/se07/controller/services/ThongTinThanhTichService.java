@@ -1024,7 +1024,7 @@ public class ThongTinThanhTichService {
                 "where ttddb.idDip = " + idDip + " and ttddb.tinhTrang = N'Đã xác nhận'), " +
                 "tt as " +
                 "(select ttddb2.idNhap, pt.tenPhanThuong, pt.giaTri, ttddb2.soLuong " +
-                "from trao_thuong_dip_dac_biet ttddb2 join phan_thuong pt on ttddb2.maPhanThuong = pt.maPhanThuong) " +
+                "from trao_thuong_thanh_tich ttddb2 join phan_thuong pt on ttddb2.maPhanThuong = pt.maPhanThuong) " +
                 "select t.idNhap, t.maNhanKhau, t.hoTen, t.capThanhTich, t.kieuThanhTich ,tt.tenPhanThuong, tt.giaTri, tt.soLuong " +
                 "from t left join tt on t.idNhap = tt.idNhap";
         try {
