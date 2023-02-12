@@ -553,6 +553,7 @@ public class ThongTinDipDacBietService {
                 }
                 thongTinTraoThuongDipDacBietObservableList.add(temp);
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -571,6 +572,7 @@ public class ThongTinDipDacBietService {
             while (rs.next()) {
                 res.add(rs.getInt(1));
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

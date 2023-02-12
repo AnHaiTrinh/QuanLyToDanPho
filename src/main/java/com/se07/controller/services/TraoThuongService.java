@@ -25,6 +25,7 @@ public class TraoThuongService {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             if (rs.next()) count = rs.getInt(1);
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -40,6 +41,7 @@ public class TraoThuongService {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             if (rs.next()) count = rs.getInt(1);
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,6 +56,7 @@ public class TraoThuongService {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             if (rs.next()) count = rs.getInt(1);
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,6 +72,7 @@ public class TraoThuongService {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             if (rs.next()) count = rs.getInt(1);
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,6 +88,7 @@ public class TraoThuongService {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             if (rs.next()) count = rs.getInt(1);
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -123,6 +128,7 @@ public class TraoThuongService {
                 );
                 traoThuongDisplayModelObservableList.add(temp);
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -165,6 +171,7 @@ public class TraoThuongService {
                 );
                 traoThuongDisplayModelObservableList.add(temp);
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -205,6 +212,7 @@ public class TraoThuongService {
                 );
                 traoThuongDisplayModelObservableList.add(temp);
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -249,6 +257,7 @@ public class TraoThuongService {
                 );
                 traoThuongDisplayModelObservableList.add(temp);
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
