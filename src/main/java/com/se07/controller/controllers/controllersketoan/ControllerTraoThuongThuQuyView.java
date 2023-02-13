@@ -180,7 +180,7 @@ public class ControllerTraoThuongThuQuyView extends ControllerThuQuyView {
         if (mouseEvent.isPrimaryButtonDown()) {
             Stage stage = new Stage();
             stage.initOwner(((Node) mouseEvent.getSource()).getScene().getWindow());
-            stage.setTitle("Minh chứng");
+            stage.setTitle("Thêm phần thưởng");
             stage.setScene(new Scene(
                     new FXMLLoader(TreasurerView.class.getResource("ThemLoaiPhanThuongThuQuyView.fxml")).load()));
             stage.show();
