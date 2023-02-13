@@ -67,16 +67,7 @@ public class ControllerGiaiThuongThanhTichThuQuyView extends ControllerThuQuyVie
 
     public void onPressedButtonTraoThuongChoTatCaThanhTichThuQuy(MouseEvent mouseEvent) throws IOException {
         if (mouseEvent.isPrimaryButtonDown()) {
-            ThongTinTraoThuongThanhTich thongTinTraoThuongThanhTich =
-                    tableViewGiaiThuongThuQuy.getSelectionModel().getSelectedItem();
-            if (thongTinTraoThuongThanhTich == null) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setHeaderText("Vui lòng chọn trường hợp muốn trao quà");
-                alert.showAndWait();
-            } else {
-                traoThuongThuQuy(-1);
-            }
+            traoThuongThuQuy(-1);
         }
     }
 
