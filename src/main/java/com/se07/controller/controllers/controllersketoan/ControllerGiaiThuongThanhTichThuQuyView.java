@@ -96,5 +96,8 @@ public class ControllerGiaiThuongThanhTichThuQuyView extends ControllerThuQuyVie
         idDip = new DipTraoThuongService().getDipTraoThuongByTenAndNam(tenDip, nam).get().getId();
         tableViewGiaiThuongThuQuy.setItems(new ThongTinThanhTichService().getAllThongTinThanhTichAndTraoThuongByIdDip(idDip));
     }
+    public void onPressedButtonXoaThanhTichThuQuy(MouseEvent e) throws IOException{
+
+    }
 
 }

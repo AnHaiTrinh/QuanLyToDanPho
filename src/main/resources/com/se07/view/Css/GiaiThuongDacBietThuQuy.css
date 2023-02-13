@@ -50,3 +50,10 @@
     -fx-background-color: #CA61C3;
 
 }
+#buttonXoaDipDacBietThuQuy{
+    -fx-background-color: #441151;
+
+}
+#buttonXoaDipDacBietThuQuy:hover{
+    -fx-background-color: #CA61C3;
+}

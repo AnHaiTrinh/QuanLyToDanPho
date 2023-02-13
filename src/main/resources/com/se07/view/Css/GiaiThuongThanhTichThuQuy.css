@@ -50,3 +50,11 @@
     -fx-background-color: #CA61C3;
 
 }
+#buttonXoaThanhTichThuQuy{
+    -fx-background-color: #441151
+
+}
+#buttonXoaThanhTichThuQuy:hover{
+    -fx-background-color: #CA61C3;
+
+}
