@@ -1,4 +1,5 @@
 package com.se07.controller.controllers.controllershogiadinh;
+
 import com.se07.controller.services.DipTraoThuongService;
 import com.se07.controller.services.NhanKhauService;
 import com.se07.controller.services.ThongTinThanhTichService;
@@ -13,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -29,6 +31,8 @@ public class ControllerThemMoiThongTinThanhTichHoGiaDinh extends ControllerHoGia
     TextField textFieldHoTenThanhTichHoGiaDinh, textFieldTruongThanhTichHoGiaDinh, textFieldLopThanhTichHoGiaDinh;
     @FXML
     Button buttonThemMinhChungThanhTichHoGiaDinh;
+    @FXML
+    GridPane gridPaneThemMoiThongTinThanhTichHoGiaDinh;
 
     private final NhanKhauService nhanKhauService = new NhanKhauService();
 
@@ -49,7 +53,7 @@ public class ControllerThemMoiThongTinThanhTichHoGiaDinh extends ControllerHoGia
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
 
-        anchorPaneChinhHoGiaDinh.setOnKeyPressed((keyEvent) -> {
+        gridPaneThemMoiThongTinThanhTichHoGiaDinh.setOnKeyPressed((keyEvent) -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
                 themMoiThongTinThanhTichHoGiaDinh();
             } else if (keyEvent.getCode() == KeyCode.Q) {

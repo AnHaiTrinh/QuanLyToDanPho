@@ -298,6 +298,7 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     tamVangDisplayModel.setTuNgay((Date) event.getOldValue());
+                    tableViewTamVangCanBo.refresh();
                     return;
                 }
                 break;
@@ -311,6 +312,7 @@ public class ControllerTamVangCanBoView extends ControllerCanBoView {
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     tamVangDisplayModel.setDenNgay((Date) event.getOldValue());
+                    tableViewTamVangCanBo.refresh();
                     return;
                 }
                 break;

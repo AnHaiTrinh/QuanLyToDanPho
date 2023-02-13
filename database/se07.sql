@@ -106,26 +106,6 @@ VALUES ('NK1', 'HK1', N'Trịnh Văn An', NULL, '1974-12-07', N'Nam', NULL, N'Đ
        ('NK7', 'HK4', N'Nguyễn Trà My', NULL, '1990-05-18', N'Nữ', NULL, N'Đã xác nhận', 5),
        ('NK8', 'HK4', N'Nguyễn Văn Nam', NULL, '2015-06-29', N'Nam', NULL, N'Đã xác nhận', 6),
        ('NK9', 'HK4', N'Nguyễn Thị Huyền', NULL, '2018-04-13', N'Nữ', NULL, N'Đã xác nhận', 6);
-/*!40000 ALTER TABLE nhan_khau ENABLE KEYS */;
--- Dumping structure for table se07.khai_tu
-CREATE TABLE khai_tu
-(
-    soGiayKhaiTu    VARCHAR(30)   NOT NULL,
-    tenNguoiKhai    VARCHAR(30)   NOT NULL,
-    tenNguoiMat     VARCHAR(30)   NOT NULL,
-    noiTamVang      NVARCHAR(100) NOT NULL,
-    ngayKhai        DATE          NOT NULL,
-    ngayChet        DATE          NOT NULL,
-    lydo            NVARCHAR(500) NOT NULL,
-    tinhTrang       NVARCHAR(15)  NOT NULL DEFAULT N'Chờ xác nhận',
-    idNguoiThucHien INT           NOT NULL,
-    PRIMARY KEY (soGiayKhaiTu),
-    CONSTRAINT khai_tu_FK1 FOREIGN KEY (idNguoiThucHien) REFERENCES users (ID)
-);
-
--- Dumping data for table se07.khai_tu: -1 rows
-/*!40000 ALTER TABLE khai_tu DISABLE KEYS */;
-/*!40000 ALTER TABLE khai_tu ENABLE KEYS */;
 
 -- Dumping structure for table se07.phan_thuong
 CREATE TABLE phan_thuong
@@ -162,7 +142,7 @@ CREATE TABLE tam_tru
     idNguoiThucHien INT           NOT NULL,
     PRIMARY KEY (maTamTru),
     CONSTRAINT tam_tru_FK1 FOREIGN KEY (idNguoiThucHien) REFERENCES users (ID),
-    CONSTRAINT tam_tru_FK2 FOREIGN KEY (maHoKhau) REFERENCES ho_khau (maHoKhau)
+    CONSTRAINT tam_tru_FK2 FOREIGN KEY (maHoKhau) REFERENCES ho_khau (maHoKhau) ON DELETE CASCADE
 );
 
 -- Dumping data for table se07.tam_tru: -1 rows
@@ -187,7 +167,7 @@ CREATE TABLE tam_vang
     PRIMARY KEY (maTamVang),
 
     CONSTRAINT tam_vang_FK1 FOREIGN KEY (idNguoiThucHien) REFERENCES users (ID),
-    CONSTRAINT tam_vang_FK2 FOREIGN KEY (maNhanKhau) REFERENCES nhan_khau (maNhanKhau)
+    CONSTRAINT tam_vang_FK2 FOREIGN KEY (maNhanKhau) REFERENCES nhan_khau (maNhanKhau) ON DELETE CASCADE
 );
 
 -- Dumping data for table se07.tam_vang: -1 rows
@@ -222,8 +202,8 @@ CREATE TABLE thong_tin_dip_dac_biet
     tinhTrang       NVARCHAR(15)        NULL DEFAULT N'Chờ xác nhận',
     idNguoiThucHien INT                 NOT NULL,
     PRIMARY KEY (idNhap),
-    CONSTRAINT thong_tin_dip_dac_biet_FK1 FOREIGN KEY (maNhanKhau) REFERENCES nhan_khau (maNhanKhau),
-    CONSTRAINT thong_tin_dip_dac_biet_FK2 FOREIGN KEY (idDip) REFERENCES dip_trao_thuong (id),
+    CONSTRAINT thong_tin_dip_dac_biet_FK1 FOREIGN KEY (maNhanKhau) REFERENCES nhan_khau (maNhanKhau) ON DELETE NO ACTION,
+    CONSTRAINT thong_tin_dip_dac_biet_FK2 FOREIGN KEY (idDip) REFERENCES dip_trao_thuong (id) ON DELETE CASCADE,
     CONSTRAINT thong_tin_dip_dac_biet_FK3 FOREIGN KEY (idNguoiThucHien) REFERENCES users (ID),
 );
 
@@ -250,9 +230,9 @@ CREATE TABLE thong_tin_thanh_tich
     tinhTrang       NVARCHAR(15)        NULL DEFAULT N'Chờ xác nhận',
     idNguoiThucHien INT                 NOT NULL,
     PRIMARY KEY (idNhap),
-    CONSTRAINT thong_tin_thanh_tich_FK3 FOREIGN KEY (idDip) REFERENCES dip_trao_thuong (id),
+    CONSTRAINT thong_tin_thanh_tich_FK3 FOREIGN KEY (idDip) REFERENCES dip_trao_thuong (id) ON DELETE CASCADE,
     CONSTRAINT thong_tin_thanh_tich_FK2 FOREIGN KEY (idNguoiThucHien) REFERENCES users (ID),
-    CONSTRAINT thong_tin_thanh_tich_FK1 FOREIGN KEY (maNhanKhau) REFERENCES nhan_khau (maNhanKhau)
+    CONSTRAINT thong_tin_thanh_tich_FK1 FOREIGN KEY (maNhanKhau) REFERENCES nhan_khau (maNhanKhau) ON DELETE NO ACTION
 );
 
 -- Dumping data for table se07.thong_tin_thanh_tich: -1 rows
@@ -266,7 +246,7 @@ CREATE TABLE trao_thuong_dip_dac_biet
     soLuong      INT NOT NULL,
 
     PRIMARY KEY (idNhap, maPhanThuong),
-    CONSTRAINT trao_thuong_dip_dac_biet_FK1 FOREIGN KEY (idNhap) REFERENCES thong_tin_dip_dac_biet (idNhap),
+    CONSTRAINT trao_thuong_dip_dac_biet_FK1 FOREIGN KEY (idNhap) REFERENCES thong_tin_dip_dac_biet (idNhap) ON DELETE CASCADE,
     CONSTRAINT trao_thuong_dip_dac_biet_FK2 FOREIGN KEY (maPhanThuong) REFERENCES phan_thuong (maPhanThuong),
     CONSTRAINT chk_soLuong CHECK (soLuong > 0)
 );
@@ -289,7 +269,7 @@ CREATE TABLE trao_thuong_thanh_tich
     soLuong      INT NOT NULL,
 
     PRIMARY KEY (idNhap, maPhanThuong),
-    CONSTRAINT trao_thuong_thanh_tich_FK1 FOREIGN KEY (idNhap) REFERENCES thong_tin_thanh_tich (idNhap),
+    CONSTRAINT trao_thuong_thanh_tich_FK1 FOREIGN KEY (idNhap) REFERENCES thong_tin_thanh_tich (idNhap) ON DELETE CASCADE,
     CONSTRAINT trao_thuong_thanh_tich_FK2 FOREIGN KEY (maPhanThuong) REFERENCES phan_thuong (maPhanThuong),
     CONSTRAINT check_soLuong CHECK (soLuong > 0)
 );

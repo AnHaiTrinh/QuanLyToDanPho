@@ -11,7 +11,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,28 +31,44 @@ public class ControllerThemMoiNhanKhauHoGiaDinhView extends ControllerHoGiaDinhV
     DatePicker datePickerNgaySinhThemMoiNhanKhauHoGiaDinh;
     @FXML
     ComboBox comboBoxGioiTinhThemMoiNhanKhauHoGiaDinh;
-    
-    final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ","Khác");
-    final HoKhauService hoKhauService = new HoKhauService();
+    @FXML
+    GridPane gridPaneThemMoiNhanKhauHoGiaDinh;
+
+    final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ", "Khác");
     final String tinhTrang = "Chưa xác nhận";
     LocalDate today = LocalDate.now();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        gridPaneThemMoiNhanKhauHoGiaDinh.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+                themMoiNhanKhauHoGiaDinh();
+            } else if (keyEvent.getCode().equals(KeyCode.Q)) {
+                try {
+                    huyThemMoiNhanKhauHoGiaDinh(keyEvent);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
         comboBoxGioiTinhThemMoiNhanKhauHoGiaDinh.getItems().addAll(listGioiTinh);
         comboBoxGioiTinhThemMoiNhanKhauHoGiaDinh.getSelectionModel().selectFirst();
         textFieldMaHoKhauThemMoiNhanKhauHoGiaDinh.setText(maHoKhauDangNhap);
         datePickerNgaySinhThemMoiNhanKhauHoGiaDinh.setValue(today);
     }
+
     public void onPressedButtonThemMoiNhanKhauHoGiaDinh(MouseEvent e) throws IOException {
-        if(e.isPrimaryButtonDown()){
+        if (e.isPrimaryButtonDown()) {
             themMoiNhanKhauHoGiaDinh();
         }
     }
-    public void onPressedButtonHuyThemMoiNhanKhauHoGiaDinh(MouseEvent e) throws IOException{
-        if(e.isPrimaryButtonDown()){
+
+    public void onPressedButtonHuyThemMoiNhanKhauHoGiaDinh(MouseEvent e) throws IOException {
+        if (e.isPrimaryButtonDown()) {
             huyThemMoiNhanKhauHoGiaDinh(e);
         }
     }
+
     public void themMoiNhanKhauHoGiaDinh() {
         NhanKhauService nhanKhauService = new NhanKhauService();
         if (textFieldHoTenThemMoiNhanKhauHoGiaDinh.getText().isBlank() || textFieldMaNhanKhauThemMoiNhanKhauHoGiaDinh.getText().isBlank()) {
@@ -94,6 +112,7 @@ public class ControllerThemMoiNhanKhauHoGiaDinhView extends ControllerHoGiaDinhV
             }
         }
     }
+
     public void huyThemMoiNhanKhauHoGiaDinh(Event e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo");

@@ -213,6 +213,7 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     alert.setHeaderText("Vui lòng nhập năm hợp lệ");
                     alert.showAndWait();
                     dipTraoThuongModel.setNam((int) event.getOldValue());
+                    tableViewGiaiThuongCanBo.refresh();
                     return;
                 }
                 break;
@@ -226,6 +227,7 @@ public class ControllerGiaiThuongCanBoView extends ControllerCanBoView {
                     alert.setHeaderText("Vui lòng nhập ngày kết thúc hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     dipTraoThuongModel.setNgayKetThuc((Date) event.getOldValue());
+                    tableViewGiaiThuongCanBo.refresh();
                     return;
                 }
                 break;

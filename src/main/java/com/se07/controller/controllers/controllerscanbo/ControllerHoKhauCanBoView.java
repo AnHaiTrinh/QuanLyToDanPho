@@ -1,7 +1,9 @@
 package com.se07.controller.controllers.controllerscanbo;
 
 import com.se07.controller.services.HoKhauService;
+import com.se07.controller.services.NhanKhauService;
 import com.se07.model.models.HoKhauModel;
+import com.se07.model.models.NhanKhauModel;
 import com.se07.util.ComponentVisibility;
 import com.se07.util.MyDateStringConverter;
 import javafx.collections.FXCollections;
@@ -45,6 +47,7 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
     final HoKhauService hoKhauService = new HoKhauService();
 
     final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
+    private final NhanKhauService nhanKhauService = new NhanKhauService();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -173,9 +176,21 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
     public void handleOnEditCommit(TableColumn.CellEditEvent<HoKhauModel, ?> event) {
         int column = event.getTablePosition().getColumn();
         HoKhauModel hoKhauModel = event.getRowValue();
+        String maHoKhau = hoKhauModel.getMaHoKhau();
         switch (column) {
             case 1:
-                hoKhauModel.setChuHo((String) event.getNewValue());
+                String tenChuHoMoi = (String) event.getNewValue(), tenChuHoCu = (String) event.getOldValue();
+                if (nhanKhauService.getAllNhanKhauByTenAndMaHoKhau(tenChuHoMoi, maHoKhau).size() == 0) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText("Không có nhân khẩu tên " + tenChuHoMoi + " trong hộ khẩu");
+                    alert.showAndWait();
+                    hoKhauModel.setChuHo(tenChuHoCu);
+                    tableViewTatCaHoKhauCanBo.refresh();
+                    return;
+                } else {
+                    hoKhauModel.setChuHo(tenChuHoMoi);
+                }
                 break;
             case 2:
                 hoKhauModel.setDiaChi((String) event.getNewValue());
@@ -190,6 +205,7 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
                     alert.setHeaderText("Vui lòng nhập ngày lập hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     hoKhauModel.setNgayLap((Date) event.getOldValue());
+                    tableViewTatCaHoKhauCanBo.refresh();
                     return;
                 }
                 break;
@@ -254,7 +270,9 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
             if (alert.showAndWait().get() == ButtonType.OK) {
                 Alert info = new Alert(Alert.AlertType.INFORMATION);
                 info.setTitle("Thông báo");
-                if (hoKhauService.deleteHoKhau(hoKhauModel)) {
+                if (nhanKhauService.getAllNhanKhauTrongHoKhau(hoKhauModel.getMaHoKhau()).size() > 0) {
+                    info.setHeaderText("Không thể xóa hộ khẩu còn người");
+                } else if (hoKhauService.deleteHoKhau(hoKhauModel)) {
                     info.setHeaderText("Xóa thành công!");
                     tableViewTatCaHoKhauCanBo.getItems().remove(hoKhauModel);
                 } else {

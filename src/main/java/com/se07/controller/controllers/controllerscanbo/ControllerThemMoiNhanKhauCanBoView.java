@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,7 +32,9 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
     DatePicker datePickerNgaySinhThemMoiNhanKhauCanBo;
     @FXML
     ComboBox comboBoxGioiTinhThemMoiNhanKhauCanBo, comboBoxMaHoKhauThemMoiNhanKhauCanBo;
-    final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ","Khác");
+    @FXML
+    GridPane gridPaneThemMoiNhanKhauCanBo;
+    final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ", "Khác");
     final HoKhauService hoKhauService = new HoKhauService();
     LocalDate today = LocalDate.now();
 
@@ -43,7 +46,7 @@ public class ControllerThemMoiNhanKhauCanBoView extends ControllerCanBoView {
         comboBoxMaHoKhauThemMoiNhanKhauCanBo.getSelectionModel().selectFirst();
         datePickerNgaySinhThemMoiNhanKhauCanBo.setValue(today);
 
-        anchorPaneChinhCanBo.setOnKeyPressed((keyEvent) -> {
+        gridPaneThemMoiNhanKhauCanBo.setOnKeyPressed((keyEvent) -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
                 themMoiNhanKhauCanBo();
             } else if (keyEvent.getCode() == KeyCode.Q) {
