@@ -28,7 +28,8 @@ public class ControllerGiaiThuongThanhTichThuQuyView extends ControllerThuQuyVie
     TableView<ThongTinTraoThuongThanhTich> tableViewGiaiThuongThuQuy;
     @FXML
     TableColumn<ThongTinTraoThuongThanhTich, String> tableColumnMaNhanKhauGiaiThuongThanhTichThuQuy,
-            tableColumnHoTenGiaiThuongThanhTichThuQuy, tableColumnTenGiaiThuongThanhTichThuQuy;
+            tableColumnHoTenGiaiThuongThanhTichThuQuy, tableColumnTenGiaiThuongThanhTichThuQuy,
+            tableColumnKieuThanhTichThuQuy, tableColumnCapThanhTichThuQuy;
     @FXML
     TableColumn<ThongTinTraoThuongThanhTich, Integer> tableColumnIDNhapGiaiThuongThanhTichThuQuy,
             tableColumnDonGiaGiaiThuongThanhTichThuQuy, tableColumnSoLuongGiaiThuongThanhTichThuQuy,
@@ -84,6 +85,8 @@ public class ControllerGiaiThuongThanhTichThuQuyView extends ControllerThuQuyVie
         tableColumnMaNhanKhauGiaiThuongThanhTichThuQuy.setCellValueFactory(new PropertyValueFactory<>("maNhanKhau"));
         tableColumnHoTenGiaiThuongThanhTichThuQuy.setCellValueFactory(new PropertyValueFactory<>("hoTen"));
         tableColumnTenGiaiThuongThanhTichThuQuy.setCellValueFactory(new PropertyValueFactory<>("tenPhanThuong"));
+        tableColumnKieuThanhTichThuQuy.setCellValueFactory(new PropertyValueFactory<>("kieuThanhTich"));
+        tableColumnCapThanhTichThuQuy.setCellValueFactory(new PropertyValueFactory<>("capThanhTich"));
         tableColumnDonGiaGiaiThuongThanhTichThuQuy.setCellValueFactory(new PropertyValueFactory<>("donGia"));
         tableColumnSoLuongGiaiThuongThanhTichThuQuy.setCellValueFactory(new PropertyValueFactory<>("soLuong"));
         tableColumnThanhTienGiaiThuongThanhTichThuQuy.setCellValueFactory(new PropertyValueFactory<>("thanhTien"));
