@@ -82,8 +82,18 @@
     -fx-background-color: #CA61C3;
 }
 
+#buttonThongKeGiaiThuongHoGiaDinh {
+    -fx-background-color: #441151
+}
+
+#buttonThongKeGiaiThuongHoGiaDinh:hover {
+    -fx-background-color: #CA61C3;
+}
+
 .underline-blue-text {
     -fx-underline: true;
     -fx-text-fill: blue;
 }
+
+
 

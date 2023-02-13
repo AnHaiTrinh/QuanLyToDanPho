@@ -300,4 +300,11 @@ public class ControllerGiaiThuongHoGiaDinh extends ControllerHoGiaDinhView imple
         tableViewGiaiThuongHoGiaDinh.setItems(dipTraoThuongModelObservableList);
     }
 
+    public void onPressedButtonThongKeGiaiThuongHoGiaDinh(MouseEvent mouseEvent) throws IOException {
+        if (mouseEvent.isPrimaryButtonDown()) {
+            sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) mouseEvent.getSource()).getScene().getWindow(),
+                    "ThongKeHoGiaDinhView.fxml");
+        }
+    }
+
 }
