@@ -202,7 +202,7 @@ CREATE TABLE thong_tin_dip_dac_biet
     tinhTrang       NVARCHAR(15)        NULL DEFAULT N'Chờ xác nhận',
     idNguoiThucHien INT                 NOT NULL,
     PRIMARY KEY (idNhap),
-    CONSTRAINT thong_tin_dip_dac_biet_FK1 FOREIGN KEY (maNhanKhau) REFERENCES nhan_khau (maNhanKhau) ON DELETE NO ACTION,
+    CONSTRAINT thong_tin_dip_dac_biet_FK1 FOREIGN KEY (maNhanKhau) REFERENCES nhan_khau (maNhanKhau) ON DELETE CASCADE,
     CONSTRAINT thong_tin_dip_dac_biet_FK2 FOREIGN KEY (idDip) REFERENCES dip_trao_thuong (id) ON DELETE CASCADE,
     CONSTRAINT thong_tin_dip_dac_biet_FK3 FOREIGN KEY (idNguoiThucHien) REFERENCES users (ID),
 );
@@ -232,7 +232,7 @@ CREATE TABLE thong_tin_thanh_tich
     PRIMARY KEY (idNhap),
     CONSTRAINT thong_tin_thanh_tich_FK3 FOREIGN KEY (idDip) REFERENCES dip_trao_thuong (id) ON DELETE CASCADE,
     CONSTRAINT thong_tin_thanh_tich_FK2 FOREIGN KEY (idNguoiThucHien) REFERENCES users (ID),
-    CONSTRAINT thong_tin_thanh_tich_FK1 FOREIGN KEY (maNhanKhau) REFERENCES nhan_khau (maNhanKhau) ON DELETE NO ACTION
+    CONSTRAINT thong_tin_thanh_tich_FK1 FOREIGN KEY (maNhanKhau) REFERENCES nhan_khau (maNhanKhau) ON DELETE CASCADE
 );
 
 -- Dumping data for table se07.thong_tin_thanh_tich: -1 rows
