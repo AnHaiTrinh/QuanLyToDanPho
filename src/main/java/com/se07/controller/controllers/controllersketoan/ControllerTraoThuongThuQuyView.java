@@ -9,10 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -49,10 +46,11 @@ public class ControllerTraoThuongThuQuyView extends ControllerThuQuyView {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
+
+        listTenPhanThuong.add("");
         comboBoxChonQua = new ComboBox[]{comboBoxChonQua1, comboBoxChonQua2, comboBoxChonQua3, comboBoxChonQua4, comboBoxChonQua5};
         for (ComboBox comboBox : comboBoxChonQua) {
             comboBox.setItems(listTenPhanThuong);
-            comboBox.getItems().add("");
         }
         textFieldChonSoLuong = new TextField[]{
                 textFieldChonSoLuong1, textFieldChonSoLuong2, textFieldChonSoLuong3, textFieldChonSoLuong4, textFieldChonSoLuong5};
@@ -90,6 +88,11 @@ public class ControllerTraoThuongThuQuyView extends ControllerThuQuyView {
                     tenPhanThuong.put(tenQua, soLuong);
                 }
             }
+        }
+
+        if (tenPhanThuong.isEmpty()) {
+            hienThiLoiNhap();
+            return;
         }
 
         for (Map.Entry<String, Integer> entry : tenPhanThuong.entrySet()) {
@@ -189,8 +192,13 @@ public class ControllerTraoThuongThuQuyView extends ControllerThuQuyView {
 
     public void onPressedButtonHuyChonQuaThuQuy(MouseEvent mouseEvent) throws IOException {
         if (mouseEvent.isPrimaryButtonDown()) {
-            sceneLoader.loadFxmlFileThuQuy((Stage) ((Node) mouseEvent.getSource()).getScene().getWindow(),
-                    "GiaiThuongThuQuyView.fxml");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Bạn chắc chắn muốn thoát?");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                sceneLoader.loadFxmlFileThuQuy((Stage) ((Node) mouseEvent.getSource()).getScene().getWindow(),
+                        "GiaiThuongThuQuyView.fxml");
+            }
         }
     }
 
