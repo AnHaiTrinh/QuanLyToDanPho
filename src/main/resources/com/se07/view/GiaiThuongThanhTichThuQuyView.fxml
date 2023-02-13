@@ -61,15 +61,17 @@
                     <content>
                         <AnchorPane>
                             <children>
-                                <TableView fx:id="tableViewGiaiThuongThuQuy" editable="true" prefHeight="528.0" prefWidth="801.0">
+                                <TableView fx:id="tableViewGiaiThuongThuQuy" editable="true" prefHeight="528.0" prefWidth="1064.0">
                                     <columns>
                                         <TableColumn fx:id="tableColumnIDNhapGiaiThuongThanhTichThuQuy" prefWidth="82.0" styleClass="underline-blue-text" text="ID Nhập" />
-                                        <TableColumn fx:id="tableColumnMaNhanKhauGiaiThuongThanhTichThuQuy" prefWidth="125.0" styleClass="underline-blue-text" text="Mã nhân khẩu" />
-                                        <TableColumn fx:id="tableColumnHoTenGiaiThuongThanhTichThuQuy" maxWidth="199.0" minWidth="50.0" prefWidth="160.0" text="Họ tên" />
-                                        <TableColumn fx:id="tableColumnTenGiaiThuongThanhTichThuQuy" maxWidth="180.0" minWidth="100.0" prefWidth="118.0" text="Phần thưởng" />
-                                        <TableColumn fx:id="tableColumnDonGiaGiaiThuongThanhTichThuQuy" maxWidth="400.0" minWidth="79.0" prefWidth="100.0" text="Đơn giá" />
-                                        <TableColumn fx:id="tableColumnSoLuongGiaiThuongThanhTichThuQuy" prefWidth="88.0" text="Số lượng" />
-                                        <TableColumn fx:id="tableColumnThanhTienGiaiThuongThanhTichThuQuy" prefWidth="127.0" text="Thành tiền" />
+                                        <TableColumn fx:id="tableColumnMaNhanKhauGiaiThuongThanhTichThuQuy" prefWidth="115.0" styleClass="underline-blue-text" text="Mã nhân khẩu" />
+                                        <TableColumn fx:id="tableColumnHoTenGiaiThuongThanhTichThuQuy" maxWidth="199.0" minWidth="50.0" prefWidth="133.0" text="Họ tên" />
+                              <TableColumn fx:id="tableColumnKieuThanhTichThuQuy" maxWidth="199.0" minWidth="50.0" prefWidth="132.0" text="Kiểu thành tích" />
+                              <TableColumn fx:id="tableColumnCapThanhTichThuQuy" maxWidth="224.0" minWidth="50.0" prefWidth="132.0" text="Cấp thành tích" />
+                                        <TableColumn fx:id="tableColumnTenGiaiThuongThanhTichThuQuy" maxWidth="228.0" minWidth="100.0" prefWidth="139.0" text="Phần thưởng" />
+                                        <TableColumn fx:id="tableColumnDonGiaGiaiThuongThanhTichThuQuy" maxWidth="400.0" minWidth="79.0" prefWidth="90.0" text="Đơn giá" />
+                                        <TableColumn fx:id="tableColumnSoLuongGiaiThuongThanhTichThuQuy" prefWidth="100.0" text="Số lượng" />
+                                        <TableColumn fx:id="tableColumnThanhTienGiaiThuongThanhTichThuQuy" prefWidth="140.0" text="Thành tiền" />
                                     </columns>
                                 </TableView>
                             </children>
