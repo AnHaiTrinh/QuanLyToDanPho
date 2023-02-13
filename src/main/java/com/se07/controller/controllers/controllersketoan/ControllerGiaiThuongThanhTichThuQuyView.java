@@ -1,17 +1,19 @@
 package com.se07.controller.controllers.controllersketoan;
 
 import com.se07.controller.services.DipTraoThuongService;
+import com.se07.controller.services.PhanThuongService;
 import com.se07.controller.services.ThongTinThanhTichService;
+import com.se07.controller.services.TraoThuongService;
+import com.se07.model.models.ThongTinThanhTichDisplayModel;
+import com.se07.model.models.ThongTinTraoThuongDipDacBiet;
 import com.se07.model.models.ThongTinTraoThuongThanhTich;
+import com.se07.model.models.TraoThuongModel;
 import com.se07.view.TreasurerView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -30,6 +32,8 @@ public class ControllerGiaiThuongThanhTichThuQuyView extends ControllerThuQuyVie
     TableColumn<ThongTinTraoThuongThanhTich, String> tableColumnMaNhanKhauGiaiThuongThanhTichThuQuy,
             tableColumnHoTenGiaiThuongThanhTichThuQuy, tableColumnTenGiaiThuongThanhTichThuQuy,
             tableColumnKieuThanhTichThuQuy, tableColumnCapThanhTichThuQuy;
+    private final TraoThuongService traoThuongService = new TraoThuongService();
+    private final PhanThuongService phanThuongService = new PhanThuongService();
     @FXML
     TableColumn<ThongTinTraoThuongThanhTich, Integer> tableColumnIDNhapGiaiThuongThanhTichThuQuy,
             tableColumnDonGiaGiaiThuongThanhTichThuQuy, tableColumnSoLuongGiaiThuongThanhTichThuQuy,
@@ -67,16 +71,7 @@ public class ControllerGiaiThuongThanhTichThuQuyView extends ControllerThuQuyVie
 
     public void onPressedButtonTraoThuongChoTatCaThanhTichThuQuy(MouseEvent mouseEvent) throws IOException {
         if (mouseEvent.isPrimaryButtonDown()) {
-            ThongTinTraoThuongThanhTich thongTinTraoThuongThanhTich =
-                    tableViewGiaiThuongThuQuy.getSelectionModel().getSelectedItem();
-            if (thongTinTraoThuongThanhTich == null) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setHeaderText("Vui lòng chọn trường hợp muốn trao quà");
-                alert.showAndWait();
-            } else {
-                traoThuongThuQuy(-1);
-            }
+            traoThuongThuQuy(-1);
         }
     }
 
@@ -97,4 +92,48 @@ public class ControllerGiaiThuongThanhTichThuQuyView extends ControllerThuQuyVie
         tableViewGiaiThuongThuQuy.setItems(new ThongTinThanhTichService().getAllThongTinThanhTichAndTraoThuongByIdDip(idDip));
     }
 
+    public void onPressedButtonXoaThanhTichThuQuy(MouseEvent e) throws IOException {
+        if (e.isPrimaryButtonDown()) {
+            xoaTraoThuongThanhTichThuQuy();
+        }
+    }
+
+    private void xoaTraoThuongThanhTichThuQuy() {
+        ThongTinTraoThuongThanhTich thongTinThanhTichDisplayModel = tableViewGiaiThuongThuQuy.getSelectionModel().getSelectedItem();
+        if (thongTinThanhTichDisplayModel == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Vui lòng chọn trường hợp muốn xóa");
+            alert.showAndWait();
+        } else if (thongTinThanhTichDisplayModel.getTenPhanThuong() == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Trường hợp chưa được trao thưởng");
+            alert.showAndWait();
+        } else {
+            TraoThuongModel traoThuongModel = new TraoThuongModel(
+                    thongTinThanhTichDisplayModel.getIdNhap(),
+                    phanThuongService.getPhanThuongByTen(thongTinThanhTichDisplayModel.getTenPhanThuong()).get().getMaPhanThuong(),
+                    thongTinThanhTichDisplayModel.getSoLuong()
+            );
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Bạn chắc chắn muốn xóa trường hợp này");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                Alert info = new Alert(Alert.AlertType.INFORMATION);
+                info.setTitle("Thông báo");
+                if (traoThuongService.deleteTraoThuongDipDacBiet(traoThuongModel)) {
+                    info.setHeaderText("Xóa thành công");
+                    thongTinThanhTichDisplayModel.setTenPhanThuong(null);
+                    thongTinThanhTichDisplayModel.setDonGia(null);
+                    thongTinThanhTichDisplayModel.setSoLuong(null);
+                    thongTinThanhTichDisplayModel.setThanhTien(null);
+                } else {
+                    info.setHeaderText("Xóa không thành công");
+                }
+                info.showAndWait();
+                tableViewGiaiThuongThuQuy.refresh();
+            }
+        }
+    }
 }
