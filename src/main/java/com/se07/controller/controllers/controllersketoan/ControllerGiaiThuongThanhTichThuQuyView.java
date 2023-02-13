@@ -49,6 +49,13 @@ public class ControllerGiaiThuongThanhTichThuQuyView extends ControllerThuQuyVie
                 alert.setHeaderText("Vui lòng chọn trường hợp muốn trao quà");
                 alert.showAndWait();
             } else {
+                if (thongTinTraoThuongThanhTich.getTenPhanThuong() != null) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText("Trường hợp đã được trao thưởng. Bạn có muốn tiếp tục?");
+                    alert.setContentText("Thông tin về lần trao thưởng cũ sẽ bị xóa");
+                    if (alert.showAndWait().get() == ButtonType.CANCEL) return;
+                }
                 traoThuongThuQuy(thongTinTraoThuongThanhTich.getIdNhap());
             }
         }
@@ -71,6 +78,11 @@ public class ControllerGiaiThuongThanhTichThuQuyView extends ControllerThuQuyVie
 
     public void onPressedButtonTraoThuongChoTatCaThanhTichThuQuy(MouseEvent mouseEvent) throws IOException {
         if (mouseEvent.isPrimaryButtonDown()) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Bạn có muốn tiếp tục?");
+            alert.setContentText("Thông tin về lần trao thưởng cũ sẽ bị xóa");
+            if (alert.showAndWait().get() == ButtonType.CANCEL) return;
             traoThuongThuQuy(-1);
         }
     }
