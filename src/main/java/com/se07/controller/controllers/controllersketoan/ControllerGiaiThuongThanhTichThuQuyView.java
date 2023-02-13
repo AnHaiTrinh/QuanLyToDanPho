@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -45,6 +42,13 @@ public class ControllerGiaiThuongThanhTichThuQuyView extends ControllerThuQuyVie
                 alert.setHeaderText("Vui lòng chọn trường hợp muốn trao quà");
                 alert.showAndWait();
             } else {
+                if (thongTinTraoThuongThanhTich.getTenPhanThuong() != null) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText("Trường hợp đã được trao thưởng. Bạn có muốn tiếp tục?");
+                    alert.setContentText("Thông tin về lần trao thưởng cũ sẽ bị xóa");
+                    if (alert.showAndWait().get() == ButtonType.CANCEL) return;
+                }
                 traoThuongThuQuy(thongTinTraoThuongThanhTich.getIdNhap());
             }
         }
@@ -67,16 +71,12 @@ public class ControllerGiaiThuongThanhTichThuQuyView extends ControllerThuQuyVie
 
     public void onPressedButtonTraoThuongChoTatCaThanhTichThuQuy(MouseEvent mouseEvent) throws IOException {
         if (mouseEvent.isPrimaryButtonDown()) {
-            ThongTinTraoThuongThanhTich thongTinTraoThuongThanhTich =
-                    tableViewGiaiThuongThuQuy.getSelectionModel().getSelectedItem();
-            if (thongTinTraoThuongThanhTich == null) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setHeaderText("Vui lòng chọn trường hợp muốn trao quà");
-                alert.showAndWait();
-            } else {
-                traoThuongThuQuy(-1);
-            }
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Bạn có muốn tiếp tục?");
+            alert.setContentText("Thông tin về lần trao thưởng cũ sẽ bị xóa");
+            if (alert.showAndWait().get() == ButtonType.CANCEL) return;
+            traoThuongThuQuy(-1);
         }
     }
 
