@@ -100,6 +100,11 @@
                         <Font name="System Bold" size="15.0" />
                     </font>
                 </Button>
+            <Button fx:id="buttonXoaDipDacBietThuQuy" layoutY="378.0" mnemonicParsing="false" onMousePressed="#onPressedButtonXoaDipDacBietThuQuy" prefHeight="38.0" prefWidth="157.0" text="Xóa" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
         <Button fx:id="buttonThongKeThuQuy" layoutY="221.0" mnemonicParsing="false" onMousePressed="#onPressedButtonThongKeThuQuy" prefHeight="58.0" prefWidth="222.0" text="Thống kê" textFill="WHITE">
