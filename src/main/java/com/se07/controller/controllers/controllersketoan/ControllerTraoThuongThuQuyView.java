@@ -135,7 +135,7 @@ public class ControllerTraoThuongThuQuyView extends ControllerThuQuyView {
                             hienThiLoiCoSoDuLieu();
                             return;
                         }
-                        if (!traoThuongService.addTraoThuongDipDacBiet(traoThuongModel)) {
+                        if (!traoThuongService.addTraoThuongThanhTich(traoThuongModel)) {
                             hienThiLoiCoSoDuLieu();
                             return;
                         }
@@ -147,7 +147,7 @@ public class ControllerTraoThuongThuQuyView extends ControllerThuQuyView {
                         hienThiLoiCoSoDuLieu();
                         return;
                     }
-                    if (!traoThuongService.addTraoThuongDipDacBiet(traoThuongModel)) {
+                    if (!traoThuongService.addTraoThuongThanhTich(traoThuongModel)) {
                         hienThiLoiCoSoDuLieu();
                         return;
                     }

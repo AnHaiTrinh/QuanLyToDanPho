@@ -29,9 +29,7 @@ public class ControllerThongKeThuQuyView extends ControllerThuQuyView {
     TableColumn<TraoThuongDisplayModel, String> tableColumnMaNhanKhauThongKeThuQuy, tableColumnHoTenThongKeThuQuy,
             tableColumnDipThongKeThuQuy, tableColumnTenQuaThongKeThuQuy;
     @FXML
-    TableColumn<TraoThuongDisplayModel, Integer> tableColumnNamThongKeThuQuy, tableColumnSoLuongThongKeThuQuy;
-    @FXML
-    TableColumn<TraoThuongDisplayModel, Double> tableColumnDonGiaThongKeThuQuy, tableColumnThanhTienThongKeThuQuy;
+    TableColumn<TraoThuongDisplayModel, Integer> tableColumnNamThongKeThuQuy, tableColumnSoLuongThongKeThuQuy, tableColumnDonGiaThongKeThuQuy, tableColumnThanhTienThongKeThuQuy;
     @FXML
     Label labelTongGiaTriThongKeThuQuy;
     @FXML
