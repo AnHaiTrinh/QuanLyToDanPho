@@ -266,9 +266,6 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
         int column = event.getTablePosition().getColumn();
         NhanKhauModel nhanKhauModel = event.getRowValue();
         switch (column) {
-            case 1:
-                nhanKhauModel.setMaHoKhau((String) event.getNewValue());
-                break;
             case 2:
                 nhanKhauModel.setHoTen((String) event.getNewValue());
                 break;
@@ -285,6 +282,7 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     nhanKhauModel.setNgaySinh((Date) event.getOldValue());
+                    tableViewNhanKhauHoGiaDinh.refresh();
                     return;
                 }
                 break;
@@ -308,9 +306,6 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
         int column = event.getTablePosition().getColumn();
         NhanKhauModel nhanKhauModel = event.getRowValue();
         switch (column) {
-            case 1:
-                nhanKhauModel.setMaHoKhau((String) event.getOldValue());
-                break;
             case 2:
                 nhanKhauModel.setHoTen((String) event.getOldValue());
                 break;

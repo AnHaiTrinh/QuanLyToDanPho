@@ -188,6 +188,7 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     tamTruDisplayModel.setTuNgay((Date) event.getOldValue());
+                    tableViewTamTruHoGiaDinh.refresh();
                     return;
                 }
                 break;
@@ -201,6 +202,7 @@ public class ControllerTamTruHoGiaDinhView extends ControllerHoGiaDinhView imple
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     tamTruDisplayModel.setDenNgay((Date) event.getOldValue());
+                    tableViewTamTruHoGiaDinh.refresh();
                     return;
                 }
                 break;

@@ -191,6 +191,7 @@ public class ControllerGiaiThuongHoGiaDinh extends ControllerHoGiaDinhView imple
                     alert.setHeaderText("Vui lòng nhập năm hợp lệ");
                     alert.showAndWait();
                     dipTraoThuongModel.setNam((int) event.getOldValue());
+                    tableViewGiaiThuongHoGiaDinh.refresh();
                     return;
                 }
                 break;
@@ -204,6 +205,7 @@ public class ControllerGiaiThuongHoGiaDinh extends ControllerHoGiaDinhView imple
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     dipTraoThuongModel.setNgayKetThuc((Date) event.getOldValue());
+                    tableViewGiaiThuongHoGiaDinh.refresh();
                     return;
                 }
                 break;

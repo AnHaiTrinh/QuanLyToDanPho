@@ -173,6 +173,7 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
                     alert.setHeaderText("Vui lòng nhập ngày hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     tamTruDisplayModel.setTuNgay((Date) event.getOldValue());
+                    tableViewTamTruCanBo.refresh();
                     return;
                 }
                 break;
@@ -186,6 +187,7 @@ public class ControllerTamTruCanBoView extends ControllerCanBoView {
                     alert.setHeaderText("Vui lòng nhập ngày hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     tamTruDisplayModel.setDenNgay((Date) event.getOldValue());
+                    tableViewTamTruCanBo.refresh();
                     return;
                 }
                 break;

@@ -196,6 +196,7 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     tamVangDisplayModel.setTuNgay((Date) event.getOldValue());
+                    tableViewTamVangHoGiaDinh.refresh();
                     return;
                 }
                 break;
@@ -209,6 +210,7 @@ public class ControllerTamVangHoGiaDinhView extends ControllerHoGiaDinhView impl
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     tamVangDisplayModel.setDenNgay((Date) event.getOldValue());
+                    tableViewTamVangHoGiaDinh.refresh();
                     return;
                 }
                 break;

@@ -277,6 +277,7 @@ public class ControllerGiaiThuongThanhTichHoGiaDinhView extends ControllerHoGiaD
                         alert.setHeaderText("Vui lòng nhập lớp hợp lệ (từ 1 - 12)");
                         alert.showAndWait();
                         thongTinThanhTichDisplayModel.setLop((int) event.getOldValue());
+                        tableViewGiaiThuongThanhTichHoGiaDinh.refresh();
                         return;
                     }
                     break;

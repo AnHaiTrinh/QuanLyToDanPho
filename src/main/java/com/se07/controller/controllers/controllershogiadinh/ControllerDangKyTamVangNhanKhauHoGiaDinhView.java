@@ -1,15 +1,19 @@
 package com.se07.controller.controllers.controllershogiadinh;
+
 import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.NhanKhauService;
 import com.se07.controller.services.TamVangService;
 import com.se07.model.models.NhanKhauModel;
 import com.se07.model.models.TamVangModel;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,37 +24,55 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ControllerDangKyTamVangNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView implements Initializable {
-    LocalDate today  = LocalDate.now();
+    LocalDate today = LocalDate.now();
     @FXML
     TextField textFieldHoTenDangKyTamVangHoGiaDinh, textFieldNoiTamVangDangKyTamVangHoGiaDinh, textFieldLyDoDangKyTamVangHoGiaDinh;
     @FXML
-    DatePicker  datePickerTuNgayDangKyTamVangHoGiaDinh, datePickerDenNgayDangKyTamVangHoGiaDinh;
+    DatePicker datePickerTuNgayDangKyTamVangHoGiaDinh, datePickerDenNgayDangKyTamVangHoGiaDinh;
     @FXML
-    ComboBox    comBoBoxMaNhanKhauDangKyTamVangHoGiaDinh;
-    private final String tinhTrang ="Chờ xác nhận";
+    ComboBox comBoBoxMaNhanKhauDangKyTamVangHoGiaDinh;
+    @FXML
+    GridPane gridPaneDangKyTamVangHoGiaDinh;
+    private final String tinhTrang = "Chờ xác nhận";
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        gridPaneDangKyTamVangHoGiaDinh.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+                xacNhanDangKyTamVangHoGiaDinh();
+            } else if (keyEvent.getCode().equals(KeyCode.Q)) {
+                try {
+                    huyDangKyTamVangHoGiaDinh(keyEvent);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
         datePickerTuNgayDangKyTamVangHoGiaDinh.setValue(today);
         datePickerDenNgayDangKyTamVangHoGiaDinh.setValue(today.plusDays(7));
         comBoBoxMaNhanKhauDangKyTamVangHoGiaDinh.getItems().addAll(new NhanKhauService().getAllMaNhanKhauTrongHoKhau(maHoKhauDangNhap));
         textFieldHoTenDangKyTamVangHoGiaDinh.setEditable(false);
     }
+
     public void onPressedButtonDangKyTamVangNhanKhauHoGiaDinh(MouseEvent e) throws IOException {
-        if(e.isPrimaryButtonDown()){
+        if (e.isPrimaryButtonDown()) {
             xacNhanDangKyTamVangHoGiaDinh();
         }
     }
-    public void onPressedButtonHuyDangKyTamVangNhanKhauHoGiaDinh(MouseEvent e) throws IOException{
-        if(e.isPrimaryButtonDown()){
+
+    public void onPressedButtonHuyDangKyTamVangNhanKhauHoGiaDinh(MouseEvent e) throws IOException {
+        if (e.isPrimaryButtonDown()) {
             huyDangKyTamVangHoGiaDinh(e);
         }
     }
-    public void onSelectionComBoBoxMaNhanKhauDangKyTamVangHoGiaDinh(ActionEvent e){
+
+    public void onSelectionComBoBoxMaNhanKhauDangKyTamVangHoGiaDinh(ActionEvent e) {
         String maNhanKhau = String.valueOf(comBoBoxMaNhanKhauDangKyTamVangHoGiaDinh.getValue());
         NhanKhauService nhanKhauService = new NhanKhauService();
         Optional<NhanKhauModel> nhanKhauModelOptional = nhanKhauService.getNhanKhauByMaNhanKhau(maNhanKhau);
         textFieldHoTenDangKyTamVangHoGiaDinh.setText(nhanKhauModelOptional.get().getHoTen());
     }
+
     public void xacNhanDangKyTamVangHoGiaDinh() {
         TamVangService tamVangService = new TamVangService();
         if (textFieldLyDoDangKyTamVangHoGiaDinh.getText().isBlank() || textFieldNoiTamVangDangKyTamVangHoGiaDinh.getText().isBlank()) {
@@ -83,12 +105,13 @@ public class ControllerDangKyTamVangNhanKhauHoGiaDinhView extends ControllerHoGi
         alert.setContentText("Đăng ký tạm vắng thất bại!");
         alert.showAndWait();
     }
-    public void huyDangKyTamVangHoGiaDinh(MouseEvent e) throws IOException{
+
+    public void huyDangKyTamVangHoGiaDinh(Event e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText("");
         alert.setContentText("Bạn muốn thoát khỏi màn hình đăng ký tạm vắng!");
-        if(alert.showAndWait().get()==ButtonType.OK){
+        if (alert.showAndWait().get() == ButtonType.OK) {
             sceneLoader.loadFxmlFileHoGiaDinh((Stage) ((Node) e.getSource()).getScene().getWindow(), "TamVangHoGiaDinhView.fxml");
         }
     }

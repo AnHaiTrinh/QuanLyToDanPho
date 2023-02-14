@@ -87,7 +87,7 @@
                         <TableView fx:id="tableViewNhanKhauCanBo" editable="true" onKeyPressed="#onDeletePressedTrongBangNhanKhauCanBo" prefHeight="528.0" prefWidth="791.0">
                             <columns>
                                 <TableColumn fx:id="tableComlumIDNhanKhauCanBo" prefWidth="64.0" text="ID" />
-                                <TableColumn fx:id="tableComlumIDHoKhauNhanKhauCanBo" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="117.0" text="Mã Hộ Khẩu" />
+                                <TableColumn fx:id="tableComlumIDHoKhauNhanKhauCanBo" prefWidth="117.0" text="Mã Hộ Khẩu" />
                                 <TableColumn fx:id="tableComlumHoTenNhanKhauCanBo" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="130.0" text="Họ Tên" />
                                 <TableColumn fx:id="tableComlumBietDanhNhanKhauCanBo" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="109.0" text="Biệt Danh" />
                                 <TableColumn fx:id="tableComlumNgaySinhNhanKhauCanBo" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="105.0" text="Ngày sinh" />

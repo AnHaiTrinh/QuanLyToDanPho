@@ -3,6 +3,7 @@ package com.se07.controller.controllers.controllerscanbo;
 import com.se07.controller.controllers.controllerscanbo.ControllerCanBoView;
 import com.se07.controller.services.HoKhauService;
 import com.se07.controller.services.NhanKhauService;
+import com.se07.model.models.HoKhauModel;
 import com.se07.model.models.NhanKhauModel;
 import com.se07.util.ComponentVisibility;
 import com.se07.util.MyDateStringConverter;
@@ -47,13 +48,12 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
     DatePicker datePickerTu, datePickerDen;
     final private ObservableList<String> listTimKiem = FXCollections.observableArrayList(
             "Mã nhân khẩu", "Mã hộ khẩu", "Họ tên", "Biệt danh", "Ngày sinh", "Giới tính", "Tôn giáo", "Tình trạng");
-
-    private final ObservableList<String> listMaHoKhau = new HoKhauService().getAllMaHoKhau();
     final private ObservableList<String> listGioiTinh = FXCollections.observableArrayList("Nam", "Nữ");
 
     final private ObservableList<String> listTinhTrang =
             FXCollections.observableArrayList("Chờ xác nhận", "Đã xác nhận", "Đã từ chối", "Chờ xóa");
     final NhanKhauService nhanKhauService = new NhanKhauService();
+    final private HoKhauService hoKhauService = new HoKhauService();
 
     final private MyDateStringConverter dateStringConverter = new MyDateStringConverter("yyyy-MM-dd");
 
@@ -82,7 +82,6 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         ComponentVisibility.change(datePickerDen, false);
 
         tableViewNhanKhauCanBo.setEditable(true);
-        tableComlumIDHoKhauNhanKhauCanBo.setCellFactory(t -> new ComboBoxTableCell(listMaHoKhau));
         tableComlumHoTenNhanKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
         tableComlumBietDanhNhanKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn());
         tableComlumNgaySinhNhanKhauCanBo.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
@@ -325,7 +324,11 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
             if (alert.showAndWait().get() == ButtonType.OK) {
                 Alert info = new Alert(Alert.AlertType.INFORMATION);
                 info.setTitle("Thông báo");
-                if (nhanKhauService.deleteNhanKhau(nhanKhauModel)) {
+                String maHoKhau = nhanKhauModel.getMaHoKhau();
+                if (nhanKhauService.getAllNhanKhauTrongHoKhau(maHoKhau).size() > 1 &&
+                        hoKhauService.getHoKhauByMaHoKhau(maHoKhau).get().getChuHo().equals(nhanKhauModel.getHoTen())) {
+                    info.setHeaderText("Không thể xóa chủ hộ của hộ có nhiều hơn 1 người");
+                } else if (nhanKhauService.deleteNhanKhau(nhanKhauModel)) {
                     info.setHeaderText("Xóa thành công!");
                     tableViewNhanKhauCanBo.getItems().remove(nhanKhauModel);
                 } else {
@@ -399,9 +402,6 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         int column = event.getTablePosition().getColumn();
         NhanKhauModel nhanKhauModel = event.getRowValue();
         switch (column) {
-            case 1:
-                nhanKhauModel.setMaHoKhau((String) event.getNewValue());
-                break;
             case 2:
                 nhanKhauModel.setHoTen((String) event.getNewValue());
                 break;
@@ -418,6 +418,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
                     alert.setHeaderText("Vui lòng nhập ngày sinh hợp lệ đúng định dạng năm-tháng-ngày");
                     alert.showAndWait();
                     nhanKhauModel.setNgaySinh((Date) event.getOldValue());
+                    tableViewNhanKhauCanBo.refresh();
                     return;
                 }
                 break;
@@ -443,9 +444,6 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         int column = event.getTablePosition().getColumn();
         NhanKhauModel nhanKhauModel = event.getRowValue();
         switch (column) {
-            case 1:
-                nhanKhauModel.setMaHoKhau((String) event.getOldValue());
-                break;
             case 2:
                 nhanKhauModel.setHoTen((String) event.getOldValue());
                 break;
@@ -479,6 +477,13 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
             alert.setHeaderText("Sửa hộ khẩu thành công");
         } else {
             alert.setHeaderText("Sửa hộ khẩu không thành công");
+        }
+        String maHoKhau = nhanKhauModel.getMaHoKhau();
+        HoKhauModel hoKhauModel = hoKhauService.getHoKhauByMaHoKhau(maHoKhau).get();
+        String tenChuHo = hoKhauModel.getChuHo();
+        if (nhanKhauService.getAllNhanKhauByTenAndMaHoKhau(tenChuHo, maHoKhau).size() == 0) {
+            hoKhauModel.setChuHo(nhanKhauModel.getHoTen());
+            hoKhauService.updateHoKhau(hoKhauModel);
         }
         if (alert.showAndWait().get() == ButtonType.OK) {
             tableViewNhanKhauCanBo.refresh();

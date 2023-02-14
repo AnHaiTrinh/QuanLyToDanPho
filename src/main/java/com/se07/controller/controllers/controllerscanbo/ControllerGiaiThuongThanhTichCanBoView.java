@@ -353,6 +353,8 @@ public class ControllerGiaiThuongThanhTichCanBoView extends ControllerCanBoView 
                         alert.setTitle("Thông báo");
                         alert.setHeaderText("Vui lòng nhập lớp hợp lệ (từ 1 - 12)");
                         alert.showAndWait();
+                        thongTinThanhTichDisplayModel.setLop((int) event.getOldValue());
+                        tableViewGiaiThuongThanhTichCanBo.refresh();
                         return;
                     }
                     break;

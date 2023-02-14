@@ -16,18 +16,21 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerThemMoiThongTinDacBietHoGiaDinhView extends ControllerHoGiaDinhView{
+public class ControllerThemMoiThongTinDacBietHoGiaDinhView extends ControllerHoGiaDinhView {
 
     @FXML
     ComboBox comboBoxTenDipDacBietHoGiaDinh, comboBoxNamDipDacBietHoGiaDinh, comboBoxMaNhanKhauDipDacBietHoGiaDinh;
     @FXML
     TextField textFieldHoTenDipDacBietHoGiaDinh;
+    @FXML
+    GridPane gridPaneThemMoiThongTinDipDacBietHoGiaDinh;
 
     final private NhanKhauService nhanKhauService = new NhanKhauService();
     final private DipTraoThuongService dipTraoThuongService = new DipTraoThuongService();
@@ -37,7 +40,17 @@ public class ControllerThemMoiThongTinDacBietHoGiaDinhView extends ControllerHoG
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
-
+        gridPaneThemMoiThongTinDipDacBietHoGiaDinh.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+                themMoiThongTinDipDacBietHoGiaDinh();
+            } else if (keyEvent.getCode().equals(KeyCode.Q)) {
+                try {
+                    huyThemMoiThongTinDipDacBietHoGiaDinh(keyEvent);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
         comboBoxMaNhanKhauDipDacBietHoGiaDinh.getItems().addAll(nhanKhauService.getAllMaNhanKhauTrongHoKhau(maHoKhauDangNhap));
         comboBoxTenDipDacBietHoGiaDinh.getItems().addAll(dipTraoThuongService.getAllTenTraoThuongDipDacBiet());
         comboBoxNamDipDacBietHoGiaDinh.getItems().addAll(dipTraoThuongService.getAllNamTraoThuongDipDacBiet());
@@ -110,5 +123,5 @@ public class ControllerThemMoiThongTinDacBietHoGiaDinhView extends ControllerHoG
                     "GiaiThuongDipDacBietHoGiaDinhView.fxml");
         }
     }
-    
+
 }
