@@ -75,7 +75,7 @@
                      <columns>
                         <TableColumn fx:id="tableComlumIDNhanKhauHoGiaDinh" prefWidth="64.0" text="ID" />
                         <TableColumn fx:id="tableComlumIDHoKhauNhanKhauHoGiaDinh" prefWidth="117.0" text="Mã Hộ Khẩu" />
-                        <TableColumn fx:id="tableComlumHoTenNhanKhauHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="130.0" text="Họ Tên" />
+                        <TableColumn fx:id="tableComlumHoTenNhanKhauHoGiaDinh" prefWidth="130.0" text="Họ Tên" />
                         <TableColumn fx:id="tableComlumBietDanhNhanKhauHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="109.0" text="Biệt Danh" />
                         <TableColumn fx:id="tableComlumNgaySinhNhanKhauHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" prefWidth="105.0" text="Ngày sinh" />
                         <TableColumn fx:id="tableComlumGioiTinhNhanKhauHoGiaDinh" onEditCancel="#handleOnEditCancel" onEditCommit="#handleOnEditCommit" text="Giới tính" />
