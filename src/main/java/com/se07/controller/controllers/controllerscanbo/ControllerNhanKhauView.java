@@ -344,7 +344,7 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
      * Phương thức tìm kiếm nhân khẩu theo trường tiêu chí đã chọn
      * Các trường tìm kiếm hợp lệ là Mã nhân khẩu, Mã hộ khẩu, Họ tên, Biệt danh, Ngày sinh, Giới tính, Tôn giáo, Tình trạng
      */
-    private void locThongTinNhanKhauCanBo() {
+    public void locThongTinNhanKhauCanBo() {
         String dieuKienKiemTra = String.valueOf(comboBoxTimKiemNhanKhauCanBo.getValue());
         String cauHoi = textFieldLocThongTinNhanKhauCanBo.getText();
         ObservableList<NhanKhauModel> nhanKhauModelObservableList = FXCollections.observableArrayList();
@@ -474,9 +474,9 @@ public class ControllerNhanKhauView extends ControllerCanBoView {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo!");
         if (nhanKhauService.updateNhanKhau(nhanKhauModel)) {
-            alert.setHeaderText("Sửa hộ khẩu thành công");
+            alert.setHeaderText("Sửa nhân khẩu thành công");
         } else {
-            alert.setHeaderText("Sửa hộ khẩu không thành công");
+            alert.setHeaderText("Sửa nhân khẩu không thành công");
         }
         String maHoKhau = nhanKhauModel.getMaHoKhau();
         HoKhauModel hoKhauModel = hoKhauService.getHoKhauByMaHoKhau(maHoKhau).get();

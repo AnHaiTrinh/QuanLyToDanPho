@@ -2,12 +2,12 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPaneChinhThuQuy" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/GiaiThuongThanhTichThuQuy.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllersketoan.ControllerGiaiThuongThanhTichThuQuyView">
@@ -50,46 +50,38 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Button>
-        <AnchorPane layoutX="220.0" prefHeight="606.0" prefWidth="524.0">
-            <children>
-                <ScrollPane layoutX="2.0" layoutY="80.0" prefHeight="526.0" prefWidth="520.0">
-                    <content>
-                        <AnchorPane>
-                            <children>
-                                <TableView fx:id="tableViewGiaiThuongThuQuy" editable="true" prefHeight="528.0" prefWidth="1064.0">
-                                    <columns>
-                                        <TableColumn fx:id="tableColumnIDNhapGiaiThuongThanhTichThuQuy" prefWidth="82.0" styleClass="underline-blue-text" text="ID Nhập" />
-                                        <TableColumn fx:id="tableColumnMaNhanKhauGiaiThuongThanhTichThuQuy" prefWidth="115.0" styleClass="underline-blue-text" text="Mã nhân khẩu" />
-                                        <TableColumn fx:id="tableColumnHoTenGiaiThuongThanhTichThuQuy" maxWidth="199.0" minWidth="50.0" prefWidth="133.0" text="Họ tên" />
-                              <TableColumn fx:id="tableColumnKieuThanhTichThuQuy" maxWidth="199.0" minWidth="50.0" prefWidth="132.0" text="Kiểu thành tích" />
-                              <TableColumn fx:id="tableColumnCapThanhTichThuQuy" maxWidth="224.0" minWidth="50.0" prefWidth="132.0" text="Cấp thành tích" />
-                                        <TableColumn fx:id="tableColumnTenGiaiThuongThanhTichThuQuy" maxWidth="228.0" minWidth="100.0" prefWidth="139.0" text="Phần thưởng" />
-                                        <TableColumn fx:id="tableColumnDonGiaGiaiThuongThanhTichThuQuy" maxWidth="400.0" minWidth="79.0" prefWidth="90.0" text="Đơn giá" />
-                                        <TableColumn fx:id="tableColumnSoLuongGiaiThuongThanhTichThuQuy" prefWidth="100.0" text="Số lượng" />
-                                        <TableColumn fx:id="tableColumnThanhTienGiaiThuongThanhTichThuQuy" prefWidth="140.0" text="Thành tiền" />
-                                    </columns>
-                                </TableView>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </ScrollPane>
-                <Label layoutX="157.0" layoutY="15.0" text="BẢNG TRAO THƯỞNG THÀNH TÍCH">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
-                <Label fx:id="labelTenDipTraoThuongThanhTich" layoutX="26.0" layoutY="46.0" prefHeight="21.0" prefWidth="284.0" text="Tên dịp:">
-                    <font>
-                        <Font name="System Bold" size="15.0" />
-                    </font>
-                </Label>
-                <Label fx:id="labelNamTraoThuongThanhTich" layoutX="422.0" layoutY="46.0" prefHeight="21.0" prefWidth="89.0" text="Năm:">
-                    <font>
-                        <Font name="System Bold" size="15.0" />
-                    </font>
-                </Label>
-            </children>
-        </AnchorPane>
+      <StackPane layoutX="222.0" layoutY="80.0" prefHeight="528.0" prefWidth="520.0">
+         <children>
+                    <TableView fx:id="tableViewGiaiThuongThuQuy" editable="true" prefHeight="528.0" prefWidth="1064.0">
+                        <columns>
+                            <TableColumn fx:id="tableColumnIDNhapGiaiThuongThanhTichThuQuy" prefWidth="82.0" styleClass="underline-blue-text" text="ID Nhập" />
+                            <TableColumn fx:id="tableColumnMaNhanKhauGiaiThuongThanhTichThuQuy" prefWidth="115.0" styleClass="underline-blue-text" text="Mã nhân khẩu" />
+                            <TableColumn fx:id="tableColumnHoTenGiaiThuongThanhTichThuQuy" maxWidth="199.0" minWidth="50.0" prefWidth="133.0" text="Họ tên" />
+                  <TableColumn fx:id="tableColumnKieuThanhTichThuQuy" maxWidth="199.0" minWidth="50.0" prefWidth="132.0" text="Kiểu thành tích" />
+                  <TableColumn fx:id="tableColumnCapThanhTichThuQuy" maxWidth="224.0" minWidth="50.0" prefWidth="132.0" text="Cấp thành tích" />
+                            <TableColumn fx:id="tableColumnTenGiaiThuongThanhTichThuQuy" maxWidth="228.0" minWidth="100.0" prefWidth="139.0" text="Phần thưởng" />
+                            <TableColumn fx:id="tableColumnDonGiaGiaiThuongThanhTichThuQuy" maxWidth="400.0" minWidth="79.0" prefWidth="90.0" text="Đơn giá" />
+                            <TableColumn fx:id="tableColumnSoLuongGiaiThuongThanhTichThuQuy" prefWidth="100.0" text="Số lượng" />
+                            <TableColumn fx:id="tableColumnThanhTienGiaiThuongThanhTichThuQuy" prefWidth="140.0" text="Thành tiền" />
+                        </columns>
+                    </TableView>
+         </children>
+      </StackPane>
+          <Label layoutX="377.0" layoutY="15.0" text="BẢNG TRAO THƯỞNG THÀNH TÍCH">
+              <font>
+                  <Font name="System Bold" size="18.0" />
+              </font>
+          </Label>
+          <Label fx:id="labelTenDipTraoThuongThanhTich" layoutX="246.0" layoutY="46.0" prefHeight="21.0" prefWidth="284.0" text="Tên dịp:">
+              <font>
+                  <Font name="System Bold" size="15.0" />
+              </font>
+          </Label>
+          <Label fx:id="labelNamTraoThuongThanhTich" layoutX="642.0" layoutY="46.0" prefHeight="21.0" prefWidth="89.0" text="Năm:">
+              <font>
+                  <Font name="System Bold" size="15.0" />
+              </font>
+          </Label>
         <AnchorPane fx:id="panePeopleAdmin" layoutX="750.0" layoutY="50.0" prefHeight="553.0" prefWidth="157.0">
             <children>
                 <Button fx:id="buttonChonPhanQuaThanhTichThuQuy" layoutY="228.0" mnemonicParsing="false" onMousePressed="#onPressedButtonChonPhanQuaThuQuy" prefHeight="38.0" prefWidth="157.0" text="Chọn phần quà" textFill="#fcfcfc">

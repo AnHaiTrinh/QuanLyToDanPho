@@ -4,13 +4,13 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPaneChinhThuQuy" prefHeight="603.0" prefWidth="915.0" stylesheets="@Css/GiaiThuongThuQuyView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.se07.controller.controllers.controllersketoan.ControllerGiaiThuongThuQuyView">
@@ -60,25 +60,21 @@
         </Label>
         <AnchorPane layoutX="220.0" prefHeight="603.0" prefWidth="538.0">
             <children>
-                <ScrollPane layoutX="2.0" layoutY="80.0" prefHeight="526.0" prefWidth="554.0">
-                    <content>
-                        <AnchorPane>
-                            <children>
-                                <TableView fx:id="tableViewGiaiThuongThuQuy" editable="true" prefHeight="528.0" prefWidth="878.0">
-                                    <columns>
-                                        <TableColumn fx:id="tableColumnIDGiaiThuongThuQuy" prefWidth="60.0" styleClass="underline-blue-text" text="ID" />
-                                        <TableColumn fx:id="tableColumnTenDipGiaiThuongThuQuy" maxWidth="199.0" minWidth="50.0" prefWidth="199.0" text="Tên dịp" />
-                                        <TableColumn fx:id="tableColumnKieuGiaiThuongThuQuy" maxWidth="180.0" minWidth="100.0" prefWidth="118.0" text="Kiểu" />
-                                        <TableColumn fx:id="tableColumnNamGiaiThuongThuQuy" maxWidth="400.0" minWidth="79.0" prefWidth="79.0" text="Năm" />
-                                        <TableColumn fx:id="tableColumnNgayTaoGiaiThuongThuQuy" maxWidth="203.0" minWidth="80.0" prefWidth="130.0" text="Ngày tạo" />
-                                        <TableColumn fx:id="tableColumnNgayKetThucGiaiThuongThuQuy" maxWidth="220.0" minWidth="80.0" prefWidth="130.0" text="Ngày kết thúc" />
-                                        <TableColumn fx:id="tableColumnGhiChuGiaiThuongThuQuy" prefWidth="160.0" text="Ghi chú" />
-                                    </columns>
-                                </TableView>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </ScrollPane>
+            <StackPane layoutX="2.0" layoutY="80.0" prefHeight="528.0" prefWidth="554.0">
+               <children>
+                          <TableView fx:id="tableViewGiaiThuongThuQuy" editable="true" prefHeight="528.0" prefWidth="878.0">
+                              <columns>
+                                  <TableColumn fx:id="tableColumnIDGiaiThuongThuQuy" prefWidth="60.0" styleClass="underline-blue-text" text="ID" />
+                                  <TableColumn fx:id="tableColumnTenDipGiaiThuongThuQuy" maxWidth="199.0" minWidth="50.0" prefWidth="199.0" text="Tên dịp" />
+                                  <TableColumn fx:id="tableColumnKieuGiaiThuongThuQuy" maxWidth="180.0" minWidth="100.0" prefWidth="118.0" text="Kiểu" />
+                                  <TableColumn fx:id="tableColumnNamGiaiThuongThuQuy" maxWidth="400.0" minWidth="79.0" prefWidth="79.0" text="Năm" />
+                                  <TableColumn fx:id="tableColumnNgayTaoGiaiThuongThuQuy" maxWidth="203.0" minWidth="80.0" prefWidth="130.0" text="Ngày tạo" />
+                                  <TableColumn fx:id="tableColumnNgayKetThucGiaiThuongThuQuy" maxWidth="220.0" minWidth="80.0" prefWidth="130.0" text="Ngày kết thúc" />
+                                  <TableColumn fx:id="tableColumnGhiChuGiaiThuongThuQuy" prefWidth="160.0" text="Ghi chú" />
+                              </columns>
+                          </TableView>
+               </children>
+            </StackPane>
                 <AnchorPane layoutX="2.0" layoutY="3.0" onKeyPressed="#onEnterPressedTrongOTimKiemGiaiThuongThuQuy">
                     <children>
                         <Button fx:id="buttonLocThongTinGiaiThuongThuQuy" layoutX="335.0" layoutY="15.0" mnemonicParsing="false" onMousePressed="#onPressedButtonLocThongTinDipTraoThuongThuQuy" prefHeight="31.0" prefWidth="100.0" stylesheets="@Css/GiaiThuongThuQuyView.css" text="Tìm kiếm" textFill="WHITE">

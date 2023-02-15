@@ -6,11 +6,15 @@ import com.se07.model.models.HoKhauModel;
 import com.se07.model.models.NhanKhauModel;
 import com.se07.util.ComponentVisibility;
 import com.se07.util.MyDateStringConverter;
+import com.se07.view.TrangChuCanBoView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -320,5 +324,24 @@ public class ControllerHoKhauCanBoView extends ControllerCanBoView {
                 break;
         }
         tableViewTatCaHoKhauCanBo.setItems(hoKhauModelObservableList);
+    }
+
+    public void onPressedTrongCorMaHoCanBo(MouseEvent e) throws IOException {
+        if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
+            String id = ((Node) e.getTarget()).getId();
+            System.out.println(id);
+            if (id != null && id.equals("tableColumnMaHoHoKhauCanBo")) {
+                HoKhauModel hoKhauModel = tableViewTatCaHoKhauCanBo.getSelectionModel().getSelectedItem();
+                FXMLLoader loader = new FXMLLoader(TrangChuCanBoView.class.getResource("NhanKhauCanBoView.fxml"));
+                Parent root = loader.load();
+                ControllerNhanKhauView controller = loader.getController();
+                controller.textFieldLocThongTinNhanKhauCanBo.setText(hoKhauModel.getMaHoKhau());
+                controller.comboBoxTimKiemNhanKhauCanBo.getSelectionModel().select("Mã hộ khẩu");
+                controller.locThongTinNhanKhauCanBo();
+                Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+            }
+        }
     }
 }
