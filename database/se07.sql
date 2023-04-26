@@ -4,7 +4,7 @@
 -- Server OS:Linux (Ubuntu 20.04.5 LTS) <X64>
 -- HeidiSQL Version: 12.1.0.6537
 -- --------------------------------------------------------
-
+CREATE DATABASE se07;
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES  */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
