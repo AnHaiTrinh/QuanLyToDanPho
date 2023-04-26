@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.FileWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -74,67 +75,55 @@ public class ControllerLoginView {
     private void validateLogin() {
         if (TextFieldUserName.getText().isBlank() == false && PasswordFieldPassword.getText().isBlank() == false) {
             Connection connection = ConnectionDatabase.getConnection();
-            String veritylogin = "select * from users where password = '" + PasswordFieldPassword.getText() +
-                    "'and username='" + TextFieldUserName.getText() + "'";
-            if (veritylogin.indexOf(';') > 0) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Cảnh báo");
-                alert.setHeaderText("Có lẽ bạn đang muốn hack hệ thống");
-                alert.setContentText("Hãy làm điều gì có ích hơn nhé");
-                if (alert.showAndWait().get() == ButtonType.OK) {
-                    stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
-                    stage.close();
-                    LoginView loginView = new LoginView();
-                    loginView.openWindow();
+            String veritylogin = "select * from users where password = ? and username = ?";
+            try {
+                PreparedStatement statement = connection.prepareStatement(veritylogin);
+                statement.setString(1, PasswordFieldPassword.getText());
+                statement.setString(2, TextFieldUserName.getText());
+                ResultSet rs = statement.executeQuery();
+                if (rs.getRow() == 0) {
+                    LabelAlertLogin.setText("Vui lòng nhập lại tên hoặc mật khẩu");
                 }
-            } else {
-                try {
-                    Statement statement = connection.createStatement();
-                    ResultSet rs = statement.executeQuery(veritylogin);
-                    if (rs.getRow() == 0) {
+                while (rs.next()) {
+                    Integer role = rs.getInt("role");
+                    if (rs.getRow() == 1) {
+                        LabelAlertLogin.setText("");
+                        if (role == 1 && checkBoxAdmin.isSelected() == true && checkBoxUser.isSelected() == false && checkBoxTreasurer.isSelected() == false) {
+                            FileWriter fileWriter = new FileWriter("UserData.txt");
+                            fileWriter.write(rs.getInt("ID") + "\n" + rs.getString("username") + "\n"
+                                    + rs.getString("password"));
+                            fileWriter.close();
+                            TrangChuCanBoView trangChuCanBoView = new TrangChuCanBoView();
+                            trangChuCanBoView.openWindow();
+                            stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
+                            stage.close();
+                        } else if (role == 2 && checkBoxAdmin.isSelected() == false && checkBoxUser.isSelected() == true && checkBoxTreasurer.isSelected() == false) {
+                            FileWriter fileWriter = new FileWriter("UserData.txt");
+                            fileWriter.write(rs.getInt("ID") + "\n" + rs.getString("username") + "\n"
+                                    + rs.getString("password"));
+                            fileWriter.close();
+                            UserView userView = new UserView();
+                            userView.openWindow();
+                            stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
+                            stage.close();
+                        } else if (role == 0 && checkBoxAdmin.isSelected() == false && checkBoxUser.isSelected() == false && checkBoxTreasurer.isSelected() == true) {
+                            FileWriter fileWriter = new FileWriter("UserData.txt");
+                            fileWriter.write(rs.getInt("ID") + "\n" + rs.getString("username") + "\n"
+                                    + rs.getString("password"));
+                            fileWriter.close();
+                            TreasurerView treasurerView = new TreasurerView();
+                            treasurerView.openWindow();
+                            stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
+                            stage.close();
+                        } else {
+                            LabelAlertLogin.setText("vui lòng chọn đúng chức danh");
+                        }
+                    } else {
                         LabelAlertLogin.setText("Vui lòng nhập lại tên hoặc mật khẩu");
                     }
-                    while (rs.next()) {
-                        Integer role = rs.getInt("role");
-                        if (rs.getRow() == 1) {
-                            LabelAlertLogin.setText("");
-                            if (role == 1 && checkBoxAdmin.isSelected() == true && checkBoxUser.isSelected() == false && checkBoxTreasurer.isSelected() == false) {
-                                FileWriter fileWriter = new FileWriter("UserData.txt");
-                                fileWriter.write(rs.getInt("ID") + "\n" + rs.getString("username") + "\n"
-                                        + rs.getString("password"));
-                                fileWriter.close();
-                                TrangChuCanBoView trangChuCanBoView = new TrangChuCanBoView();
-                                trangChuCanBoView.openWindow();
-                                stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
-                                stage.close();
-                            } else if (role == 2 && checkBoxAdmin.isSelected() == false && checkBoxUser.isSelected() == true && checkBoxTreasurer.isSelected() == false) {
-                                FileWriter fileWriter = new FileWriter("UserData.txt");
-                                fileWriter.write(rs.getInt("ID") + "\n" + rs.getString("username") + "\n"
-                                        + rs.getString("password"));
-                                fileWriter.close();
-                                UserView userView = new UserView();
-                                userView.openWindow();
-                                stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
-                                stage.close();
-                            } else if (role == 0 && checkBoxAdmin.isSelected() == false && checkBoxUser.isSelected() == false && checkBoxTreasurer.isSelected() == true) {
-                                FileWriter fileWriter = new FileWriter("UserData.txt");
-                                fileWriter.write(rs.getInt("ID") + "\n" + rs.getString("username") + "\n"
-                                        + rs.getString("password"));
-                                fileWriter.close();
-                                TreasurerView treasurerView = new TreasurerView();
-                                treasurerView.openWindow();
-                                stage = (Stage) borderPaneMainAdmin.getScene().getWindow();
-                                stage.close();
-                            } else {
-                                LabelAlertLogin.setText("vui lòng chọn đúng chức danh");
-                            }
-                        } else {
-                            LabelAlertLogin.setText("Vui lòng nhập lại tên hoặc mật khẩu");
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } else {
             LabelAlertLogin.setText("Vui lòng nhập tên hoặc mật khẩu");
