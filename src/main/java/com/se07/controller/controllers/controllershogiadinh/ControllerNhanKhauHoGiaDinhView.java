@@ -73,7 +73,6 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
         ComponentVisibility.change(comboBoxTinhTrangNhanKhauHoGiaDinh, false);
 
         tableViewNhanKhauHoGiaDinh.setEditable(true);
-        tableComlumHoTenNhanKhauHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
         tableComlumBietDanhNhanKhauHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn());
         tableComlumNgaySinhNhanKhauHoGiaDinh.setCellFactory(TextFieldTableCell.forTableColumn(dateStringConverter));
         tableComlumGioiTinhNhanKhauHoGiaDinh.setCellFactory(t -> new ComboBoxTableCell<>(listGioiTinh));
@@ -266,9 +265,6 @@ public class ControllerNhanKhauHoGiaDinhView extends ControllerHoGiaDinhView imp
         int column = event.getTablePosition().getColumn();
         NhanKhauModel nhanKhauModel = event.getRowValue();
         switch (column) {
-            case 2:
-                nhanKhauModel.setHoTen((String) event.getNewValue());
-                break;
             case 3:
                 nhanKhauModel.setBietDanh((String) event.getNewValue());
                 break;
